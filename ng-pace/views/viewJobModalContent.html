@@ -1,0 +1,219 @@
+<form name="jobForm" ng-cloak>
+<div class="modal-header card-header ch-alt" ng-cloak>
+    <h3 class="modal-title">{{ 'viewJobModalContent.TITLE'| translate }}</h3>
+</div>
+<div class="modal-body card-body card-pading col-md-12" ng-cloak>
+   <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+	 <div class="row">
+	    <div class="col-sm-6 col-md-6">
+	        <div class="mini-charts-item bgm-btn-blue-500">
+	            <div class="clearfix">
+	                <div class="chart stats-bar-2" data-sparkline-bar="">
+	                    JI
+	                </div>
+	                <div class="count">
+	                    <small>{{ 'viewJobModalContent.JOB_ID'| translate }}</small>
+	                    <h2>{{job.jobId}}</h2>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="col-sm-6 col-md-6">
+	        <div class="mini-charts-item bgm-btn-blue-500">
+	            <div class="clearfix">
+	                <div class="chart stats-line" data-sparkline-line="">
+	                    OI
+	                </div>
+	                <div class="count">
+	                    <small>{{ 'viewJobModalContent.ORDER_ID'| translate }}</small>
+	                    <h2>
+	                    	<a href="" class="text-link-underline" uib-tooltip="{{ 'viewJobModalContent.Order'| translate }} {{job.orderId}} {{ 'viewJobModalContent.Details'| translate }}" ng-click="openOverviewOrderModal(job.orderId)">{{job.orderId}}</a>
+                        </h2>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	 
+	 <div class="row" >
+      <div class="grid simple">
+        <div class="grid-body no-border">
+          	<div class="row">
+          		<div class="form-group col-md-3">
+              		<label class="form-label"> {{ 'viewJobModalContent.PART'| translate }}</label>
+					<div class="controls">
+						<label><a href="" uib-tooltip="{{ 'viewJobModalContent.Book'| translate }} {{job.partNum}} {{ 'viewJobModalContent.Details'| translate }}" ng-click="openEditPartModal(job.partNum.endsWith('T') || job.partNum.endsWith('C') || job.partNum.endsWith('J') || job.partNum.endsWith('E') ? job.partNum.substring(0, job.partNum.length - 1): job.partNum)">{{job.partNum}}</a></label>
+					</div>
+           	 	  </div>
+          		 <div class="form-group col-md-3">
+              		<label class="form-label">{{ 'viewJobModalContent.STATION'| translate }}</label>
+					<div class="controls">
+						<label ng-repeat="station in stationOptions" ng-show="job.stationId == station.stationId">{{station.name}}</label>
+					</div>
+           		 </div>
+            	 <div class="form-group col-md-3">
+              		<label class="form-label">{{ 'viewJobModalContent.MACHINE'| translate }}</label>
+			  	 	<div class="controls">
+						<label>{{job.machineId}}</label>
+					</div>
+            	</div>
+            	  <div class="form-group col-md-3">
+                 <div class="form-group">
+                     <label class="form-label">{{ 'viewJobModalContent.JOB_TYPE'| translate }}</label>
+                     <div class="controls">
+						<label>{{job.jobType.name}}</label>
+					 </div>
+                 </div>
+               </div>
+          	</div>
+             
+            <div class="row">
+            
+               <div class="form-group col-md-3">
+                 <div class="form-group">
+                     <label class="form-label"> {{ 'viewJobModalContent.STATUS'| translate }}</label>
+                     <div class="controls">
+						<label>{{job.jobStatus.name}}</label>
+					 </div>
+                 </div>
+               </div>
+               <div class="form-group col-md-3">
+                 <div class="form-group">
+                     <label class="form-label"> {{ 'viewJobModalContent.PRIORITY'| translate }}</label>
+                     <div class="controls">
+						<label>{{job.jobPriority.name}}</label>
+					 </div>
+                 </div>
+               </div>
+                <div class="form-group col-md-3">
+	              <label class="form-label"> {{ 'viewJobModalContent.ROLL'| translate }}</label>
+				  <div class="controls">
+						<label>{{job.rollId}}</label>
+				  </div>
+	            </div>
+	            <div class="form-group col-md-3">
+	              <label class="form-label"> {{ 'viewJobModalContent.ROLL_ORDERING'| translate }}</label>
+	              <div class="controls">
+						<label>{{job.rollOrdering}}</label>
+				  </div>
+	            </div>
+             </div>
+          
+	          <div class="row">
+	          	
+	            
+	              <div class="form-group col-md-3">
+	              <label class="form-label"> {{ 'viewJobModalContent.HOURS'| translate }}</label>
+	              <div class="controls">
+	              	 <label>{{job.hours}}</label>
+	              </div>
+	            </div>
+	            <div class="form-group col-md-3">
+	              <label class="form-label">{{ 'viewJobModalContent.QTY_NEEDED'| translate }}</label>
+	              <div class="controls">
+	              	 <label>{{job.quantityNeeded}}</label>
+	              </div>
+	            </div>
+	            <div class="form-group col-md-3">
+	              <label class="form-label">{{ 'viewJobModalContent.QTY_PROD'| translate }}</label>
+	              <div class="controls">
+	              	 <label>{{job.quantityProduced}}</label>
+	              </div>
+	            </div>
+	              <div class="form-group col-md-3">
+	                 <div class="form-group">
+	                     <label class="form-label">{{ 'viewJobModalContent.BINDERY_PRIORITY'| translate }}</label>
+	                     <div class="controls">
+			              	 <label>{{job.binderyPriority.name}}</label>
+			             </div>
+	                 </div>
+	             </div>
+	          </div>
+	          <div class="row">
+	          	<div class="form-group col-md-3">
+	              <label class="form-label">{{ 'viewJobModalContent.QTY_UNACCOUNTED'| translate }}</label>
+	              <div class="controls">
+	              	 <label>{{job.quantityUnaccountedfor}}</label>
+	              </div>
+	            </div>
+		           <div class="form-group col-md-3">
+	              		<label class="form-label">{{ 'viewJobModalContent.MACHINE_ORDERING'| translate }}</label>
+			            <div class="controls">
+							<label>{{job.machineOrdering}}</label>
+						</div>
+	            	</div>
+		          <div class="form-group col-md-3">
+		                   <label class="form-label"> {{ 'viewJobModalContent.FILE_SENT'| translate }}</label>
+		                   <div class="controls">
+				              	 <label>{{job.fileSentFlag}}</label>
+				           </div>
+		             </div>
+		             <div class="form-group col-md-3">
+		                   <label class="form-label"> {{ 'viewJobModalContent.SPLIT_LEVEL'| translate }}</label>
+		                   <div class="controls">
+				              	 <label>{{job.splitLevel}}</label>
+				           </div>
+		             </div>
+		      </div>
+		      <div class="row" ng-if="job.stationId == 'PRESS'">
+	          	<div class="form-group col-md-3">
+	              <label class="form-label">Best Sheet</label>
+	              <div class="controls">
+	              	 <label>{{job.bestSheetUsed}}</label>
+	              </div>
+	            </div>
+	          </div>
+		      <br/>
+              <div class="col-md-12">
+              		<small><em>{{ 'viewJobModalContent.LAST_UP_ID' | translate }} '{{job.lastModifiedByUserName}}' , {{ 'viewJobModalContent.LAST_UP_DATE' | translate }} {{job.lastModifiedDate | date:'medium'}}</em></small>
+              		<div class="pull-right">
+                      <button type="button" class="btn bgm-bluegray waves-effect" ng-click="closeModal()"> {{ 'viewJobModalContent.CLOSE'| translate }}</button>
+                  </div>
+              </div>
+           </div>
+        </div>
+    </div>
+    <div class="card">
+		    <div class="card-header ch-alt">
+		        <h2>{{ 'viewJobModalContent.LOAD_TAGS'| translate }} <small>{{ 'viewJobModalContent.ADD_JOB'| translate }}</small></h2>
+		        <!-- <button ng-click="openAddLoadTagModal(job.jobId)" class="btn bgm-green btn-float waves-effect" uib-tooltip="Add">
+		            <i class="zmdi zmdi-plus"></i>
+		        </button> -->
+		    </div><br/>
+		    <div class="card-body card-padding">
+		    	<uib-alert type="success" close="successMsg = false;" ng-show="successMsg">{{alertMsg}}</uib-alert>
+			 	<uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{alertMsg}}</uib-alert>
+			 	<table id="loadTagsOnJobTable" name="loadTagsOnJobTable" class="table table-bordered" width="100%" datatable="ng" dt-options="dtOptionsForLoadTagsOnJob">
+      			  <thead>
+        			<tr>
+          				<th>{{ 'viewJobModalContent.LOADTAG_ID'| translate }}</th>
+	        			<th> {{ 'viewJobModalContent.QUANTITY'| translate }}</th>
+	        			<th>{{ 'viewJobModalContent.START_TIME'| translate }}</th>
+			            <th>{{ 'viewJobModalContent.FINISH_TIME'| translate }}</th>
+			            <th> {{ 'viewJobModalContent.WASTE'| translate }}</th>
+			            <th>{{ 'viewJobModalContent.CART'| translate }}</th>
+			            <th>{{ 'viewJobModalContent.USED'| translate }}</th>
+			            <th></th>
+					</tr>
+    			  </thead>
+   			      <tbody >
+   			       <tr ng-repeat="node in job.loadTags" >
+    			      <td>{{node.loadTagId}}</td>
+					  <td>{{node.quantity}}</td>
+    			      <td>{{node.startTime | date:'MMM dd, HH:mm'}}</td>
+    			      <td>{{node.finishTime | date:'MMM dd, HH:mm'}}</td>
+					  <td>{{node.waste}}</td>
+					  <td>{{node.cartNum}}</td>
+					  <td>{{node.usedFlag}}</td>
+					  <td><button type="button" uib-tooltip="{{ 'viewJobModalContent.View_Load_Tag'| translate }}" ng-click="openViewLoadTagModal(node.loadTagId)" class="btn bgm-orange-900 waves-effect"><i class='zmdi zmdi-view-headline'></i></button>&nbsp;
+						  <button type="button" uib-tooltip="{{ 'viewJobModalContent.Delete_Load_Tag'| translate }}" ng-click="deleteLoadTag(node.loadTagId)" class="btn bgm-red waves-effect"><i class='zmdi zmdi-delete'></i></button></td>
+					
+					</tr>
+     			  </tbody>
+   			    </table>
+		    </div>
+    </div>
+</div>
+<div class="modal-footer">
+</div>
+</form>

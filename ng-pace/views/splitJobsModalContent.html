@@ -1,0 +1,116 @@
+
+<div class="modal-header card-header ch-alt" ng-cloak>
+    <h3 class="modal-title">{{ 'splitJobModalContent.SPLIT_JOB' | translate }}</h3>
+</div>
+
+<div class="card-body modal-body card-padding col-md-12" ng-cloak>
+   <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+   <form name="splitJobForm" ng-cloak>
+    	<div class="row">
+				    <div class="col-sm-6">
+				        <div class="mini-charts-item bgm-btn-blue-500">
+				            <div class="clearfix">
+				                <div class="chart stats-bar-2" data-sparkline-bar="">
+				                    JI
+				                </div>
+				                <div class="count">
+				                    <small> {{ 'splitJobModalContent.JOB_ID' | translate }}</small>
+				                    <h2 class="ng-binding">{{jobId}}</h2>
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+				
+				
+				    <div class="col-sm-6">
+				        <div class="mini-charts-item bgm-btn-blue-500">
+				            <div class="clearfix">
+				                <div class="chart stats-bar-2" data-sparkline-bar="">
+				                    OI
+				                </div>
+				                <div class="count">
+				                    <small> {{ 'splitJobModalContent.ORDER_ID' | translate }}</small>
+				                    <h2 class="ng-binding">{{orderId}}</h2>
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+		</div>
+         <div class="row" ng-show="false">
+         	<div class="form-group col-md-6">
+	            <div class="fg-line">
+	                <label class="form-label"> {{ 'splitJobModalContent.SPLIT_LEVEL' | translate }}
+	                </label>
+	                <div class="controls">
+	                      <label><strong>{{splitLevel}}</strong></label>
+	                </div>
+	            </div>
+	        </div>
+        
+        	<div class="form-group col-md-6">
+                   <label class="form-label">{{ 'splitJobModalContent.SPLIT_SUB_JOBS' | translate }}</label>
+                   <div class="controls">
+                 		<div class="radio radio-inline m-r-20">
+							<input type="radio" id="yesUsed" name="cascadeFlag" ng-model="cascadeFlag" value="A" ><label class="input-helper" for="yesUsed"> {{ 'splitJobModalContent.YES'| translate }}</label>
+							<input type="radio" id="noUsed" name="cascadeFlag" ng-model="cascadeFlag" value="S" ><label class="input-helper" for="noUsed"> {{ 'splitJobModalContent.NO' | translate }}</label>
+						</div>
+                  </div>
+            </div>
+        </div>
+        <div class="row">
+       	    <div class="form-group col-md-6">
+	            <div class="fg-line">
+	                <label class="form-label">{{ 'splitJobModalContent.ORIGINAL_QUANTITY' | translate }}
+	                </label>
+	                <div class="controls">
+	                      <label><strong>{{originalQuantity}}  {{ 'splitJobModalContent.BECOMES' | translate }} {{originalQuantity - newQuantity}})</strong></label>
+	                </div>
+	            </div>
+	        </div>
+	        
+	        <div class="form-group required col-md-6">
+	               <label class="form-label">{{ 'splitJobModalContent.NEW_SPLIT_JOB_QTY' | translate }}
+						<small ng-show="splitJobForm.newQuantity.$touched && splitJobForm.newQuantity.$invalid" class="text-danger text-error"> {{ 'splitJobModalContent.ERROR1' | translate }}</small>
+				  		<small ng-show="splitJobForm.newQuantity.$touched && splitJobForm.newQuantity.$error.required" class="text-danger text-error"> {{ 'splitJobModalContent.ERROR2' | translate }}</small>
+					</label>
+	               <div class="controls">
+		              	<div class="fg-line">
+		               		<input type="number" id="newQuantity" ng-required="true" name="newQuantity" ng-model="newQuantity" min="1" max="{{originalQuantity - 1}}" class="form-control">
+		               	</div>
+               	   </div>
+            </div>
+	     </div>
+	     <div class="row">
+	        <div class="form-group col-md-6">
+	            <div class="fg-line">
+	                <label class="form-label"> {{ 'splitJobModalContent.ORI_HOURS' | translate }}
+	                </label>
+	                <div class="controls">
+	                      <label><strong>{{hours | number:2}}  {{ 'splitJobModalContent.BECOMES' | translate }} {{hours - (newQuantity * hours / originalQuantity) | number:2}})</strong></label>
+	                </div>
+	            </div>
+	        </div>
+	        
+	        <div class="form-group col-md-6">
+	            <div class="fg-line">
+	                <label class="form-label">  {{ 'splitJobModalContent.NEW_SPLIT_JOB_HOURS' | translate }}
+	                </label>
+	                <div class="controls">
+	                      <label><strong>{{newQuantity * hours / originalQuantity | number:2}}</strong></label>
+	                </div>
+	            </div>
+	        </div>
+	      </div>  
+         
+          <div class="row">
+              <div class="pull-right">
+                  <button type="button" class="btn bgm-bluegray waves-effect" ng-click="closeModal()"> {{ 'splitJobModalContent.CANCEL' | translate }}</button>
+         			<button type="button" ng-click="splitJobs(jobId, newQuantity, cascadeFlag)" class="btn bgm-teal waves-effect"
+					ng-disabled="splitJobForm.newQuantity.$invalid"> {{ 'splitJobModalContent.SPLIT' | translate }}</button>
+              </div>
+          </div>
+    </form>
+</div>
+
+<div class="modal-footer">
+</div>

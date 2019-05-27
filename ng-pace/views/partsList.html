@@ -1,0 +1,30 @@
+<div class="card">
+    <div class="card-header ch-alt m-b-20">
+        <h2>{{ 'PARTSTITLE' | translate }}<small> {{ 'description_parts' | translate }} <i class="zmdi zmdi-plus-circle-o"></i> {{ 'LIGNE2' | translate }}  
+          <a href="#/ordersPage">  {{ 'LIEN' | translate }}</a>.</small></h2>
+        <button class="btn bgm-teal btn-float waves-effect waves-circle" ng-click="openAddPartModal()" uib-tooltip="{{ 'ADDPART' | translate }}"><i class="zmdi zmdi-plus"></i>
+        </button>
+    </div>
+	<br/>
+    <div class="card-body card-padding" translate-cloak>
+		<uib-alert type="success" close="successMsg = false;" ng-show="successMsg">{{alertMsg}}</uib-alert>
+		<uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{alertMsg}}</uib-alert>
+      	<table datatable="" dt-options="partsList.dtOptions" dt-columns="partsList.dtColumns" dt-instance="partsList.dtInstance" class="table table-bordered table-striped table-vmiddle ng-scope ng-table col-lg-12" width="100%" translate-cloak>
+			<tfoot translate-cloak>
+        		<tr class="table-placeholder" translate-cloak>
+        			<th translate-cloak translate>js_parts.Num</th>
+        			<th  >ISBN</th>
+        			<th translate-cloak translate>js_parts.Title </th>
+        			<th translate-cloak translate >js_parts.Category </th>
+        			<th translate-cloak translate> js_parts.Colors</th>
+        			<th translate-cloak translate>js_parts.Size</th>
+        			<th translate-cloak translate>js_parts.Binding</th>
+        			<th translate-cloak translate>js_parts.Paper</th>
+        			<th translate-cloak translate>js_parts.Lamination</th>
+        			<th translate-cloak translate>js_parts.BestSheet</th>
+        			<th ></th>
+        		</tr>
+        	</tfoot>
+        </table>
+    </div>
+</div>

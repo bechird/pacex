@@ -1,0 +1,32 @@
+<div class="card">
+    <div class="card-header ch-alt m-b-20">
+        <h2>{{ 'logsList.TITLE'| translate }}<small> {{ 'logsList.DESCRIPTION'| translate }} <i class="zmdi zmdi-plus-circle-o"></i> {{ 'logsList.LIGNE2' | translate }}  
+          <a href="#/ordersPage">  {{ 'logsList.LIEN' | translate }}</a>.</small></h2>
+
+        <button class="btn bgm-teal btn-float waves-effect waves-circle" ng-click="openAddLogModal()" uib-tooltip="{{'logsList.Add_Log'| translate }}"><i class="zmdi zmdi-plus"></i>
+        </button>
+    </div>
+	<br/>
+    <div class="card-body card-padding" translate-cloak>
+       <uib-alert type="success" close="successMsg = false;" ng-show="successMsg">{{alertMsg}}</uib-alert>
+		<uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{alertMsg}}</uib-alert>
+       <table datatable="" dt-options="logsList.dtOptions" dt-columns="logsList.dtColumns" dt-instance="logsList.dtInstance" class="table table-bordered table-striped table-vmiddle ng-scope ng-table col-lg-12" width="100%" translate-cloak>
+			<tfoot>
+        		<tr class="table-placeholder" translate-cloak>
+        			<th translate-cloak translate>logsList.LOG_ID </th>
+        			<th translate-cloak translate>logsList.MACHINE </th>
+        			<th translate-cloak translate>logsList.JOB_ID</th>
+        			<th translate-cloak translate>logsList.EVENT</th>
+        			<th translate-cloak translate>logsList.CAUSE</th>
+        			<th translate-cloak translate>logsList.RESULT</th>
+        			<th translate-cloak translate>logsList.START_TIME</th>
+		            <th translate-cloak translate>logsList.FINISH_TIME </th>
+		            <th translate-cloak translate>logsList.ROLL_ID</th>
+		            <th translate-cloak translate>logsList.ROLL_LENGTH</th>
+		            <th translate-cloak translate>logsList.COUNTER_FEET</th>
+		            <th></th>
+        		</tr>
+        	</tfoot>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,112 @@
+
+<div class="card">
+ <div class="card-header ch-alt p-20 m-b-20">
+		<h2>{{ 'wrapPlastic.TITLEE ' | translate }}</h2>
+				<button id="addOrderButton"  ng-click="addOrderManualyModal()" class="btn bgm-teal btn-float waves-effect" uib-tooltip="{{ 'wrapPlastic.Add' | translate }}">
+					<i class="zmdi zmdi-plus"></i>
+				</button>
+			</div>
+	
+<div class="card-body m-t-0 card-content-table">
+		<div class="row m-t-25 p-0 m-b-25">
+
+			
+				<div class="col-xs-4">
+						<div class="bgm-isbn-pack brd-2 p-15">
+							<div class="c-white m-b-5">ISBN</div>
+							<h2 class="m-0 c-white f-300">{{part.isbn}}</h2>
+						</div>
+					</div>
+				<div class="col-xs-8">
+					<div class="bgm-title-pack brd-2 p-15">
+						<div class="c-white m-b-5"> {{ 'wrapPlastic.TITLE ' | translate }}</div>
+						<h2 class="m-0 c-white f-300">{{part.title}}</h2>
+					</div>
+				</div>
+			</div>
+<div class="row">
+   <div class="col-md-12">
+        <table class="mdl-data-table table-bordered  mdl-shadow--2dp ng-isolate-scope no-footer dataTable" width="100%">
+		                            <thead>
+		                                <tr>
+		                                	<th width="4%"></th>
+		                                    <th>{{ 'wrapPlastic.ORDER ' | translate }}</th>
+											<th>{{ 'wrapPlastic.CUSTOMER ' | translate }}</th>
+											<th>Adresse</th>
+		                                    <th> {{ 'wrapPlastic.QTY ' | translate }}</th>
+		                                    <th> {{ 'wrapPlastic.MAX ' | translate }}</th>
+		                                    <th>{{ 'wrapPlastic.DUE_DATE ' | translate }}</th>
+		                                    <th> {{ 'wrapPlastic.PRIORITY ' | translate }}</th>
+		                                    
+		                                </tr>
+		                            </thead>
+		                            <tbody>
+		                                <tr ng-repeat-start="order in orders">
+		                                	<td  class="center">
+		                                		<a ng-if="order.expanded" ng-click="order.expanded = false">
+		                                		<div class="round-button">
+												  <div class="round-button-circle">
+												    <span class="round-button bgm-bluegray"><i class="zmdi zmdi-chevron-up"></i>
+												  </div>
+												</div>
+												</a>
+												<a ng-if="!order.expanded" ng-click="order.expanded = true">
+												<div class="round-button">
+												  <div class="round-button-circle">
+												    <span class="round-button bgm-teal"><i class="zmdi zmdi-chevron-down"></i>
+												  </div>
+												</div>
+												</a>
+		                                	 <!-- <button ng-if="pallet.expanded" ng-click="pallet.expanded = false">-</button>
+              								<button ng-if="!pallet.expanded" ng-click="pallet.expanded = true">+</button> -->
+		                                	</td>
+		                                   <td>{{order.orderNum}}</td>
+											 <td>{{order.customer.firstName}}</td>
+											 <td>{{order.orderPackages[0].destination}}</td>
+		                                       <td>{{order.orderPart.quantity}}</td>
+		                                        <td>{{order.orderPart.quantityMax}}</td>
+		                                         <td>{{order.dueDate | date:'MMM dd'}}</td>
+		                                          <td>{{order.priority}}</td>
+		                                </tr>
+		                                
+		                                <tr ng-repeat-end="">
+		                                <td colspan="8" style="background-color:#F7F8FA" ng-if="order.expanded">
+		                                			<table class="mdl-data-table table-bordered  mdl-shadow--1dp ng-isolate-scope no-footer" width="100%"  ng-repeat="orderPack in order.orderPackages">
+		                                			<thead>
+		                                			<tr>
+		                                			    <th> {{ 'wrapPlastic.TYPE ' | translate }}</th>
+					                                	<th> {{ 'wrapPlastic.HEIGHT ' | translate }}</th>
+					                                	<th> {{ 'wrapPlastic.WIDTH ' | translate }}</th>
+					                                	<th> {{ 'wrapPlastic.DEPTH ' | translate }}</th>
+					                                	<th>{{ 'wrapPlastic.QTY_PCB ' | translate }}</th>
+					                                	<th> {{ 'wrapPlastic.BOOKS ' | translate }}</th>
+					                                	<th> {{ 'wrapPlastic.PCB ' | translate }}</th>
+					                                	<th> {{ 'wrapPlastic.STARTED ' | translate }}</th>
+					                                	<th> {{ 'wrapPlastic.DONE ' | translate }}</th>
+					                                </tr>
+		                                			<thead>
+		                                			<tbody ng-repeat="package in orderPack.packages">
+		                                			<tr ng-repeat="pcb in package.pcbs">
+		                                			    <td>{{package.typePackage}}</td>
+									            		<td>{{pcb.heightQty}}</td>
+									            		<td>{{pcb.widthQty}}</td>
+									            		<td>{{pcb.depthQty}}</td>
+									            		<td>{{pcb.quantity}}</td>
+									            		<td ng-init ="fetchPackageByPcb(pcb)">{{pcb.quantity*package.count}}</td>
+													    <td>{{pcb.count}}</td>
+									            		<td><label class="checkbox checkbox-inline m-r-20"><input id="start" name="start" type="checkbox"><i class="input-helper"></i></label></td>
+									            		<td><label class="checkbox checkbox-inline m-r-20"><input id="done" name="done" type="checkbox"><i class="input-helper"></i></label></td>
+								            		</tr>
+								            		</tbody>
+								            		</table>
+								            		</td>
+		                                 </tr>	
+		                                  
+								           	                              
+		                                
+		                            </tbody>
+		                        </table>
+        </div>
+</div>
+</div>
+</div>

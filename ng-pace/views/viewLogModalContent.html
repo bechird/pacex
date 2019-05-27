@@ -1,0 +1,158 @@
+ <form name="logForm" ng-cloak>
+<div class="modal-header" ng-cloak>
+    <h3 class="modal-title" >{{ 'viewLogModalContent.TITLE' | translate }}</h3>
+</div>
+
+<div class="modal-body col-md-12" ng-cloak>
+   <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+   
+    
+<div class="row">
+    <div class="col-sm-6 col-md-6">
+        <div class="mini-charts-item bgm-teal">
+            <div class="clearfix">
+                <div class="chart stats-bar-2" data-sparkline-bar="">
+                    LI
+                </div>
+                <div class="count">
+                    <small> {{ 'viewLogModalContent.LOG_ID' | translate }}</small>
+                    <h2>{{log.logId}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-6">
+        <div class="mini-charts-item bgm-teal">
+            <div class="clearfix">
+                <div class="chart stats-line" data-sparkline-line="">
+                    M
+                </div>
+                <div class="count">
+                    <small> {{ 'viewLogModalContent.MACHINE' | translate }}</small>
+                    <h2>{{log.machineId}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <div class="input-group" style="width: 100%;">
+            <div class="fg-line" ng-if="log.sectionId == null">
+                <label class="form-label">  {{ 'viewLogModalContent.JOB' | translate }}</label>
+                <div class="controls">
+                      <label><strong><a ng-show="log.currentJobId != null && log.currentJobId != 0" href="" uib-tooltip="{{ 'viewLogModalContent.Job_Details' | translate }}" ng-click="openViewJobModal(log.currentJobId)">{{log.currentJobId}}</a></strong></label>
+                </div>
+            </div>
+            <div class="fg-line" ng-if="log.sectionId != null">
+                    <label class="form-label">  {{ 'viewLogModalContent.SECTION' | translate }}</label>
+                    <div class="controls">
+                          <label><strong><a ng-show="log.sectionId != null" href="" uib-tooltip="{{ 'viewLogModalContent.Section_Details' | translate }}" ng-click="openViewSectionModal(log.sectionId)">{{log.sectionId}}</a></strong></label>
+                    </div>
+            </div>
+        </div>
+        <br>
+        <div class="input-group " style="width: 100%;">
+            <div class="fg-line">
+                <label class="form-label"> {{ 'viewLogModalContent.START_TIME' | translate }}
+                </label>
+<!--                 <input ng-click="open2()" ng-model="startTime" id="startTime" name="startTime" type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup2.opened" datepicker-options="dateOptions" close-text="Close" enable-time="false" close-on-date-selection="false" alt-input-formats="altInputFormats" ng-required="true" /> -->
+            	<div class="controls">
+                      <label><strong>{{startTime | date:'medium'}}</strong></label>
+                </div>
+            
+            </div>
+        </div>
+        <br>
+        <div class="input-group" style="width: 100%;">
+            <div class="fg-line">
+                <label class="form-label">  {{ 'viewLogModalContent.RESULT' | translate }} </label>
+                <div class="controls">
+                      <label><strong>{{log.logResult.name}}</strong></label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="input-group " style="width: 100%;">
+            <div class="fg-line">
+                <label class="form-label">  {{ 'viewLogModalContent.EVENT' | translate }} </label>
+                <div class="controls">
+                      <label><strong>{{log.event}}</strong></label>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="input-group " style="width: 100%;">
+            <div class="fg-line">
+                <label class="form-label">{{ 'viewLogModalContent.FINISH_TIME' | translate }}</label>
+<!--                 <input ng-click="open3()" ng-model="finishTime" id="finishTime" name="finishTime" type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup3.opened" datepicker-options="dateOptions" close-text="Close" enable-time="false" close-on-date-selection="false" alt-input-formats="altInputFormats" ng-required="true" /> -->
+          		<div class="controls">
+                      <label><strong>{{finishTime | date:'medium'}}</strong></label>
+                </div>
+            </div>
+            <a ng-click="open3()" class="input-group-addon last"><i class="zmdi zmdi-date"></i></a>
+        </div>
+        <br>
+        <div class="input-group" style="width: 100%;">
+            <div class="fg-line">
+                <label class="form-label">  {{ 'viewLogModalContent.ROLL' | translate }}
+                </label>
+                <div class="controls">
+                      <label><strong><a ng-show="log.rollId != null && log.rollId != 0" href="" uib-tooltip="{{ 'viewLogModalContent.Roll_Details' | translate }}" ng-click="openViewRollModal(log.rollId)">{{log.rollId}}</a></strong></label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="input-group" style="width: 100%;">
+            <div class="fg-line">
+                <label class="form-label">  {{ 'viewLogModalContent.CAUSE' | translate }}</label>
+                <div class="controls">
+                      <label><strong>{{log.logCause.name}}</strong></label>
+                </div>
+            </div>
+        </div><br/>
+		<div class="form-group" style="width: 100%;">
+            <div class="fg-line">
+                <label class="form-label"> {{ 'viewLogModalContent.COUNTERFEET' | translate }} </label>
+                <div class="controls">
+                      <label><strong>{{log.counterFeet}}</strong></label>
+                </div>
+            </div>
+        </div>
+         <div class="form-group " style="width: 100%;">
+            <div class="fg-line">
+                <label class="form-label"> {{ 'viewLogModalContent.ROLL_LENGTH' | translate }} </label>
+                <div class="controls">
+                      <label><strong>{{log.rollLength}}</strong></label>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+     <div class="col-sm-12">
+     	<div class="form-group" style="width: 100%;">
+            <div class="fg-line">
+                <label class="form-label"> {{ 'viewLogModalContent.NOTES' | translate }} </label>
+                <div class="controls">
+                      <label><strong>{{log.notes}}</strong></label>
+                </div>
+            </div>
+        </div>
+     </div>
+</div>  
+              <div class="row">
+                  <div class="pull-right">
+                      <button type="button" ng-click="openRollTag(log.rollId)" class="btn bgm-cyan waves-effect" ng-show="log.rollId != null"><i class="fa fa-tag"></i>&nbsp; {{ 'viewLogModalContent.VIEW_PRINT' | translate }}</button>
+                      <button type="button" class="btn bgm-bluegray waves-effect" ng-click="closeModal()"> {{ 'viewLogModalContent.CLOSE' | translate }}</button>
+  
+                  </div>
+              </div>
+
+</div>
+
+<div class="modal-footer">
+	<small><em>{{ 'viewLogModalContent.LAST_UP_ID' | translate }} '{{log.lastModifiedByUserName}}' , {{ 'viewLogModalContent.LAST_UP_DATE' | translate }} {{log.lastModifiedDate | date:'medium'}}</em></small>
+</div>
+   </form>

@@ -1,0 +1,105 @@
+<form name="orderLineForm" ng-cloak>
+<div class="modal-header card-header ch-alt" ng-cloak>
+	<h3 class="modal-title"> {{Title_Add_OrderLine  | translate }} </h3>
+</div>
+<div class="modal-body card-body card-padding col-md-12" ng-cloak>
+	<uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+	<br>
+	<div class="row">
+		<div class="col-md-4">
+			<div class="fg-line">
+				<label class="form-label"> {{ 'editPartModalContent.PART' | translate }}</label>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a uib-tooltip="{{'addOrderModalContent.Add_New_Book'| translate }}" ng-click="openAddPartModal()" id="addPart">
+						<i class="zmdi zmdi-plus-circle-o zmdi-hc-lg"></i></a>
+					&nbsp;&nbsp;&nbsp;<a uib-tooltip="{{ 'addOrderModalContent.Search_Existing_Book'| translate }}" ng-click="openSearchPartModal()" id="searchPart">
+						<i class="zmdi zmdi-search-for zmdi-hc-lg"></i></a>
+				<!--<input type="text" ng-model="ordpart.part.partNum" ng-disabled="true" id="partNum"
+				 name="partNum" class="form-control" style="width: 99%" disabled>-->
+				 
+				 <div class="controls">
+						<label><a href="" uib-tooltip="{{ 'editPartModalContent.PART'| translate }} {{order.orderPart.part.partNum}}" ng-click="openEditPartModal(order.orderPart.part.partNum)">{{order.orderPart.part.partNum}}</a></label>
+
+					</div>
+			</div>
+		</div>
+
+
+		<div class="col-md-4">
+			<div class="fg-line">
+				<label class="form-label"> {{ 'partsList.TITLE' | translate }}</label>
+				<input type="text" ng-model="title" ng-disabled="true" id="title" name="title"
+				 class="form-control" style="width: 99%" disabled>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="fg-line">
+				<label class="form-label"> {{ 'partsList.ISBN' | translate }}</label>
+				<input type="text" ng-model="order.orderPart.part.isbn" ng-disabled="true" id="isbn" name="isbn"
+				 class="form-control" style="width: 99%" disabled>
+			</div>
+		</div>
+	</div>
+	<br>
+
+	<div class="row">
+		<!--<div class="col-md-4">
+			<div class="fg-line">
+				<label class="form-label"> {{ 'partsList.QUANTITY' | translate }}</label>
+				<input type="text" ng-model="order.orderPart.part.quantity"  id="quantity"
+				 name="quantity" class="form-control" style="width: 99%" >
+			</div>
+		</div>-->
+		<br>
+		
+		<!--<div class="col-md-4">
+			<div class="fg-line">
+				<label class="form-label"> {{ 'partsList.MAXQUANTITY' | translate }}</label>
+				<input type="text" ng-model="ordpart.quantityMax"  id="qtyMax"
+				 name="qtyMax" class="form-control" style="width: 99%" >
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="fg-line">
+				<label class="form-label"> {{ 'partsList.MINQUANTITY' | translate }}</label>
+				<input type="text" ng-model="ordpart.quantityMin"  id="qtyMin"
+				 name="qtyMin" class="form-control" style="width: 99%" >
+			</div>
+		</div>-->
+		<div style="display:flex" class="row">
+				<div class="form-group required col-md-6" style="width: 100%;">
+						<div class="fg-line">
+							<label class="form-label">{{ 'addOrderModalContent.QUANTITY'| translate }}<small ng-show="orderLineForm.quantity.$touched && orderLineForm.quantity.$error.required" class="text-error">{{ 'addOrderModalContent.ERROR7'| translate }}</small><small ng-show="orderLineForm.quantity.$error.max" class="text-error"> {{ 'addOrderModalContent.ERROR8'| translate }}</small>
+							</label>
+							<input type="number" ng-change="refreshQtys()" id="quantity" name="quantity" ng-model="order.orderPart.quantity" ng-required="true" class="form-control" min="1" max="999999999">
+						</div>
+					</div>
+				<div class="form-group required col-md-6" style="width: 100%;">
+					<div class="">
+						<label class="form-label">{{ 'addOrderModalContent.MINQTY'| translate }}
+							<small ng-show="orderLineForm.quantityMin.$touched && orderLineForm.quantityMin.$error.required" class="text-error">{{ 'addOrderModalContent.ERROR9'| translate }}</small>
+							<small ng-show="orderLineForm.quantityMin.$touched && orderLineForm.quantityMin.$invalid" class="text-error">{{ 'addOrderModalContent.ERROR10'| translate }}</small>
+						</label>
+						<input type="number" id="quantityMin" name="quantityMin" ng-required="true" ng-model="order.orderPart.quantityMin" class="form-control" min="1" max="{{order.orderPart.quantity}}">
+					</div>
+				</div>
+				<div class="form-group required col-md-6" style="width: 100%;">
+					<div class="">
+						<label class="form-label">{{ 'addOrderModalContent.MAXQTY'| translate }}
+							<small ng-show="orderLineForm.quantityMax.$touched && orderLineForm.quantityMax.$error.required" class="text-error">{{ 'addOrderModalContent.ERROR11'| translate }}</small>
+							<small ng-show="orderLineForm.quantityMax.$touched && orderLineForm.quantityMax.$invalid" class="text-error">{{ 'addOrderModalContent.ERROR12'| translate }}</small>
+						</label>
+						<input type="number" id="quantityMax" name="quantityMax" ng-required="true" ng-model="order.orderPart.quantityMax" class="form-control" min="{{order.orderPart.quantityMin}}" max="999999999">
+					</div>
+				</div>
+			</div>
+	</div>		
+	<br>
+
+</div>
+
+<div class="modal-footer">
+		<button type="button" ng-disabled="orderLineForm.quantity.$invalid" ng-click="addOrderLine()" class="btn bgm-teal waves-effect" 
+		><i class="fa fa-plus-circle"></i>&nbsp; {{ 'addOrderModalContent.Add_OrderLine' | translate }} </button>
+	<button type="button" class="btn bgm-bluegray waves-effect" ng-click="closeModal()" > {{ 'OVERVIEWORDER.CLOSE' | translate }}</button>
+</div>
+</form>

@@ -1,0 +1,359 @@
+<style>
+.zenlogic-steps {
+	display: flex;
+	overflow: hidden;
+	line-height: 1.5;
+	border: 2px solid #1ea5da;
+	padding: 0;
+	margin: 0;
+	border-radius: 5px;
+}
+
+.zenlogic-steps .step {
+	flex: 1;
+	color: #888;
+	text-decoration: none;
+	padding: 10px 0 10px 55px;
+	background: #fff;
+	position: relative;
+	display: flex;
+}
+
+.zenlogic-steps .step:first-child {
+	padding-left: 20px;
+}
+
+.zenlogic-steps .step:last-child {
+	padding-right: 20px;
+}
+
+.zenlogic-steps .step.active {
+	background-color: #1ea5da;
+	color: #fff;
+}
+
+.zenlogic-steps .step.active .icon {
+	color: #fff;
+}
+
+.zenlogic-steps .step.active:after {
+	border-left-color: #1ea5da;
+}
+
+.zenlogic-steps .step.complete {
+	background-color: #F5F6FA;
+	color: #888;
+}
+
+.zenlogic-steps .step.complete .icon {
+	color: #888;
+}
+
+.zenlogic-steps .step.complete:after {
+	border-left-color: #F5F6FA;
+}
+
+.zenlogic-steps .step:after {
+	content: " ";
+	display: block;
+	width: 0;
+	height: 0;
+	border-top: 50px solid transparent;
+	/* Go big on the size, and let overflow hide */
+	border-bottom: 50px solid transparent;
+	border-left: 30px solid #fff;
+	position: absolute;
+	top: 50%;
+	margin-top: -50px;
+	left: 100%;
+	z-index: 2;
+}
+
+.zenlogic-steps .step:before {
+	content: " ";
+	display: block;
+	width: 0;
+	height: 0;
+	border-top: 50px solid transparent;
+	/* Go big on the size, and let overflow hide */
+	border-bottom: 50px solid transparent;
+	border-left: 30px solid #1ea5da;
+	position: absolute;
+	top: 50%;
+	margin-top: -50px;
+	margin-left: 2px;
+	left: 100%;
+	z-index: 1;
+}
+
+.zenlogic-steps .icon {
+	font-size: 2em;
+	color: #c9c9ca;
+}
+
+.zenlogic-steps .content {
+	padding-left: 0.5em;
+	align-self: center;
+}
+
+.zenlogic-steps .title {
+	font-size: 1.2em;
+}
+
+.zenlogic-steps .description {
+	font-size: 14px;
+}
+
+@media screen and (max-width: 1600px) {
+	.zenlogic-steps .step {
+		font-size: 9px;
+		padding: 10px 0 10px 40px;
+	}
+}
+</style>
+<div class="modal-header card-header ch-alt" ng-cloak>
+	<h3 class="modal-title"> {{ 'OVERVIEWORDER.TITLE' | translate }}  {{order.orderId}})</h3>
+</div>
+<div class="modal-body card-body card-padding" ng-cloak>
+    <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+   
+        <div class="">
+            <div class="">
+
+                <div class="">
+                 
+		 <div class="row">
+                         	<!--<div class="col-lg-6 col-md-12" ng-show="order.parts.length == 1">
+						<label> {{ 'OVERVIEWORDER.FILESTATUS' | translate }}</label>
+						<div class="zenlogic-steps">
+							<div
+								class="step {{fileStep == progress ? 'active' : 'complete'}}"
+								ng-repeat="fileStep in fileSteps" id="{{ 'file-' + $index }}"
+								ng-style="myStyle">{{fileStep}}</div>
+						</div>
+					</div>-->
+					<div class="col-lg-6 col-md-12">
+						<label> {{ 'OVERVIEWORDER.ORDERSTATUS' | translate }}</label>
+						<div id="orderSatsus" class="zenlogic-steps">
+							<div
+								class="step {{ (statusStep == order.status) ? 'active' : 'complete'}}"
+								ng-repeat="statusStep in orderSteps"
+								ng-style="{{ 'style_' + $index }}" id="{{ 'order-' + $index }}">{{statusStep}}</div>
+						</div>
+					</div>
+				</div>
+				<div class="row" style="margin-top: 15px;">
+					<!--  row 1 -->
+					<div class="col-sm-4">
+						<div class="input-group" style="width: 100%;">
+							<div class="fg-line">
+								<label class="form-label">  {{ 'OVERVIEWORDER.REQNAME' | translate }}</label>
+
+								<div class="form-label">
+									<input id="reqName" name="reqName" type="text"
+										ng-model="order.customer.fullName" class="form-control" disabled>
+								</div>
+							</div>
+						</div>
+						<br>
+						<div class="input-group" style="width: 100%;">
+							<div class="fg-line">
+								<label class="form-label"> {{ 'OVERVIEWORDER.PONumber' | translate }} </label> <input
+									id="orderNum" name="orderNum" type="text"
+									ng-model="order.orderNum" class="form-control"
+									ng-required="true" ng-maxlength="25" disabled>
+							</div>
+						</div>
+						<br>
+						<div class="input-group" style="width: 100%;">
+							<div class="fg-line">
+								<label class="form-label"> {{ 'OVERVIEWORDER.PLEVEL' | translate }}</label>
+								<div class="select">
+									<select name="priority" id="priority" ng-model="order.priority"
+										class="form-control" disabled>
+										<option ng-repeat="option in priorityOptions"
+											value="{{option.id}}">{{option.name}}</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					<!--	<div class="input-group " style="width: 100%;" ng-show="order.parts.length == 1">
+							<div class="fg-line">
+								<label class="form-label"> <a href=""
+									uib-tooltip="{{ 'OVERVIEWORDER.Book' | translate }} {{order.orderPart.part.isbn}} {{ 'OVERVIEWORDER.Details' | translate }}"
+									ng-click="openEditPartModal(order.orderPart.part.partNum)">ISBN</a>
+								</label>
+								<div class="fg-line">
+									<input type="text" ng-model="order.orderPart.part.isbn"
+										ng-disabled="true" ng-required="true" name="isbn" id="isbn"
+										class="form-control" style="width: 99%" disabled>
+								</div>
+							</div>
+						</div>
+						<br>
+						<div class="input-group" style="width: 100%;" ng-show="order.parts.length == 1">
+							<div class="fg-line">
+								<label class="form-label"> {{ 'OVERVIEWORDER.TITLEE' | translate }}</label> <input type="text"
+									ng-model="title" ng-disabled="true" id="title" name="title"
+									class="form-control" style="width: 99%" disabled>
+							</div>
+						</div>-->
+					</div>
+					<!--  end row 1 -->
+					<!--  row 2 -->
+					<div class="col-sm-4">
+						<div class="input-group" style="width: 100%;">
+							<div class="fg-line">
+								<label class="form-label">Email</label> <input type="text"
+									ng-required="true" ng-disabled="true" id="email" name="email"
+									ng-model="order.customer.email" class="form-control" disabled>
+							</div>
+						</div>
+						<br>
+						<div class="input-group" style="width: 100%;">
+							<div class="fg-line">
+								<label class="form-label"> {{ 'OVERVIEWORDER.DUEDATE' | translate }} </label>
+								<!--  <input ng-click="open1()" ng-model="dueDate" id="dueDate" name="dueDate" type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup1.opened" datepicker-options="dateOptions" close-text="Close" enable-time="true" close-on-date-selection="false" alt-input-formats="altInputFormats" ng-required="true" /> -->
+								<datepicker date-format="{{format}}" date-typer="true"
+									date-set="{{dueDate.toString()}}"
+									button-prev='<i class="fa fa-arrow-circle-left"></i>'
+									button-next='<i class="fa fa-arrow-circle-right"></i>'>
+								<input ng-model="dueDate" id="dueDate" name="dueDate"
+									type="text" class="date-control"
+									uib-datepicker-popup="{{format}}" placeholder="Choose a date"
+									ng-required="true" disabled /> </datepicker>
+							</div>
+						</div>
+						<br>
+						<div class="form-group" style="width: 100%;">
+							<div class="fg-line">
+								<div class="col-sm-6">
+									<label class="form-label"> {{ 'OVERVIEWORDER.QUANTITY' | translate }}</label> <input type="number"
+										id="quantity" name="quantity"
+										ng-model="order.quantity" class="form-control"
+										min="0" max="999999999" disabled>
+								</div>
+								<div class="col-sm-6">
+									<label class="form-label"> {{ 'OVERVIEWORDER.QTYPROD' | translate }}</label> <input
+										type="number" id="quantityProduced" name="quantityProduced"
+										ng-model="orderQuantityProduced" class="form-control" min="0"
+										max="999999999" disabled>
+								</div>
+							</div>
+						</div>
+						<!-- <div class="form-group" style="width: 100%;">
+							<div class="fg-line">
+								<div class="col-sm-6">
+									<label class="form-label"> {{ 'OVERVIEWORDER.MAXQTY' | translate }}</label> <input type="number"
+										id="quantityMax" name="quantityMax"
+										ng-model="order.orderPart.quantityMax" class="form-control"
+										min="0" max="999999999" disabled>
+								</div>
+								<div class="col-sm-6">
+									<label class="form-label">{{ 'OVERVIEWORDER.MINQTY' | translate }}</label> <input type="number"
+										id="quantityMin" name="quantityMin"
+										ng-model="order.orderPart.quantityMin" class="form-control"
+										min="0" max="999999999" disabled>
+								</div>
+							</div>
+						</div>-->
+						<div class="fg-line">
+							<input type="text" ng-show="false"
+								ng-model="order.orderPart.part.partNum" name="partNum"
+								id="partNum" class="form-control" style="width: 99%" disabled>
+						</div>
+					</div>
+					<!--  end row 2 -->
+					<!--  row 3 -->
+					<div class="col-sm-4">
+						<div class="input-group" style="width: 100%;">
+                                <div class="fg-line">
+                                    <label class="form-label">{{ 'addOrderModalContent.CLIENT'| translate }}</label>
+                                    <div class="select">
+                                        <select name="client" id="client" ng-model="order.clientId" class="form-control" disabled>
+                                            <option value="">{{ 'addOrderModalContent.SELECT'| translate }}</option>
+                                            <option ng-repeat="option in clientOptions" value="{{option.id}}">{{option.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+						<br>
+						<div class="input-group" style="width: 100%;">
+							<div class="fg-line">
+								<label class="form-label"> {{ 'OVERVIEWORDER.STATUS' | translate }}</label>
+								<div class="select">
+									<select name="status" id="status" ng-model="order.status"
+										class="form-control" disabled>
+										<option value=""> {{ 'OVERVIEWORDER.SELECT' | translate }}</option>
+										<option ng-repeat="option in orderStatusOptions"
+											value="{{option.id}}">{{option.name}}</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<br>
+						<div class="input-group" style="width: 100%;">
+							<div class="fg-line">
+								<label class="form-label"> {{ 'OVERVIEWORDER.NOTES' | translate }}</label>
+								<div class="controls">
+									<textarea id="notes" name="notes" class="form-control"
+										ng-model="order.notes" rows="2" ng-maxlength="2000" disabled></textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--  end row 3 -->
+				</div>
+				<!--   row 4 -->
+				<!--  end row 4 -->
+			</div>
+		</div>
+		<button type="button" class="btn bgm-cyan waves-effect right m-b-5 ng-cloak" ng-if="loggedInUser.roles.indexOf('ROLE_ADMIN') > -1" 
+			ng-show="rerunValid" ng-click="reRunWorkFlows(order.orderId)"> {{ 'OVERVIEWORDER.RERUNWORKFLOWS' | translate }}</button>
+		
+		<div class="row">
+	   		<label> {{ 'ORDERS_JS.ORDERPARTS' | translate }}:</label><br>
+			<table 
+				class="mdl-data-table table-bordered  mdl-shadow--2dp"
+				width="100%" datatable="ng"
+				dt-column-defs="dtColumnDefsForDataSupports" dt-options="dtOptionsForDataSupports">
+				<thead>
+					<tr>
+						<th style="color:black"> {{ 'partsList.PARTNUM' | translate }}</th>
+						<th style="color:black"> {{ 'partsList.ISBN' | translate }}</th>
+						<th style="color:black"> {{ 'partsList.TITLE' | translate }}</th>
+						<th style="color:black"> {{ 'partsList.QUANTITY' | translate }}</th>
+
+						<th style="color:black"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="op in order.orderParts">
+						<td style="font-weight: bold;">{{op.part.partNum}}</td>
+						<td style="font-weight: bold;">{{op.part.isbn}}</td>
+						<td style="font-weight: bold;">{{op.part.title}}</td>
+						<td style="font-weight: bold;">{{op.quantity}}</td>
+						<td style="font-weight: bold;">
+	                        <button type="button" title="View data supports for part {{op.part.partNum}}"
+	                          ng-click="openOrderPartDsModal(order.orderId, op, order.source)"
+	                          class="btn btn-lightgrey waves-effect"><i class="zmdi zmdi-view-headline"></i></button>
+		                </td>
+					</tr>			
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn bgm-bluegray waves-effect"
+			ng-click="closeModal()"> {{ 'OVERVIEWORDER.CLOSE' | translate }}</button>
+	</div>
+	<script>
+   $(".steps a").click(function(){
+	   if ( $(this).parent("li").hasClass("complete") ){
+	     $(this).parent("li").removeClass("complete").nextAll().removeClass("complete");
+	   } else {
+	     $(this).parent("li").addClass("complete").prevAll().addClass("complete");
+	   }
+	   return false;
+	 });
+   </script>

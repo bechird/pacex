@@ -1,0 +1,166 @@
+<div class="card">
+    <div class="card-header ch-alt">
+        <h2>{{ 'orderAcceptance.DESCRIPTION'| translate }}</h2>
+    </div>
+    <br/>
+    <div class="card-body row card-padding">
+        <div class="col-lg-6">
+            <div id="site-visits" class="dash-widget-item ch-alt">
+                <div class="mini-charts-item" ng-class="MODE =='pacex'?'bgm-4c-pacex':'bgm-4c-pacea'">
+                    <div class="clearfix">
+                        <div class="chart stats-bar-2" data-sparkline-bar="">
+                            4C
+                        </div>
+                        <div class="stat">
+                        	<div class="count">
+                                <small>{{ 'orderAcceptance.SCHED_HOUES'| translate }}</small>
+                                <h2><span class="m-0 f-400" data-value="568" data-animation-duration="700">{{scheduled4CHours | number:2 }}</span></h2>
+                            </div>
+                            <div class="count">
+                                <small>{{ 'orderAcceptance.UNSCHED_HOUES'| translate }}</small>
+                                <h2 class="m-0 f-400" data-value="568" data-animation-duration="700">{{unscheduled4CHours | number:2 }}</h2>
+                            </div>
+                            <div class="count">
+                                <small>{{ 'orderAcceptance.SELECTED_HOUES'| translate }}</small>
+                                <h2 class="m-0 f-400" data-value="568" data-animation-duration="700">{{selected4CHours | number:2 }}</h2>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="dash-widget-header">
+                    <div class="p-20">
+                        <div class="dash-widget-visits chart-edge">
+                            <canvas id="bar4C" class="chart chart-bar col-lg-12" chart-data="data4C" chart-labels="cLabels" chart-series="cSeries" chart-options="cOptions" chart-dataset-override="datasetOverride"></canvas>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div id="site-visits" class="dash-widget-item ch-alt">
+                <div class="mini-charts-item" ng-class="MODE =='pacex'?'bgm-1C-pacex':'bgm-1C-pacea'">
+                    <div class="clearfix">
+                        <div class="chart stats-bar-2" data-sparkline-bar="">
+                            1C
+                        </div>
+                        <div class="stat">
+                        	<div class="count">
+                                <small> {{ 'orderAcceptance.SCHED_HOUES'| translate }}</small>
+                                <h2 class="m-0 f-400" data-value="5695" data-animation-duration="700">{{scheduled1CHours | number:2 }}</h2>
+                            </div>
+                            <div class="count">
+                                <small>{{ 'orderAcceptance.UNSCHED_HOUES'| translate }}</small>
+                                <h2 class="m-0 f-400" data-value="5695" data-animation-duration="700">{{unscheduled1CHours | number:2 }}</h2>
+                            </div>
+                            <div class="count">
+                                <small>{{ 'orderAcceptance.SELECTED_HOUES'| translate }}</small>
+                                <h2 class="m-0 f-400" data-value="568" data-animation-duration="700">{{selected1CHours | number:2 }}</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dash-widget-header">
+                    <div class="p-20">
+                        <div class="dash-widget-visits chart-edge">
+                            <canvas id="bar1C" class="chart chart-bar col-lg-12" chart-data="data1C" chart-labels="cLabels" chart-series="cSeries" chart-options="cOptions" chart-dataset-override="datasetOverride"></canvas>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 card-header acceptance-div">
+        		 <button id="acceptButton" name="acceptButton" ng-click="acceptOrders()" data-name="accept" ng-disabled="selectedOrdersForAcceptance.length == 0" 
+        		 class="btn bgm-teal btn-float waves-effect" title="{{ 'orderAcceptance.Accept'| translate }}">
+                <i class="zmdi zmdi-check"></i>
+            </button>
+            <div class="col-lg-12">
+            <div type="success" class="alert alert-success alert-dismissible" role="alert" ng-show="successMsg">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                </button>
+                {{alertMsg}}
+            </div>
+            <div type="danger" class="alert alert-danger alert-dismissible" role="alert" ng-show="errorMsg">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                </button>
+                {{alertMsg}}
+            </div>
+            <div type="warning" class="alert alert-warning alert-dismissible" role="alert" ng-show="warningMsg">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                </button>
+                {{alertMsg}}
+            </div>
+        </div>
+            </div>
+        <div class="col-lg-12 table-acceptance">
+        
+                <table datatable="" id="ordersTable" name="ordersTable" dt-options="ordersAcceptanceList.dtOptionsAcceptance" dt-columns="ordersAcceptanceList.dtColumnsAcceptance" dt-instance="ordersAcceptanceList.dtInstanceAcceptance" class="table table-bordered table-striped table-vmiddle ng-scope ng-table col-lg-12" width="100%">
+
+                    <tfoot>
+                        <tr>
+                            <th style="width:5%"></th>
+                            <th></th>
+                            <th></th>
+                            <th style="width:5%"></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th style="width:8%"></th>
+                            <th></th>
+                            <th>
+                                <label class="checkbox checkbox-inline m-r-20">
+                                    <input id="checkboxAll" name="checkboxAll" type="checkbox" onclick="var $scope = angular.element(event.target).scope(); $scope.toggleSelectAll(this.checked); $scope.$apply()" />
+                                    <i class="input-helper"></i>
+                                </label>
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+        </div>
+    </div>
+
+</div>
+
+<!-- <div class="row">
+<div class="col-sm-6 col-md-6">
+    <div class="mini-charts-item bgm-cyan">
+        <div class="clearfix">
+            <div class="text-widget stats-bar">
+                <span>4C</span>
+            </div>
+            <div class="count">
+            <div class="col-lg-6 count">
+                <small>Unscheduled Hours:</small>
+                <h2><span class="item-count animate-number semi-bold" data-value="5695" data-animation-duration="700">{{unscheduled4CHours | number:2 }}</span></h2>
+           	</div>
+           	<div class="col-lg-6 count">
+           		   <small>Selected Hours:</small>
+                <h2><span class="item-count animate-number semi-bold" data-value="568" data-animation-duration="700">{{selected4CHours | number:2 }}</span></h2>
+           	</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-sm-6 col-md-6">
+    <div class="mini-charts-item bgm-bluegray">
+        <div class="clearfix">
+            <div class="text-widget stats-bar">
+                <span>1C</span>
+            </div>
+            <div class="count">
+            <div class="col-lg-6 count">
+                <small>Unscheduled Hours:</small>
+                <h2><span class="item-count animate-number semi-bold" data-value="5695" data-animation-duration="700">{{unscheduled1CHours | number:2 }}</span></h2>
+           	</div>
+           	<div class="col-lg-6 count">
+           		   <small>Selected Hours:</small>
+                <h2><span class="item-count animate-number semi-bold" data-value="568" data-animation-duration="700">{{selected1CHours | number:2 }}</span></h2>
+           	</div>
+            </div>
+        </div>
+    </div>
+</div>
+</div> -->

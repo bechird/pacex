@@ -1,0 +1,110 @@
+<form name="partSearchForm" ng-cloak>
+	<div class="modal-header card-header ch-alt" ng-cloak>
+	    <h3 class="modal-title">{{ 'searchPart.TITLE_PAGE'| translate }}</h3>
+	    <small>{{ 'searchPart.DESCRIPTION'| translate }}</small>
+	</div>
+	<div class="card-body card-pading col-md-12" ng-cloak>
+   		<uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+   		<div class="row" >
+      	  <div class="grid simple">
+            <div class="grid-body no-border">
+				<div class="row">
+					 <div class="form-group col-md-4">
+		                   <label class="form-label">Part #</label>
+		                   <div class="controls">
+		                   	  <div class="fg-line">
+		                 		<input type="text" ng-model="partSearchBean.partNumLike" name="partNum" id="partNum" class="form-control" style="width: 99%">
+		           		      </div>
+		           		   </div>
+			         </div>
+			         <div class="form-group col-md-6">
+		                   <label class="form-label">ISBN</label>
+		                   <div class="controls">
+		                   	   <div class="fg-line">
+		                 		<input type="text" ng-model="partSearchBean.isbn" name="isbn" id="isbn" class="form-control" style="width: 99%">
+		           		      </div>
+		           		   </div>
+			         </div>
+			         <div class="form-group col-md-2">
+		                   <label class="form-label">Version</label>
+		                   <div class="controls">
+		                     <div class="fg-line">
+		                 		<input type="number" ng-model="partSearchBean.version" name="version" id="version" class="form-control" style="width: 99%">
+		           		     </div>
+		           		   </div>
+			         </div>
+				</div>
+				<div class="row">
+					 <div class="form-group col-md-8">
+		                   <label class="form-label">{{ 'searchPart.TITLE'| translate }}</label>
+		                   <div class="controls">
+		                     <div class="fg-line">
+		                 		<input type="text" ng-model="partSearchBean.title" name="title" id="title" class="form-control" style="width: 99%">
+		           		     </div>
+		           		   </div>
+			         </div>
+					 <div class="form-group col-md-4">
+		                   <label class="form-label">{{ 'searchPart.AUTHOR'| translate }}</label>
+		                   <div class="controls">
+		                      <div class="fg-line">
+		                 		<input type="text" ng-model="partSearchBean.author" name="author" id="author" class="form-control" style="width: 99%">
+		           		     </div>
+		           		   </div>
+			         </div>
+				</div>
+				<div class="col-md-12">
+		             <div class="pull-right">
+		                 <button type="button" class="btn bgm-bluegray waves-effect" ng-click="closeModal()">{{ 'searchPart.CANCEL'| translate }}</button>
+		             	 <button type="button" ng-click="searchParts()" 
+		             	 	ng-disabled="(partSearchBean.isbn == null || partSearchBean.isbn == '' || partSearchForm.isbn.$invalid) &&
+						  		 (partSearchBean.partNumLike == null || partSearchBean.partNumLike == '')  &&
+						  		 (partSearchBean.title == null || partSearchBean.title == '') &&
+						  		(partSearchBean.version == null || partSearchBean.version == 0 || partSearchBean.version == '') &&
+						  		(partSearchBean.author == null || partSearchBean.author == '')"
+		             	 	class="btn bgm-cyan waves-effect"><i class='zmdi zmdi-search'></i>&nbsp;{{ 'searchPart.SEARCH'| translate }}</button>
+		             </div>
+		        </div>
+			</div>
+			<div class="card">
+			    <div class="card-header ch-alt m-b-20">
+			        <h2>{{ 'searchPart.SEARCH_RESULT'| translate }}</h2>
+			    </div><br/>
+			    <div class="card-body card-padding">
+			    	<uib-alert type="success" close="successMsg = false;" ng-show="successMsg">{{alertMsg}}</uib-alert>
+				 	<uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{alertMsg}}</uib-alert>
+				 	<table id="partSearchResultTable" name="partSearchResultTable" class="table table-bordered" width="100%" datatable="ng" dt-options="dtOptionsForPartSearchResult">
+	      			  <thead>
+	        			<tr>
+	          				<th>Part#</th>
+		        			<th>ISBN</th>
+		        			<th> {{ 'searchPart.TITLE'| translate }}</th>
+		        			<th>{{ 'searchPart.AUTHOR'| translate }}</th>
+				            <th>Version</th>
+				            <th>{{ 'searchPart.PUBLISH_DATE'| translate }}</th>
+				            <th>{{ 'searchPart.LAST_PRINTED'| translate }}</th>
+				            <th></th>
+						</tr>
+	    			  </thead>
+	   			      <tbody >
+	   			       <tr ng-repeat="node in searchResult" >
+	    			      <td>{{node.partNum}}</td>
+						  <td>{{node.isbn}}</td>
+	    			      <td>{{node.title}}</td>
+	    			      <td>{{node.author}}</td>
+	    			      <td>{{node.version}}</td>
+						  <td>{{node.publishDate}}</td>
+						  <td>{{node.lastPrinted}}</td>
+						  <td><button id="{{node.partNum}}" name="{{node.partNum}}" type="button" uib-tooltip="{{ 'searchPart.Select_this_Part'| translate }} {{node.partNum}}" ng-click="selectPart(node.partNum)" 
+						  		class="btn bgm-orange-900 waves-effect"><i class='zmdi zmdi-long-arrow-return'></i></button></td>
+						</tr>
+	     			  </tbody>
+	   			    </table>
+			    </div>
+    		  </div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+    </div>
+</form>
+

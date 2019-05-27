@@ -1,0 +1,406 @@
+<br/>
+
+<div class="card">
+    <div class="card-header ch-alt m-b-20"><strong>{{ 'index.deliveryFormBuilder'| translate }}</strong></div>
+
+    <div class="card-body card-padding" translate-cloak>
+
+        <form name="palettIdForm" ng-cloak>
+
+            <div class="row">
+
+
+                <div class="form-group col-md-2">
+                    <label class="form-label">{{ 'deliveryFormBuilderI18n.palettId'| translate }} :
+								<small ng-show="palettIdForm.palettId.$touched && palettIdForm.palettId.$error.required" class="text-error">  {{ 'deliveryFormBuilderI18n.requiredErrorMsg'| translate }}</small>
+			                </label>
+
+                    <div class="controls">
+                        <div class="fg-line">
+                            <input ng-model="palettId" id="palettId" name="palettId" type="text" class="form-control" required="required" placeholder="{{ 'deliveryFormBuilderI18n.palettId' | translate }}" />
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group col-md-1">
+                    <label class="form-label"> </label>
+
+                    <div class="controls">
+                        <div class="fg-line">
+                            <button type="button" class="btn bgm-bluegray waves-effect" ng-click="getPallett()" ng-disabled="palettIdForm.palettId.$invalid"> {{ 'deliveryFormBuilderI18n.search' | translate }}</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </form>
+
+    </div>
+</div>
+
+
+
+
+
+<div class="card">
+    <div class="card-header ch-alt m-b-20"><strong>{{ 'deliveryFormBuilderI18n.results'| translate }}</strong></div>
+
+    <div class="card-body card-padding" translate-cloak>
+
+
+        <div ng-if="pallette == null" type="warning" class="alert alert-warning alert-dismissible center" role="alert" width="100%" translate-cloak>
+            <h3>{{ 'deliveryFormBuilderI18n.noData'| translate }}</h3>
+        </div>
+
+        <table id="singleOrderTable" ng-if="pallette != null && pallette.orders != null && pallette.orders.length == 1" class="table table-bordered table-striped table-vmiddle ng-scope ng-table ng-isolate-scope dataTable dtr-inline" width="100%" translate-cloak>
+            <thead translate-cloak>
+                <tr translate-cloak>
+                    <th style="text-transform: none;font-size: 12px;"> </th>
+                    <th style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.numPallet'| translate }}</th>
+                    <th style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.palletOrder'| translate }}</th>
+                    <th style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.shipAdress'| translate }}</th>
+                    <th style="text-transform: none;font-size: 12px;">ISBN</th>
+                    <th style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.titles'| translate }}</th>
+                    <th style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.shipped'| translate }}</th>
+                    <th style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.otherPallet'| translate }}</th>
+                    <th style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.units'| translate }}</th>
+                    <th style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.ordered'| translate }}</th>
+                    <th style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.shipToday'| translate }}</th>
+                    <th style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.actions'| translate }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+                    <td class="center">
+
+                        <a ng-if="pallette.orders[0].expanded" ng-click="toggleExpanded(pallette.orders[0])">
+                            <div class="round-button">
+                                <div class="round-button-circle">
+                                    <span class="round-button bgm-bluegray">
+												<i class="zmdi zmdi-chevron-up"></i>
+										</div>
+									</div>
+								</a>
+								<a ng-if="!pallette.orders[0].expanded" ng-click="toggleExpanded(pallette.orders[0])">
+									<div class="round-button">
+										<div class="round-button-circle">
+											<span class="round-button bgm-teal">
+												<i class="zmdi zmdi-chevron-down"></i>
+										</div>
+									</div>
+								</a>
+	
+							</td>
+							
+	
+							<td>{{pallette.id}}</td>
+							<td>{{pallette.orders[0].orderNum}}</td>						
+							<td>{{pallette.destination}}</td>						
+							<td>{{pallette.orders[0].orderPart.part.isbn}}</td>
+							<td style="text-align: center">1</td>
+							<td>{{pallette.orders[0].shippedQty}}</td>
+							
+							<td>{{pallette.orders[0].qtyOtherPaletts}}</td>
+							<td>{{pallette.orders[0].units}}</td>
+							<td>{{pallette.orders[0].orderPart.quantity}}</td>
+	
+							<td>	
+								<label class="checkbox checkbox-inline m-r-20"><input ng-model="pallette.shipToday" type="checkbox"><i class="input-helper"></i></label>						
+							</td>
+							
+							
+							<td>
+								<button style="padding-left: 10px;" class="btn bgm-cyan waves-circle waves-effect" uib-tooltip="{{ 'deliveryFormBuilderI18n.save'| translate }}"
+								 ng-click="saveChanges()">
+									<i class="zmdi zmdi-check"></i>
+								</button>
+								<button style="padding-left: 10px;" class="btn bgm-cyan waves-circle waves-effect" uib-tooltip="{{ 'deliveryFormBuilderI18n.save'| translate }}"
+								ng-click="printSlip(pallette.id)">
+								   <i class="zmdi zmdi-print"></i>
+							   </button>							</td>
+												
+
+					</tr>
+					
+					<tr>
+						<td> </td>
+						<td colspan="11" style="padding-right: 70px;padding-top: 30px;">
+						
+							
+							
+							<table id="singleOrderSubTable" ng-if="pallette.orders[0].expanded"
+										   class="table table-bordered table-striped table-vmiddle ng-scope ng-table ng-isolate-scope dataTable dtr-inline" width="100%" translate-cloak>
+											<thead translate-cloak>
+												<tr translate-cloak>
+													<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.numPallet'| translate }}</th>
+													<th  style="text-transform: none;font-size: 12px;">ISBN</th>
+													<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.title'| translate }}</th>
+													<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.pcbType'| translate }}</th>
+													<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.numPcb'| translate }}</th>
+													<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.units'| translate }}</th>
+													<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.actions'| translate }}</th>
+												</tr>
+											</thead>
+											<tbody>
+
+													<tr ng-repeat="book in pallette.orders[0].books">
+														<td>{{pallette.id}}</td>
+														<td>{{pallette.orders[0].orderPart.part.isbn}}</td>
+														<td>{{pallette.orders[0].orderPart.part.title}}</td>
+														<td>{{book.packageBook.heightQty}} * {{book.packageBook.widthQty}} * {{book.packageBook.depthQty}}</td>
+														<td>{{book.quantity}}</td>
+														<td>{{book.packageBook.heightQty * book.packageBook.widthQty * book.packageBook.depthQty * book.quantity}}</td>
+														<td>
+															<button style="padding-left: 10px;" class="btn bgm-orange-900 waves-circle waves-effect" uib-tooltip="{{ 'deliveryFormBuilderI18n.edit'| translate }}"
+															 ng-click="editBook(book, pallette.orders[0])">
+																<i class="zmdi zmdi-edit"></i>
+															</button>
+														</td>
+													</tr>
+													
+													
+													<tr>
+														<td colspan="7" align="right">
+															<button type="button" class="btn bgm-teal waves-effect" 
+																	ng-click="addLine(pallette.orders[0])">{{ 'deliveryFormBuilderI18n.add'| translate }}</button>
+														</td>
+													</tr>
+											</tbody>
+							</table>						
+						
+						
+						
+						
+						
+						
+						
+						</td>
+					</tr>
+
+				</tbody>
+			</table> 
+ 
+ 
+ 
+ 
+ 		
+ 		
+ 		
+ 		
+ 
+ 
+ 
+ 	<div id="multiOrdersDiv" ng-if="pallette != null && pallette.orders != null && pallette.orders.length > 1">
+ 		<table id="multiOrdersTable"  
+			   class="table table-bordered table-striped table-vmiddle ng-scope ng-table ng-isolate-scope dataTable dtr-inline" width="100%" translate-cloak>
+				<thead translate-cloak>
+					<tr translate-cloak>
+						<th  style="text-transform: none;font-size: 12px;"> </th>
+						<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.numPallet'| translate }}</th>
+						<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.palletOrder'| translate }}</th>
+						<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.shipAdress'| translate }}</th>
+						<th  style="text-transform: none;font-size: 12px;">ISBN</th>
+						<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.titles'| translate }}</th>
+						<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.quantity'| translate }}</th>
+						<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.ordered'| translate }}</th>						
+						<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.shipped'| translate }}</th>						
+						<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.otherPallet'| translate }}</th>
+						<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.shipToday'| translate }}</th>
+						<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.actions'| translate }}</th>
+					</tr>
+				</thead>
+				<tbody>
+						<tr>
+						
+							<td class="center">
+							
+								<a ng-if="toogleAll" ng-click="toggleMulti()">
+									<div class="round-button">
+										<div class="round-button-circle">
+											<span class="round-button bgm-bluegray">
+												<i class="zmdi zmdi-long-arrow-up"></i>
+										</div>
+									</div>
+								</a>
+								<a ng-if="!toogleAll" ng-click="toggleMulti()">
+									<div class="round-button">
+										<div class="round-button-circle">
+											<span class="round-button bgm-teal">
+												<i class="zmdi zmdi-long-arrow-down"></i>
+										</div>
+									</div>
+								</a>
+	
+							</td>
+							
+	
+							<td>{{pallette.id}}</td>
+							<td>Mutli</td>						
+							<td>{{pallette.destination}}</td>						
+							<td>Multi</td>
+							<td style="text-align: center">{{pallette.orders.length}}</td>
+							
+							<td>-</td>							
+							<td>-</td>							
+							<td>-</td>
+							<td>-</td>
+	
+							<td>	<label class="checkbox checkbox-inline m-r-20"><input ng-model="pallette.shipToday" type="checkbox"><i class="input-helper"></i></label></td>
+							
+							
+							<td>
+								<button style="padding-left: 10px;" class="btn bgm-cyan waves-circle waves-effect" uib-tooltip="{{ 'deliveryFormBuilderI18n.save'| translate }}"
+								 ng-click="saveChanges()">
+									<i class="zmdi zmdi-check"></i>
+								</button>
+								
+							</td>
+												
+
+					</tr>
+
+				</tbody>
+			</table> 
+			
+			<div id="MultiOrdersListingDiv" ng-if="toogleAll" style="padding: 20px;background-color: #e8e2de;">
+					<table id="multiOrdersListingTable"  
+					   class="table table-bordered table-striped table-vmiddle ng-scope ng-table ng-isolate-scope dataTable dtr-inline" width="100%" translate-cloak>
+						<thead translate-cloak>
+							<tr translate-cloak>
+								<th  style="text-transform: none;font-size: 12px;"> </th>
+								<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.numPallet'| translate }}</th>
+								<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.palletOrder'| translate }}</th>
+								<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.shipAdress'| translate }}</th>
+								<th  style="text-transform: none;font-size: 12px;">ISBN</th>
+								<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.titles'| translate }}</th>
+								<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.quantity'| translate }}</th>
+								<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.ordered'| translate }}</th>						
+								<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.shipped'| translate }}</th>						
+								<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.otherPallet'| translate }}</th>
+								<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.shipToday'| translate }}</th>
+								<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.actions'| translate }}</th>
+							</tr>
+						</thead>
+						<tbody ng-repeat="order in pallette.orders">
+
+							<tr>
+							
+								<td class="center">
+								
+									<a ng-if="order.expanded" ng-click="toggleExpanded(order)">
+										<div class="round-button">
+											<div class="round-button-circle">
+												<span class="round-button bgm-bluegray">
+													<i class="zmdi zmdi-long-arrow-up"></i>
+											</div>
+										</div>
+									</a>
+									<a ng-if="!order.expanded" ng-click="toggleExpanded(order)">
+										<div class="round-button">
+											<div class="round-button-circle">
+												<span class="round-button bgm-teal">
+													<i class="zmdi zmdi-long-arrow-down"></i>
+											</div>
+										</div>
+									</a>
+		
+								</td>
+								
+		
+								<td>{{pallette.id}}</td>
+								<td>{{order.orderNum}}</td>						
+								<td>{{pallette.destination}}</td>						
+								<td>{{order.orderPart.part.isbn}}</td>
+								<td>-</td>
+								
+								<td>{{order.units}}</td>							
+								<td>{{order.orderPart.quantity}}</td>							
+								<td>{{order.shippedQty}}</td>
+								<td>{{order.qtyOtherPaletts}}</td>
+		
+								<td>-</td>
+								
+								
+								<td>
+									<button style="padding-left: 10px;" class="btn bgm-red waves-circle waves-effect" uib-tooltip="{{ 'deliveryFormBuilderI18n.delete'| translate }}"
+									 ng-click="confirmDelete(order)">
+										<i class="zmdi zmdi-delete"></i>
+									</button>
+								</td>
+													
+	
+							</tr>						
+
+
+
+							<tr ng-if="order.expanded" style="padding: 20px;background-color: #e8e2de;">
+								<td> </td>
+								<td colspan="11" >
+								
+									
+									
+									<table id="multiOrderSubTable" 
+												   class="table table-bordered table-striped table-vmiddle ng-scope ng-table ng-isolate-scope dataTable dtr-inline" width="100%" translate-cloak>
+													<thead translate-cloak>
+														<tr translate-cloak>
+															<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.numPallet'| translate }}</th>
+															<th  style="text-transform: none;font-size: 12px;">ISBN</th>
+															<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.title'| translate }}</th>
+															<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.pcbType'| translate }}</th>
+															<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.numPcb'| translate }}</th>
+															<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.units'| translate }}</th>
+															<th  style="text-transform: none;font-size: 12px;">{{ 'deliveryFormBuilderI18n.actions'| translate }}</th>
+														</tr>
+													</thead>
+													<tbody>
+		
+															<tr ng-repeat="book in order.books">
+																<td>{{pallette.id}}</td>
+																<td>{{order.orderPart.part.isbn}}</td>
+																<td>{{order.orderPart.part.title}}</td>
+																<td>{{book.packageBook.heightQty}} * {{book.packageBook.widthQty}} * {{book.packageBook.depthQty}}</td>
+																<td>{{book.quantity}}</td>
+																<td>{{book.packageBook.heightQty * book.packageBook.widthQty * book.packageBook.depthQty * book.quantity}}</td>
+																<td>
+																	<button style="padding-left: 10px;" class="btn bgm-orange-900 waves-circle waves-effect" uib-tooltip="{{ 'deliveryFormBuilderI18n.edit'| translate }}"
+																	 ng-click="editBook(book, order)">
+																		<i class="zmdi zmdi-edit"></i>
+																	</button>
+																</td>
+															</tr>
+															
+															
+															<tr>
+																<td colspan="7" align="right">
+																	<button type="button" class="btn bgm-teal waves-effect" 
+																			ng-click="addLine(order)">{{ 'deliveryFormBuilderI18n.add'| translate }}</button>
+																</td>
+															</tr>
+													</tbody>
+									</table>						
+								
+								
+								
+								
+								
+								
+								
+								</td>
+							</tr>						
+						
+						
+						
+						</tbody>						
+						</table>
+			
+			
+			</div>
+			
+	
+		</div>		       
+    </div>
+</div>

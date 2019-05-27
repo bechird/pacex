@@ -1,0 +1,29 @@
+{
+   "sections" :{
+     "TITLE" : "Lista de Secciones",
+     "DESCRIPTION": "A continuación se muestra la lista de secciones disponibles en el sistema"
+	},  	 
+	  	"sections_js" :{
+	 "Id" :"Id de sección",
+	 "Name" :"Nombre de la sección",	 
+	 "Status" :"Estado",
+	 "Lamination" :"Laminación",
+	 "Quantity" :"Cantidad",
+	 "Priority" :"Prioridad",
+	 "DueDate" :"Fecha de vencimiento",
+	 "Updating_Section" :"Actualizando Sección",
+	 "Section_Updated" :"Sección actualizado"
+
+	 },
+	 "editSectionModalContent" :{
+		"TITLE" : "Actualizando sección",
+		"BATCH" : "Batch Id",
+		"MACHINE": "Máquina",   
+		"SELECT": "-- Seleccionar --",
+		"SAVE": "Guardar"
+
+
+
+		
+	 }
+}

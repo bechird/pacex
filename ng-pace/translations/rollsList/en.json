@@ -1,0 +1,27 @@
+{
+   "rolls" :{
+     "TITLE" : "Rolls List",
+     "DESCRIPTION": "Below is the list of rolls available in the system. To add a new roll click"
+	},  	 
+	  	"rolls_js" :{
+	 "Id" :"Roll Id",
+	 "Status" :"Status",
+	 "Length" :"Length",
+	 "PaperType" :"Paper Type",
+	 "Hours" :"Hours",
+	 "Utilization" :"Utilization",
+	 "DeleteRoll":"Delete Roll",
+	  "delete_sure" : "Are you sure you want to delete the roll?",
+	 "warning" :"warning",
+	 "Yes_delete"  :"Yes, delete it!",
+	 "Part_succ_deleted!" :"Part successfully deleted!",
+	 "DeletionError" :"Deletion Error",
+	 "NEW" :"NEW",
+	 "Adding_Roll" :"Adding Roll",
+	 "Roll_Added" :"Roll Added",
+	 "Updating_Roll" :"Updating Roll",
+	 "Roll_Updated" :"Roll Updated"
+	 
+	  
+	 }
+}

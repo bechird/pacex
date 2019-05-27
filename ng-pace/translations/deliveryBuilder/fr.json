@@ -1,0 +1,41 @@
+{
+    "deliveryFormBuilderI18n" :{
+	 	"palettId" :"Id palette",
+	 	"requiredErrorMsg" :"Valeur requise",
+	 	"search" :"Chercher",
+	 	"results" : "Résultats",	 	
+	 	"edit" : "Editer",	 	
+	 	"save" : "Sauvegarder",
+	 	"cancel" : "Annuler",
+	 	"height" : "Hauteur",
+	 	"width" : "Largeur",
+	 	"depth" : "Profondeur",
+	 	"numPcb" : "Nbr PCBs",
+	 	"numPallet" : "N° palet",
+	 	"palletOrder" : "N° commande",
+	 	"shipAdress" : "Adres livraison",
+	 	"titles" : "#Titres",
+	 	"shipped" : "Qtté déjà livrée",
+	 	"otherPallet" : "Autre palet",
+	 	"units" : "Unités",
+	 	"ordered" : "Qtté commandée",
+	 	"shipToday" : "Expédier ce jour",
+	 	"actions" : "Actions",
+	 	"title" : "Titre",
+	 	"pcbType" : "Type PCB",
+	 	"add" : "Ajouter",
+	 	"noData" : "Pas de données disponibles",
+	 	"confirmTitle" : "Confirmation",
+	 	"confirmBody" : "Etes-vous sûr de sauvegarder cette palette?",
+	 	"quantity" : "Qtté",
+	 	"editQuantity" : "Editer la quantité",
+	 	"delete" : "Effacer",
+	 	"confirmDeleteBody" : "Etes-vous sûr d'effacer cette commande?",
+	 	"errorTitle" : "Erreur",	
+	 	"errorNotFound" : "Aucun résultat ne correspond à votre recherche.",
+	 	"errorAlreadyDelivered"	: "Palette déjà livrée.",
+	 	"errorBadRecord"	: "Enregistrement corrompu." 	 	 		
+    } 
+	 
+	  
+}

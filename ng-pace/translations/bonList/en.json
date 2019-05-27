@@ -1,0 +1,50 @@
+{
+     "bonDeLivraison" :{
+     "TITLE" : "Delivery form List",
+     "BL" :"BL#",
+	 "Adresse" :"Address",
+	 "Date_Creation" :"Creation Date",
+	 "Quantity" :"Quantity" 
+   },
+   
+     "BONLIST_JS" :{
+	 "BL" :"BL#",
+	 "Adresse" :"Address",
+	 "Date_Creation" :"Creation Date",
+	 "Quantity" :"Quantity" ,
+	 "EDIT" :"EDIT",
+	 "FEB" :"Feb",
+	 "APR" :"Apr",
+	 "MAY" :"May",
+	 "JUN" :"Jun",
+	 "JUL": "Jul",
+	 "AUG" :"Aug"
+	},
+     
+     "bonDeLivraisonModal" :{ 
+     "Address" : "Address",
+     "Order": "Order#",
+	 "Title" :"Title",
+	 "QTY_NEEDED" :"Quantity Needed",
+	 "QTY_Pallette" :"Quantity Pallette",
+	 "QTY_Delivred" :"Quantity Delivred",
+	 "CANCEL" :"CANCEL",
+	 "SAVE" :"SAVE"
+   },
+   
+   "ordersReadyToShipped" :{
+	 "TITLE" : "Delivery form",
+     "Order_Num": "Order Num",
+	 "Client":	"Customer",
+	 "Destination": "Destination",
+	 "Qty_Needed": "Qty Needed" ,
+	 "Qty_Delivred": " Qty Delivred",
+	 "BL_Num" :"BL Num",
+	 "BL_Date" :"BL Date",
+	 "STATUS": " Status"	 
+	 }
+    
+     
+	 
+	  
+}

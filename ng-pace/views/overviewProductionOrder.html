@@ -1,0 +1,112 @@
+
+<div class="modal-header card-header ch-alt" ng-cloak>
+	<h3 class="modal-title"> {{ 'OVERVIEWORDER.TITLE' | translate }}  {{order.orderId}})</h3>
+	<br/>
+</div>
+<div class="modal-body card-body card-padding" ng-cloak>
+    <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+   		<br>
+			<!--  row 1 -->
+			<div class="row">
+					<div class="col-sm-3">
+						<div class="form-group" style="width: 100%;">
+							<div class="fg-line">
+									<label class="form-label"> {{ 'OVERVIEWORDER.QUANTITYORDER' | translate }}</label> 
+									<input type="number" id="quantity" name="quantity"
+										ng-model="order.quantity" class="form-control"
+										min="0" max="999999999" disabled>
+							</div>
+						</div>
+					</div>
+					<!--  end row 1 -->
+					<!--  row 2 -->
+					<div class="col-sm-3">
+						<div class="input-group" style="width: 100%;">
+							<div class="fg-line">
+								<label class="form-label"> {{ 'OVERVIEWORDER.STATUS' | translate }}</label>
+								<div class="select">
+									<input name="status" id="status" ng-model="order.status" class="form-control" disabled>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--  end row 2 -->
+					<!--  row 3 -->
+					<div class="col-sm-3">
+						<div class="form-group" style="width: 100%;">
+							<div class="fg-line">
+								<label class="form-label"> {{ 'OVERVIEWORDER.QUANTITYPRODUCE' | translate }}</label> 
+									<input type="number" id="quantityMax" name="quantityMax"
+										ng-model="order.quantityMax" class="form-control"
+										min="0" max="999999999" disabled>
+							</div>
+						</div>
+					</div>
+					<!--  end row 3 -->
+					<!--  row 4 -->
+					<div class="col-sm-3">
+						<div class="input-group" style="width: 100%;">
+							<div class="fg-line">
+								<label class="form-label"> {{ 'OVERVIEWORDER.PLEVEL' | translate }}</label>
+								<div class="select">
+									<select name="priority" id="priority" ng-model="order.priority"
+										class="form-control" disabled>
+										<option ng-repeat="option in priorityOptions"
+											value="{{option.id}}">{{option.name}}</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--  end row 4 -->
+			</div>
+		<br>
+				
+		<div class="row">
+			<h3 class="modal-title"> {{ 'OVERVIEWORDER.ORDERPRODSTATUS' | translate }}</h3>
+			<br>
+			<table class="table table-bordered  table-vmiddle ng-scope ng-table " width="100%" datatable="ng"
+				dt-column-defs="ordersList.dtColumnDefsForOrderProductionStatus" dt-options="ordersList.dtOptionsForOrderProductionStatus">
+				<thead>
+					<tr>
+						<th> {{ 'OVERVIEWORDER.Date' | translate }}</th>
+						<th> {{ 'OVERVIEWORDER.PART' | translate }}</th>
+						<th> {{ 'OVERVIEWORDER.Roll' | translate }} </th>
+						<th> {{ 'OVERVIEWORDER.LoadTag' | translate }}</th>
+						<th> {{ 'OVERVIEWORDER.Quantity' | translate }}</th>
+					</tr>
+				</thead>
+				<tbody >
+					<tr ng-repeat-start="job in jobs" style="background-color:#f4f4f4">
+						<td> {{job.quantityProduced > 0 ? (job.lastModifiedDate | date:'MMM dd, HH:mm') : job.jobStatus.name}}</td>
+						<td> {{job.partNum != null ? job.partNum : ''}}</td>
+						<td> {{job.rollId != null ? job.rollId : ''}}</td>
+						<td> </td>
+						<td style="font-weight: bold;">{{job.quantityProduced != null ? job.quantityProduced : 0}}/{{job.quantityNeeded}}</td>
+					</tr>
+					
+					<tr ng-repeat="loadTag in job.loadTags" >
+						<td>{{loadTag.startTime != null ? loadTag.startTime : loadTag.lastModifiedDate | date:'MMM dd, HH:mm'}}</td>
+						<td></td>
+						<td></td>
+						<td> {{loadTag.loadTagId}}</td>
+						<td> {{loadTag.quantity}}</td>
+					</tr>
+					
+					<tr ng-repeat-end="" ng-if="$index < jobs.length && jobs[$index].stationId != jobs[$index + 1].stationId"
+						style="background-color:#b0bed9">
+						<td colspan="2"></td>
+						<td ></td>
+						<td style="font-weight: bold;" align="right">{{job.stationId == 'PLOWFOLDER' ? 'HUNKELER' : job.stationId}}:&nbsp;&nbsp; </td>
+						<td style="font-weight: bold;">{{job.jobName}}</td>
+						<td ng-show="false"></td>
+					</tr>		
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn bgm-bluegray waves-effect"
+			ng-click="closeModal()"> {{ 'OVERVIEWORDER.CLOSE' | translate }}</button>
+	</div>
+	

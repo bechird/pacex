@@ -1,0 +1,91 @@
+
+<div class="modal-header card-header ch-alt" ng-cloak>
+    <h3 class="modal-title">{{ 'viewLoadTagModalContent.TITLE'| translate }}</h3>
+</div>
+
+<div class="card-body modal-body card-padding col-md-12" ng-cloak>
+   <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+    <form name="loadTagForm" ng-cloak>	
+    	<div class="row">
+				    <div class="col-sm-6">
+				        <div class="mini-charts-item bgm-btn-blue-500">
+				            <div class="clearfix">
+				                <div class="chart stats-bar-2" data-sparkline-bar="">
+				                     {{ 'viewLoadTagModalContent.LI'| translate }}
+				                </div>
+				                <div class="count">
+				                    <small> {{ 'viewLoadTagModalContent.LOAD_TAG_ID'| translate }}</small>
+				                    <h2 class="ng-binding">{{loadTag.loadTagId}}</h2>
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+				
+				    <div class="col-sm-6">
+				        <div class="mini-charts-item bgm-btn-blue-500">
+				            <div class="clearfix">
+				                <div class="chart stats-bar-2" data-sparkline-bar="">
+				                    JI
+				                </div>
+				                <div class="count">
+				                    <small>{{ 'viewLoadTagModalContent.JOB_ID'| translate }}</small>
+				                    <h2 class="ng-binding">{{loadTag.jobId}}</h2>
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+		</div>
+         <div class="row">
+         	  <div class="form-group col-md-4">
+	              <label class="form-label"> {{ 'viewLoadTagModalContent.Quantity'| translate }}</label>
+	              <div class="controls">
+                      <label><strong>{{loadTag.quantity}}</strong></label>
+                  </div>
+	          </div>
+	            <div class="form-group required col-md-4">
+                            <label class="form-label">{{ 'viewLoadTagModalContent.START_TIME'| translate }}</label>
+                            <div class="controls">
+			                      <label><strong>{{startTime | date:'medium'}}</strong></label>
+			                </div>
+                </div>
+                 <div class="form-group required col-md-4">
+                            <label class="form-label"> {{ 'viewLoadTagModalContent.FINISH_TIME'| translate }}</label>
+                            <div class="controls">
+			                      <label><strong>{{finishTime | date:'medium'}}</strong></label>
+			                </div>
+              </div>
+         </div><br/>
+         <div class="row">
+         	    <div class="form-group col-md-4">
+               <label class="form-label"> {{ 'viewLoadTagModalContent.WASTE'| translate }}</label>
+               <div class="controls">
+              	 <label><strong>{{loadTag.waste}}</strong></label>
+               </div>
+              </div>
+                <div class="form-group required col-md-4">
+                            <label class="form-label">{{ 'viewLoadTagModalContent.CART_NUMBER'| translate }}</label>
+                            <div class="controls">
+                            	<label><strong>{{loadTag.cartNum}}</strong></label>
+                            </div>
+              </div>
+               <div class="form-group col-md-4">
+                   <label class="form-label">{{ 'viewLoadTagModalContent.LoadTag'| translate }}</label>
+                   <div class="controls">
+                 		<label><strong>{{loadTag.usedFlag}}</strong></label>
+                  </div>
+            </div>
+         </div><br/>
+         <div class="row">
+             <div class="pull-right">
+                  <button type="button" class="btn bgm-bluegray waves-effect" ng-click="closeModal()"> {{ 'viewLoadTagModalContent.CANCEL'| translate }}</button>
+                  <button type="button" ng-click="openLoadTag(loadTag)" class="btn bgm-cyan waves-effect" ng-disabled="rollForm.rollTag.$invalid || rollForm.length.$invalid || rollForm.width.$invalid || rollForm.paperType.$invalid || rollForm.weight.$invalid || rollForm.status.$invalid || rollForm.hours.$invalid || rollForm.utilization.$invalid"><i class="fa fa-tag"></i>&nbsp;{{ 'viewLoadTagModalContent.TAG'| translate }}</button>
+
+             </div>
+         </div>
+ </form>
+</div>
+
+<div class="modal-footer">
+	<small><em>{{ 'viewLoadTagModalContent.LAST_UP_ID' | translate }} '{{loadTag.lastModifiedByUserName}}' , {{ 'viewLoadTagModalContent.LAST_UP_DATE' | translate }} {{loadTag.lastModifiedDate | date:'medium'}}</em></small>
+</div>
+  

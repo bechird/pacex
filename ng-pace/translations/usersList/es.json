@@ -1,0 +1,98 @@
+{    "users" :{
+     "TITLE" : "Lista de usuarios",
+     "DESCRIPTION": "Debajo está la lista de usuarios disponibles en el sistema. Para agregar una nueva click el",
+	 "LIGNE2":	"icon ",
+	 "LIEN": " ",
+	 "FIRST_NAME":	"Nombre",
+	 "LAST_NAME": "Apellido",
+	 "EMAIL": "Correo Electrinico",
+	 "PHONE": "Teléfono",	 
+	 "LANGUAGE" :"Idioma",
+	 "ACTIVE": "Activo(a)",
+	 "USER_ROLES": "Rol de usuario",
+	 "ADD_USER": "Agregar usuario", 
+	 "ERROR1": ": ¡Nombre muy largo!",
+	 "ERROR2": ": ¡Nombre requerido!",	 
+	 "ERROR3": ": ¡Apellido muy largo!",
+	 "ERROR4": ": ¡Apellido requerido!", 
+	 "ERROR5": ": ¡Email muy largo!",
+	 "ERROR6": ": ¡Email requerido!",	 
+	 "ERROR7": ": ¡Email inválido!",
+	 "ERROR8": ": ¡Teléfono muy largo!", 
+	 "ERROR9": ": ¡Teléfono inválido!",
+	 "LOGIN_NAME": "Nombre de Login",
+	 "ERROR10": ": ¡Nombre de Login muy largo!",	 
+	 "LOGIN_PASSWORD": "Contraseña de Login",
+	 "ERROR11": ": ¡La contraseña de Login es muy larga!",
+	 "ROLES": "Roles", 
+	 "SELECT": "-- Seleccionar --",
+	 "ACTIVE?": "¿Activo(a)?",
+	 "YES": "Sí",	 
+	 "NO": "No",
+	 "CANCEL": "Cancelar",	 
+	 "ADD": "Agregar",	 
+	 "UPDATE_USER": "Actualizar usuario", 
+	 "ERROR12": ": ¡Nombre muy largo!",
+	 "ERROR13": ": ¡Nombre requerido!",	  
+	 "ERROR14": ": ¡Apellido muy largo!",
+	 "ERROR15": ": ¡Apellido requerido!",	 	
+	 "ERROR16": ": ¡Email muy largo!",	 
+	 "ERROR17": ": ¡Email requerido!",	 
+	 "ERROR18": ": ¡Número de teléfono muy largo!",
+	 "ERROR19": ": ¡Número de teléfono inválido!",	 	 
+	 "ERROR20": ": ¡El nombre de Login es muy largo!",
+	 "ERROR21": ": ¡La contraseña de Login es muy larga!",
+	 "LAST_UP_ID": "Identificacion de último usuario: ", 
+	 "LAST_UP_DATE": "Última fecha de actualización:",
+	 "UPDATE" : "Actualizar"
+	 
+	},
+	 
+	 
+	 "js" :{
+	 "FirstName" : "Nombre",
+	 "LastName" : "Apellido",
+	 "Phone" : "Número de teléfono",
+	 "Language" : "Idioma",
+	 "Active" :"Etiqueta activa",
+	 "UserRoles" : "Roles de usuario",
+	 
+	 "TITLE_DELETE" : "Borrar usuario",
+	 "TEXT_DELETE" : "¿Está seguro de querer borrar usuario?",
+	 "CONFIRM_DELETE" : "¡Sí borrar!",
+	 
+	 "DeleteRole" : "Borrar rol",
+	 "ROLE_DELETED" : "¡Rol borrado exitosamente!",
+	 "DeletionError" : "Error al borrar",
+	 
+	 "USER_UPDATED" : "¡Usuario actualizado !!",
+	 "ADING_USER" : "Agregando usuario",
+	 "USER_ADDED" :"Userario agregado",
+	 "EDDINT_USER" :"Editando usuario",
+	 "USER_UPDATED2" :"Userario actualizado",
+	 "EDIT" :"Editar usuario",
+	 "DELETE_js" : "Borrar usuario"
+	 
+	},
+	 
+	 "plowFolderMachineForPhone" : {
+	 "ROLL_NUM" : "Número de rollo",
+     "PAPER_TYPE": "Timo de papel",
+	 "Utopia":	"Utopia Filmcoat Text Blue White",
+	 "NEXT": "Siguiente",
+	 "ROLL": "Rollo 482",
+	 "TOBS_LIST": "Lista de trabajos",	 
+	 "FILE_NAME": "Nombre de archivo",
+	 "QTY": "Cantidad"
+	 
+	 }
+	  
+	 
+
+	 
+	 
+	 
+	 
+	  
+	  	 
+}

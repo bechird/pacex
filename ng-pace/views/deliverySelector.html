@@ -1,0 +1,53 @@
+ <br/>
+ 
+ <div class="card">
+    <div class="card-header ch-alt m-b-20"><strong>{{ 'deliveryFormGeneratorI18n.select'| translate }}</strong></div>
+    
+    <div class="card-body card-padding" translate-cloak>
+        	
+							
+							<table class="table table-bordered table-striped table-vmiddle ng-scope ng-table ng-isolate-scope dataTable dtr-inline" width="100%" translate-cloak>
+											<thead translate-cloak>
+												<tr translate-cloak>
+													<th>{{ 'deliveryFormGeneratorI18n.numPallet'| translate }}</th>
+													<th>{{ 'deliveryFormGeneratorI18n.shipAdress'| translate }}</th>
+													<th>{{ 'deliveryFormGeneratorI18n.titles'| translate }}</th>
+													<th>{{ 'deliveryFormGeneratorI18n.shipToday'| translate }}</th>
+													<th></th>
+												</tr>
+											</thead>
+											<tbody ng-repeat="(key, value) in groups">
+
+													
+														<tr ng-repeat="pallette in value">
+															<td>{{pallette.id}}</td>
+															<td>{{pallette.destination}}</td>
+															<td>{{pallette.totalOrders}}</td>
+															<td>{{pallette.totalBooks}}</td>
+															<td>
+																<span ng-if="pallette.selected"> <span style="background-color: #b6f442;">{{ 'deliveryFormGeneratorI18n.toBeShippedToday'| translate }}</span>  &nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp </span>
+																<button type="button" class="btn bgm-bluegray waves-effect" ng-click="changeDeliveryStatus(pallette)">{{ 'deliveryFormGeneratorI18n.changeShipStatus'| translate }}</button>																
+															</td>															
+														</tr>
+														
+														
+														<tr>
+															<td></td>
+															<td><button type="button" class="btn bgm-bluegray waves-effect" ng-click="confirmCreateBl(key)">{{ 'deliveryFormGeneratorI18n.createBl'| translate }} {{key}}</button></td>
+															<td></td>
+															<td></td>
+															<td></td>
+														</tr>
+													
+
+											</tbody>
+							</table>	  
+							
+
+        
+    </div>
+</div>
+
+
+
+ 

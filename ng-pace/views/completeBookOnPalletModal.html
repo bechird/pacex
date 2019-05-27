@@ -1,0 +1,66 @@
+<div class="modal-header card-header ch-alt" ng-cloak>
+<h3>{{ 'completeBookOnPallet.DESCRIPTION' | translate }}</h3>
+<br/>
+</div>
+<div class="card-body card-padding col-md-12" ng-cloak>
+        <div class="col-md-12">
+        		<table class="mdl-data-table table-bordered  mdl-shadow--2dp ng-isolate-scope no-footer dataTable m-t-10" width="100%">
+        			<thead>
+        				<th>{{ 'completeBookOnPallet.ORDER' | translate }}</th>
+        				<th>ISBN</th>
+        				<th>{{ 'completeBookOnPallet.TITLE' | translate }}</th>
+        				<th>{{ 'completeBookOnPallet.QTY_PALLET' | translate }}</th>
+        			</thead>
+        			<tbody>
+        				<tr>
+        					<td>{{currentOrder.orderNum}}</td>
+        					<td>{{currentJob.partIsbn}}</td>
+        					<td>{{currentJob.partTitle}}</td>
+        					<td>{{qtyCurrentOrderInPallette}}</td>
+        				</tr>
+        			</tbody>
+        		</table>
+        </div>
+        <div class="col-md-12 p-20">
+        	 <div class="form-group col-md-4">
+				                <label class="form-label"> {{ 'completeBookOnPallet.TOTAL' | translate }}</label>
+				                <div class="controls"><input name="total" type="number" ng_model ="currentOrder.orderPart.quantity" class="form-control" > </div>
+				            </div>
+				             <div class="form-group col-md-4">
+				                <label class="form-label"> {{ 'completeBookOnPallet.MIN' | translate }}</label>
+				                <div class="controls"> <input name="min" type="number" ng_model ="currentOrder.orderPart.quantityMin" class="form-control" > </div>
+				            </div>
+				             <div class="form-group col-md-4">
+				                <label class="form-label"> {{ 'completeBookOnPallet.MAX' | translate }}</label>
+				                <div class="controls">
+				                        <input name="max" type="number" ng_model ="currentOrder.orderPart.quantityMax" class="form-control" >
+				                </div>
+				            </div>
+        	</div>
+        	<div class="col-md-12 partielPcb">
+        	<label><b>{{ 'completeBookOnPallet.PLZ_SPECIFY' | translate }}</b></label>
+        	 <div class="controls m-t-10">
+                        <div class="checkbox checkbox-inline m-r-20">
+                            <input id="1" type="checkbox"  ng-model="noleftover" ng-change="NoLeftOver()">
+                            <label class="input-helper" for="1"><b> {{ 'completeBookOnPallet.NO' | translate }}</b></label> 
+                        </div>
+                    </div>
+                    <div class="display-wib m-t-10">
+                     <div class="controls" >
+                        <div class="checkbox checkbox-inline m-r-20">
+                            <input id="2" type="checkbox"  ng-model="leftover" ng-change="setLeftOverWithQty()">
+                            <label class="input-helper" for="2"><b> {{ 'completeBookOnPallet.YES' | translate }}</b> &nbsp;&nbsp;{{ 'completeBookOnPallet.PCB_QTY' | translate }}</label>
+                        </div>
+                    </div>
+                     
+				           <input name="pcb" type="number"  ng-model ="leftoverQty"class="mt--5">
+				            
+        	</div>
+        	</div>
+        </div>
+            </div>
+			<div class="modal-footer">
+			    <button type="button" class="btn bgm-bluegray waves-effect m-t-10" ng-click="closeModal()"> {{ 'completeBookOnPallet.CANCEL' | translate }}</button>
+			        <button type="button" class="btn bgm-cyan waves-effect m-t-10" ng-click="closeModalCompleteOrder();closeModal()"> {{ 'completeBookOnPallet.SAVE' | translate }}</button>
+
+			</div>

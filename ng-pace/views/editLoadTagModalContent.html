@@ -1,0 +1,186 @@
+
+<div class="modal-header card-header ch-alt" ng-cloak>
+    <h3 class="modal-title">{{ 'editLoadTagModalContent.TITLE'| translate }}</h3>
+</div>
+
+<div class="card-body modal-body card-padding col-md-12" ng-cloak>
+   
+    <form name="loadTagForm" ng-cloak>	
+    	<div class="row">
+				    <div class="col-sm-6">
+				        <div class="mini-charts-item bgm-btn-blue-500">
+				            <div class="clearfix">
+				                <div class="chart stats-bar-2" data-sparkline-bar="">
+				                    LTI
+				                </div>
+				                <div class="count">
+				                    <small>{{ 'editLoadTagModalContent.LOADTAG_ID'| translate }}</small>
+				                    <h2 class="ng-binding">{{loadTag.loadTagId}}</h2>
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+				
+				    <div class="col-sm-6">
+				        <div class="mini-charts-item bgm-btn-blue-500">
+				            <div class="clearfix">
+				                <div class="chart stats-bar-2" data-sparkline-bar="">
+				                    JI
+				                </div>
+				                <div class="count">
+				                    <small> {{ 'editLoadTagModalContent.JOB_ID'| translate }}</small>
+				                    <h2 class="ng-binding">{{loadTag.jobId}}</h2>
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+		</div>
+		<div type="danger" class="alert alert-danger alert-dismissible" role="alert" ng-show="errorMsg">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+			{{errors}}
+	   </div>
+         <div class="row">
+         	<div class="form-group required col-md-4">
+	              <label class="form-label"> {{ 'editLoadTagModalContent.QUANTITY'| translate }}
+					<small ng-show="loadTagForm.quantity.$dirty && loadTagForm.quantity.$error.max" class="text-danger text-error"> {{ 'editLoadTagModalContent.ERROR1'| translate }}</small>
+					<small ng-show="loadTagForm.quantity.$dirty && loadTagForm.quantity.$error.required" class="text-danger text-error">{{ 'editLoadTagModalContent.ERROR2'| translate }}</small>
+				  </label>
+	              <div class="controls">
+	              	<div class="fg-line">
+	              	<input type="number" id="quantity" name="quantity" ng-required="true" ng-model="loadTag.quantity" min="0" max="{{quantityMax}}" class="form-control">
+	              	</div>
+	              </div>
+	          </div>
+	            <div class="form-group required col-md-4">
+                            <label class="form-label">{{ 'editLoadTagModalContent.START_TIME'| translate }}
+								<small ng-show="loadTagForm.startTime.$dirty && loadTagForm.startTime.$error.required" class="text-danger text-error"> {{ 'editLoadTagModalContent.ERROR7'| translate }}</small>
+								<small ng-show="loadTagForm.startTime.$dirty && loadTagForm.startTime.$error.date" class="text-danger text-error"> {{ 'editLoadTagModalContent.ERROR8'| translate }}</small>
+							</label>
+                            <div class="controls">
+                            	<div class="fg-line">
+                              		
+                              		
+                              		<!-- <div class="dropdown">
+										  <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown">
+										    <div class="input-group">
+										    	<input type="text" class="form-control" id="startTime" name="startTime" data-ng-model="startTime">
+										    	<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+										    </div>
+										  </a>
+										  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+										    <datetimepicker data-ng-model="startTime" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"/>
+										  </ul>
+									</div> -->
+									<!-- <div 
+									class="form-control"
+							       ng-model="startTime"
+							       id="startTime" 
+							       format="MM-DD-YYYYY HH:mm"
+							       name="startTime"
+							       moment-picker="startTime">{{startTime}}</div> -->
+							       <div class="fg-line"
+									     moment-picker="startTime"
+									     format="MM-DD-YYYY, HH:mm">
+									    
+									    <input class="form-control"
+									            ng-model="startTime"
+							       				id="startTime" 
+							       				name="startTime" 
+							       				>
+									</div>
+                               </div>
+                            </div>
+              </div>
+                 <div class="form-group required col-md-4">
+                            <label class="form-label"> {{ 'editLoadTagModalContent.FINISH_TIME'| translate }}
+								<span ng-show="loadTagForm.finishTime.$dirty && loadTagForm.finishTime.$error.required" class="text-danger text-error">{{ 'editLoadTagModalContent.ERROR9'| translate }}</span>
+								<span ng-show="loadTagForm.finishTime.$dirty && loadTagForm.finishTime.$error.date" class="text-danger text-error"> {{ 'editLoadTagModalContent.ERROR10'| translate }}</span>
+							</label>
+                            <div class="controls">
+                            	<div class="fg-line">
+                            	<!-- <div class="dropdown">
+										  <a class="dropdown-toggle" id="dropdown3" role="button" data-toggle="dropdown">
+										    <div class="input-group">
+										    	<input type="text" class="form-control" id="finishTime" name="finishTime" data-ng-model="finishTime">
+										    	<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+										    </div>
+										  </a>
+										  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+										    <datetimepicker data-ng-model="finishTime" data-datetimepicker-config="{ dropdownSelector: '#dropdown3' }"/>
+										  </ul>
+									</div> -->
+									<!-- <div
+								   class="form-control"
+							       ng-model="finishTime"
+							       id="finishTime" 
+							       name="finishTime"
+							       format="MM-DD-YYYYY HH:mm"
+							       moment-picker="finishTime">
+							       {{finishTime}}
+                              		</div> -->
+                              		<div class="fg-line"
+									     moment-picker="finishTime"
+									     format="MM-DD-YYYY, HH:mm">
+									    
+									    <input class="form-control"
+									            ng-model="finishTime"
+							       				id="finishTime" 
+							       				name="finishTime" 
+							       				>
+									</div>
+                               </div>
+                            </div>
+              </div>
+         </div><br/>
+         <div class="row">
+         	    <div class="form-group col-md-4">
+               <label class="form-label"> {{ 'editLoadTagModalContent.WASTE'| translate }}
+				<small ng-show="loadTagForm.waste.$dirty && loadTagForm.waste.$invalid" class="text-danger text-error"> {{ 'editLoadTagModalContent.ERROR6'| translate }}</small>
+			   </label>
+               <div class="controls">
+              	 <div class="fg-line">
+               		<input type="number" id="waste" name="waste" ng-model="loadTag.waste" min="0" max="999999" class="form-control">
+               	</div>
+               </div>
+              </div>
+                <div class="form-group required col-md-4">
+                            <label class="form-label">{{ 'editLoadTagModalContent.CART_NUMBER'| translate }}
+								<small ng-show="loadTagForm.cartNum.$dirty && loadTagForm.cartNum.$error.maxlength" class="text-danger text-error"> {{ 'editLoadTagModalContent.ERROR3'| translate }}</small>
+								<small ng-show="loadTagForm.cartNum.$dirty && loadTagForm.cartNum.$error.required" class="text-danger text-error"> {{ 'editLoadTagModalContent.ERROR4'| translate }}</small>
+							</label>
+                            <div class="controls">
+                            	<div class="fg-line">
+                                <input type="text" id="cartNum" name="cartNum" ng-required="true" ng-model="loadTag.cartNum" class="form-control" maxlength ="2" ng-maxlength="2">
+                            	</div>
+                            </div>
+              </div>
+               <div class="form-group col-md-4" ng-if="!fromProd">
+                   <label class="form-label">{{ 'editLoadTagModalContent.LODADTAG_USED'| translate }}</label>
+                   <div class="controls">
+                 		<div class="radio radio-inline m-r-20">
+							<input type="radio" id="yesUsed" name="usedFlag" ng-model="loadTag.usedFlag" ng-value="true"><label class="input-helper" for="yesUsed"> {{ 'editLoadTagModalContent.YES'| translate }}</label>
+							<input type="radio" id="noUsed" name="usedFlag" ng-model="loadTag.usedFlag" ng-value="false"><label class="input-helper" for="noUsed"> {{ 'editLoadTagModalContent.NO'| translate }}</label>
+						</div>
+                  </div>
+            </div>
+         </div><br/>
+         <div class="row">
+             <div class="pull-right">
+                  <button type="button" class="btn bgm-bluegray waves-effect" ng-click="closeModal()"> {{ 'editLoadTagModalContent.CANCEL'| translate }}</button>
+                  <button type="button" ng-click="openLoadTag(loadTag)" class="btn bgm-cyan waves-effect" ng-disabled="rollForm.rollTag.$invalid || rollForm.length.$invalid || rollForm.width.$invalid || rollForm.paperType.$invalid || rollForm.weight.$invalid || rollForm.status.$invalid || rollForm.hours.$invalid || rollForm.utilization.$invalid"><i class="fa fa-tag"></i>&nbsp;Tag </button>
+                  <button type="button" ng-click="updateLoadTag()" class="btn bgm-cyan waves-effect" 
+|
+					ng-disabled="loadTagForm.quantity.$invalid || loadTagForm.startTime.$invalid || loadTagForm.finishTime.$invalid  ||
+					loadTagForm.waste.$invalid || loadTagForm.cartNum.$invalid"> {{ 'editLoadTagModalContent.SAVE'| translate }}</button>
+             </div>
+         </div>
+             
+ </form>
+</div>
+
+<div class="modal-footer">
+ 	<small style="float:left"><em>{{ 'editLoadTagModalContent.LAST_UP_ID' | translate }} '{{loadTag.lastModifiedByUserName}}' , {{ 'editLoadTagModalContent.LAST_UP_DATE' | translate }} {{loadTag.lastModifiedDate | date:'medium'}}</em></small>
+</div>
+
+
+  

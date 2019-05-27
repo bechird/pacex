@@ -1,0 +1,150 @@
+<form name="rollForm" ng-cloak>
+<div class="modal-header card-header ch-alt" ng-cloak>
+    <h3 class="modal-title"> {{ 'addRollModal.TITLE'| translate }}</h3>
+</div>
+
+<div class="modal-body card-body card-padding col-md-12" ng-cloak>
+   <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+    
+          <div class="row">
+          	       <div class="form-group required col-md-6">
+                     <label class="form-label"> {{ 'addRollModal.ROLL_TYPE'| translate }}
+                     	<span ng-show="rollForm.rollType.$touched && rollForm.rollType.$error.required" class="text-danger text-error"> {{ 'addRollModal.ERROR18'| translate }}</span>
+                     </label>
+                     <div class="controls">
+                         <select name="rollType" id="rollType"" ng-required="true" ng-disabled="fromProd" ng-model="roll.rollType.id" class="form-control">
+							<option value="">  {{ 'addRollModal.SELECT'| translate }}</option>
+							<option ng-repeat="option in rollTypeOptions" value="{{option.id}}">{{option.name}}</option>
+     					</select>
+                     </div>
+             </div>
+             
+              <div class="form-group required col-md-6">
+                     <label class="form-label"> {{ 'addRollModal.STATUS'| translate }}
+                     	<span ng-show="rollForm.status.$touched && rollForm.status.$error.required" class="text-danger text-error"> {{ 'addRollModal.ERROR8'| translate }}</span>
+                     </label>
+                     <div class="controls">
+                         <select name="status" id="status" ng-required="true" ng-disabled="fromProd" ng-model="roll.status.id" class="form-control">
+							<option value="">{{ 'addRollModal.SELECT'| translate }}</option>
+							<option ng-repeat="option in rollStatusOptions" value="{{option.id}}">{{option.name}}</option>
+     					</select>
+                     </div>
+             </div>
+          </div>
+          <div class="row">
+          		<div class="form-group col-md-6 required">
+                     <label class="form-label">  {{ 'addRollModal.PAPER_TYPE'| translate }}
+                        <small ng-show="rollForm.paperType.$touched && rollForm.paperType.$error.required" class="text-danger text-error"> {{ 'addRollModal.ERROR4'| translate }}</small>
+                     </label>
+                     <div class="controls">
+                         <select name="paperType" id="paperType" ng-disabled="fromProd" ng-model="roll.paperType.id" ng-required="true" class="form-control">
+							<option value=""> {{ 'addRollModal.SELECT'| translate }}</option>
+							<option ng-repeat="option in paperTypeOptions" value="{{option.id}}">{{option.name}}</option>
+     					</select>
+                     </div>
+             </div>
+          	   <div class="form-group col-md-6">
+	              <label class="form-label">{{ 'addRollModal.PARENT_ROLL'| translate }}</label>
+				  <div class="controls">
+	               <select ng-if="!fromProd" name="parentRoll" id="parentRoll" ng-model="roll.parentRollId" convert-to-number chosen  class="form-control">
+					<option value=""> {{ 'addRollModal.PARENT_ROLL'| translate }}</option>
+	      			<option ng-repeat="option in rollOptions" value="{{option}}">{{option}}</option>
+	    	       </select>
+	    	       <label ng-if="fromProd"><strong>{{roll.parentRollId}}</strong></label>
+				  </div>
+            </div>
+          </div>
+          <div class="row">
+          	  <div class="form-group col-md-6 required">
+	              <label class="form-label">{{ 'addRollModal.LENGTH'| translate }}
+					  <small ng-show="rollForm.length.$touched && rollForm.length.$invalid" class="text-danger text-error">! {{ 'addRollModal.ERROR1'| translate }}</small>
+					  <small ng-show="rollForm.length.$touched && rollForm.length.$error.required" class="text-danger text-error"> {{ 'addRollModal.ERROR2'| translate }}</small>
+				  </label>
+	              <div class="controls">
+	              	<div class="fg-line">
+	              		<input type="number" id="length" name="length" ng-model="roll.length" min="{{rollMinLength}}" max="{{parentRollLength != null ? parentRollLength : 999999}}" ng-required="true" class="form-control">
+	              	</div>
+	              </div>
+             </div>
+            
+            <div class="form-group col-md-6" ng-if="!fromProd">
+              <label class="form-label"> {{ 'addRollModal.MACHINE'| translate }}</label>
+			  <div class="controls">
+               <select name="rollMachine" id="rollMachine" ng-model="roll.machineId" class="form-control">
+				<option value="">{{ 'addRollModal.SELECT'| translate }}</option>
+      			<option ng-repeat="option in machineOptions" value="{{option.machineId}}">{{option.name}}</option>
+    	       </select>
+			  </div>
+            </div>
+            <div class="form-group col-md-6" ng-if="fromProd">
+              <label class="form-label"> {{ 'addRollModal.KEEP_ON_MACHINE'| translate }}</label>
+			  <div class="controls">
+	               <label class="radio radio-inline m-r-20">
+					    <input type="radio" id="yesActive" name="keepFlag" ng-model="keepOnMachine" ng-value="true">
+					    <i class="input-helper"></i> {{ 'addRollModal.YES'| translate }}</label>
+				   <label class="radio radio-inline m-r-20">
+					    <input type="radio" id="noActive" name="keepFlag" ng-model="keepOnMachine" ng-value="false">
+					    <i class="input-helper"></i> {{ 'addRollModal.NO'| translate }}</label>
+			  </div>        
+            </div>
+          </div>
+          
+          <div class="row" ng-if="!fromProd">
+          	<div class="form-group col-md-6">
+              <label class="form-label"> {{ 'addRollModal.WIDTH'| translate }}
+				<small ng-show="rollForm.width.$invalid" class="text-danger text-error"> {{ 'addRollModal.ERROR5'| translate }}</small>
+			  </label>
+              <div class="controls">
+              	<div class="fg-line">
+              	<input type="number" id="width" name="width" ng-model="roll.width" min="0" max="999999" class="form-control">
+              	</div>
+              </div>
+            </div>
+            
+            <div class="form-group col-md-6">
+              <label class="form-label"> {{ 'addRollModal.WEIGHT'| translate }}
+				<small ng-show="rollForm.weight.$invalid" class="text-danger text-error"> {{ 'addRollModal.ERROR6'| translate }}</small>
+			  </label>
+              <div class="controls">
+              	<div class="fg-line">
+              	<input type="number" id="weight" name="weight" ng-model="roll.weight" min="0" max="999999" class="form-control"></div>
+            	</div>
+            </div>
+          </div>
+          <div class="row" ng-if="!fromProd">
+          	  <div class="form-group col-md-6">
+              <label class="form-label"> {{ 'addRollModal.HOURS'| translate }}
+				<small ng-show="rollForm.hours.$invalid" class="text-danger text-error"> {{ 'addRollModal.ERROR7'| translate }}</small>
+			  </label>
+              <div class="controls">
+              	<div class="fg-line">
+              	<input type="number" id="hours" name="hours" ng-model="roll.hours" min="0" max="999999" class="form-control">
+              	</div>
+              </div>
+            </div>
+          
+             
+            <div class="form-group col-md-6">
+              <label class="form-label"> {{ 'addRollModal.UTILIZATION'| translate }}
+				<small ng-show="rollForm.utilization.$invalid" class="text-danger text-error"> {{ 'addRollModal.ERROR3'| translate }}</small>
+			  </label>
+              <div class="controls">
+              <div class="fg-line">
+              <input type="number" name="utilization" id="utilization" ng-model="roll.utilization" min="0" max="999" class="form-control">
+              </div>
+              </div>
+            </div> 
+          </div>
+
+</div>
+
+<div class="modal-footer">
+<button type="button" class="btn bgm-bluegray waves-effect" ng-click="closeModal()"> {{ 'addRollModal.CLOSE'| translate }}</button>
+             			<button type="button" ng-click="addRoll()" class="btn bgm-teal waves-effect" 
+							ng-disabled="rollForm.length.$invalid || rollForm.width.$invalid || rollForm.paperType.$invalid || rollForm.rollType.$invalid || 
+										rollForm.weight.$invalid || rollForm.status.$invalid || rollForm.hours.$invalid || rollForm.utilization.$invalid || roll.rollId != null"
+						>  {{ 'addRollModal.SAVE'| translate }}</button>
+						<button type="button" ng-click="openRollTag(roll.rollId)" class="btn bgm-teal waves-effect" ng-show="roll.rollId != null"><i class="fa fa-tag"></i>&nbsp;Tag</button>
+                                           		
+</div>
+</form>

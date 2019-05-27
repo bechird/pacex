@@ -1,0 +1,302 @@
+<form name="jobForm" ng-cloak>
+<div class="modal-header card-header ch-alt" ng-cloak>
+    <h3 class="modal-title">{{ 'editJobModal.TITLE' | translate }}</h3>
+</div>
+
+<div class="modal-body card-body card-pading col-md-12" ng-cloak>
+   <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+	 <div class="row" >
+      <div class="grid simple">
+        <div class="grid-body no-border">
+            <div class="row">
+		    <div class="col-sm-6 col-md-12">
+		        <div class="mini-charts-item bgm-btn-blue-500">
+		            <div class="clearfix">
+		                <div class="chart stats-bar-2" data-sparkline-bar="">
+		                    JI
+		                </div>
+		                <div class="count">
+		                    <h2 style="margin:11px;"><b>{{ 'editJobModal.JOB_ID' | translate }}</b> : {{job.jobId}}</h2>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+         <div class="row">
+              <div class="form-group col-md-3">
+              <label class="form-label"> {{ 'editJobModal.ORDER' | translate }}</label>
+			  <div class="controls">
+               <!-- <select ng-model="job.order.orderId" convert-to-number>
+				<option value=""> {{ 'editJobModal.SELECT' | translate }}</option>
+      			<option ng-repeat="option in orderOptions" value="{{option.orderId}}">{{option.orderId}}</option>
+    	       </select> -->
+    	       <input type="number" name="orderId" ng-model="job.orderId" min="1" max="9999999" class="form-control">
+              </div>
+            	</div>
+            	  <div class="form-group col-md-3">
+              <label class="form-label"> {{ 'editJobModal.PART' | translate }}</label>
+			  <div class="controls">
+               <!-- <select ng-model="job.part.partNum" >
+				<option value="">{{ 'editJobModal.SELECT' | translate }}</option>
+      			<option ng-repeat="option in partOptions" value="{{option.partNum}}">{{option.partNum}}</option>
+    	       </select> -->
+    	       <input type="text" name="partNum" ng-model="job.partNum" class="form-control">
+              </div>
+           	 </div>
+           	 <div class="form-group col-md-3">
+              <label class="form-label"> {{ 'editJobModal.PROD_ORDERING' | translate }}
+				<span ng-show="jobForm.productionOrdering.$dirty && jobForm.productionOrdering.$invalid" class="text-danger text-error"> {{ 'editJobModal.ERROR1' | translate }}</span>
+			  </label>
+              <div class="controls">
+              	<div class="fg-line">
+              	<input type="number" name="productionOrdering" ng-model="job.productionOrdering" min="0" max="99" class="form-control">
+              	</div>
+              </div>
+            </div>
+             <div class="form-group required col-md-3">
+              <label class="form-label">  {{ 'editJobModal.STATION' | translate }}
+        		<span ng-show="jobForm.station.$dirty && jobForm.station.$error.required" class="text-danger text-error"> {{ 'editJobModal.ERROR2' | translate }}</span>
+       		  </label>
+        		<div class="controls">
+               		 <select name="station" id="station" ng-model="job.stationId" ng-required="true"  class="form-control">
+        				<option value="">{{ 'editJobModal.SELECT' | translate }}</option>
+            			<option ng-repeat="option in stationOptions" value="{{option.stationId}}">{{option.name}}</option>
+               		</select>
+               		<!--<input type="text" name="station" id="station" ng-model="job.stationId" ng-required="true" class="form-control"> -->
+        		</div>
+            </div>
+            </div>
+          	<div class="row">
+            <div class="form-group col-md-3">
+              <label class="form-label"> {{ 'editJobModal.MACHINE' | translate }}
+				<!-- <span ng-show="jobForm.machine.$dirty && jobForm.machine.$error.required" class="text-danger text-error">: Machine is required!</span> -->
+			  </label>
+			  <div class="controls">
+               <!-- <select name="machine" id="machine" ng-model="job.machineId"  class="form-control">
+				<option value=""> {{ 'editJobModal.SELECT' | translate }}</option>
+      			<option ng-repeat="option in machineOptions" value="{{option.machineId}}">{{option.name}}</option>
+    	       </select> -->
+    	       <input type="text" name="machine" id="machine" ng-model="job.machineId" class="form-control">
+			  </div>
+            </div>
+              <div class="form-group col-md-3">
+              <label class="form-label">{{ 'editJobModal.MACHINE_ORDERING' | translate }}
+				<span ng-show="jobForm.machineOrdering.$dirty && jobForm.machineOrdering.$invalid" class="text-danger text-error"> {{ 'editJobModal.ERROR3' | translate }}</span>
+			  </label>
+              <div class="controls">
+                <div class="fg-line">
+              	<input type="number" name="machineOrdering" ng-model="job.machineOrdering" min="0" max="99" class="form-control">
+              	</div>
+            </div>
+            </div>
+            <div class="form-group required col-md-3">
+                 <div class="form-group">
+                     <label class="form-label"> {{ 'editJobModal.JOB_TYPE' | translate }}
+                      <span ng-show="jobForm.jobType.$dirty && jobForm.jobType.$error.required" class="text-danger text-error"> {{ 'editJobModal.ERROR4' | translate }}</span>
+                     </label>
+                     <div class="controls">
+                         <select name="jobType" id="jobType" ng-required="true" ng-model="job.jobType.id" class="form-control">
+              <option value=""> {{ 'editJobModal.SELECT' | translate }}</option>
+              <option ng-repeat="option in jobTypeOptions" value="{{option.id}}">{{option.name}}</option>
+              </select>
+                     </div>
+                 </div>
+             </div>
+              <div class="form-group required col-md-3">
+                 <div class="form-group">
+                     <label class="form-label"> {{ 'editJobModal.STATUS' | translate }}
+                      <span ng-show="jobForm.jobStatus.$dirty && jobForm.jobStatus.$error.required" class="text-danger text-error"> {{ 'editJobModal.ERROR5' | translate }}</span>
+                     </label>
+                     <div class="controls">
+                         <select name="jobStatus" id="jobStatus" ng-required="true" ng-model="job.jobStatus.id" class="form-control">
+              <option value=""> {{ 'editJobModal.SELECT' | translate }}</option>
+              <option ng-repeat="option in jobStatusOptions" value="{{option.id}}">{{option.name}}</option>
+              </select>
+                     </div>
+                 </div>
+             </div>
+          	</div>
+             
+             <div class="row">
+               <div class="form-group required col-md-3">
+                 <div class="form-group">
+                     <label class="form-label"> {{ 'editJobModal.PRIORITY' | translate }}
+                     	<span ng-show="jobForm.priority.$dirty && jobForm.priority.$error.required" class="text-danger text-error"> {{ 'editJobModal.ERROR6' | translate }}</span>
+                     </label>
+                     <div class="controls">
+                         <select name="priority" id="priority" ng-required="true" ng-model="job.jobPriority.id" class="form-control">
+							<option value=""> {{ 'editJobModal.SELECT' | translate }}</option>
+							<option ng-repeat="option in priorityOptions" value="{{option.id}}">{{option.name}}</option>
+     					</select>
+                     </div>
+                 </div>
+             </div>
+             <div class="form-group col-md-3">
+              <label class="form-label"> {{ 'editJobModal.ROLL' | translate }}</label>
+        		<div class="controls">
+               		<!-- <select name="roll" id="roll" ng-model="job.rollId" convert-to-number >
+        				<option value=""> {{ 'editJobModal.SELECT' | translate }}</option>
+            			<option ng-repeat="option in rollOptions" value="{{option.rollId}}">{{option.rollId}}</option>
+             		</select> -->
+             		<input type="number" name="roll" id="roll" ng-model="job.rollId" min="1" max="9999999" class="form-control">
+        		</div>
+            </div>
+              <div class="form-group col-md-3">
+              <label class="form-label"> {{ 'editJobModal.ROLL_ORDERING' | translate }}
+        		<span ng-show="jobForm.rollOrdering.$dirty && jobForm.rollOrdering.$invalid" class="text-danger text-error"> {{ 'editJobModal.ERROR7' | translate }}</span>
+        		</label>
+              	<div class="controls">
+                  <div class="fg-line">
+                  <input type="number" name="rollOrdering" ng-model="job.rollOrdering" min="0" max="9999" class="form-control">
+                  </div>
+                </div>
+            </div>
+             <div class="form-group col-md-3">
+              <label class="form-label"> {{ 'editJobModal.HOURS' | translate }}
+        <span ng-show="jobForm.hours.$dirty && jobForm.hours.$invalid" class="text-danger text-error"> {{ 'editJobModal.ERROR8' | translate }}</span>
+        </label>
+              <div class="controls">
+                <div class="fg-line">
+                  <input type="number" name="hours" ng-model="job.hours" min="0" max="99999" class="form-control">
+                </div>
+              </div>
+            </div>
+             </div>
+          <div class="row">
+          	<div class="form-group required col-md-3">
+              <label class="form-label"> {{ 'editJobModal.QTY_NEEDED' | translate }}
+                <span ng-show="jobForm.quantityNeeded.$dirty && jobForm.quantityNeeded.$error.required" class="text-error"> {{ 'editJobModal.ERROR9' | translate }}</span>
+				<span ng-show="jobForm.quantityNeeded.$dirty && jobForm.quantityNeeded.$invalid" class="text-danger text-error">! {{ 'editJobModal.ERROR10' | translate }}</span>
+			  </label>
+              <div class="controls">
+              <div class="fg-line">
+              	<input type="number" name="quantityNeeded" ng-required="true" ng-model="job.quantityNeeded" min="0" max="999999999" class="form-control"></div>
+              	</div>
+            </div>
+          	 <div class="form-group col-md-3">
+              <label class="form-label"> {{ 'editJobModal.QTY_PRODUCED' | translate }}
+				<span ng-show="jobForm.quantityProduced.$dirty && jobForm.quantityProduced.$invalid" class="text-danger text-error"> {{ 'editJobModal.ERROR11' | translate }}</span>
+			  </label>
+              <div class="controls">
+              		<div class="fg-line">
+              		<input type="number" name="quantityProduced" ng-model="job.quantityProduced" min="0" max="999999999" class="form-control">
+              		</div>
+              	</div>
+            </div>
+            <div class="form-group col-md-3">
+                 <div class="form-group">
+                     <label class="form-label"> {{ 'editJobModal.BINDERY_PRIORITY' | translate }}</label>
+                     <div class="controls">
+                         <select name="binderyPriority" id="binderyPriority" ng-model="job.binderyPriority.id" class="form-control">
+							<option value=""> {{ 'editJobModal.SELECT' | translate }}</option>
+							<option ng-repeat="option in priorityOptions" value="{{option.id}}">{{option.name}}</option>
+     					</select>
+                     </div>
+                 </div>
+             </div>
+             <div class="form-group col-md-3">
+                     <label class="form-label"> {{ 'editJobModal.FILE_SENT' | translate }}</label>
+                     <div class="controls">
+                      <div  class="radio radio-inline m-r-20">
+                <input type="radio" id="yesSent" name="sentFlag" ng-model="job.fileSentFlag" ng-value="true"><label class="input-helper" for="yesSent"> {{ 'editJobModal.YES' | translate }}</label>
+                <input type="radio" id="noSent" name="sentFlag" ng-model="job.fileSentFlag" ng-value="false"><label class="input-helper" for="noSent"> {{ 'editJobModal.NO' | translate }}</label>
+              </div>
+                    </div>
+              </div>
+             </div>
+             <div class="row">
+             	<div class="form-group col-md-3">
+	              <label class="form-label"> {{ 'editJobModal.QTY_UNACCOUNTED' | translate }}
+	                <span ng-show="jobForm.quantityUnaccountedfor.$dirty && jobForm.quantityUnaccountedfor.$invalid" class="text-danger text-error">! {{ 'editJobModal.ERROR10' | translate }}</span>
+				  </label>
+	              <div class="controls">
+	              <div class="fg-line">
+	              	<input type="number" name="quantityUnaccountedfor" ng-model="job.quantityUnaccountedfor" min="0" max="999999999" class="form-control"></div>
+	              	</div>
+	            </div>
+	            <div class="form-group required col-md-3">
+	              <label class="form-label"> {{ 'editJobModal.SPLIT_LEVEL' | translate }}
+					<span ng-show="jobForm.splitLevel.$dirty && jobForm.splitLevel.$error.required" class="text-error"> {{ 'editJobModal.ERROR12' | translate }}</span>
+					<span ng-show="jobForm.splitLevel.$dirty && jobForm.splitLevel.$invalid" class="text-danger text-error">{{ 'editJobModal.ERROR13' | translate }}</span>
+				  </label>
+	              <div class="controls">
+	              <div class="fg-line">
+	              	<input type="number" name="splitLevel" ng-required="true" ng-model="job.splitLevel" min="0" max="99" class="form-control"></div>
+	              	</div>
+	            </div>
+	            <div class="form-group col-md-3">
+	              <label class="form-label"> Job Name </label>
+				  <div class="controls">
+	                <input type="text" name="jobName" id="jobName" ng-model="job.jobName" class="form-control">
+				  </div>
+	            </div>
+	            <div class="form-group col-md-3" ng-if="job.stationId == 'PRESS'">
+	              <label class="form-label"> Best Sheet to Use </label>
+				  <div class="controls">
+	                <input type="text" name="bestSheet" id="bestSheet" ng-model="job.bestSheetUsed" class="form-control">
+				  </div>
+	            </div>
+            </div>           
+              <div class="col-md-12">
+                  <div class="pull-right">
+                      <button type="button" class="btn bgm-bluegray waves-effect" ng-click="closeModal()"> {{ 'editJobModal.CANCEL' | translate }}</button>
+             			<button type="button" ng-click="updateJob()" class="btn bgm-teal waves-effect" 
+							ng-disabled="jobForm.productionOrdering.$invalid || jobForm.station.$invalid ||  jobForm.machineOrdering.$invalid || jobForm.jobType.$invalid ||
+										jobForm.jobStatus.$invalid || jobForm.priority.$invalid || jobForm.rollOrdering.$invalid || jobForm.hours.$invalid ||
+										 jobForm.quantityProduced.$invalid || jobForm.quantityNeeded.$invalid || jobForm.quantityUnaccountedfor.$invalid || jobForm.splitLevel.$invalid"
+						> {{ 'editJobModal.SAVE' | translate }}</button>
+						
+                  </div>
+              </div>
+             
+             
+           </div>
+        </div>
+    </div>
+    <div class="card">
+		    <div class="card-header ch-alt m-b-20">
+		        <h2> {{ 'editJobModal.LOAD_TAG' | translate }}<small> {{ 'editJobModal.ADD_LOADTAG' | translate }}</small></h2>
+		        <button ng-click="openAddLoadTagModal(job.jobId)" class="btn bgm-teal btn-float waves-effect" uib-tooltip="{{ 'editJobModal.Add' | translate }}">
+		            <i class="zmdi zmdi-plus"></i>
+		        </button>
+		    </div><br/>
+		    <div class="card-body card-padding">
+		    	<uib-alert type="success" close="successMsg = false;" ng-show="successMsg">{{alertMsg}}</uib-alert>
+			 	<uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{alertMsg}}</uib-alert>
+			 	<table id="loadTagsOnJobTable" name="loadTagsOnJobTable" class="table table-bordered" width="100%" datatable="ng" dt-options="dtOptionsForLoadTagsOnJob">
+      			  <thead>
+        			<tr>
+          				<th>{{ 'editJobModal.LOADTAG_ID' | translate }}</th>
+	        			<th> {{ 'editJobModal.QUANTITY' | translate }}</th>
+	        			<th> {{ 'editJobModal.START_TIME' | translate }}</th>
+			            <th> {{ 'editJobModal.FINISH_TIME' | translate }}</th>
+			            <th> {{ 'editJobModal.WASTE' | translate }}</th>
+			            <th>{{ 'editJobModal.CART' | translate }}</th>
+			            <th> {{ 'editJobModal.USED' | translate }}</th>
+			            <th></th>
+					</tr>
+    			  </thead>
+   			      <tbody >
+   			       <tr ng-repeat="node in job.loadTags" >
+    			      <td>{{node.loadTagId}}</td>
+					  <td>{{node.quantity}}</td>
+    			      <td>{{node.startTime | date:'MMM dd, HH:mm'}}</td>
+    			      <td>{{node.finishTime | date:'MMM dd, HH:mm'}}</td>
+					  <td>{{node.waste}}</td>
+					  <td>{{node.cartNum}}</td>
+					  <td>{{node.usedFlag}}</td>
+					  <td><button type="button" uib-tooltip="{{ 'editJobModal.Edit_Load_Tag' | translate }}" ng-click="openEditLoadTagModal(node.loadTagId)" class="btn bgm-orange-900 waves-effect"><i class='zmdi zmdi-edit'></i></button>&nbsp;
+						  <button type="button" uib-tooltip="{{ 'editJobModal.Delete_Load_Tag' | translate }}" ng-click="deleteLoadTag(node.loadTagId)" class="btn bgm-red waves-effect"><i class='zmdi zmdi-delete'></i></button></td>
+					
+					</tr>
+     			  </tbody>
+   			    </table>
+		    </div>
+    </div>   	
+</div>
+
+<div class="modal-footer">
+ 	<small style="float:left"><em>{{ 'editJobModal.LAST_UP_ID' | translate }} '{{job.lastModifiedByUserName}}' , {{ 'editJobModal.LAST_UP_DATE' | translate }} {{job.lastModifiedDate | date:'medium'}}</em></small>
+</div>
+		
+</form>

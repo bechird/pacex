@@ -1,0 +1,25 @@
+<div class="card">
+    <div class="card-header ch-alt m-b-20">
+        <h2>{{ 'bonDeLivraison.TITLE'| translate }}</h2>
+
+        <button class="btn bgm-teal btn-float waves-effect waves-circle" ng-click="openAddPalletBonLivraisonModal()"><i class="zmdi zmdi-plus"></i>
+        </button>
+    </div>
+	<br/>
+    <div class="card-body card-padding" translate-cloak>
+       
+        <table datatable="" dt-options="bonList.dtOptions" dt-columns="bonList.dtColumns" class="table table-bordered table-striped table-vmiddle ng-scope ng-table col-lg-12" width="100%">
+            <tfoot>
+                <tr class="table-placeholder" translate-cloak>
+                    <th translate-cloak translate>bonDeLivraison.BL</th>
+                    <th translate-cloak translate> bonDeLivraison.Adresse</th>
+                    <th translate-cloak translate>bonDeLivraison.Date_Creation</th>
+                    <th translate-cloak translate> bonDeLivraison.Quantity</th>
+                    <th translate-cloak translate> bonDeLivraison.Status</th>
+
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

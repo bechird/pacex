@@ -1,0 +1,48 @@
+{
+  "rolesList" :{
+     "TITLE" : "Roles List",
+     "DESCRIPTION": "Below is the list of roles available in the system. To add a new role click the",
+	 "LIGNE2":	"icon ",
+	 "LIEN": " ",
+	 "ROLE_ID":	"Role Id",
+	 "ROLE_NAME": "Role name",
+	 "ROLE_DESC": "Role Description",
+	 "ADD_ROLE" : "Add Role",
+	 "ID" : "Id",
+	 "ERROR" : ": The id length is too long! ",
+	 "ERROR4" :": Required! ",
+	 "UPDATE_ROLL": "Update Role",	 
+	 "NAME": "Name",
+	 "ERROR1": ": The name length is too long!",
+	 "ERROR2": ": The name is required!",
+	 "DESCRIPTIONN" : "Description" ,
+	 "ERROR3": ": The description length is too long!",	 
+	 "CANCEL": "Cancel",
+	 "AJOUTER" :"Add",
+	 "UPDATE": "Update",	 
+	 "LAST_UP_ID": "Last Updater Id:",
+	 "LAST_UP_DATE": " Last Update Date:",
+	 "CLOSE" : "Close",
+	 "Add_role" :"Add Role"	 
+	 },
+	 
+	 "role_js" :{
+	 "ROLE_ID":	"Role Id",
+	 "ROLE_NAME": "Role name",
+	 "ROLE_DESC": "Role Description",
+	 
+	 "DeleteRole":"Delete Role",
+	 "delete_sure" : "Are you sure you want to delete the Role?",
+	 "Role_succ_added" :"Role Successfully Added",
+	 "Yes_delete"  :"Yes, delete it!",
+	 "Role_succ_deleted" :"Role successfully deleted!",
+	 "DeletionError" :"Deletion Error", 
+	 "Adding_Role" :"Adding Role",
+	 "Role_Added" :"Role Added",
+	 "Updating_Role" :"Updating Role",
+	 "Role_Updated" :"Role Updated",
+	 "Role_succ_updated" :"Role successfully Updated!",
+	 "EDIT" :"Edit Role",
+	 "DELETE_js" :"Delete Role"
+	 }	 
+}

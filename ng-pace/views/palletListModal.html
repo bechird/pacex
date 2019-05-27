@@ -1,0 +1,88 @@
+<div class="modal-header card-header ch-alt" ng-cloak>
+	<h3>{{ 'palletListModal.PALLETTITLE' | translate }} </h3>
+	<br/>
+</div>
+<div class="card-body card-padding col-md-12" ng-cloak>
+	<div class="col-md-12">
+		<table class="mdl-data-table table-bordered  mdl-shadow--2dp ng-isolate-scope no-footer dataTable" width="100%">
+			<thead>
+				<tr>
+					<th width="4%"></th>
+					<th>{{ 'ID' | translate }}</th>
+					<th class="center">{{ 'palletListModal.TYPE' | translate }}</th>
+					<th>{{ 'DEST' | translate }}</th>
+					<th class="center">{{ 'palletListModal.QTY' | translate }}</th>
+					<th></th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat-start="pallet in pallets" ng-init="fetchOrderByPallette(pallet.id)">
+					<td class="center">
+						<a ng-if="pallet.expanded" ng-click="pallet.expanded = false">
+							<div class="round-button">
+								<div class="round-button-circle">
+									<span class="round-button bgm-bluegray">-
+												  </div>
+												</div>
+												</a>
+												<a ng-if="!pallet.expanded" ng-click="pallet.expanded = true">
+												<div class="round-button">
+												  <div class="round-button-circle">
+												    <span class="round-button bgm-teal">+
+												  </div>
+												</div>
+												</a>
+		                                	 <!-- <button ng-if="pallet.expanded" ng-click="pallet.expanded = false">-</button>
+              								<button ng-if="!pallet.expanded" ng-click="pallet.expanded = true">+</button> -->
+		                                	</td>
+		                                    <td>PL{{pallet.id}}</td>											
+		                                    <td class="center">
+												<span class="badge bgm-pallet-single" ng-if="pallet.typePallette === 'SINGLE'">{{pallet.typePallette}}</span> 
+												<span class="badge bgm-pallet-mixte" ng-if="pallet.typePallette === 'MIXTE'">{{pallet.typePallette}}</span> 
+											</td>
+											<td>{{pallet.destination}}</td>
+		                                    <td ng-init="calQntyParPallette(pallet)" class="center">{{pallet.sumQty}}</td>
+
+		                                    <td class="center"><button class="btn bgm-teal waves-circle waves-effect" uib-tooltip="{{ 'palletListModal.resume' | translate }}" ng-click ="resume(pallet.id)" ><i class="zmdi zmdi-play"></i></button></td>
+
+		                                </tr>
+		                                
+		                                <tr ng-repeat-end="">
+		                                <td colspan="6" style="background-color:#F7F8FA" ng-if="pallet.expanded">
+		                                			<table class="mdl-data-table table-bordered  mdl-shadow--1dp ng-isolate-scope no-footer" width="100%" >
+		                                			<thead>
+		                                			<tr>
+					                                	<th> {{ 'palletListModal.ORDER' | translate }}</th>
+					                                	<th>ISBN</th>
+					                                	<th>{{ 'palletListModal.TITLE' | translate }}</th>
+														 <th>{{ 'PCB_TYPE' | translate }} </th>
+		                                                 <th>{{ 'PCB_NEEDED' | translate }} </th>
+					                                	<th>{{ 'palletListModal.QTY2' | translate }}</th>
+					                                	<th>{{ 'palletListModal.QTY_SH' | translate }}</th>
+					                                </tr>
+		                                			</thead>
+		                                			<tbody>
+		                                			<tr ng-repeat="order in ordersList">
+			                                           	<td>{{order.orderNum}}</td>
+									            		<td>{{order.orderPart.part.isbn}}</td>
+									            		<td>{{order.orderPart.part.title}}</td>
+														<td>{{pallet.books[$index].widthQty}}*{{pallet.books[$index].depthQty}}*{{pallet.books[$index].heightQty}}</td>
+		                                                <td ng-init ="fetchPackageByPcb(pallet.books[$index].packageBook)">{{pallet.books[$index].packageBook.count}}</td>
+									            		<td>{{pallet.books[$index].packageBook.quantity}}</td>
+									            		<td>{{pallet.books[$index].packageBook.delivered}}</td>
+								            		</tr>
+								            		</tbody>
+								            		</table>
+								            		</td>
+		                                 </tr>	
+		                                  
+								           	                              
+		                                
+		                            </tbody>
+		                        </table>
+        </div>
+            </div>
+			<div class="modal-footer">
+			    <button type="button" class="btn bgm-bluegray waves-effect" ng-click="closeModal()">{{ 'palletListModal.CANCEL' | translate }}</button>
+			</div>

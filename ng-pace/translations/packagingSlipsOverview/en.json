@@ -1,0 +1,39 @@
+{
+     "PACKAGING_TITLE" : "Packing Slips Overview",
+     "P_SLIP": "Packing Slip",
+	 "RE_ADRESS":	"Address",
+	 "QTY_PCB_DELIVRED": "PCB Delivred ",
+	 "QTY_BOOK_DELIVRED": "Book Delivred " ,
+	 "STATUS": "Status",
+	 "ChangeStatus" :"Change Status",
+	 "print" :"Print",
+	 "DeliveryDate" :"Date",
+	 
+	 "ordersReadyToShipped" :{
+	 "TITLE" : "Delivery form",
+     "Order_Num": "Order Num",
+	 "Client":	"Customer",
+	 "Destination": "Destination",
+	 "Qty_Needed": "Qty Needed" ,
+	 "Qty_Delivred": " Qty Delivred",
+	 "BL_Num" :"BL Num",
+	 "BL_Date" :"BL Date",
+	 "STATUS": " Status"
+	 },
+	 
+	 "slips_js" :{
+	 "sure" : "Are you sure?",
+     "delete_pallet": "Delete Pallet PL:",
+	 "please_cancel":	"No, please cancel",
+	 "Yes_delete" :"Yes, delete!",
+	 "error_pallets": "Pallets do not have the same address!",
+	 "cancel": "Cancel" 
+	 }
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+}

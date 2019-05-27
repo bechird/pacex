@@ -1,0 +1,36 @@
+<div class="modal-header card-header ch-alt" ng-cloak>
+  <h3>{{ 'bonDeLivraisonModal.Address'| translate }} {{checkedOrders[0].orderPackages[0].destination}}</h3>
+<br/>
+</div>
+<div class="card-body card-padding col-md-12 m-b-10" ng-cloak>
+        <div class="col-md-12">
+                <table  class="mdl-data-table table-bordered  mdl-shadow--2dp ng-isolate-scope no-footer dataTable" width="100%"  translate-cloak>
+               	<thead translate-cloak>
+                    <tr translate-cloak>
+                        <th>{{ 'bonDeLivraisonModal.Order'| translate }}</th>
+                        <th>ISBN</th>
+                        <th>{{ 'bonDeLivraisonModal.Title'| translate }}</th>
+                        <th>{{ 'bonDeLivraisonModal.QTY_NEEDED'| translate }}</th>
+                        <th>{{ 'bonDeLivraisonModal.QTY_Pallette'| translate }}</th>
+                        <th>{{ 'bonDeLivraisonModal.QTY_Delivred'| translate }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                	<tr ng-repeat = "order in checkedOrders">
+                         <td>{{order.orderNum}}</td>
+                         <td>{{order.orderPart.part.isbn}}</td>
+                          <td>{{order.orderPart.part.title}}</td>
+                           <td>{{order.orderPart.quantity}}</td>
+                           <td>{{booksQuantities[$index]}}</td>
+                           <td>{{orderShippedQty[$index]}}</td>
+                	</tr>
+                </tbody>
+            </table>
+			</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn bgm-bluegray waves-effect" ng-click="closeModal()"> {{ 'bonDeLivraisonModal.CANCEL'| translate }}</button>
+                <button type="button" class="btn bgm-teal waves-effect" ng-disabled="checkedPallets.length == 0" ng-click="downloadBl()"> {{ 'bonDeLivraisonModal.SAVE'| translate }}</button>
+
+
+			</div>

@@ -1,0 +1,124 @@
+<div class="modal-header card-header ch-alt" ng-cloak>
+	<h3 class="modal-title"> {{ 'OVERVIEWORDER.ORDERDS' | translate }} </h3>
+</div>
+<div class="modal-body card-body card-padding col-md-12" ng-cloak>
+	<uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+	<div class="row">
+			<div class="col-lg-6 col-md-12">
+					<label> {{ 'OVERVIEWORDER.FILESTATUS' | translate }}</label>
+					<div class="zenlogic-steps">
+						<div
+							class="step {{fileStep == progress ? 'active' : 'complete'}}"
+							ng-repeat="fileStep in fileSteps" id="{{ 'file-' + $index }}"
+							ng-style="myStyle">{{fileStep}}</div>
+					</div>
+				</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-md-4">
+			<div class="fg-line">
+				<label class="form-label"> {{ 'editPartModalContent.PART' | translate }}</label>
+				<!--<input type="text" ng-model="ordpart.part.partNum" ng-disabled="true" id="partNum"
+				 name="partNum" class="form-control" style="width: 99%" disabled>-->
+				 <div class="controls">
+						<label><a href="" uib-tooltip="{{ 'editPartModalContent.PART'| translate }} {{ordpart.part.partNum}}" ng-click="openEditPartModal(ordpart.part.partNum.endsWith('T') || ordpart.part.partNum.endsWith('C') || ordpart.part.partNum.endsWith('J') || ordpart.part.partNum.endsWith('E') ? ordpart.part.partNum.substring(0, ordpart.part.partNum.length - 1): ordpart.part.partNum)">{{ordpart.part.partNum}}</a></label>
+					</div>
+			</div>
+		</div>
+
+
+
+		<div class="col-md-4">
+			<div class="fg-line">
+				<label class="form-label"> {{ 'partsList.TITLE' | translate }}</label>
+				<input type="text" ng-model="ordpart.part.title" ng-disabled="true" id="title" name="title"
+				 class="form-control" style="width: 99%" disabled>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="fg-line">
+				<label class="form-label"> {{ 'partsList.ISBN' | translate }}</label>
+				<input type="text" ng-model="ordpart.part.isbn" ng-disabled="true" id="isbn" name="isbn"
+				 class="form-control" style="width: 99%" disabled>
+			</div>
+		</div>
+	</div>
+	<br>
+
+	<div class="row">
+		<div class="col-md-4">
+			<div class="fg-line">
+				<label class="form-label"> {{ 'partsList.QUANTITY' | translate }}</label>
+				<input type="text" ng-model="ordpart.quantity" ng-disabled="true" id="quantity"
+				 name="quantity" class="form-control" style="width: 99%" disabled>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="fg-line">
+				<label class="form-label"> {{ 'partsList.MAXQUANTITY' | translate }}</label>
+				<input type="text" ng-model="ordpart.quantityMax" ng-disabled="true" id="qtyMax"
+				 name="qtyMax" class="form-control" style="width: 99%" disabled>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="fg-line">
+				<label class="form-label"> {{ 'partsList.MINQUANTITY' | translate }}</label>
+				<input type="text" ng-model="ordpart.quantityMin" ng-disabled="true" id="qtyMin"
+				 name="qtyMin" class="form-control" style="width: 99%" disabled>
+			</div>
+		</div>
+	</div>		
+	<br>
+	<div class="row">	
+		<div class="col-md-4">
+				<div class="fg-line">
+					<label class="form-label"> {{ 'partsList.PRODUCEDQUANTITY' | translate }}</label>
+					<input type="text" ng-model="partQuantityProduced" ng-disabled="true" id="quantityProduced"
+					 name="quantityProduced" class="form-control" style="width: 99%" disabled>
+				</div>
+		</div>
+	</div>
+	<div >	<button type="button" class="btn bgm-cyan waves-effect right m-b-5" ng-if="loggedInUser.roles.indexOf('ROLE_ADMIN') > -1" 
+			ng-click="reRunWorkFlow(ordpart.part.partNum, source)" title="{{ 'OVERVIEWORDER.RERUNWORKFLOW' | translate }}"> {{ 'OVERVIEWORDER.RERUNWORKFLOW' | translate }}</button>
+		<span class="right" style="float: right; width:5px; height:auto; display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<button type="button" class="btn bgm-cyan waves-effect right m-b-5 ng-cloak" ng-if="loggedInUser.roles.indexOf('ROLE_ADMIN') > -1" 
+			ng-click="pnlTrial(ordpart.part.partNum)" title="{{ 'OVERVIEWORDER.PNLTRIAL' | translate }}"> {{ 'OVERVIEWORDER.PNLTRIAL' | translate }}</button>
+	</div>	
+	<div class="row">
+		<br>
+		<!--<button type="button" class="btn bgm-cyan waves-effect right m-b-5" ng-if="loggedInUser.roles.indexOf('ROLE_ADMIN') > -1"
+		 ng-show="order.parts.length == 1" ng-click="reRunWorkFlow(ordpart.part.partNum, source)"> {{ 'OVERVIEWORDER.RERUNWORKFLOW' | translate }}</button>-->
+		<br>
+		<table class="mdl-data-table table-bordered  mdl-shadow--2dp" width="100%" datatable="ng" dt-column-defs="dtColumnDefsForDataSupports"
+		 dt-options="dtOptionsForDataSupports">
+			<thead>
+				<tr>
+					<th style="color:black"> {{ 'OVERVIEWORDER.ACTION' | translate }}</th>
+					<th style="color:black"> {{ 'OVERVIEWORDER.DSDESC' | translate }}</th>
+					<th style="color:black"> {{ 'OVERVIEWORDER.TYPE' | translate }}</th>
+					<th style="color:black"> {{ 'OVERVIEWORDER.FILENAME' | translate }}</th>
+					<th style="color:black"> {{ 'OVERVIEWORDER.CREDATE' | translate }}</th>
+					<th style="color:black"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="dataSupport in ordpart.part.dataSupportsOnProd">
+					<td style="font-weight: bold;">{{dataSupport.name}}</td>
+					<td style="font-weight: bold;">{{dataSupport.description}}</td>
+					<td style="font-weight: bold;">{{dataSupport.dsType}}</td>
+					<td style="font-weight: bold;">{{dataSupport.locations[0].fileName}}</td>
+					<td style="font-weight: bold;">{{dataSupport.lastModifiedDate | date:'MMM dd, HH:mm'}}</td>
+					<td style="font-weight: bold;">
+						<a ng-href="{{API_BASE}}/parts/document/{{dataSupport.dataSupportId}}?access_token={{token}}" title="View File {{dataSupport.dataSupportId}} with path {{dataSupport.locations[0].path}}">
+						{{ 'OVERVIEWORDER.VIEWFILE' | translate }}</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="modal-footer">
+	<button type="button" class="btn bgm-bluegray waves-effect" ng-click="closeModal()"> {{ 'OVERVIEWORDER.CLOSE' | translate }}</button>
+</div>

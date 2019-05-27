@@ -1,0 +1,80 @@
+<style>
+	.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    color: #555;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+	}
+	.nav-tabs>li>a {
+	    margin-right: 2px;
+	    line-height: 1.42857143;
+	    border: 1px solid transparent;
+	    border-radius: 4px 4px 0 0;
+	}
+	.nav>li>a {
+	    position: relative;
+	    display: block;
+	    padding: 10px 15px;
+	}
+	.nav-tabs {
+	    border-bottom: 1px solid #ddd;
+	}
+</style>
+<div class="card">
+    <div class="card-header ch-alt m-b-20">
+        <h2 translate-cloak="any">{{ 'lookups.TITLE_PREFS' | translate }}<small translate-cloak>  {{ 'lookups.DESCRIPTION_PREFS' | translate }} </small></h2>
+        <div style="width: 20%;" ng-if="clientId != null && clientId != '' && clientId != 'undefined'">
+             <select name="client" id="client" ng-model="clientId" ng-change="prefSubjectsByClient(clientId)">
+                         <!-- <option value="undefined">--{{ 'lookups.CLIENTS'| translate }}--</option> -->
+                         <option ng-repeat="option in clientOptions" value="{{option.id}}">{{option.name}}</option>
+             </select>
+         </div>
+        <button class="btn bgm-cyan btn-float waves-effect waves-circle" ng-click="openAddLookupModal('Preference')" uib-tooltip="{{ 'loukup_details.Add_Lookup' | translate }}"><i class="zmdi zmdi-plus"></i>
+        </button>
+    </div>
+</div>
+<br/>
+<div class="card-header col-md-12">
+ <div class="card-header ch-alt m-b-20">	
+	<ul class="nav nav-tabs">
+		<li ng-repeat="pg in prefGroups" ng-class="prefGroup == pg ? 'active' : ''">
+			<a href="#!/lookups/prefSubjects/list/{{pg}}/{{clientId}}" data-toggle="tab" data-target="#{{pg}}">{{pg}}</a>
+		</li>
+	</ul>
+    <div class="tab-content">
+    	<div  id="{{prefGroup}}" class="tab-pane fade in active" >
+		    <div class="m-b-20 groups-height">
+		    	<div class="card-body card-padding">
+			    	<div class="col-md-12" ng-repeat="lineOption in prefSubjects">
+			    		<div class="col-md-4">
+					        <div class="listview">
+					        	<div >
+					            	<a class="lv-item" href="#!/lookups/prefSubjects/items/{{lineOption[0]}}/{{clientId}}"><div class="media"><div class="media-body"><div class="lv-title" translate-cloak >{{lineOption[0]}}</div></div></div></a>
+					            </div>
+								<div class="clearfix"></div>
+					        </div>
+					    </div>
+					    <div class="col-md-4">
+					        <div class="listview">
+					        	<div >
+					            	<a class="lv-item" href="#!/lookups/prefSubjects/items/{{lineOption[1]}}/{{clientId}}"><div class="media"><div class="media-body"><div class="lv-title" translate-cloak >{{lineOption[1]}}</div></div></div></a>
+					            </div>
+								<div class="clearfix"></div>
+					        </div>
+					    </div>
+					    <div class="col-md-4">
+					        <div class="listview">
+					        	<div >
+					            	<a class="lv-item" href="#!/lookups/prefSubjects/items/{{lineOption[2]}}/{{clientId}}"><div class="media"><div class="media-body"><div class="lv-title" translate-cloak >{{lineOption[2]}}</div></div></div></a>
+					            </div>
+								<div class="clearfix"></div>
+					        </div>
+					    </div>
+				     </div>
+		    	</div>
+		    </div>
+		</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,248 @@
+
+<div class="card">
+    <div class="card-header bgm-bluegray">
+        <h2> {{ 'productionDashboard.Station' | translate }}: {{station.name | uppercase}}</h2>
+    </div>
+	<!-- <div class="row">
+		<div ng-class="(nbMachineCount > 3) ? 'col-lg-3' : 'col-lg-4'" ng-repeat="i in machinesLoop">
+			 <div ng-include="'views/productionDashboardMachine.html'"></div>
+		</div>
+	</div> -->
+	<div class="board" >
+        <div class="board-inner" ng-show = "nbTabCount > 1">
+          <ul class="tab-nav tn-justified" id="myTab">
+              <div class="liner"></div>
+              <li ng-if="nbTabCount > 1" ng-repeat = "n in nbTabs" ng-class="(n == 0) ? 'active' : ''">
+                  <a href="" data-target="#tab{{n}}" data-toggle="tab" uib-tooltip="{{ 'productionDashboard.Machines_Group' | translate }} {{$index+1}}">
+                      <span class="round-tabs one"><i class="zmdi zmdi-print zmdi-hc-lg"></i>&nbsp;{{$index+1}}</span>
+                  </a>
+              </li>
+          </ul>
+        </div>
+		<div class="tab-content">
+	         <div ng-class="(j == 0) ? 'tab-pane fade in active' : 'tab-pane fade'" id="tab{{j}}" ng-repeat="j in nbTabs">
+	             <div class="tiles white p-l-25 p-r-25 row">
+	               <div class="row" ng-if="screenType == '4'">
+	          		   <div ng-class="j == nbTabs[nbTabs.length - 1] ? 
+	          		   	  ((nbMachineCount % 4 == 0) ? 'col-lg-3' : (nbMachineCount % 4 == 1 ? 'col-lg-6' : (nbMachineCount % 4 == 2 ? 'col-lg-6' : 'col-lg-4'))) : 'col-lg-3'" 
+	          		       ng-repeat="i in [j, j+1, j+2, j+3]" ng-if="i < nbMachineCount">
+						   <div ng-include="'views/productionDashboardMachine.html'"></div>
+					   </div>
+			       </div>
+			       <div class="row" ng-if="screenType == '3'">
+	          		   <div ng-class="j == nbTabs[nbTabs.length - 1] ? 
+	          		   	  ((nbMachineCount % 3 == 0) ? 'col-lg-4' : (nbMachineCount % 3 == 1 ? 'col-lg-8' : 'col-lg-6')) : 'col-lg-4'" 
+	          		       ng-repeat="i in [j, j+1, j+2]" ng-if="i < nbMachineCount">
+						   <div ng-include="'views/productionDashboardMachine.html'"></div>
+					   </div>
+			       </div>
+			       <div class="row" ng-if="screenType == '2'">
+	          		   <div ng-class="j == nbTabs[nbTabs.length - 1] ? 
+	          		       ((nbMachineCount % 2 == 0) ? 'col-md-6' : 'col-lg-12') : 'col-md-6'" 
+	          		       ng-repeat="i in [j, j+1]" ng-if="i < nbMachineCount">
+						   <div ng-include="'views/productionDashboardMachine.html'"></div>
+					   </div>
+			       </div> 
+	             </div>
+	         </div>
+	         <div class="clearfix"></div>
+	   	</div>
+	</div>
+</div>
+<div class="card m-b-20 station-dynamique-height">
+	 <div class="card-header bgm-bluegray">
+        <h2 ng-if="stationId == 'PRESS' || stationId == 'PLOWFOLDER'"> {{ 'productionDashboard.SCHED_ROLLS' | translate }}</h2>
+        <h2 ng-if="stationId == 'COVERPRESS' && station.inputType == 'Batch'"> {{ 'productionDashboard.SCHED_BATCHES' | translate }}</h2>
+        <h2 ng-if="stationId != 'PRESS' && stationId != 'PLOWFOLDER' && station.inputType != 'Batch'"> {{ 'productionDashboard.SCHED_JOBS' | translate }}</h2>
+    </div>
+    <div class="card-body card-padding row ">
+    <div class="col-md-6 col-lg-6 machines-height">
+    <div class="">
+       <!--  <div class="card-header bgm-cyan text-white">
+            {{station.name}} Machine Assignment
+        </div> -->
+    </div>
+  <form name="machineListForm" class="row">
+   <div class="card-body  scrollable-production">
+    <div ng-if="station.machines.length == 0" class="text-center"> {{ 'productionDashboard.NO_MA_AVAILABLE' | translate }}</div>
+   <div class="listview lv-bordered lv-lg col-lg-6 col-md-6" ng-repeat="machine in station.machines">
+
+    <div class="card" ng-if="stationId == 'PRESS' || stationId == 'PLOWFOLDER'" id="machineRow{{machine.machineId}}" name="machineRow{{machine.machineId}}" class="item clearfix" ng-click="toggleHighlightedMachine(machine.machineId)">
+        <div class="card-header lv-header-alt clearfix">
+            <h2 class="lvh-label hidden-xs"><b>{{machine.name}}</b> ({{machine.rollHours | number:2}} H)
+            <span ng-show="machine.status.id.indexOf('ON') > -1 || machine.status.id.indexOf('RUNNING') > -1" class="badge bgm-teal">{{machine.status.name}}</span>
+            <span ng-show="machine.status.id.indexOf('OFF') > -1 || machine.status.id.indexOf('SERVICE') > -1" class="badge badge-default"> {{machine.status.name}}</span>
+            </h2> 
+        	<button class="btn bgm-blue btn-float-small btn-station waves-effect btn-float-small-position" id="assignButton{{machine.machineId}}" name="assignButton{{machine.machineId}}" ng-click="assignToMachine(machine.machineId, machine.name)" title="{{ 'productionDashboard.Assign' | translate }}" disabled=" input[type='checkbox']:not(:checked)"><i class="zmdi zmdi-check"></i></button>
+  
+        </div>
+        
+        <div class="lv-body scroll-printer" ui-sortable="sortableOptions" ng-model="machine.assignedRolls">
+            <div class="lv-item media"  ng-repeat="roll in machine.assignedRolls">
+                <div class="media-body" >
+                    <div class="lv-title">
+                    	<ul class="actions">
+					    <li class="right dropdown action-show">
+					        <a style="padding-top: 5px;" id="unassignButton{{roll.rollId}}" name="unassignButton{{roll.rollId}}" 
+                    		ng-click="unassignRoll(roll.rollId)" title="Un-Assign this Roll" uib-tooltip="{{ 'productionDashboard.Un_Assign_this_Roll' | translate }}" tooltip-placement="bottom" class="unassignButtonHover">
+					            <i class="zmdi zmdi-close"></i>
+					        </a>
+                        </li>
+					</ul>
+                    	<!-- <button class="btn bgm-gray waves-effect right" id="unassignButton{{roll.rollId}}" name="unassignButton{{roll.rollId}}" 
+                    		ng-click="unassignRoll(roll.rollId)" uib-tooltip="Un-Assign" tooltip-placement="bottom"><i class="zmdi zmdi-close-circle"></i></button> -->
+                           
+                                <a  title="sort this Roll" class="myHandle" ><i class="zmdi zmdi-storage"></i></a>
+                              {{ 'productionDashboard.ROLL' | translate }} {{roll.rollId}} &nbsp; ({{roll.dueDate | date:'MMM d'}}) &nbsp;<span ng-show="roll.rollType.id == 'NEW'" class='badge-new'> {{ 'productionDashboard.NEW' | translate }}</span>
+                    </div>
+      				<ul class="lv-attrs">
+                        <li><span style="color:#678897;" tooltip="{{ 'productionDashboard.Length' | translate }}">{{roll.length | number:0}}</span></li>
+                        <li><span style="color:#678897;" tooltip="{{ 'productionDashboard.Hours' | translate }}">{{roll.hours | number:2 }}</span></li>
+                        <li><span style="color:#678897;" tooltip="{{ 'productionDashboard.Colors' | translate }}">{{roll.colors}}</span></li>
+                        <li><span style="color:#678897;" tooltip="{{ 'productionDashboard_js.imp' | translate }}" ng-if="roll.impositionTypeId != null && roll.impositionTypeId != ''">{{roll.impositionTypeId}}</span>
+                        	<span style="color:#678897;" tooltip="{{ 'productionDashboard_js.machineType' | translate }}" ng-if="roll.machineTypeId != null && roll.machineTypeId != ''">/{{roll.machineTypeId == 'PLOWFOLDER' ? 'PF' : (roll.machineTypeId == 'FLYFOLDER' ? 'FF' : (roll.machineTypeId == 'POPLINE' ? 'PL' :''))}}</span>
+                        </li>
+                        <li><span style="color:#678897;" tooltip="{{ 'productionDashboard.Paper' | translate }}">{{roll.paperType.shortName}}</span></li>
+	                   <!--              		<span style="color:#678897;">{{roll.hours | number:2 }}</span></li>
+	                     <li><i class="zmdi zmdi-close" uib-tooltip="Un-Assign" id="unassignButton{{roll.rollId}}" name="unassignButton{{roll.rollId}}" 
+                    		ng-click="unassignRoll(roll.rollId)"></i></li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Case 2-->
+        <div class="card" ng-if="station.inputType != 'Batch' && stationId != 'PRESS' && stationId != 'PLOWFOLDER'" id="machineRow{{machine.machineId}}" name="machineRow{{machine.machineId}}" class="item clearfix" ng-click="toggleHighlightedMachine(machine.machineId)">
+        <div class="card-header lv-header-alt clearfix">
+            <h2 class="lvh-label hidden-xs"><b>{{machine.name}}</b> ({{machine.jobHours | number:2}} H)
+	            <span ng-show="machine.status.id.indexOf('ON') > -1 || machine.status.id.indexOf('RUNNING') > -1" class="badge bgm-teal">{{machine.status.name}}</span>
+	            <span ng-show="machine.status.id.indexOf('OFF') > -1 || machine.status.id.indexOf('SERVICE') > -1" class="badge badge-default">{{machine.status.name}}</span>
+            </h2>
+        	    <button class="btn bgm-blue btn-float-small btn-station waves-effect btn-float-small-position" id="assignButton{{machine.machineId}}" name="assignButton{{machine.machineId}}" ng-click="assignJobsToMachine(machine.machineId)" disabled="input[type='checkbox']:not(:checked)"  title="{{ 'productionDashboard.Assign' | translate }}"><i class="zmdi zmdi-check"></i></button>
+        	</div>
+
+        <div class="lv-body scroll-printer" ui-sortable="sortableOptions" ng-model="machine.assignedJobs">
+            <div class="lv-item media" ng-repeat="job in machine.assignedJobs" >
+                <div class="media-body" >
+                   <div class="lv-title">
+                    	<ul class="actions">
+					    <li class="right dropdown action-show">
+					        <a id="unassignButton{{job.jobId}}" name="unassignButton{{job.jobId}}" 
+                    		ng-click="unassignJob(job.jobId)" title="Un-Assign this Job" uib-tooltip="{{ 'productionDashboard.Un_Assign_this_Roll' | translate }}" tooltip-placement="bottom">
+					            <i class="zmdi zmdi-close"></i>
+					        </a>
+					    </li>
+					</ul>
+                    	<!-- <button class="btn bgm-gray waves-effect right" id="unassignButton{{roll.rollId}}" name="unassignButton{{roll.rollId}}" 
+                    		ng-click="unassignRoll(roll.rollId)" uib-tooltip="Un-Assign" tooltip-placement="bottom"><i class="zmdi zmdi-close-circle"></i></button> -->
+                            <a  title="sort this Roll" class="myHandle"><i class="zmdi zmdi-storage"></i></a>
+                            {{ 'productionDashboard.ORDER' | translate }} {{job.orderId}} (Job# {{job.jobId}}):
+                    </div>
+                    <!-- <div class="lv-title">
+                    	<button class="btn bgm-gray waves-effect right" id="unassignJobButton{{job.jobId}}" name="unassignJobButton{{job.jobId}}" 
+                    		ng-click="unassignJob(job.jobId)" uib-tooltip="Un-Assign" tooltip-placement="bottom"><i class="zmdi zmdi-close-circle"></i></button>
+                    	Order# {{job.order.orderId}} (Job# {{job.jobId}}):
+                    </div> -->
+                    <ul class="lv-attrs">
+                        <li><span style="color:#678897;" tooltip="{{ 'productionDashboard.Due' | translate }}">{{job.dueDate | date:'MMM dd'}}</span></li>
+                        <li><span style="color:#678897;" tooltip="{{ 'productionDashboard.Priority' | translate }}">{{job.jobPriority.name.substring(0,1)}}</span></li>
+                        <li ng-if="stationId == 'COVERPRESS' || stationId == 'LAMINATION'">
+                        	<span ng-if="!job.partNum.endsWith('J') && !job.partNum.endsWith('E')" style="color:#678897;" tooltip="Lamination">{{job.partLamination.id}}</span>
+                        	<span ng-if="job.partNum.endsWith('J') || job.partNum.endsWith('E')" style="color:#678897;" tooltip="Type">{{job.partNum.endsWith('J') ? 'D.Jacket' : 'E.Sheet'}}</span>
+                        </li>
+                        <li><span style="color:#678897;" tooltip="{{ 'productionDashboard.Quantity' | translate }}">{{job.quantityNeeded}}</span></li>
+                        <li><span style="color:#678897;" tooltip="{{ 'productionDashboard.Hours' | translate }}">{{job.hours | number:2 }}</span></li>
+                        <li ng-if="stationId != 'COVERPRESS'"><span style="color:#678897;" tooltip="{{ 'productionDashboard.Carts' | translate }}">{{job.prevJobData != null ? job.prevJobData.cartNumbers : '-'}}</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+   <!-- SJI_start: added for cover batches-->
+    <div class="card" ng-if="stationId == 'COVERPRESS' && station.inputType == 'Batch'" id="machineRow{{machine.machineId}}" name="machineRow{{machine.machineId}}" class="item clearfix" ng-click="toggleHighlightedMachine(machine.machineId)">
+        <div class="card-header lv-header-alt clearfix">
+            <h2 class="lvh-label hidden-xs"><b>{{machine.name}}</b>  <!--({{machine.jobHours | number:2}} H)-->
+	            <span ng-show="machine.status.id.indexOf('ON') > -1 || machine.status.id.indexOf('RUNNING') > -1" class="badge bgm-teal">{{machine.status.name}}</span>
+	            <span ng-show="machine.status.id.indexOf('OFF') > -1 || machine.status.id.indexOf('SERVICE') > -1" class="badge badge-default">{{machine.status.name}}</span>
+            </h2>
+        	    <button class="btn bgm-blue btn-float-small waves-effect btn-float-small-position" id="assignButton{{machine.machineId}}" name="assignButton{{machine.machineId}}" ng-click="assignBatchesToMachine(machine.machineId)" disabled="input[type='checkbox']:not(:checked)"  title="{{ 'productionDashboard.Assign' | translate }}"><i class="zmdi zmdi-check"></i></button>
+        	</div>
+
+        <div class="lv-body scroll-printer" ui-sortable="sortableOptions" ng-model="machine.assignedSections">
+            <div class="lv-item media" ng-repeat="batch in machine.assignedSections" >
+                <div class="media-body" >
+                   <div class="lv-title">
+                    	<ul class="actions">
+					    <li class="right dropdown action-show">
+					        <a id="unassignButton{{batch.coverSectionId}}" name="unassignButton{{batch.coverSectionId}}" 
+                    		ng-click="unassignBatch(batch.coverSectionId)" title="Un-Assign this Batch" uib-tooltip="{{ 'productionDashboard.Un_Assign_this_Batch' | translate }}" tooltip-placement="bottom">
+					            <i class="zmdi zmdi-close"></i>
+					        </a>
+					    </li>
+					</ul>
+
+                   (Section# {{batch.coverSectionName}}):
+                    </div>
+                    <ul class="lv-attrs">
+                        <li>&nbsp; D:&nbsp;
+                              <span style="color:#678897;" tooltip="{{ 'productionDashboard.Due' | translate }}">{{batch.dueDate | date:'MMM dd'}}</span></li>
+                        <!--<li>&nbsp; P: &nbsp;
+	                           <span style="color:#678897;" uib-tooltip="{{ 'productionDashboard.Priority' | translate }}">{{batch.priority}}</span></li>-->
+                        <li>&nbsp; Q: &nbsp;
+                        	   <span style="color:#678897;" tooltip="{{ 'productionDashboard.Quantity' | translate }}">{{batch.quantity}}</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- SJI_end: added for cover batches-->
+</div>
+        </div>
+    </form>
+</div>
+    <div class="col-md-6 col-lg-6">
+    <div class="card" ng-if="stationId == 'PRESS' || stationId == 'PLOWFOLDER'">
+    <div class="card-header ch-alt">
+        <h4> {{ 'productionDashboard.SCHED_ROLLS' | translate }}</h4><!-- <small>Below is the list of scheduled rolls that need to be produced. Select the machine, then check the rolls you want to assign to the selected machine and then click 'Assign'</small> -->
+    </div>
+    <div class="card-body">
+    	<form name="rollSchedulingForm">
+     		<uib-alert type="success" close="successMsg = false;" ng-show="successMsgDown">{{alertMsg}}</uib-alert>
+			<uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsgDown">{{alertMsg}}</uib-alert>
+			<table id="assignmentTable" name="assignmentTable" datatable="" dt-options="productionDashboard.dtOptions" dt-columns="productionDashboard.dtColumns" dt-column-defs="productionDashboard.dtColumnDefs" dt-instance="productionDashboard.dtInstance" class="table table-bordered table-striped table-vmiddle ng-scope ng-table col-lg-12 ng-isolate-scope dataTable scheduled-rolls">
+           
+            </table>
+		  </form>
+    </div>
+</div>
+<div class="card" ng-if="stationId == 'COVERPRESS' && station.inputType == 'Batch'">
+    <div class="card-header ch-alt">
+        <h4> {{ 'productionDashboard.SCHED_BATCHES' | translate }}</h4>
+    </div>
+    <div class="card-body">
+    	<form name="jobSchedulingForm">
+     		<uib-alert type="success" close="successMsg = false;" ng-show="successMsgDown">{{alertMsg}}</uib-alert>
+			<uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsgDown">{{alertMsg}}</uib-alert>
+			<table id="assignmentTable" name="assignmentTable" datatable="" dt-options="productionDashboard.dtOptionsForBatches" dt-columns="productionDashboard.dtColumnsForBatches" dt-instance="productionDashboard.dtInstanceForBatches" class="table table-bordered table-striped table-vmiddle ng-scope ng-table col-lg-12 ng-isolate-scope dataTable scheduled-rolls">		 	  
+		    </table>
+		</form>
+    </div>
+</div>
+<div class="card" ng-if="stationId != 'PRESS' && stationId != 'PLOWFOLDER' && station.inputType != 'Batch'">
+    <div class="card-header ch-alt">
+        <h4> {{ 'productionDashboard.SCHED_JOBS' | translate }}</h4>
+    </div>
+    <div class="card-body">
+    	<form name="jobSchedulingForm">
+     		<uib-alert type="success" close="successMsg = false;" ng-show="successMsgDown">{{alertMsg}}</uib-alert>
+			<uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsgDown">{{alertMsg}}</uib-alert>
+			<table id="assignmentTable" name="assignmentTable" datatable="" dt-options="productionDashboard.dtOptionsForJobs" dt-columns="productionDashboard.dtColumnsForJobs" dt-instance="productionDashboard.dtInstanceForJobs" class="table table-bordered table-striped table-vmiddle ng-scope ng-table col-lg-12 ng-isolate-scope dataTable scheduled-rolls">
+		 	  
+		    </table>
+		</form>
+    </div>
+</div>
+</div>
+</div>
+</div>
+

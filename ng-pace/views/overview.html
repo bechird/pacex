@@ -1,0 +1,179 @@
+
+<div class="card">
+    <div class="card-header bgm-bluegray">
+        <h2>{{ 'OVERVIEWTITLE'| translate }}</h2>
+        <ul class="actions"  style="z-index: 1000;" uib-tooltip="{{ 'Charts_Designations'| translate }}">
+            <li class="dropdown action-show open" uib-dropdown="" style="">
+                <a href="" uib-dropdown-toggle="" class="dropdown-toggle" aria-haspopup="true" aria-expanded="true">
+                    <i class="zmdi zmdi-more-vert"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right" style="display: -webkit-inline-box;">
+               	 <li>
+                        <a href=""><span class="">{{ 'PER_MACHINE'| translate }}</span></a>
+                    </li>
+                    <li>
+                        <a href=""><span class="badge bgm-teal">{{ 'FREE'| translate }}</span></a>
+                    </li>
+                    <li>
+                        <a href=""><span class="badge bgm-red">{{ 'LATE'| translate }}</span></a>
+                    </li>
+                    <li>
+                        <a href=""><span class="badge bgm-lightblue">{{ 'DUEAFTERTODAY'| translate }}</span></a>
+                    </li>
+                    <li>
+                        <a href=""><span class="badge bgm-orange-900">{{ 'DUETHISDAY'| translate }}</span></a>
+                    </li>
+                    <li>
+                        <a href=""><span class="badge bgm-transparent">{{ 'NONWORK'| translate }}</span></a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="card-body card-padding">
+        <div class="row" ng-repeat="j in stationOptionsIter">
+            <div ng-class="screenType == '2' ? 'col-md-12' : 'col-md-6'" ng-repeat="i in [j, j+1]" ng-if="i < stationOptionsCount">
+                <div class="col-md-11 overview-card">
+                   <div class="card">
+ 						<div class="card-header bgm-grey-50">
+        					<h4><span class="light ">{{stationOptions[i].name}}</span></h3>
+         					<ul class="actions">
+           						<small> <span class="badge-sched bgm-indigo" uib-tooltip="{{ 'Scheduled_Hours'| translate }}">{{stationOptions[i].scheduledHours | number:2 }}</span>
+        						 <span class="badge-sched bgm-teal" uib-tooltip="{{ 'Unscheduled_Hours'| translate }}">{{stationOptions[i].unscheduledHours | number:2 }}</span></small>
+	         				</ul>
+    					</div>
+    <div class="card-body card-padding" translate-cloak>
+        <div ng-if="stationOptions[i].inputType == 'Sheet'"  style="width: 100%;">
+	        <div type="success" class="alert alert-success alert-dismissible" role="alert" ng-show="successMsg && selectedStation == stationOptions[i].stationId">
+			    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+			    </button>
+			   {{alertMsg}}
+			</div>
+            <table id="tableSheet-{{stationOptions[i].stationId}}" name="tableSheet-{{stationOptions[i].stationId}}" datatable="ng" dt-column-defs="overview.dtColumnDefsForJobs" dt-options="overview.dtOptionsForJobs" class="table table-bordered table-striped table-vmiddle ng-scope ng-table TableOverviewScheduleBoard" translate-cloak>
+                <thead>
+                    <tr class="table-placeholder" translate-cloak>
+                        <th translate-cloak translate>ORDER</th>
+                        <th translate-cloak translate>JOB</th>
+                        <th translate-cloak translate> PART</th>
+                        <th translate-cloak translate> HOURS</th>
+                        <th translate-cloak translate> DUE</th>
+                        <th translate-cloak translate> STATUS</th>
+                        <th translate-cloak translate>PQTY</th>
+                        <th translate-cloak translate> PRIORITY</th>
+                        <th translate-cloak translate> MACHINE</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="job in stationOptions[i].jobs">
+                        <td>{{job.orderId}}</td>
+                        <td><a href="" uib-tooltip="{{ 'Job'| translate }} {{job.jobId}} {{ 'Details'| translate }}" tooltip-placement="right" ng-click="openViewJobModal(job.jobId)">{{job.jobId}}</a></td>
+                        <td><a href="" uib-tooltip="{{ 'Part'| translate }} {{job.partNum}} {{ 'Details'| translate }}" tooltip-placement="right" ng-click="openEditPartModal(job.partNum)">{{job.partNum}}</a></td>
+                        <td>{{job.hours | number:2}}</td>
+                        <td>{{job.dueDate | date:'MMM dd'}}</td>
+                        <td>{{job.jobStatus.name}}</td>
+                        <td>{{job.quantityProduced}}</td>
+                        <td>{{job.jobPriority.name == null ? '' : job.jobPriority.name}}</td>
+                        <td>{{job.machineId == null ? '' : job.machineId}}</td>
+                        
+                        <td>
+                        	<button id="oneMoveBtn-{{stationOptions[i].stationId}}-{{job.jobId}}" ng-if="$index > 0" ng-click="moveUp(i, job.jobId, stationOptions[i].stationId, 'Job', 'one')" class="btn btn-up waves-effect" uib-tooltip="{{ 'Up_One_Level'| translate }}"><i class="zmdi zmdi-long-arrow-up"></i></button>
+                        	<button id="topMoveBtn-{{stationOptions[i].stationId}}-{{job.jobId}}" ng-if="$index > 4" ng-click="moveUp(i, job.jobId, stationOptions[i].stationId, 'Job', 'top')" class="btn btn-up-totop waves-effect" uib-tooltip="{{ 'Up_To_Top'| translate }}"><i class="zmdi zmdi-format-valign-top"></i></button>
+                        </td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+<!--         <small><span ng-if="stationOptions[i].inputType == 'Sheet'" class="badge bgm-gray">Showing {{stationOptions[i].jobs.length}} job(s).</span></small> -->
+        <div ng-if="stationOptions[i].inputType == 'Roll'"  style="width: 100%;">
+        	<div type="success" class="alert alert-success alert-dismissible" role="alert" ng-show="successMsg && selectedStation == stationOptions[i].stationId">
+			    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+			    </button>
+			   {{alertMsg}}
+			</div>
+            <table id="tableRoll-{{stationOptions[i].stationId}}" name="tableRoll-{{stationOptions[i].stationId}}" datatable="ng" dt-column-defs="overview.dtColumnDefsForRolls" dt-options="overview.dtOptionsForRolls" class="table table-bordered table-striped table-vmiddle ng-scope ng-table TableOverviewScheduleBoard">
+                <thead>
+                    <tr class="table-placeholder">
+                        <th translate-cloak translate>ROLL</th>
+                        <th translate-cloak translate>HOURS</th>
+                        <th translate-cloak translate>DUE</th>
+                        <th translate-cloak translate>STATUS</th>
+                        <th translate-cloak translate>LENGTH</th>
+                        <th translate-cloak translate>PRIORITY</th>
+                        <th translate-cloak translate>MACHINE</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="roll in stationOptions[i].rolls">
+                        <td><a href="" uib-tooltip="{{ 'Roll'| translate }} {{roll.rollId}} {{ 'Details'| translate }}" tooltip-placement="right" ng-click="openViewRollModal(roll.rollId)">{{roll.rollId}}</a></td>
+                        <td>{{roll.hours | number:2}}</td>
+                        <td>{{(roll.jobs == null || roll.jobs[0].order.dueDate == null) ? '' : (roll.jobs[0].order.dueDate | date:'MMM dd')}}</td>
+                        <td>{{roll.status.name}}</td>
+                        <td>{{roll.length}}</td>
+                        <td>{{(roll.jobs == null || roll.jobs[0].jobPriority.name == null) ? '' : roll.jobs[0].jobPriority.name}}</td>
+                        <td>{{roll.machineId == null ? '' : roll.machineId}}</td>
+                        <td><button id="oneMoveBtn-{{stationOptions[i].stationId}}-{{roll.rollId}}" ng-if="$index > 0" ng-click="moveUp(i, roll.rollId, stationOptions[i].stationId, 'Roll', 'one')" class="btn btn-up waves-effect" uib-tooltip="{{ 'Up_One_Level'| translate }}"><i class="zmdi zmdi-long-arrow-up"></i></button>
+                        <button id="topMoveBtn-{{stationOptions[i].stationId}}-{{roll.rollId}}" ng-if="$index > 4" ng-click="moveUp(i, roll.rollId, stationOptions[i].stationId, 'Roll', 'top')" class="btn btn-up-totop waves-effect" uib-tooltip="{{ 'Up_To_Top'| translate }}"><i class="zmdi zmdi-format-valign-top"></i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+<!--         <small><span class="badge bgm-gray"  ng-if="stationOptions[i].inputType == 'Roll'" >Showing {{stationOptions[i].rolls.length}} roll(s).</span></small> -->
+    </div>
+</div>
+                </div>
+                <div class="col-md-1" style="display: -webkit-box;margin-top:32px">
+                    <div>
+                        <div> <span>T</span> </div>
+                        <div class="progressChart progress-bar-vertical progress-striped">
+                            <div class="progress-bar" role="progressbar" style="height: 100%;">
+                                <div ng-repeat="percent in stationOptions[i].jobsPercentages[0]" style="height: {{percent[0]}}%;" role="progressbar" class="{{(percent[1] == 0) ? 'progress-bar' : 
+									(percent[1] == 1) ? 'progress-bar bgm-teal' : 
+                           			(percent[1] == 2) ? 'progress-bar bgm-orange-900' : 
+                           			(percent[1] == 3) ? 'progress-bar bgm-red' : 'progress-bar progress-bar-info'}}" uib-tooltip="{{percent[0] | number:2}} % {{percent[1] == 1 ? 'Free Hours' :
+                           	  		percent[1] == 0 ? 'Non Work Hours' :
+                           	  		percent[1] == 2 ? 'Due This Day' :
+                           	  		percent[1] == 3 ? 'Late Work' : 'Due After This Day'}}">
+
+                                    <!--<div class="progress-bare progress-bar-danger" ng-if="$index % 2 == 0" role="progressbar" title="test" style="height: 50%;"></div> -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="color:#e5e9ec"><span class="transparent-color">&nbsp;</span>
+                        </div>
+                        <div class="progressChart progress-bar-vertical">
+                            <div class="progress-bar progress-bar-transparent " role="progressbar" style="height: 100%;">0
+                                <div class="progress-bar progress-bar-transparent" role="progressbar"  style="height: 26.5%;"></div>
+                                <div class="progress-bar progress-bar-transparent" role="progressbar"  style="height: 33%;"></div>
+                                <div class="progress-bar progress-bar-transparent" role="progressbar"  style="height: 33.5%;"></div>24
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div> <span>TM</span> </div>
+                        <div class="progressChart progress-bar-vertical progress-striped" style="margin-left: -1px;">
+                            <div class="progress-bar" role="progressbar" style="height: 100%;">
+                                <div ng-repeat="percent in stationOptions[i].jobsPercentages[1]" style="height: {{percent[0]}}%;" role="progressbar" class="{{(percent[1] == 0) ? 'progress-bar' : 
+									(percent[1] == 1) ? 'progress-bar bgm-teal' : 
+                           			(percent[1] == 2) ? 'progress-bar bgm-orange-900' : 
+                           			(percent[1] == 3) ? 'progress-bar bgm-red' : 'progress-bar progress-bar-info'}}" uib-tooltip="{{percent[0] | number:2}} % {{percent[1] == 1 ? 'Free Hours' :
+                           	  		percent[1] == 0 ? 'Non Work Hours' :
+                           	  		percent[1] == 2 ? 'Due This Day' :
+                           	  		percent[1] == 3 ? 'Late Work' : 'Due After This Day'}}">
+
+                                    <!--<div class="progress-bare progress-bar-danger" ng-if="$index % 2 == 0" role="progressbar" title="test" style="height: 50%;"></div> -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

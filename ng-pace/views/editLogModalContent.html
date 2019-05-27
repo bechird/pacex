@@ -1,0 +1,196 @@
+ <form name="logForm" ng-cloak>
+<div class="modal-header" ng-cloak>
+    <h3 class="modal-title" >{{ 'editLogModalContent.TITLE'| translate }}</h3>
+</div>
+
+<div class="modal-body col-md-12" ng-cloak>
+   <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+   
+    
+    	<div class="row">
+    <div class="col-sm-6 col-md-6">
+        <div class="mini-charts-item bgm-blue-300">
+            <div class="clearfix">
+                <div class="chart stats-bar-2" data-sparkline-bar="">
+                    LI
+                </div>
+                <div class="count">
+                    <small>{{ 'editLogModalContent.LOG_ID'| translate }}</small>
+                    <h2>{{log.logId}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-6">
+        <div class="mini-charts-item bgm-blue-300">
+            <div class="clearfix">
+                <div class="chart stats-line" data-sparkline-line="">
+                    M
+                </div>
+                <div class="count">
+                    <small> {{ 'editLogModalContent.Machine'| translate }}</small>
+                    <h2>{{log.machineId}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <div class="input-group" style="width: 100%;">
+            <div class="fg-line">
+                <label class="form-label">  {{ 'editLogModalContent.JOB'| translate }}
+                </label>
+                <div class="select">
+                    <div class="fg-line">
+                   		<input type="number" id="logJob" name="logJob" ng-model="log.currentJobId" min="0" max="999999999" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="input-group required" style="width: 100%;">
+            <div class="fg-line">
+                <label class="form-label">{{ 'editLogModalContent.START_TIME'| translate }} <small ng-show="logForm.startTime.$dirty && logForm.startTime.$error.required" class="text-error">  {{ 'editLogModalContent.ERROR5'| translate }}</small> <small ng-show="logForm.startTime.$dirty && logForm.startTime.$error.date" class="text-error">{{ 'editLogModalContent.ERROR6'| translate }}</small>
+                </label>
+                <!-- <input ng-model="startTime" id="startTime" name="startTime" type="datetime-local" class="form-control" ng-required="true" /> -->
+                <div class="fg-line"
+									     moment-picker="startTime"
+									     format="MM-DD-YYYY, HH:mm">
+									    
+									    <input class="form-control"
+									            ng-model="startTime"
+							       				id="startTime" 
+							       				name="startTime" 
+							       				>
+					</div>
+            </div>
+        </div>
+        <br>
+     
+        <div class="input-group" style="width: 100%;">
+            <div class="fg-line">
+                <label class="form-label">  {{ 'editLogModalContent.RESULT'| translate }}<small ng-show="logForm.logResult.$dirty && logForm.logResult.$error.required" class="text-error"> {{ 'editLogModalContent.ERROR3'| translate }}</small>
+                </label>
+                <div class="select">
+
+                    <select name="logResult" id="logResult" ng-model="log.logResult.id" class="form-control" ng-required="true">
+                        <option value=""> {{ 'editLogModalContent.SELECT'| translate }}</option>
+                        <option ng-repeat="option in logResultOptions" value="{{option.id}}">{{option.name}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="input-group required" style="width: 100%;">
+            <div class="fg-line">
+                <label class="form-label">  {{ 'editLogModalContent.EVENT'| translate }}<small ng-show="logForm.logEvent.$dirty && logForm.logEvent.$error.required" class="text-danger text-error">  {{ 'editLogModalContent.ERROR'| translate }}</small>
+                </label>
+                <div class="select">
+
+                    <select name="logEvent" id="logEvent" ng-model="log.event" class="form-control" ng-required="true">
+                        <option value=""> {{ 'editLogModalContent.SELECT'| translate }}</option>
+                        <option value="COMPLETE"> {{ 'editLogModalContent.COMPLETE'| translate }}</option>
+                        <option value="PAUSE"> {{ 'editLogModalContent.PAUSE'| translate }}</option>
+                        <option value="STOP"> {{ 'editLogModalContent.STOP'| translate }}</option>
+                        <option value="START"> {{ 'editLogModalContent.START'| translate }}</option>
+                        <option value="RESUME"> {{ 'editLogModalContent.RESUME'| translate }}</option>
+                        <option value="ONOFF"> {{ 'editLogModalContent.ON_OFF'| translate }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <br>
+       <div class="input-group " style="width: 100%;">
+            <div class="fg-line">
+                <label class="form-label"> {{ 'editLogModalContent.FINISH_TIME'| translate }}<small ng-show="logForm.finishTime.$dirty && logForm.finishTime.$error.date" class="text-error">  {{ 'editLogModalContent.ERROR7'| translate }}</small>
+                </label>
+               <!--  <input ng-model="finishTime" id="finishTime" name="finishTime" type="datetime-local" class="form-control"/> -->
+                  <div class="fg-line"
+									     moment-picker="finishTime"
+									     format="MM-DD-YYYY, HH:mm">
+									    
+									    <input class="form-control"
+									            ng-model="finishTime"
+							       				id="finishTime" 
+							       				name="finishTime" 
+							       				>
+					</div>
+            </div>
+        </div>
+        <br>
+        <div class="input-group" style="width: 100%;">
+            <div class="fg-line">
+                <label class="form-label">  {{ 'editLogModalContent.ROLL'| translate }}
+                </label>
+                <div class="select">
+                    <div class="fg-line">
+                   		<input type="number" id="logRoll" name="logRoll" ng-model="log.rollId" min="0" max="999999999" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="input-group required" style="width: 100%;">
+            <div class="fg-line">
+                <label class="form-label">  {{ 'editLogModalContent.CAUSE'| translate }}<small ng-show="logForm.logCause.$dirty && logForm.logCause.$error.required" class="text-danger text-error"> {{ 'editLogModalContent.ERROR2'| translate }}</small>
+                </label>
+                <div class="select">
+                    <select name="logCause" id="logCause" ng-model="log.logCause.id" class="form-control" ng-required="true">
+                        <option value=""> {{ 'editLogModalContent.SELECT'| translate }}</option>
+                        <option ng-repeat="option in logCauseOptions" value="{{option.id}}">{{option.name}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="form-group required" style="width: 100%;">
+            <div class="fg-line">
+                <label class="form-label"> {{ 'editLogModalContent.COUNTERFEET'| translate }} <small ng-show="logForm.counterFeet.$dirty && logForm.counterFeet.$invalid" class="text-error"> {{ 'editLogModalContent.ERROR8'| translate }}</small>
+                </label>
+                <input type="number" id="rollLength" id="counterFeet" name="counterFeet" ng-model="log.counterFeet" ng-required="true" class="form-control" min="0" max="999999999">
+            </div>
+        </div>
+		<div class="form-group " style="width: 100%;">
+            <div class="fg-line">
+                <label class="form-label"> {{ 'editLogModalContent.ROLL_LENGTH'| translate }}<small ng-show="logForm.rollLength.$dirty && logForm.rollLength.$invalid" class="text-error"> {{ 'editLogModalContent.ERROR4'| translate }}</small>
+                </label>
+                <input type="number" id="rollLength" name="rollLength" ng-model="log.rollLength" class="form-control" min="0" max="999999999">
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+                 <div class="form-group">
+                       <label class="form-label"> {{ 'editLogModalContent.NOTE'| translate }}
+							<span ng-show="logForm.notes.$dirty && logForm.notes.$error.maxlength" class="text-danger text-error"> {{ 'editLogModalContent.ERROR9'| translate }}</span>
+ 			  			</label>
+                       <div class="controls">
+                           	<div class="fg-line">
+                             	<textarea id="notes" name="notes" class="form-control" ng-model="log.notes" rows="2" ng-maxlength="500"></textarea>
+                            </div>
+                       </div>
+                 </div>
+      </div>
+</div> 
+            
+              <div class="row">
+                  <div class="pull-right">
+                      <button type="button" class="btn bgm-bluegray waves-effect" ng-click="closeModal()"> {{ 'editLogModalContent.CANCEL'| translate }}</button>
+             			<button type="button" ng-click="updateLog()" class="btn bgm-teal waves-effect" 
+							ng-disabled="logForm.logEvent.$invalid || logForm.logCause.$invalid  ||
+										logForm.logResult.$invalid || logForm.startTime.$invalid || logForm.finishTime.$invalid ||
+										logForm.rollLength.$invalid || logForm.counterFeet.$invalid || logForm.notes.$invalid"
+						><i class="fa fa-plus-circle"></i>&nbsp;{{ 'editLogModalContent.SAVE'| translate }}</button>
+                  </div>
+              </div>
+             
+
+</div>
+
+<div class="modal-footer">
+ 	<small style="float:left"><em>{{ 'editLogModalContent.LAST_UP_ID' | translate }} '{{log.lastModifiedByUserName}}' , {{ 'editLogModalContent.LAST_UP_DATE' | translate }} {{log.lastModifiedDate | date:'medium'}}</em></small>
+</div>
+
+</form>

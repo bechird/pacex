@@ -1,0 +1,238 @@
+<div class="card">
+    <div class="card-header ch-alt m-b-20">
+        <h2>{{ 'stationList.TITLE_STATION' | translate }}<small> {{ 'stationList.DESCRIPTION_STATION' | translate }}<i class="zmdi zmdi-plus-circle-o"></i> {{ 'stationList.LIGNE2' | translate }}  
+          <a href="#/ordersPage">  {{ 'stationList.LIEN' | translate }}</a>.</small></h2>
+
+        <button class="btn bgm-teal btn-float waves-effect waves-circle" ng-click="openAddStationModal()" uib-tooltip="{{ 'stationList.ADD_STATION' | translate }}"><i class="zmdi zmdi-plus"></i>
+        </button>
+    </div>
+<br/>
+    <div class="card-body card-padding" translate-cloak>
+        <uib-alert type="success" close="successMsg = false;" ng-show="successMsg">{{alertMsg}}</uib-alert>
+        <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{alertMsg}}</uib-alert>
+        <table datatable="" dt-options="stationsList.dtOptions" dt-columns="stationsList.dtColumns" dt-instance="stationsList.dtInstance" class="table table-bordered table-striped table-vmiddle ng-scope ng-table col-lg-12" width="100%" translate-cloak>
+            <tfoot translate-cloak>
+                <tr class="table-placeholder" translate-cloak>
+                    <th width="13%" translate-cloak translate>stationList.STATION_ID</th>
+                    <th width="14%" translate-cloak translate>stationList.STATION_NAME</th>
+                    <th width="13%" translate-cloak translate>stationList.STATION_CAT</th>
+                    <th width="35%" translate-cloak translate-cloak translate>stationList.STATION_DESC</th>
+                    <th width="10%" translate-cloak translate>stationList.ACTIVE</th>
+                    <th width="10%" translate-cloak translate>stationList.PROD_ORDERING</th>
+                    <th width="15%" style="text-alignment : center;"></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<script type="text/ng-template" id="addStationModalContent.html">
+	<form name="stationForm"  novalidate  method="post" enctype="application/x-www-form-urlencoded" ng-cloak>
+        <div class="modal-header card-header ch-alt" ng-cloak>
+            <h3 class="modal-title">{{ 'stationList.ADD_STATION' | translate }} </h3>
+        </div>
+		<div class="modal-body card-body card-padding" ng-cloak>
+		  <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+			<div class="row">
+				<div class="form-group required col-md-4">
+              <label class="form-label"> {{ 'stationList.ID' | translate }}
+				<small ng-show="stationForm.id.$error.maxlength" class="text-danger text-error">{{ 'stationList.ERROR1' | translate }} </small>
+				<small ng-show="stationForm.id.$touched && stationForm.id.$error.required" class="text-danger text-error">{{ 'stationList.ERROR2' | translate }} </small>
+              </label>
+              <div class="controls"><div class="fg-line"><input type="text" name="id" ng-model="station.stationId" class="form-control" ng-required="true" ng-maxlength="25" autofocus></div></div>
+            </div>
+			<div class="form-group required col-md-4">
+              <label class="form-label"> {{ 'stationList.NAME' | translate }}
+				<small ng-show="stationForm.name.$error.maxlength" class="text-danger text-error">{{ 'stationList.ERROR3' | translate }} </small>
+				<small ng-show="stationForm.name.$touched && stationForm.name.$error.required" class="text-danger text-error">{{ 'stationList.ERROR4' | translate }} </small>
+			  </label>
+              <div class="controls"><div class="fg-line"><input type="text" name="name" ng-model="station.name" class="form-control" ng-required="true" ng-maxlength="255"></div></div>
+            </div>
+			<div class="form-group required col-md-4">
+              <label class="form-label">{{ 'stationList.STATION_CAT' | translate }}
+				<small ng-show="stationForm.stationCategory.$touched && stationForm.stationCategory.$error.required" class="text-danger text-error">{{ 'stationList.ERROR5' | translate }} </small>
+			  </label>
+			  <div class="controls">
+               <select name="stationCategory" id="stationCategory" ng-model="station.stationCategoryId" ng-required="true"  class="form-control">
+				<option value="">{{ 'stationList.SELECT' | translate }}</option>
+      			<option ng-repeat="option in stationCategoryOptions" value="{{option.id}}">{{option.name}}</option>
+    	       </select>
+			  </div>
+            </div>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-4">
+              <label class="form-label">{{ 'stationList.PARENT_STATION' | translate }}</label>
+			  <div class="controls">
+               <select ng-model="station.parentStationId" class="form-control" >
+				<option value="">{{ 'stationList.SELECT' | translate }}</option>
+      			<option ng-repeat="option in stationOptions" value="{{option.stationId}}">{{option.name}}</option>
+    	       </select>
+              </div>
+            </div>
+					<div class="form-group col-md-4">
+              <label class="form-label">{{ 'stationList.INPUT_TYPE' | translate }} </label>
+			 <div class="controls">
+              <select ng-model="station.inputType" class="form-control" >
+				<option value="">{{ 'stationList.SELECT' | translate }}</option>
+      			<option value="Roll"> {{ 'stationList.ROLL' | translate }} </option>
+				<option value="Sheet"> {{ 'stationList.SHEET' | translate }} </option>
+				<option value="Job"> {{ 'stationList.JOB' | translate }} </option>
+				<option value="Batch"> {{ 'stationList.BATCH' | translate }} </option>
+    	      </select>
+             </div>
+            </div>
+					<div class="form-group col-md-4">
+              <label class="form-label">{{ 'stationList.PRODUCTION_ORDERING' | translate }}
+				<small ng-show="stationForm.productionOrdering.$invalid" class="text-danger text-error">{{ 'stationList.ERROR6' | translate }} </small>
+			  </label>
+              <div class="controls"><div class="fg-line"><input type="number" name="productionOrdering" ng-model="station.productionOrdering" min="0" max="99" class="form-control"></div></div>
+            </div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+                        <div class="form-group">
+                            <label class="form-label"> {{ 'stationList.ACTIVE' | translate }} </label>
+                             <div class="controls">
+                           		<label class="radio radio-inline m-r-20">
+					                <input type="radio" id="yesActive" name="activeFlag" ng-model="station.activeFlag" ng-value="true">
+					                <i class="input-helper"></i>
+					                 {{ 'stationList.YES' | translate }}
+					            </label>
+					            <label class="radio radio-inline m-r-20">
+					                <input type="radio" id="noActive" name="activeFlag" ng-model="station.activeFlag" ng-value="false">
+					                <i class="input-helper"></i>
+					                 {{ 'stationList.NO' | translate }}
+					            </label>
+                            </div>
+                        </div>
+                </div>
+				<div class="form-group col-md-8">
+              		<label class="form-label"> {{ 'stationList.DESC' | translate }}
+					<small ng-show="stationForm.description.$error.maxlength" class="text-danger text-error">{{ 'stationList.ERROR7' | translate }} </small>
+			  		</label>
+					<div class="controls"><div class="fg-line">
+              			<textarea ng-model="station.description" name="description" class="form-control" ng-maxlength="2000" rows="4" /></div></div>
+            		</div>
+				</div>
+        </div>
+ 		<div class="modal-footer">
+			<button class="btn bgm-bluegray waves-effect" type="button" ng-click="closeModal()"> {{ 'stationList.CANCEL' | translate }} </button>
+            	<button class="btn bgm-teal waves-effect" type="button" ng-click = "addStation()"
+					ng-disabled="stationForm.stationId.$invalid || stationForm.name.$invalid || stationForm.description.$invalid || stationForm.productionOrdering.$invalid || stationForm.stationCategory.$invalid"
+				> {{ 'stationList.ADD' | translate }} </button>
+		</div>
+		</form>
+        
+</script>
+
+<script type="text/ng-template" id="editStationModalContent.html">
+<form name="stationForm" novalidate  method="post" enctype="application/x-www-form-urlencoded" ng-cloak>      
+  <div class="modal-header card-header ch-alt" ng-cloak>
+            <h3 class="modal-title">{{ 'stationList.UPDATE_STATION' | translate }}</h3>
+        </div>
+	    <div class="modal-body card-body card-padding" ng-cloak>
+		 <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+		  <div class="row">
+			<div class="col-md-12">
+    <div class="mini-charts-item bgm-btn-blue-500">
+        <div class="clearfix">
+            <div class="chart stats-bar-2" data-sparkline-bar="">
+                 {{ 'stationList.ID' | translate }}
+            </div>
+            <div class="count">
+                
+                <h2 class="ng-binding">{{station.stationId}}</h2>
+            </div>
+        </div>
+    </div>
+</div>
+			<div class="form-group required col-md-4">
+              <label class="form-label"> {{ 'stationList.NAME' | translate }}
+				<small ng-show="stationForm.name.$dirty && stationForm.name.$error.maxlength" class="text-danger text-error"> {{ 'stationList.ERROR3' | translate }}</small>
+				<small ng-show="stationForm.name.$dirty && stationForm.name.$error.required" class="text-danger text-error">{{ 'stationList.ERROR4' | translate }} </small>
+			  </label>
+              <div class="controls"><div class="fg-line"><input type="text" name="name" ng-model="station.name" class="form-control" ng-required="true" ng-maxlength="255"></div></div>
+            </div>
+			<div class="form-group required col-md-4">
+              <label class="form-label">{{ 'stationList.STATION_CAT' | translate }}
+				<small ng-show="stationForm.stationCategory.$dirty && stationForm.stationCategory.$error.required" class="text-danger text-error"> {{ 'stationList.ERROR5' | translate }} </small>
+			  </label>
+			  <div class="controls">
+               <select name="stationCategory" id="stationCategory" ng-required="true" ng-model="station.stationCategoryId"  class="form-control">
+				<option value=""> {{ 'stationList.SELECT' | translate }}</option>
+      			<option ng-repeat="option in stationCategoryOptions" value="{{option.id}}">{{option.name}}</option>
+    	       </select>
+			  </div>
+            </div>
+			<div class="form-group col-md-4">
+              <label class="form-label">{{ 'stationList.PARENT_STATION' | translate }} </label>
+			  <div class="controls">
+               <select ng-model="station.parentStationId" class="form-control"  >
+				<option value=""> {{ 'stationList.SELECT' | translate }}</option>
+      			<option ng-repeat="option in stationOptions" value="{{option.stationId}}">{{option.name}}</option>
+    	       </select>
+              </div>
+            </div>
+		</div>
+			<div class="row">
+
+			<div class="form-group col-md-4">
+              <label class="form-label">{{ 'stationList.INPUT_TYPE' | translate }}</label>
+			 <div class="controls">
+              <select ng-model="station.inputType" class="form-control"  >
+				<option value="">{{ 'stationList.SELECT' | translate }}</option>
+      			<option value="Roll"> {{ 'stationList.ROLL' | translate }}</option>
+				<option value="Sheet"> {{ 'stationList.SHEET' | translate }}</option>
+				<option value="Job"> {{ 'stationList.JOB' | translate }}</option>
+				<option value="Batch"> {{ 'stationList.BATCH' | translate }} </option>
+    	      </select>
+             </div>
+            </div>
+
+			<div class="form-group col-md-4">
+              <label class="form-label">{{ 'stationList.PRODUCTION_ORDERING' | translate }}
+				<small ng-show="stationForm.productionOrdering.$dirty && stationForm.productionOrdering.$invalid" class="text-danger text-error"> {{ 'stationList.ERROR6' | translate }} </small>
+			  </label>
+              <div class="controls"><div class="fg-line"><input type="number" name="productionOrdering" ng-model="station.productionOrdering" min="0" max="99" class="form-control"></div></div>
+            </div>
+					<div class="col-md-4">
+                        <div class="form-group">
+                            <label class="form-label">{{ 'stationList.ACTIVE' | translate }}</label>
+                             <div class="controls">
+                           		<label class="radio radio-inline m-r-20">
+					                <input type="radio" id="yesActive" name="activeFlag" ng-model="station.activeFlag" ng-value="true">
+					                <i class="input-helper"></i>
+					                 {{ 'stationList.YES' | translate }}
+					            </label>
+					            <label class="radio radio-inline m-r-20">
+					                <input type="radio" id="noActive" name="activeFlag" ng-model="station.activeFlag" ng-value="false">
+					                <i class="input-helper"></i>
+					                 {{ 'stationList.NO' | translate }}
+					            </label>
+                            </div>
+                        </div>
+                    </div>
+			</div>
+			
+			<div class="row">
+				<div class="form-group col-md-8">
+              <label class="form-label"> {{ 'stationList.DESC' | translate }}
+				<small ng-show="stationForm.description.$dirty && stationForm.description.$error.maxlength" class="text-danger text-error">{{ 'stationList.ERROR7' | translate }} </small>
+ 			  </label>
+				<div class="controls"><div class="fg-line">
+              	<textarea ng-model="station.description" name="description" class="form-control" ng-maxlength="2000" rows="4" /></div></div>
+            </div>
+			</div>
+    	 </div>
+ 	<div class="modal-footer">
+		<button class="btn bgm-bluegray waves-effect" type="button" ng-click="closeModal()"> {{ 'stationList.CANCEL' | translate }} </button>
+            	<button class="btn bgm-orange-900 waves-effect" type="button" ng-click = "updateStation()"
+					ng-disabled="stationForm.name.$invalid || stationForm.description.$invalid || stationForm.productionOrdering.$invalid || stationForm.stationCategory.$invalid"
+				> {{ 'stationList.UPDATE' | translate }} </button>
+		<div class="left">
+ 			<small style="float:left"><em>{{ 'stationList.LAST_UP_ID' | translate }} '{{station.lastModifiedByUserName}}' , {{ 'stationList.LAST_UP_DATE' | translate }} {{station.lastModifiedDate | date:'medium'}}</em></small>
+		</div>
+	</div>
+</form>
+</script>

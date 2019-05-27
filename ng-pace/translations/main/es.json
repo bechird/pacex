@@ -1,0 +1,55 @@
+{
+
+"main" :{
+"HOMETITLE" : "Inicio.",
+     "LIGNE1": "Bienvenido a PACEX.",  
+	 "LIGNE2": "Para comenzar, selection un enlace del menú…",
+	 "PRESS": "Prensa",
+	 "NEXT": "Siguiente",
+	 "PLOWFPOLDER": "Hunkeler PlowFolder"
+	 },
+	 "index" :{
+	 "orders" :"Ordenes",
+	 "Roles" :"Roles",
+	 "Users" :"Usuarios",
+	 "LogOut" :"Cerrar sesión",
+	 "OrdersAcceptance":"Aceptación de órdenes",
+	 "OrdersOverview" :"Ver órdenes",
+	 "Scheduling" :"Programa",
+	 "ScheduleBoard":"Ver tabla de programa",
+	 "Stations" :"Estaciones",
+	 "Machines" :"Máquinas",
+	 "Administration" :"Administración",
+	 "Shipping" :"Shipping",
+	 "Packaging" :"Empaque/embalaje",
+	 "ShippingStation" :"Estación de Shipping",
+	 "PackingSlips" :"Lista de Empaque",
+	 "Reports" :"Reports",
+	 "Parts" :"Partes",
+	 "Jobs" :"Trabajos",
+	 "Rolls" :"Rollos",
+	 "Sections" :"Seccións",
+	 "Batches" :"Lotes",
+	 "LoadTags" :"Hojas de Trabajo",
+	 "Logs" :"Logs",
+	 "Preferences":"Preferencias",
+	 "Preferences_Facility":"Preferencias de Instalaciones",
+	 "Preferences_Customer":"Preferencias de Cliente",
+	 "Lookups" :"Búsquedas",
+	 "sseServersSatus" : "SSE Connections",
+	 "ClearCache" :"Limpiar Cache",
+	 "HI" :"Hola",
+	 "Home":"Casa",
+	 "Press" :"Prensa",
+	 "PlowFolder" :"PlowFolder",
+	 "Deconnect" :"Desconectar",
+	 "prodReportByDate" :"Informes de producción por fecha",
+	 "deliveryFormBuilder" :"Generación de notas de entrega",
+	 "deliveryFormSelect" : "Selección de notas de entrega"
+	 }
+     
+	 
+	 
+	 
+
+}

@@ -1,0 +1,69 @@
+{
+     "scheduling" : { 
+     "ROL_SCHED" : "Programación de rollos",
+     "UNSCHED_HOURS": "Horas sin programar",
+	 "SCHED_HOURS":	"Horas programadas",
+	 "ROLLS": "Rollos disponibles",
+	 "FILTER": "Filtrar por",
+	 "NO_ROLLS": "No rollos disponibles.",	
+	 "ROLL" : "Rollo",
+	 "NEW": "NUEVO(A)",
+	 "JOBS": "Trabajos disponibles para imprimir",
+	 "ALL" : "Todo(s)",
+	 "Filter_Rolls_By_Paper_Type" :"Filtrar rollos por tipo de papel" ,
+	 "Utilization" :"Uso",
+	 "Width" :"Ancho",
+	 "Length" :"Largo",
+	 "Hours" :"Horas",
+	 "Paper" :"Papel",
+	 "Produce_this_roll" :"Producir este # de rollo",
+	 "Schedule_for_1C" :"Programar para 1 color",
+	 "Show_All_Rolls_Jobs" :"Mostrar todos los rollos/trabajos"
+	
+	 },
+	 
+	 
+	 
+	 "js_Scheduling":{
+	 "Order":"Orden",
+	 "Qty" :"Cantidad",
+	 "Paper" :"Papel",
+	 "Binding" :"Encuadernado",
+	 "Priority":"Prioridad",
+	 "Bindery" :"Máquinas de encuadernación",
+	 "View_Job_Details" :"Ver detalles de trabajo",
+	 "Roll" : "# de rollo",
+	 "selected_Orders_selected" : "es/está seleccionado; Ordenes seleccionadas: ",
+	 "Confirm_Job_Split" : "Confirmar división de trabajo",
+	 "Roll_Utilization_exceeds" : "Uso de rollo excede 100%, entonces una división de trabajo debe efectuarse; continuar?",
+	 "Continue" :"¡Sí, continuar!",
+	 "jobs_assigned_to_roll" :"Los siguientes trabajos han sido exitosamente asignados al # de rollo ",
+	 "for_production" :" para producción: ",
+	 "Roll_Production" :"Producción de rollo",
+	 "Roll_not_produced" :"Rollo no fue producido ya que no puede mantener ningún trabajo o alguno(s) de los trabajos tienen diferente imposición!",
+	 "close" :"cerrar",
+	 "Confirm_TrimCust_Size" : "Los siguientes trabajos tienen el tamaño de corte de corte de bloque de libro más grande que el tamaño de portada: ",
+	 
+	 "Before_this_Day" :"(Antes de éste día)",
+	 "Scheduled" : "Programados (Para éste día )",
+	 "Unscheduled" : "No programados (Para éste día)",
+	 "Cumulative_Capacity" :"Capacidad acumulada",
+	 "Order2" : "# de orden",
+	 "Bindery_Priority_updated":": Propiedad de máquinas de encuadernación exitosamente actualizadas para # trabajo B ",
+	 "Job_Update" :"Actualización de trabajo",
+	 
+	 "FEB" :"Feb",
+	 "APR" :"Abr",
+	 "MAY" :"May",
+	 "JUN" :"Jun",
+	 "JUL": "Jul",
+	 "AUG" :"Ago",
+	 
+	 "Split_Job" : "Dividir # de trabajo",
+	 "View_Roll_Details" :"Ver detalles de rollo"
+	}
+    
+	 
+	 
+	 		 
+}

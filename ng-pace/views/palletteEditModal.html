@@ -1,0 +1,87 @@
+<div class="modal-header card-header ch-alt" ng-cloak>
+	<h3 class="modal-title"> Edit Palette: PL{{ editPallette.id}} </h3>
+	<br/>
+</div>
+<div class="card-body card-padding col-md-12" ng-cloak>
+	<div class="col-md-12">
+		<table class="table table-bordered table-striped table-vmiddle ng-scope ng-table table-order-list ng-isolate-scope dataTable dtr-inline" width="100%">
+			<thead>
+				<tr>
+					   <th></th>
+						<th>Type</th>
+						<th>{{ 'addOrderPackagingSlip.HEIGHT'| translate }}</th>
+						<th>{{ 'addOrderPackagingSlip.WIDTH'| translate }}</th>
+						<th>{{ 'addOrderPackagingSlip.DEPTH'| translate }}</th>
+						<th>{{ 'addOrderPackagingSlip.QTY_DELIVRED'| translate }}</th>
+						<th width="10%">N PCB Qty</th>
+						<th></th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat-start="paletBook in editPallette.books">
+					<td class="center">
+						<a ng-if="paletBook.expanded" ng-click="paletBook.expanded = false">
+							<div class="round-button">
+								<div class="round-button-circle">
+									<span class="round-button bgm-bluegray">-
+								</div>
+							</div>
+						</a>
+						<a ng-if="!paletBook.expanded" ng-click="paletBook.expanded = true">
+							<div class="round-button">
+								<div class="round-button-circle">
+									<span class="round-button bgm-teal">+
+								</div>
+							</div>
+						</a>
+						<!-- <button ng-if="pallet.expanded" ng-click="pallet.expanded = false">-</button>
+              								<button ng-if="!pallet.expanded" ng-click="pallet.expanded = true">+</button> -->
+					</td>
+					<td> {{'addOrderPackagingSlip.SHRINK_WRAPPED'| translate }}</td>
+					<td>{{paletBook.packageBook.heightQty}}</td>
+					<td>{{paletBook.packageBook.widthQty}}</td>
+					<td>{{paletBook.packageBook.depthQty}}</td>
+					<td>{{paletBook.quantity}}</td>
+					<td>
+
+					   <input name="max" type="number" ng-model="paletBook.packageBook.newQty" class="form-control" >
+					 
+					</td>
+					<td style="text-align:center">
+							<button type="button" class="btn bgm-teal waves-circle waves-effect" ng-click="editQtyPcbInPallette(paletBook.packageBook);"><i class="zmdi zmdi-check"></i></button>			
+					</td>
+				</tr>
+
+				<tr ng-repeat-end="">
+					<td colspan="8" style="background-color:#F7F8FA" ng-if="paletBook.expanded" ng-init="fetchOrderByPallette(paletBook.packageBook)">
+						<table class="mdl-data-table table-bordered  mdl-shadow--1dp ng-isolate-scope no-footer" width="100%">
+							<thead>
+								<tr>
+									<th>{{ 'COM#' | translate }}</th>
+									<th>{{ 'PO#' | translate }}</th>
+									<th>{{ 'ISBN' | translate }}</th>
+									<th>{{ 'Quantité' | translate }}</th>
+									<th>{{ 'Status' | translate }}</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr >
+
+									<td>{{orderByPcb.orderId}}</td>
+									<td>{{orderByPcb.orderNum}}</td>
+									<td>{{orderByPcb.orderPart.part.isbn}}</td>
+									<td>{{orderByPcb.orderPart.quantity}}</td>
+									<td>{{orderByPcb.status}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="modal-footer">
+		<button type="button" class="btn bgm-bluegray waves-effect" ng-click="closeModal()">OK</button>
+	</div>

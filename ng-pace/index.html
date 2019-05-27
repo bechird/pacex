@@ -1,0 +1,606 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/morris.js/morris.css" />
+    <!-- <link rel="stylesheet" -->
+    <!-- 	href="bower_components/angular-chart.js/dist/angular-chart.css" /> -->
+    <!-- <link rel="stylesheet" -->
+    <!-- 	href="bower_components/chartist/dist/chartist.min.css" /> -->
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+    <link rel="stylesheet" href="bower_components/datatables/media/css/jquery.dataTables.css" />
+
+    <link rel="stylesheet" href="bower_components/datatables.net-select-dt/css/select.dataTables.min.css" />
+    <link rel="stylesheet" href="bower_components/angular-datatables/dist/plugins/bootstrap/datatables.bootstrap.min.css" />
+    <link rel="stylesheet" href="bower_components/datatables-responsive/css/dataTables.responsive.css" />
+    <link rel="stylesheet" href="bower_components/ng-multiselect/dist/ng-multiselect.css" />
+    <link rel="stylesheet" href="bower_components/angular-ui-tree/dist/angular-ui-tree.min.css" />
+    <link rel="stylesheet" href="bower_components/slick-carousel/slick/slick.css" />
+    <link rel="stylesheet" href="bower_components/slick-carousel/slick/slick-theme.css" />
+    <link rel="stylesheet" href="bower_components/select2/dist/css/select2.css" />
+    <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+    <link rel="stylesheet" href="bower_components/ng-scrollbar/dist/ng-scrollbar.css" />
+    <link rel="stylesheet" href="bower_components/ng-scrollable/min/ng-scrollable.min.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap-vertical-tabs/bootstrap.vertical-tabs.css" />
+    <link rel="stylesheet" href="bower_components/angular-bootstrap-pwgen/angular-bootstrap-pwgen.css" />
+    <link rel="stylesheet" href="bower_components/angular-wizard/dist/angular-wizard.min.css" />
+    <link rel="stylesheet" href="bower_components/owl.carousel/dist/assets/owl.carousel.css" />
+    <link rel="stylesheet" href="bower_components/angularjs-datepicker/dist/angular-datepicker.min.css" />
+    <!-- <link rel="stylesheet" -->
+    <!-- 	href="bower_components/ng-sortable/dist/ng-sortable.css" /> -->
+    <link rel="stylesheet" type="text/css" href="bower_components/chosen/chosen.css" />
+    <link rel="stylesheet" type="text/css" href="bower_components/sweetalert/dist/sweetalert.css" />
+    <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+    <link href="bower_components/angular-toasty/dist/angular-toasty.min.css" rel="stylesheet" />
+    <link href="bower_components/angularjs-datepicker/src/css/angular-datepicker.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="bower_components/angular-moment-picker/dist/angular-moment-picker.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="bower_components/angucomplete-alt/angucomplete-alt.css">
+    <link rel="stylesheet" href="bower_components/angular-tooltips/dist/angular-tooltips.css">
+    <link rel="stylesheet" href="bower_components/angular-confirm/dist/angular-confirm.min.css">
+
+
+</head>
+
+
+
+<!-- endbower -->
+<!-- endbuild -->
+<!-- build:css(.tmp) styles/main.css -->
+<link rel="stylesheet" href="styles/app1.css">
+<link rel="stylesheet" href="styles/app2.css">
+<link rel="stylesheet" href="styles/cap.css">
+<link rel="stylesheet" href="styles/main.css">
+<link rel="stylesheet" href="styles/rollsbox.css">
+<link rel="stylesheet" href="styles/Nested.css">
+<link rel="stylesheet" href="fonts/roboto.css">
+<link rel="stylesheet" href="styles/responsive.css">
+<link rel="stylesheet" href="styles/login-page.css">
+
+<!-- endbuild -->
+<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" />
+<link rel="stylesheet" href="bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.css" />
+
+
+<style>
+    .overlay-load {
+        background-color: rgba(96, 125, 139, 0.3);
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        z-index: 9999;
+    }
+  ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+		}
+
+li.subMenu ul.dropdown-sub-walid { display: none; }
+ul.sub-menu-dropdown li a {
+  display: block;
+  padding: 0.85em;
+  text-decoration: none;
+  white-space: nowrap;
+  color: black;
+}
+
+
+li.subMenu:hover > ul.dropdown-sub-walid {
+  display: block;
+  position: absolute;
+}
+/* Displays second level dropdowns to the right of the first level dropdown */
+ul ul ul {
+  left: 100%;
+  top: 0;
+}
+
+ul:after { clear: both; }
+.subs a:hover{
+	background-color: rgba(0, 0, 0, 0.075);
+    background-image: none;
+ }
+.icon-walid {
+    float: right;
+    font-size: 24px;
+ }
+.dropdown-sub-walid {
+	z-index: 1000;
+    min-width: 100px;
+    padding: 5px 0;
+    margin: 0px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+ } 
+    
+</style>
+</head>
+
+<body ng-app="capApp">
+    <div id="pacex_spinner" us-spinner spinner-theme="smallRed" class="overlay-load" spinner-key="spinner-1" spinner-start-active="true" spinner-on="true"></div>
+    <toasty></toasty>
+    <nav id="header-2" ng-class="MODE =='pacex'?'nav-pacex':'nav-pacea'" class="visible-hard-screen">
+        <ul class="header-inner clearfix">
+            <li class="logo hidden-xs">
+                <a><img ng-src="{{MODE =='pacex'?'images/logo-pacex-small.png':'images/logo-pacea-small.png'}}" class="img-responsive"></a>
+            </li>
+            <li class="pull-right">
+                <ul class="top-menu">
+
+                    <!-- <li class="dropdown" uib-dropdown=""><a uib-dropdown-toggle="" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"><i class="tmn-counts">4</i> <i class="tm-icon zmdi zmdi-notifications"></i></a>
+                    <div class="dropdown-menu dropdown-menu-lg pull-right">
+                        <div class="listview" id="notifications">
+                            <div class="lv-header">Notification
+                                <ul class="actions">
+                                    <li class="dropdown"><a href="" data-clear="notification"><i class="zmdi zmdi-check-all"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="lv-body">
+                                <a class="lv-item" href="">
+                                    <div class="media">
+                                        
+                                        <div class="media-body">
+                                            <div class="lv-title">David Belle</div><small class="lv-small">test</small>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="lv-item" href="">
+                                    <div class="media">
+                                       
+                                        <div class="media-body">
+                                            <div class="lv-title">Jonathan Morris</div><small class="lv-small">test test </small>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="lv-item" href="">
+                                    <div class="media">
+                                       
+                                        <div class="media-body">
+                                            <div class="lv-title">Fredric Mitchell Jr.</div><small class="lv-small">test test test</small>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="lv-item" href="">
+                                    <div class="media">
+                                        
+                                        <div class="media-body">
+                                            <div class="lv-title">Glenn Jecobs</div><small class="lv-small">test test test test test </small>
+                                        </div>
+                                    </div>
+                                </a>
+                          
+                            </div><a class="lv-footer" href="">View Previous</a>
+                        </div>
+                    </div>
+                </li> -->
+
+                    <li ng-if="loggedInUser.roles.indexOf('ROLE_ADMIN') > -1" class="dropdown" uib-dropdown=""><a uib-dropdown-toggle="" href="" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"><i class="tm-icon zmdi zmdi-settings"></i></a>
+                        <ul class="dropdown-menu dm-icon pull-right">
+                            <li data-ui-sref-active="active"><a href="#!/roles">{{ 'index.Roles' | translate }}</a>
+                            </li>
+                            <li data-ui-sref-active="active"><a href="#!/users">{{ 'index.Users' | translate }}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown user-dropdown" uib-dropdown="" ng-controller="MainCtrl">
+                        <a uib-dropdown-toggle="" href="" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"> <i class="tm-icon zmdi zmdi-account-circle"></i>&nbsp;{{ 'index.HI' | translate }}, <span class="bold" ng-cloak>{{loggedInUserName}}</span></a>
+                        <ul class="dropdown-menu dm-icon pull-right">
+                            <li data-ui-sref-active="active"><a ng-click="logout()">{{ 'index.LogOut' | translate }}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <nav class="ha-menu ng-scope" ng-cloak>
+            <ul>
+                <li ng-if="loggedInUser.roles.indexOf('ROLE_ADMIN') > -1 || loggedInUser.roles.indexOf('ROLE_PM') > -1" class="dropdown" uib-dropdown="" ng-class="getClass('/orders')">
+                    <div class="waves-effect dropdown-toggle" uib-dropdown-toggle="" aria-haspopup="true" aria-expanded="false">{{ 'index.orders' | translate }}</div>
+                    <ul class="dropdown-menu">
+                        <li data-ui-sref-active="active"><a href="#!/orders/acceptance">{{ 'index.OrdersAcceptance' | translate }}</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li data-ui-sref-active="active"><a href="#!/orders">{{ 'index.OrdersOverview' | translate }}</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li ng-if="loggedInUser.roles.indexOf('ROLE_ADMIN') > -1 || loggedInUser.roles.indexOf('ROLE_PM') > -1 || loggedInUser.roles.indexOf('ROLE_LOP') > -1" class="dropdown" uib-dropdown="" ng-class="getClass('/scheduling')">
+                    <div class="waves-effect dropdown-toggle" uib-dropdown-toggle="" aria-haspopup="true" aria-expanded="false">{{ 'index.Scheduling' | translate }}</div>
+                    <ul class="dropdown-menu">
+                        <li data-ui-sref-active="active"><a href="#!/scheduling/4C">{{ 'index.Scheduling' | translate }}</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li data-ui-sref-active="active"><a href="#!/overview">{{ 'index.ScheduleBoard' | translate }}</a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li ng-if="loggedInUser.roles.indexOf('ROLE_ADMIN') > -1 || loggedInUser.roles.indexOf('ROLE_PM') > -1 || loggedInUser.roles.indexOf('ROLE_LOP') > -1 || loggedInUser.roles.indexOf('ROLE_OP') > -1" class="dropdown" uib-dropdown="" ng-class="getClass('/productionDashboard')">
+                    <div class="waves-effect dropdown-toggle" uib-dropdown-toggle="" aria-haspopup="true" aria-expanded="false">{{ 'index.Stations' | translate }}</div>
+                    <ul class="waves-effect dropdown-menu">
+                        <li ng-repeat="station in stationsMenuOptions">
+                            <a href="#!/productionDashboard/{{station[0]}}" ng-show="station[3] && station[2] != 'Job'">{{station[1]}}</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="dropdown" uib-dropdown="" ng-class="getClass('/#')" ng-show="includeShipping == 'true'">
+                    <div class="waves-effect dropdown-toggle" uib-dropdown-toggle="" aria-haspopup="true" aria-expanded="false"> {{ 'index.Shipping' | translate }}</div>
+                    <ul class="dropdown-menu">
+                        <li data-ui-sref-active="active"><a href="#!/packaging"> {{ 'index.Packaging' | translate }}</a></li>
+                        <li data-ui-sref-active="active"><a href="#!/shipping">{{ 'index.ShippingStation' | translate }}</a></li>
+
+                        <li ng-if="loggedInUser.roles.indexOf('ROLE_OP') == -1" data-ui-sref-active="active"><a href="#!/slips">{{ 'index.PackingSlips' | translate }}</a></li>
+                        <li ng-if="loggedInUser.roles.indexOf('ROLE_OP') == -1" data-ui-sref-active="active"><a href="#!/orderDelivery">Order Delivery</a></li>
+
+                        <li ng-if="loggedInUser.roles.indexOf('ROLE_OP') == -1" data-ui-sref-active="active"><a href="#!/blBuild">{{ 'index.deliveryFormBuilder' | translate }}</a></li>
+                        <li ng-if="loggedInUser.roles.indexOf('ROLE_OP') == -1" data-ui-sref-active="active"><a href="#!/blSelect">{{ 'index.deliveryFormSelect' | translate }}</a></li>
+                    </ul>
+                </li>
+                <li ng-if="loggedInUser.roles.indexOf('ROLE_ADMIN') > -1 || loggedInUser.roles.indexOf('ROLE_PM') > -1" class="dropdown" uib-dropdown="" ng-class="getClass('/#')">
+                    <div class="waves-effect dropdown-toggle" uib-dropdown-toggle="" aria-haspopup="true" aria-expanded="false"> {{ 'index.Reports' | translate }}</div>
+                    <ul class="dropdown-menu">
+                        <li data-ui-sref-active="active"><a href="#!/parts"> {{ 'index.Parts' | translate }}</a>
+                        </li>
+                        <li data-ui-sref-active="active"><a href="#!/jobs"> {{ 'index.Jobs' | translate }}</a>
+                        </li>
+                        <li data-ui-sref-active="active"><a href="#!/rolls"> {{ 'index.Rolls' | translate }}</a>
+                        </li>
+                        <li data-ui-sref-active="active" ng-repeat="station in stationsMenuOptions"><a ng-if="station[0] == 'COVERPRESS' && station[2] == 'Batch'" href="#!/sections"> {{ 'index.Sections' | translate }}</a>
+                        </li>
+                        <!--	<li data-ui-sref-active="active" ng-repeat="station in stationOptions"><a ng-if="station.stationId == 'COVERPRESS' && station.inputType == 'Batch'" href="#!/batches"> {{ 'index.Batches' | translate }}</a>
+                    </li>-->
+                        <li data-ui-sref-active="active"><a href="#!/loadTags"> {{ 'index.LoadTags' | translate }}</a>
+                        </li>
+                        <li data-ui-sref-active="active"><a href="#!/logs"> {{ 'index.Logs' | translate }}</a>
+                        </li>
+                        <li ng-show="includeShipping == 'true'" data-ui-sref-active="active"><a href="#!/bondelivraisonList">{{ 'index.bonLivraison' | translate }}</a>
+                        </li>
+                        <li data-ui-sref-active="active"><a href="#!/productionReportsByDate"> {{ 'index.prodReportByDate' | translate }}</a>
+                        </li>
+                    </ul>
+                </li>
+                <li ng-if="loggedInUser.roles.indexOf('ROLE_ADMIN') > -1" class="dropdown" uib-dropdown="" ng-class="getClass('/#')">
+                    <div class="waves-effect dropdown-toggle" uib-dropdown-toggle="" aria-haspopup="true" aria-expanded="false">Administration</div>
+                    <ul class="dropdown-menu submenu-walid">
+                          
+                        <li data-ui-sref-active="active"><a href="#!/stations">{{ 'index.Stations' | translate }}</a>
+                        </li>
+                        <li data-ui-sref-active="active"><a href="#!/machines">{{ 'index.Machines' | translate }}</a>
+                        </li>
+                        <li class="subs hassubs subMenu relative"><a href="">{{ 'index.Preferences' | translate }}</a>
+                            <!--                         <i class="icon-walid zmdi zmdi-caret-right"></i> -->
+                                                        <ul class="dropdown sub-menu-dropdown dropdown-sub-walid absolute">
+                                                            <li class="subs"><a href="#!/lookups/prefSubjects/list/Administrative/undefined">{{ 'index.Preferences_Facility' | translate }}</a></li>
+                                                            <li class="subs"><a href="#!/lookups/prefSubjects/list/Administrative/{{aClient}}">{{ 'index.Preferences_Customer' | translate }}</a></li>
+                                                        </ul>
+                        </li>
+                         
+<!--                         <li class=" dropdown-submenu"  uib-dropdown="">
+	                       <a href="" uib-dropdown-toggle="" class=" dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false" >{{ 'index.Preferences' | translate }}</a>
+	                       <ul class="dropdown-menu">
+	                          <li data-ui-sref-active="active"><a href="#!/lookups/prefSubjects/list/Administrative/undefined"> {{ 'index.Preferences_Facility' | translate }}</a>
+	                        	</li>
+	                          <li data-ui-sref-active="active"><a href="#!/lookups/prefSubjects/list/Administrative/{{aClient}}"> {{ 'index.Preferences_Customer' | translate }}</a>
+	                        	</li>
+	                       </ul>
+                        </li>
+ -->                        <li data-ui-sref-active="active"><a href="#!/lookups"> {{ 'index.Lookups' | translate }}</a>
+                        </li>
+                        <li data-ui-sref-active="active"><a href="#!/sseServersSatus"> {{ 'index.sseServersSatus' | translate }}</a>
+                        </li>
+                        <li data-ui-sref-active="active"><a href="" ng-click="clearCache()"> {{ 'index.ClearCache' | translate }}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </nav>
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <!-- Add your site or application content here -->
+
+    <div class="container visible-hard-screen">
+
+        <div ng-view="" class="content"> </div>
+
+    </div>
+    <div class="cusbody" ng-if="screenType == 1" ng-cloak>
+        <div class="mainMenu">
+            <ul>
+                <li>
+                    <span class="user-connect"><i class="fa fa-user"></i><span>{{ 'index.HI' | translate }} <b>{{loggedInUserName}}</b></span></span>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-home"></i><span> {{ 'index.Home' | translate }}</span></a>
+                </li>
+                <li>
+                    <a href="#!/pressMachine"><i class="fa fa-newspaper-o"></i><span> {{ 'index.Press' | translate }}</span></a>
+                </li>
+                <li>
+                    <a href="#!/plowFolderMachine"><i class="fa fa-folder-open-o"></i><span> {{ 'index.PlowFolder' | translate }}</span></a>
+                </li>
+                <li>
+                    <a href="logout"><i class="fa fa-sign-out"></i><span> {{ 'index.Deconnect' | translate }}</span></a>
+                </li>
+            </ul>
+        </div>
+        <div class="mainContainer">
+            <header>
+                <a href="#" class="menuBtn">
+                    <span class="lines"></span>
+                </a>
+                <a href="#" class="logo"><img src="images/logo-iphone.png" class="img-responsive"></a>
+            </header>
+            <div class="contentBlock">
+                <div ng-view=""></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="config.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
+    <script src="bower_components/angular-slimscroll/angular-slimscroll.js"></script>
+    <script src="bower_components/angular-confirm-modal/angular-confirm.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.min.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.min.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="bower_components/angular-media-queries/match-media.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.min.js"></script>
+    <script src="bower_components/eve/eve.js"></script>
+    <script src="bower_components/raphael/raphael.min.js"></script>
+    <script src="bower_components/mocha/mocha.js"></script>
+    <script src="bower_components/morris.js/morris.min.js"></script>
+    <script src="bower_components/chart.js/dist/Chart.min.js"></script>
+    <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
+    <script src="bower_components/angular-material/angular-material.min.js"></script>
+    <script src="bower_components/datatables/media/js/jquery.dataTables.js"></script>
+    <script src="bower_components/angular-datatables/dist/angular-datatables.min.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.min.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/colreorder/angular-datatables.colreorder.min.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/columnfilter/angular-datatables.columnfilter.min.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/light-columnfilter/angular-datatables.light-columnfilter.min.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/colvis/angular-datatables.colvis.min.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/fixedcolumns/angular-datatables.fixedcolumns.min.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/fixedheader/angular-datatables.fixedheader.min.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/scroller/angular-datatables.scroller.min.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/tabletools/angular-datatables.tabletools.min.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/buttons/angular-datatables.buttons.min.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/select/angular-datatables.select.min.js"></script>
+
+    <script src="bower_components/datatables.net-select/js/dataTables.select.min.js"></script>
+
+    <script src="bower_components/datatables-buttons/js/dataTables.buttons.js"></script>
+    <script src="bower_components/datatables-buttons/js/buttons.jqueryui.js"></script>
+    <script src="bower_components/datatables-buttons/js/buttons.bootstrap.js"></script>
+    <script src="bower_components/datatables-buttons/js/buttons.colVis.js"></script>
+    <script src="bower_components/datatables-buttons/js/buttons.flash.js"></script>
+    <script src="bower_components/datatables-buttons/js/buttons.html5.js"></script>
+    <script src="bower_components/datatables-buttons/js/buttons.print.js"></script>
+    <script src="bower_components/datatables-light-columnfilter/dist/dataTables.lightColumnFilter.min.js"></script>
+    <script src="bower_components/ng-multiselect/dist/ng-multiselect.js"></script>
+    <script src="bower_components/angular-ui-tree/dist/angular-ui-tree.min.js"></script>
+    <script src="bower_components/slick-carousel/slick/slick.min.js"></script>
+    <script src="bower_components/angular-slick/dist/slick.min.js"></script>
+    <script src="bower_components/select2/dist/js/select2.min.js"></script>
+    <script src="bower_components/jquery-datatables-columnfilter/jquery.dataTables.columnFilter.js"></script>
+    <script src="bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
+    <!-- <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script> -->
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/moment/min/moment-with-locales.min.js"></script>
+    <script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="bower_components/angular-daterangepicker-plus/src/angular-daterangepicker-plus.js"></script>
+    <script src="bower_components/ng-scrollbar/dist/ng-scrollbar.min.js"></script>
+    <script src="bower_components/ng-scrollable/min/ng-scrollable.min.js"></script>
+    <!-- 	<script src="bower_components/ngECharts/dist/ngecharts.js"></script> -->
+    <!-- 	<script src="bower_components/echarts/build/dist/echarts.js"></script> -->
+    <script src="bower_components/angular-bootstrap-pwgen/angular-bootstrap-pwgen.js"></script>
+    <script src="bower_components/angular-multi-step-form/dist/browser/angular-multi-step-form.js"></script>
+    <script src="bower_components/angular-wizard/dist/angular-wizard.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+    <script src="bower_components/owl.carousel/dist/owl.carousel.js"></script>
+    <script src="bower_components/angularjs-datepicker/dist/angular-datepicker.min.js"></script>
+    <script src="bower_components/datatables-scroller/js/dataTables.scroller.js"></script>
+    <script src="bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js"></script>
+    <script src="bower_components/angular-ui-sortable/sortable.js"></script>
+
+    <!-- 	<script src="bower_components/ng-sortable/dist/ng-sortable.js"></script> -->
+    <script src="bower_components/checklist-model/checklist-model.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <script src="bower_components/chosen/chosen.jquery.js"></script>
+    <script src="bower_components/angular-chosen-localytics/dist/angular-chosen.min.js"></script>
+    <script src="bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="bower_components/ngSweetAlert/SweetAlert.min.js"></script>
+    <script type="text/javascript" src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <script src='bower_components/pdfmake/build/pdfmake.min.js'></script>
+    <script src='bower_components/pdfmake/build/vfs_fonts.js'></script>
+    <script src="bower_components/JsBarcode/dist/JsBarcode.all.min.js"></script>
+    <script src="bower_components/angular-toasty/dist/angular-toasty.min.js"></script>
+    <script src="bower_components/angularjs-datepicker/src/js/angular-datepicker.js"></script>
+    <script type="text/javascript" src="bower_components/angular-moment-picker/dist/angular-moment-picker.js"></script>
+
+    <script type="text/javascript" src="bower_components/spin.js/spin.js"></script>
+    <script type="text/javascript" src="bower_components/angular-spinner/angular-spinner.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-loading-spinner/angular-loading-spinner.js"></script>
+    <script src="bower_components/angucomplete-alt/angucomplete-alt.js"></script>
+    <script src="bower_components/ngstorage/ngStorage.min.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.3.0.js"></script>
+    <script src="bower_components/angular-tooltips/dist/angular-tooltips.min.js"></script>
+    <script src="bower_components/angular-confirm/dist/angular-confirm.min.js"></script>
+    <script src="bower_components/angular-ua-parser/angular-ua-parser.js"></script>
+    <script src="scripts/directives/ua-parser.js"></script>
+    <script src="scripts/directives/jquery.ui.touch-punch.min.js"></script>
+
+
+
+
+
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/sidebar.js"></script>
+
+    <script src="scripts/services/lookupServiceAjax.js"></script>
+    <script src="scripts/controllers/lookups.js"></script>
+
+    <script src="scripts/services/roleServiceAjax.js"></script>
+    <script src="scripts/controllers/roles.js"></script>
+
+    <script src="scripts/services/userServiceAjax.js"></script>
+    <script src="scripts/controllers/users.js"></script>
+
+    <script src="scripts/services/stationServiceAjax.js"></script>
+    <script src="scripts/controllers/stations.js"></script>
+
+    <script src="scripts/services/defaultStationServiceAjax.js"></script>
+
+    <script src="scripts/services/machineServiceAjax.js"></script>
+    <script src="scripts/controllers/machines.js"></script>
+
+    <script src="scripts/controllers/orders.js"></script>
+    <script src="scripts/services/orderServiceAjax.js"></script>
+    <script src="scripts/services/customerServiceAjax.js"></script>
+
+    <script src="scripts/controllers/parts.js"></script>
+    <script src="scripts/services/partServiceAjax.js"></script>
+
+    <script src="scripts/controllers/jobs.js"></script>
+    <script src="scripts/services/jobServiceAjax.js"></script>
+    <script src="scripts/services/ProductionOrderServiceAjax.js"></script>
+    <script src="scripts/services/batchServiceAjax.js"></script>
+    <script src="scripts/controllers/sections.js"></script>
+
+    <script src="scripts/controllers/rolls.js"></script>
+    <script src="scripts/services/rollServiceAjax.js"></script>
+
+    <script src="scripts/controllers/loadTags.js"></script>
+    <script src="scripts/services/loadTagServiceAjax.js"></script>
+
+    <script src="scripts/controllers/logs.js"></script>
+    <script src="scripts/services/logServiceAjax.js"></script>
+
+    <script src="scripts/controllers/scheduling.js"></script>
+
+    <script src="scripts/controllers/overview.js"></script>
+
+    <script src="scripts/controllers/productionDashboard.js"></script>
+    <script src="scripts/controllers/shipping-station.js"></script>
+    <script src="scripts/controllers/slips.js"></script>
+    <script src="scripts/services/palletteServiceAjax.js"></script>
+    <script src="scripts/controllers/bonList.js"></script>
+    <script src="scripts/services/blServiceAjax.js"></script>
+
+	<script src="scripts/services/pnlPreviewService.js"></script>
+	<script src="scripts/controllers/pnlPreview.js"></script>
+
+    <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/services/AuthenticationServiceAjax.js"></script>
+    <script src="scripts/interceptors/OauthTokenInjector.js"></script>
+    <script src="scripts/interceptors/UnauthorizedResponseInterceptor.js"></script>
+    <script src="scripts/services/NotificationService.js"></script>
+
+    <script src="scripts/controllers/productionReportsByDates.js"></script>
+    <script src="scripts/services/productionReportsServiceAjax.js"></script>
+
+    <script src="scripts/controllers/deliveryFormBuilder.js"></script>
+    <script src="scripts/controllers/deliverySelector.js"></script>
+    <script src="scripts/controllers/adminSseStatus.js"></script>
+
+
+    <!--  Internationalisation ************* -->
+    <script src="bower_components/angular-translate/angular-translate.min.js"></script>
+    <script src="bower_components/angular-translate-loader-partial/angular-translate-loader-partial.min.js"></script>
+
+    <!--  Pub/Sub -->
+    <script src="bower_components/georapbox.pubsub.js/dist/pubsub.min.js"></script>
+    <!--  reconnecting sse eventsource -->
+    <script src="scripts/sse/reconnecting-eventsource.js"></script>
+
+    <!-- endbuild -->
+    <script>
+        $(function() {
+            $('#header-2').on('click', '.dropdown', function(e) {
+                $(this).parents('#header-2').find('.active').removeClass('active').end().end().addClass('active');
+
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            // menu click event
+            $('.menuBtn').click(function() {
+                $(this).toggleClass('act');
+                $('.cusbody').toggleClass('act');
+            });
+        });
+        $(document).ready(function() {
+            $(".mainMenu li a").click(function(event) {
+                $('.cusbody').toggleClass('act');
+                $('.menuBtn').toggleClass('act');
+            });
+        });
+       
+        $(document).ready(function(){
+    		$('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
+    			event.preventDefault(); 
+    			event.stopPropagation(); 
+    			$(this).parent().siblings().removeClass('open');
+    			$(this).parent().toggleClass('open');
+    		});
+    	});
+        /* http://www.bootply.com/nZaxpxfiXz */
+    </script>
+    <script>
+    </script>
+    <!-- Directives -->
+
+    <script src="scripts/directives/forms.js"></script>
+
+    <!-- End Directives -->
+
+</body>
+
+</html>

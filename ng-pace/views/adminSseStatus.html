@@ -1,0 +1,24 @@
+<div class="card">
+    <div class="card-header ch-alt m-b-20">
+        <h2 style="font-size: 20px;">Status of connections from Pacex to</h2>
+    </div>
+	<br/>
+    <div class="card-body card-padding">
+       
+       <table  width="100%" style="font-size: 20px;color: black;">
+       		<tr class="table-placeholder">
+       			<th>Name</th>
+       			<th>Connected</th>
+       			<th>Message</th>
+       		</tr>
+       		
+       		<tr ng-repeat="serverStatus in serversStatus" ng-class="serverStatus.connected ? 'bgm-green' : 'bgm-red'">
+       			<td>{{serverStatus.name}}</td>
+       			<td>{{serverStatus.connected}}</td>
+       			<td>{{serverStatus.message}}</td>
+       		</tr>
+        </table>
+        
+        
+    </div>
+</div>

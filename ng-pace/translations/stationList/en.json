@@ -1,0 +1,84 @@
+{
+"stationList" :{
+     "TITLE_STATION" : "Stations List",
+     "DESCRIPTION_STATION": "Below is the list of stations available in the system. To add a new station click the ",
+	 "LIGNE2":	"icon ",
+	 "LIEN": " ",
+	 "STATION_ID":	"Station Id",
+	 "STATION_NAME": "Station Name",
+	 "STATION_CAT": "Station Category",
+	 "STATION_DESC": "Station Description",	 
+	 "ACTIVE": "Active?",
+	 "PROD_ORDERING": "Prod Ordering",
+	 "ADD_STATION": "Add Station",
+	 "ID": "Id",	 
+	 "ERROR1": ": The Station Id length is too long!",
+	 "ERROR2": ": The Station Id is required!",	 
+	 "NAME": "Name",
+	 "ERROR3": ": The Station Name length is too long!",
+	 "ERROR4": ": The Station Name is required!",
+	 "ERROR5": ": Category required!",	 
+	 "SELECT": "-- Please select --",
+	 "PARENT_STATION": "Parent Station",	 
+	 "INPUT_TYPE": "Input Type",
+	 "ROLL": "Roll", 
+	 "SHEET": "Sheet",
+	 "JOB": "Job",
+	 "BATCH": "Batch",
+	 "PRODUCTION_ORDERING": "Production Ordering",	 
+	 "ERROR6": ": The Production Ordering number is invalid!",
+	 "YES": "Yes",
+	 "NO": "No", 
+	 "DESC": "Description",
+	 "ERROR7": ": The Station description length is too long!",
+	 "CANCEL": "Cancel",	 
+	 "ADD": "Add",
+	 "UPDATE_STATION": "Update Station",	 
+	 "ID2": "ID",	 
+	 "ERROR8": ": The Station Name length is too long!",
+	 "ERROR9": ": The Station Name is required!",	 	 
+	 "UPDATE": "Update",
+	 "LAST_UP_ID": "Last Updater Id:",	 
+	 "LAST_UP_DATE": " Last Update Date:"
+	 },
+	 
+	 "pfStationOptionsModalContent" : {
+	 "PRODUCTIONTITLE" : "Production Options",
+     "description": "Please specify the machine type and production mode that should be used for these jobs. ",
+	 "MACHINE_TYPE":	"Machine Type:",
+	 "MODE": "Mode:",
+	 "STANLY": "STANLY",
+	 "STANLY_ONLY": "STANLY Only",
+	 "PALETT_ONLY": "PALETT Only",	 
+	 "CANCEL": "Cancel",
+	 "PRODUCE": "Produce"
+	 },
+	 
+	 "js_Station":{
+	 "ID":"Station Id",
+	 "NAME" :"Station Name",
+	 "CATEGORY" :"Station Category",
+	 "DESCRIPTION" :"Station Description",
+	 "ORDERING":"Prod Ordering",
+	 
+	 "DeleteStation":"Delete Station",
+	 "delete_sure" : "Are you sure you want to delete the Station?",
+	 "Station_succ_added" :"Station Successfully Added",
+	 "Yes_delete"  :"Yes, delete it!",
+	 "Station_succ_deleted" :"Station successfully deleted!",
+	 "DeletionError" :"Deletion Error", 
+	 "Adding_Station" :"Adding Station",
+	 "Station_Added" :"Station Added",
+	 "Updating_Station" :"Editing Station",
+	 "Station_Updated" :"Station Updated",
+	 "Station_succ_updated" :"Station successfully Updated!",
+	 "EDIT" :"Edit Station",
+	 "DELETE_js" :"Delete Station",
+	 "Active" :"Active?"
+    }
+	 
+	 
+	 
+	 
+	  	 
+}

@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<JMF xmlns="http://www.CIP4.org/JDFSchema_1_1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  Version="1.4"
+  SenderID="${senderId}"
+  TimeStamp="${timeStamp}">
+  <#if "${type}" == "query">
+  <Query ID="${queryId}" Type="${queryType}" xsi:type="${queryXSIType}">
+    <#if "${filter}" == "1" >
+    <QueueFilter JobID="${jobID}" />
+    </#if>
+  </Query>
+  <#elseif "${type}" == "command">
+  <Command ID="${commandId}" Type="${commandType}" xsi:type="${commandXSIType}">
+    <QueueEntryDef QueueEntryID="${queueEntryID}" />
+  </Command>
+  </#if>
+</JMF>

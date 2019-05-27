@@ -1,0 +1,94 @@
+<form name="orderForm" ng-cloak>
+<div class="modal-header card-header ch-alt" ng-cloak>
+	<h3 class="modal-title"> {{ 'OVERVIEWORDER.EDITORDERDS' | translate }} </h3>
+</div>
+<div class="modal-body card-body card-padding col-md-12" ng-cloak>
+	<uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+	<br>
+	<div class="row">
+		<div class="col-md-4">
+			<div class="fg-line">
+				<label class="form-label"> {{ 'editPartModalContent.PART' | translate }}</label>
+				<!--<input type="text" ng-model="ordpart.part.partNum" ng-disabled="true" id="partNum"
+				 name="partNum" class="form-control" style="width: 99%" disabled>-->
+				 <div class="controls">
+					<label><a href="" uib-tooltip="{{ 'editPartModalContent.PART'| translate }} {{ordpart.part.partNum}}" ng-click="openEditPartModal(ordpart.part.partNum,disableOrderFields)">{{ordpart.part.partNum}}</a></label>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="fg-line">
+				<label class="form-label"> {{ 'partsList.TITLE' | translate }}</label>
+				<input type="text" ng-model="ordpart.part.title" ng-disabled="true" id="title" name="title"
+				 class="form-control" style="width: 99%" disabled>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="fg-line">
+				<label class="form-label"> {{ 'partsList.ISBN' | translate }}</label>
+				<input type="text" ng-model="ordpart.part.isbn" ng-disabled="true" id="isbn" name="isbn"
+				 class="form-control" style="width: 99%" disabled>
+			</div>
+		</div>
+	</div>
+	<br>
+
+	<div class="row">
+		<div class="col-md-4">
+		<div class="form-group required">
+			<div class="fg-line">		
+			<label class="form-label"> {{ 'partsList.QUANTITY' | translate }}
+				<small ng-show="orderForm.quantity.$touched && orderForm.quantity.$error.required" class="text-error">{{ 'addOrderModalContent.ERROR7'| translate }}</small>
+				<small ng-show="orderForm.quantity.$error.max" class="text-error">
+					{{ 'addOrderModalContent.ERROR8'| translate }}</small>
+			</label>
+			<input type="number" ng-change="refreshQtys()" ng-disabled="disableOrderFields" id="quantity" name="quantity" ng-model="quantity"
+			 ng-required="true" class="form-control" style="width: 99%" disabled min="1" max="999999999">
+			</div>
+		</div>
+		</div>
+		<div class="col-md-4">
+			<div class="form-group required">
+				<div class="fg-line">
+					<label class="form-label">{{ 'partsList.MINQUANTITY'| translate }}
+						<small ng-show="orderForm.quantityMin.$touched && orderForm.quantityMin.$error.required" class="text-error">{{ 'addOrderModalContent.ERROR9'| translate }}</small>
+						<small ng-show="orderForm.quantityMin.$touched && orderForm.quantityMin.$invalid" class="text-error">{{ 'addOrderModalContent.ERROR10'| translate }}</small>
+					</label>
+					<input type="number" id="quantityMin" name="quantityMin" ng-required="true" ng-disabled="disableOrderFields" ng-model="quantityMin"
+					 class="form-control" min="1" max="{{quantity}}" style="width: 99%" disabled>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="form-group required">
+				<div class="fg-line">
+					<label class="form-label">{{ 'partsList.MAXQUANTITY'| translate }}
+						<small ng-show="orderForm.quantityMax.$touched && orderForm.quantityMax.$error.required" class="text-error">{{ 'addOrderModalContent.ERROR11'| translate }}</small>
+						<small ng-show="orderForm.quantityMax.$touched && orderForm.quantityMax.$invalid" class="text-error">{{ 'addOrderModalContent.ERROR12'| translate }}</small>
+					</label>
+					<input type="number" id="quantityMax" name="quantityMax" ng-required="true" ng-disabled="disableOrderFields" ng-model="quantityMax"
+					 class="form-control" min="{{quantityMin}}" max="999999999" style="width: 99%" disabled>
+				</div>
+			</div>
+		</div>
+		</div>
+	<br>
+	<div class="row">	
+		<div class="col-md-4">
+			<div class="form-group">
+				<div class="fg-line">
+					<label class="form-label"> {{ 'partsList.PRODUCEDQUANTITY' | translate }}</label>
+					<input type="text" ng-model="orderQuantityProduced" ng-disabled="true" id="quantityProduced"
+					 name="quantityProduced" class="form-control" style="width: 99%" disabled>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn bgm-bluegray waves-effect" ng-click="closeModal()">{{ 'editOrderModalContent.CANCEL'| translate }}</button>
+	<button type="button" ng-click="updateOrderPart()" class="btn bgm-teal waves-effect" ng-show="!disableOrderFields"
+	ng-disabled="orderForm.quantity.$invalid || orderForm.quantityMin.$invalid || orderForm.quantityMax.$invalid || orderForm.isbn.$invalid "><i class="fa fa-plus-circle"></i>&nbsp;{{ 'editOrderModalContent.SAVE'| translate }}</button>
+
+</div>
+</form>

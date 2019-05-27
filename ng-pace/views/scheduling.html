@@ -1,0 +1,166 @@
+<div class="card">
+   <div class="card-header ch-alt">
+        <h2>{{ 'scheduling.ROL_SCHED'| translate }}</h2>
+    </div>
+    <br/>
+    <div class="card-body row card-padding">
+	     <div class="col-lg-6">
+            <div id="site-visits" class="dash-widget-item ch-alt">
+                <div class="mini-charts-item mini-charts-item" ng-class="MODE =='pacex'?'bgm-4c-pacex':'bgm-4c-pacea'">
+                    <div class="clearfix">
+                        <div class="chart stats-bar-2" data-sparkline-bar="">
+                            4C
+                        </div>
+                        <div class="stat">
+                            <div class="count-sched">
+                                <small>{{ 'scheduling.UNSCHED_HOURS'| translate }}</small>
+                                <h2 class="m-0 f-400" data-value="568" data-animation-duration="700">{{unscheduled4CHours | number:2 }}</h2>
+                            </div>
+                            <div class="count-sched">
+                                <small>{{ 'scheduling.SCHED_HOURS'| translate }}</small>
+                                <h2><span class="m-0 f-400" data-value="568" data-animation-duration="700">{{scheduled4CHours | number:2 }}</span></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dash-widget-header">
+                    <div class="p-20">
+                        <div class="dash-widget-visits chart-edge">
+                          <canvas id="bar4C" class="chart chart-bar col-lg-12 canvas-mt" chart-data="data4C" chart-labels="cLabels" chart-series="cSeries" chart-options="cOptions" chart-dataset-override="datasetOverride" ></canvas>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+   		<div class="col-lg-6">
+            <div id="site-visits" class="dash-widget-item ch-alt">
+                <div class="mini-charts-item" ng-class="MODE =='pacex'?'bgm-1C-pacex':'bgm-1C-pacea'">
+                    <div class="clearfix">
+                        <div class="chart stats-bar-2" data-sparkline-bar="">
+                            1C
+                        </div>
+                        <div class="stat">
+                            <div class="count-sched">
+                                <small>{{ 'scheduling.UNSCHED_HOURS'| translate }}</small>
+                               <h2><span class="m-0 f-400" data-value="5695" data-animation-duration="700">{{unscheduled1CHours | number:2 }}</span></h2>
+                            </div>
+                            <div class="count-sched">
+                                <small>{{ 'scheduling.SCHED_HOURS'| translate }}</small>
+                               <h2><span class="m-0 f-400" data-value="568" data-animation-duration="700">{{scheduled1CHours | number:2 }}</span></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dash-widget-header">
+                    <div class="p-20">
+                        <div class="dash-widget-visits chart-edge">
+                        <canvas id="bar1C" class="chart chart-bar col-lg-12 canvas-mt" chart-data="data1C" chart-labels="cLabels" chart-series="cSeries" chart-options="cOptions" chart-dataset-override="datasetOverride" ></canvas> 
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+<div class="row card-header ">
+    
+    <div class="card-body card-padding col-lg-12">
+ 		<div class="col-md-4">
+            <div class="listview lv-bordered lv-lg card">
+    			<div class="lv-header-alt clearfix">
+          <h4><span class="semi-bold">{{ 'scheduling.ROLLS'| translate }}</span><br>
+          	<small class="filter-by">{{ 'scheduling.FILTER'| translate }} :  {{filterByPaperType}}</small>
+          </h4> 
+    <ul class="actions" style="z-index: 9;">
+	    <li class="dropdown" uib-dropdown="" >
+	        <a href="" tooltip="{{ 'scheduling.Filter_Rolls_By_Paper_Type'| translate }}" tooltip-placement="right" uib-dropdown-toggle="" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+	            <i class="zmdi zmdi-filter-list" style="margin-top: 6px;"></i>
+	        </a>
+	        
+	        <ul class="dropdown-menu dropdown-menu-right">
+	            <li ng-repeat="item in availablePaperTypes">
+	                <a href="" ng-click="filterAvailableRolls(item)">{{item}}</a>
+	            </li>
+	        </ul>
+		    
+	    </li>
+	</ul>
+    </div>
+	<div class="div-availablerolls">
+    <div class="lv-body" ng-repeat="roll in availableRolls">
+     <div ng-if="availableRolls.length == 0" class="lv-item media"> {{ 'scheduling.NO_ROLLS'| translate }} </div>
+     <div class="lv-item media card-border-print"  id="rollRow{{roll.rollId}}" name="rollRow{{roll.rollId}}" ng-click="toggleHighlightedRoll(roll.rollId)" >
+     	 <div class="lv-title" style="display: -webkit-inline-box;"> {{ 'scheduling.ROLL'| translate }}  {{roll.rollId <= 0 ? '' : roll.rollId}} <span ng-show="roll.rollId <= 0" class='badge-new'>{{ 'scheduling.NEW'| translate }} </span>&nbsp;<span style="color:#fff; background-color:#005688;" title="{{ 'scheduling.Utilization'| translate }}" tooltip-placement="right"> {{roll.utilization | number:0 }}%</span></div>
+	    <div class="machine-availablerolls">
+	        <span class="badge badge-cyan" ng-show="roll.machine != null && roll.machine.machineType.id == '4C' ">{{roll.machine.name}} </span>
+	        <span class="badge badge-default" ng-show="roll.machine != null && roll.machine.machineType.id == '1C'">{{roll.machine.name}} </span>
+	        <span class="badge" ng-show="roll.machine != null && roll.machine.machineType != null && roll.machine.machineType.id != '' &&
+	        roll.machine.machineType.id != '4C' && roll.machine.machineType.id != '1C'">{{roll.machine.name}} </span>
+	    </div><br/>
+	    <div class="media-body">
+	        <!-- <div class="lv-title">Roll {{roll.rollId <= 0 ? '' : roll.rollId}} <span ng-show="roll.rollId <= 0" class='badge-new'>NEW</span></div> -->
+	        <ul class="lv-attrs">
+	            <li><span style="color:#678897;" tooltip-placement="right" title="{{ 'scheduling.Width'| translate }}"><strong>{{roll.width | number:0}}</strong></span></li>
+	         	<li><span style="color:#678897;" title="{{ 'scheduling.Length'| translate }}">{{roll.length | number:0}}</span></li>
+	         
+	           <!--  <li>&nbsp; Util:&nbsp;
+	            	<span style="color:#678897; background-color:yellow;"> {{roll.utilization | number:2 }}%</span></li> -->
+	            <li><span style="color:#678897; background-color:yellow;" title="{{ 'scheduling.Hours'| translate }}">{{roll.hours | number:2 }}</span></li>
+		        <li><span style="color:#678897;" title="{{ 'scheduling.Paper'| translate }}">{{roll.paperType.shortName}}</span></li>
+	        </ul>
+	        <div class="lv-actions actions dropdown" uib-dropdown="">
+				<button type="button" tooltip-placement="bottom" title="{{ 'scheduling.Produce_this_roll'| translate }} {{roll.rollId}}" class="btn bgm-blue waves-circle waves-effect" id="produceButton{{roll.rollId}}" name="produceButton{{roll.rollId}}" ng-click="produceRoll(roll.rollId, roll.width, roll.utilization); $event.stopPropagation();" disabled=" input[type='checkbox']:not(:checked)"><i class="zmdi zmdi-check"></i></button>
+	        </div>
+	    </div>
+	</div>
+    </div>
+     </div>
+</div>	
+</div>
+          <div class="col-md-8">
+        <form name="rollSchedulingForm">
+         <div class="card">
+            <div class="card-header ch-alt webkit-box">
+		    	<h4><span class="semi-bold">{{ 'scheduling.JOBS'| translate }} </span>
+				<!-- <small>Below is the list of printing jobs that need to be scheduled. Select the roll, and the system should help you decide which jobs should best fit in that roll.<br/>
+				You have the option to select '4C' or '1C' to filter/sort the data and let the system help you in the decision of job selection.<br/>
+				The 'All' option should display all data for 4C and 1C jobs, and doesn't provide system help in selecting the jobs to go for production (user has to manually do this process).<br/>
+				Once satisfied with the selection, click <i class="zmdi zmdi-check btn waves-circle"></i> to send roll/jobs for production.
+				</small> -->
+        		</h4>
+        		<div class="printingjobsbutton">
+					<button id="scheduleButton4C" ng-click="filterRollsJobsBy('4C')" class="btn btn-filter-4C waves-effect" tooltip="{{ 'scheduling.Produce_this_roll'| translate }}">4C</button>&nbsp;&nbsp;
+	        		<button id="scheduleButton1C" ng-click="filterRollsJobsBy('1C')" class="btn btn-filter-1C waves-effect" tooltip="{{ 'scheduling.Schedule_for_1C'| translate }}">1C</button>&nbsp;&nbsp;
+	        		<button id="scheduleButtonAll" ng-click="filterRollsJobsBy('All')" class="btn btn-filter-all waves-effect" tooltip="{{ 'scheduling.Show_All_Rolls_Jobs'| translate }}">{{ 'scheduling.ALL'| translate }} </button>
+        		</div>
+        	</div>
+			<div class="card-body">
+			    <div type="success " close="successMsg=false; " ng-show="successMsg " class="alert alert-success alert-dismissible ng-binding">
+			    	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                		</button>
+			    	{{alertMsg}}</div>
+			    <div type="warning " close="warningMsg=false; " ng-show="warningMsg " class="alert alert-warning alert-dismissible ng-binding">
+			    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                </button>{{alertMsg}}</div>
+				<div type="error " close="errorMsg=false; " ng-show="errorMsg " class="alert alert-error alert-dismissible ng-binding">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                </button>
+                {{alertMsg}}</div>
+				<table id="schedulingTable" name="schedulingTable" datatable=" " dt-options="scheduling.dtOptions" dt-columns="scheduling.dtColumns" dt-column-defs="scheduling.dtColumnDefs" dt-instance="scheduling.dtInstance" class="table table-bordered table-striped table-vmiddle ng-scope ng-table col-lg-12 no-padding-no-margin available-printing-jobs" width="100%">
+		        <thead></thead>
+		        </table>
+             </div>
+          </div>
+        </form>
+       </div>
+    </div>
+</div>
+</div>
+
+
+

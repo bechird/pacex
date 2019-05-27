@@ -1,0 +1,18 @@
+{
+    "deliveryFormGeneratorI18n" :{
+	 	"palettId" :"Pallet Id",
+	 	"select" :"Select",
+	 	"numPallet" : "Pallet #",
+	 	"shipAdress" : "Ship Address",
+	 	"titles" : "# Titles",
+	 	"shipToday" : "Ship Today",
+	 	"createBl" : "Create a BL for",
+	 	"confirmCreate" : "Are you sure about creating delivery form the the addreess",
+	 	"toBeShippedToday" : "To ship today",
+	 	"changeShipStatus" : "Change",
+	 	"promptChange" : "Check to deliver the pallet today"
+	 	 	
+    } 
+	 
+	  
+}

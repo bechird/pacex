@@ -1,0 +1,271 @@
+<style>
+    .scrollme {
+        max-height: 200px;
+    }
+    
+    td.details-control {
+        background: url('images/details_open.png') no-repeat center center;
+        cursor: pointer;
+    }
+    
+    .select-machine {
+        color: #678897;
+        float: right;
+        margin-right: 84px;
+        border-radius: none;
+        border: -1px solid rgb(255, 255, 255);
+        background-color: rgb(255, 255, 255);
+        border: none;
+        padding: 2px 2px;
+    }
+    
+    .select-machine select {
+        border: none;
+        padding: 7px 7px;
+        background-color: #ffffff;
+    }
+    
+    .nav-tabs>li.active>a,
+    .nav-tabs>li.active>a:focus,
+    .nav-tabs>li.active>a:hover {
+        color: #555;
+        cursor: default;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-bottom-color: transparent;
+    }
+    
+    .nav-tabs>li>a {
+        margin-right: 2px;
+        line-height: 1.42857143;
+        border: 1px solid transparent;
+    }
+    
+    .nav>li>a {
+        position: relative;
+        display: block;
+        padding: 10px 15px;
+    }
+    
+    .nav-tabs {
+        border-bottom: 1px solid #ddd;
+    }
+</style>
+
+<div class="card">
+    <div class="card-header ch-alt p-20 m-b-20">
+
+        <select ui-select2 ng-model="machineId" ng-change="switchStation()">
+    <option ng-repeat="machine in machines" value="{{machine.machineId}}">{{machine.machineId}}</option>
+</select>
+
+        <button ng-if="testIndefinedPallette() == true" class="btn bgm-teal btn-float waves-effect waves-circle" ng-click="addPalletModal();"><i class="zmdi zmdi-plus"></i>
+        </button>
+        <button ng-if="testIndefinedPallette() == false" class="btn bgm-close-current-pallet btn-float waves-effect waves-circle" ng-click="calcQtyOrderInPallette();closePallet()"><i class="zmdi zmdi-close"></i>
+        </button>
+        <!--<button class="btn btn-print bgm-grey btn-float waves-effect waves-circle bgm-bluegray"  ng-click="completeBookOnPalletModal()" ><i class="zmdi zmdi-print"></i>
+        </button> -->
+        <button class="btn bgm-paused-pallet btn-pause btn-float waves-effect waves-circle" ng-click="pause()"><i class="zmdi zmdi-pause"></i>
+        </button>
+        <button class="btn bgm-paused-pallet-list btn-pallet-list btn-float waves-effect waves-circle" ng-click="openPalletListModal(); "><i class="zmdi zmdi-view-list-alt"></i>
+        </button>
+    </div>
+    <br/>
+    <div class="card-body card-padding row">
+        <div class="col-md-12">
+            <div id="site-visits" class="dash-widget-item bgm-details-pallet" style="min-height: 130px;">
+                <div class="dash-widget-header">
+                    <div class="dash-widget-title"> {{ 'Detail_Pallet' | translate }} </div>
+                </div>
+
+                <div class="p-20" ng-cloack>
+                    <div class="col-md-1">
+                        <small> {{ 'ID' | translate }} </small>
+                        <h3 class="m-0 f-400">{{palletteId}}</h3>
+                    </div>
+                    <div class="col-md-1"><small> {{ 'TYPE' | translate }}  </small>
+                        <h3 class="m-0 f-400">{{pallette.typePallette}}</h3>
+                    </div>
+                    <div class="col-md-1">
+                        <small>{{ 'PCB_PALLET' | translate }}  </small>
+                        <h3 class="m-0 f-400">{{qtyPcbInPallette}}</h3>
+                    </div>
+                    <div class="col-md-1">
+                        <small>{{ 'TOTAL_LIVRE' | translate }}  </small>
+                        <h3 class="m-0 f-400">{{qtyBookInPallette}}</h3>
+                    </div>
+                    <div class="col-md-7">
+                        <small> {{ 'DEST' | translate }}  </small>
+                        <h3 class="m-0 f-400">{{pallette.destination}}</h3>
+                    </div>
+                    <div class="col-md-1">
+                        <small>{{ 'DATE_OUV' | translate }}  </small>
+                        <h3 class="m-0 f-400">{{pallette.startDate | date:'MMM dd'}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div id="site-visits" class="dash-widget-item bgm-current-order" style="min-height: 125px;">
+                <div class="dash-widget-header">
+                    <div class="dash-widget-title card-header">{{ 'CURRENT_ORDER' | translate }}
+                        <button class="btn btn-float waves-effect waves-circle bgm-close-current-order" ng-click="calcQtyOrderInPallette();completeBookOnPalletModal()"><i class="zmdi zmdi-tag-close"></i>
+                     </button>
+                    </div>
+
+                </div>
+
+                <div class="p-20" ng-cloack>
+                    <div class="col-md-2">
+                        <small>ISBN</small>
+                        <h3 class="m-0 f-400">{{currentJob.partIsbn}}</h3>
+                    </div>
+                    <div class="col-md-4">
+                        <small> {{ 'TITLEee' | translate }}  </small>
+                        <h3 class="m-0 f-400">{{currentJob.partTitle}}</h3>
+                    </div>
+                    <div class="col-md-1">
+                        <small>  {{ 'PRIORITY' | translate }}  </small>
+                        <h3 class="m-0 f-400">{{currentJob.jobPriority.name}}</h3>
+                    </div>
+                    <div class="col-md-2">
+                        <small> {{ 'DUE_DATE' | translate }}  </small>
+                        <h3 class="m-0 f-400">{{currentJob.order.dueDate | date:'MMM dd'}}</h3>
+                    </div>
+                    <div class="col-md-1">
+                        <small>  {{ 'ORDER_QTY' | translate }}  </small>
+                        <h3 class="m-0 f-400">{{currentJob.order.orderPart.quantity}}</h3>
+                    </div>
+                    <div class="col-md-2">
+                        <small> {{ 'ID_ORDER' | translate }}  </small>
+                        <h3 class="m-0 f-400">{{currentJob.order.orderNum}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 m-t-10" translate-cloak ng-cloak>
+
+            <table class="mdl-data-table table-bordered mdl-shadow--2dp ng-isolate-scope no-footer dataTable m-t-10" width="100%" ng-repeat="orderPack in currentJob.order.orderPackages" translate-cloak>
+                <thead>
+                    <tr>
+                        <th width="30%">{{ 'TYPE' | translate }} </th>
+                        <th width="15%"> {{ 'HEIGHT' | translate }} </th>
+                        <th width="15%">{{ 'WIDTH' | translate }} </th>
+                        <th width="15%">{{ 'DEPTH' | translate }} </th>
+                        <th width="15%"> {{ 'QTY_PCB' | translate }} </th>
+                        <th width="15%">{{ 'Remaining BOOKS' | translate }} </th>
+                        <th width="15%">{{ 'PCB_ESTIM' | translate }} </th>
+                        <th width="15%"> {{ 'PCB_REC' | translate }} </th>
+                        <th width="20%">{{ 'N_QTY' | translate }} </th>
+                    </tr>
+                </thead>
+
+
+                <tbody ng-repeat="package in orderPack.packages">
+                    <tr ng-repeat="pcb in package.pcbs">
+                        <td>{{package.typePackage}}</td>
+                        <td>{{pcb.heightQty}}</td>
+                        <td>{{pcb.widthQty}}</td>
+                        <td>{{pcb.depthQty}}</td>
+                        <td>{{pcb.quantity}}</td>
+                        <td ng-init="fetchPackageByPcb(pcb);pcbRecordedByPallette(pcb)">{{(pcb.quantity*package.count) - (pcb.quantity*pcb.recorded)}}</td>
+                        <td>{{pcb.count}}</td>
+                        <td>{{pcb.recorded}}</td>
+                        <td>
+                            <input name="max" type="number" ng-model="pcb.newQty">
+
+                            <button class="btn bgm-save-qty waves-effect waves-circle" ng-click="savePcbDelivred(pcb);"><i class="zmdi zmdi-save"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+        <div class="col-md-12 m-t-20" ng-cloak>
+
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" data-target="#orders">{{ 'PALLET_LIST' | translate }} </a>
+                </li>
+                <li><a data-toggle="tab" data-target="#logs"> {{ 'LOGS' | translate }}  </a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="orders" class="tab-pane fade in active">
+                    <div>
+                        <div class="card-header acceptance-div">
+                            <button id="addOrder" ng-click="openScanBookModal();" data-name="accept" class="btn bgm-teal btn-float waves-effect"><i class="zmdi zmdi-plus"></i></button>
+                        </div>
+                        <div class="m-b-20" translate-cloak>
+                            <div class="card-body card-padding">
+                                <table class="mdl-data-table table-bordered  mdl-shadow--2dp ng-isolate-scope no-footer dataTable" width="100%" translate-cloak>
+                                    <thead>
+                                        <tr>
+                                            <th> {{ 'POS' | translate }} </th>
+                                            <th>{{ 'ORDER' | translate }} </th>
+                                            <th>ISBN</th>
+                                            <th>{{ 'TITLE' | translate }} </th>
+                                            <th>{{ 'PCB_TYPE' | translate }} </th>
+                                            <th>{{ 'PCB_NEEDED' | translate }} </th>
+                                            <th>{{ 'SHIPPED' | translate }} </th>
+                                            <th>{{ 'QTY_PALLE' | translate }} </th>
+                                            <th>{{ 'SHORT_FALL' | translate }} </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="palletteBook in pallette.books">
+                                            <td>{{$index + 1}}</td>
+                                            <td>{{palletteInfo.orders[$index].orderNum}}</td>
+                                            <td>{{palletteInfo.orders[$index].orderPart.part.isbn}}</td>
+                                            <td>{{palletteInfo.orders[$index].orderPart.part.title}}</td>
+                                            <td>{{palletteBook.packageBook.widthQty}}*{{palletteBook.packageBook.depthQty}}*{{palletteBook.packageBook.heightQty}}</td>
+                                            <td ng-init="fetchPackageByPcb(palletteBook.packageBook)">{{palletteBook.packageBook.count}}</td>
+                                            <td ng-init="qtyShippedByPcb(palletteBook.packageBook,pallette.id)">{{palletteBook.packageBook.shipped}}</td>
+                                            <td>{{palletteBook.quantity}}</td>
+                                            <td>{{palletteBook.packageBook.count - palletteBook.quantity}}</td>
+                                            <td><button class="btn bgm-orange-900 waves-circle waves-effect" uib-tooltip="{{ 'Edit' | translate }}" ng-click="openSaveOrderPachingModal(palletteInfo.orders[$index],palletteBook);"><i class="zmdi zmdi-edit"></i></button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="logs" class="tab-pane fade">
+                    <div class="m-b-20">
+                        <div class="card-body card-padding" translate-cloak>
+                            <table class="mdl-data-table table-bordered  mdl-shadow--2dp ng-isolate-scope no-footer dataTable" datatable="ng" width="100%" translate-cloak>
+                                <thead>
+                                    <tr>
+                                        <th>{{ 'EVENT' | translate }} </th>
+                                        <th>{{ 'RESULT' | translate }} </th>
+                                        <th>{{ 'PACH_SLIP' | translate }} </th>
+                                        <th> {{ 'QTY' | translate }} </th>
+                                        <th> {{ 'START' | translate }} </th>
+                                        <th>{{ 'FINISH' | translate }} </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="pallette in listPallette">
+                                        <td>{{pallette.statusPallette}}</td>
+                                        <td>{{ 'PACK_SLIP_CRE' | translate }} </td>
+                                        <td>{{palette.palletteSlip}}</td>
+                                        <td>{{pallette.sumQty}} </td>
+                                        <!--ng-init="calQntyParPallette(pallette)"-->
+                                        <td>{{palette.destination}}</td>
+                                        <td>{{palette.startDate}}</td>
+                                        <td>{{palette.endDate}}</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,17 @@
+{
+    "deliveryFormGeneratorI18n" :{
+	 	"palettId" :"Id de la palette",
+	 	"select" :"Sélectionner",
+	 	"numPallet" : "Numéro de palette",
+	 	"shipAdress" : "Adresse de livraison",
+	 	"titles" : "Nombre des titres",
+	 	"shipToday" : "A éxpédier aujourd'hui",
+	 	"createBl" : "Créer un BL pour",
+	 	"confirmCreate" : "Etes-vous sûr de créer un bon de livraison pour l'adresse",
+	 	"toBeShippedToday" : "Para ser entregado hoy",
+	 	"changeShipStatus" : "Changer",
+	 	"promptChange" : "Cocher pour livrer la palette aujourd'hui"	 	 		
+    } 
+	 
+	  
+}

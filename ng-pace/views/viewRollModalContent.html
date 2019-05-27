@@ -1,0 +1,190 @@
+<div class="modal-header card-header ch-alt" ng-cloak>
+    <h3 class="modal-title">{{ 'viewRollModalContent.TITLE'| translate }}</h3>
+</div>
+
+<div class="modal-body card-body col-md-12" ng-cloak>
+   <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+<form name="rollForm">
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class="mini-charts-item bgm-btn-blue-500">
+                <div class="clearfix">
+                    <div class="chart stats-bar-2" data-sparkline-bar="">
+                         {{ 'viewRollModalContent.RI'| translate }}
+                    </div>
+                    <div class="count">
+                        <small>{{ 'viewRollModalContent.ROLL_ID'| translate }}</small>
+                        <h2>{{roll.rollId}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="input-group" style="width: 100%;">
+                <div class="fg-line">
+                    <label class="form-label">{{ 'viewRollModalContent.ROLL_TYPE'| translate }}</label>
+                    <div class="controls">
+                      <label>{{roll.rollType.name}}</label>
+                	</div>
+                </div>
+            </div>
+         </div>
+
+            <div class="col-sm-4">
+                <div class="input-group" style="width: 100%;">
+                    <div class="fg-line">
+                        <label class="form-label">{{ 'viewRollModalContent.LENGTH'| translate }}</label>
+                        <div class="controls">
+	                      <label>{{roll.length}}</label>
+	                	</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                                            <div class="input-group" style="width: 100%;">
+                                                <div class="fg-line">
+                                                    <label class="form-label"> {{ 'viewRollModalContent.USE'| translate }}</label>
+                                                    <div class="controls">
+								                      <label>{{roll.utilization}}</label>
+								                	</div>
+                                                </div>
+                                            </div>
+                                        </div>
+        </div>
+        <br/>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="input-group" style="width: 100%;">
+                        <div class="fg-line">
+                            <label class="form-label">{{ 'viewRollModalContent.MACHINE'| translate }}</label>
+                            <div class="controls">
+								  <label>{{roll.machineId}}</label>
+							</div>
+                        </div>
+                    </div>
+                     </div>
+                    
+                    <div class="col-sm-4">
+                        <div class="input-group" style="width: 100%;">
+                            <div class="fg-line">
+                                <label class="form-label">{{ 'viewRollModalContent.PARENT_ROLL'| translate }}</label>
+                                <div class="controls">
+								  <label>{{roll.parentRollId}}</label>
+								</div>
+                            </div>
+                        </div>
+                        </div>
+                        
+                        <div class="col-sm-4">
+                            <div class="input-group " style="width: 100%;">
+                                <div class="fg-line">
+                                    <label class="form-label">{{ 'viewRollModalContent.PAPER_TYPE'| translate }}</label>
+                                    <div class="controls">
+									  <label>{{roll.paperType.name}}</label>
+									</div>
+                                </div>
+                            </div>
+                        </div>
+                        </div><br/>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="input-group" style="width: 100%;">
+                                    <div class="fg-line">
+                                        <label class="form-label"> {{ 'viewRollModalContent.WIDTH'| translate }}</label>
+                                        <div class="controls">
+										  <label>{{roll.width}}</label>
+										</div>
+                                    </div>
+                                </div>
+                                </div>
+                                
+                                <div class="col-sm-4">
+                                    <div class="input-group" style="width: 100%;">
+                                        <div class="fg-line">
+                                            <label class="form-label"> {{ 'viewRollModalContent.WEIGHT'| translate }}</label>
+                                            <div class="controls">
+											  <label>{{roll.weight}}</label>
+											</div>
+                                        </div>
+                                    </div>
+                                     </div>
+                                    
+                                    <div class="col-sm-4">
+                                        <div class="input-group" style="width: 100%;">
+                                            <div class="fg-line">
+                                                <label class="form-label"> {{ 'viewRollModalContent.HOURS'| translate }}</label>
+                                                <div class="controls">
+												  <label>{{roll.hours}}</label>
+												</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                              </div><br/>
+                              <div class="row">
+                                  <div class="form-group col-md-4">
+			                     	<label class="form-label"> {{ 'viewRollModalContent.STATUS'| translate }}</label>
+			                     	<div class="controls">
+									  <label>{{roll.status.name}}</label>
+								 	</div>
+			                	  </div>
+			                	  <div class="form-group col-md-4">
+						                <label class="form-label">Waste</label>
+						                <div class="controls">
+						                      <label>{{roll.calculatedWaste}}</label>
+						                </div>
+						          </div>
+          					  </div>
+          
+                              <br/>
+                              <div class="row">
+                                         <div class="pull-right">
+                                         	 <button type="button" ng-click="openRollTag(roll.rollId)" class="btn bgm-cyan waves-effect" ng-show="roll.rollId != null"><i class="fa fa-tag"></i>&nbsp;{{ 'viewLoadTagModalContent.ROLL_TAG'| translate }}</button>
+                      						 <button type="button" class="btn bgm-bluegray waves-effect" ng-click="closeModal()"> {{ 'viewRollModalContent.CLOSE'| translate }}</button>
+              </div>
+	              <small><em>{{ 'viewRollModalContent.LAST_UP_ID' | translate }} <strong>'{{roll.lastModifiedByUserName}}'</strong> , {{ 'viewRollModalContent.LAST_UP_DATE' | translate }} <strong>{{roll.lastModifiedDate | date:'medium'}}</strong></em></small>
+           </div>
+</form>
+<br/>
+
+
+	<div class="card">
+		    <div class="card-header ch-alt m-b-20">
+		        <h2>{{ 'viewRollModalContent.JOBS_ROLL'| translate }}<small> {{ 'viewRollModalContent.DESCRIPTION'| translate }}</small></h2>
+		    </div>
+		    <div class="card-body card-padding">
+		    	 <uib-alert type="success" close="successMsg = false;" ng-show="successMsg">{{alertMsg}}</uib-alert>
+			 	 <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{alertMsg}}</uib-alert>
+			 	<table id="jobsOnRollTable" name="jobsOnRollTable" class="table table-bordered" width="100%" datatable="ng" dt-options="dtOptionsForJobsOnRoll">
+	      			<thead>
+	        			<tr>
+	          				<th>{{ 'viewRollModalContent.JOB_ID'| translate }}</th>
+		        			<th> {{ 'viewRollModalContent.ORDER'| translate }}</th>
+		        			<th> {{ 'viewRollModalContent.PRIORITY'| translate }}</th>
+				            <th>{{ 'viewRollModalContent.DUE_DATE'| translate }}</th>
+				            <th> {{ 'viewRollModalContent.HOURS'| translate }}</th>
+				            <th> {{ 'viewRollModalContent.QUANTITY'| translate }}</th>
+						</tr>
+	    			</thead>
+	   			    <tbody >
+	   			       <tr ng-repeat="job in roll.jobs" >
+	    			      <td><button class="btn bgm-amber  waves-effect" uib-tooltip="{{ 'viewRollModalContent.Job_Details'| translate }}" ng-click="openViewJobModal(job.jobId)">{{job.jobId}}
+                              </button></td>
+						  <td>
+						  	<a href="" uib-tooltip="{{ 'viewRollModalContent.Order'| translate }} {{job.orderId}} {{ 'viewRollModalContent.Details'| translate }}" ng-click="openOverviewOrderModal(job.orderId)">{{job.orderId}}</a>
+                          </td>
+						  <td>{{job.jobPriority.name}}</td>
+	    			      <td>{{job.dueDate | date:'MMM dd'}}</td>
+	    			      <td>{{job.hours}}</td>
+						  <td>{{job.quantityNeeded}}</td>
+						</tr>
+	     			 </tbody>
+   			  </table>
+		    </div>
+    </div>
+ </div>
+    
+<div class="modal-footer">
+</div>
+

@@ -1,0 +1,84 @@
+{
+"stationList" :{
+     "TITLE_STATION" : "Lista de estaciones",
+     "DESCRIPTION_STATION": "Debajo se encuentra la lista de estaciones disponibles en el sistema. Para agregar una nueva estación click el ",
+	 "LIGNE2":	"icon ",
+	 "LIEN": " ",
+	 "STATION_ID":	"Identificacion de estación",
+	 "STATION_NAME": "Nombre de estación",
+	 "STATION_CAT": "Categoría de estación",
+	 "STATION_DESC": "Descripción de estación",	 
+	 "ACTIVE": "Activo(a)",
+	 "PROD_ORDERING": "Orden dentro de producción",
+	 "ADD_STATION": "Agregar estación",
+	 "ID": "Identificacion",	 
+	 "ERROR1": ": ¡Identificacion de estación muy largo!",
+	 "ERROR2": ": ¡Identificacion de estación requerida!",	 
+	 "NAME": "Nombre",
+	 "ERROR3": ": ¡El nombre de la estación es muy largo!",
+	 "ERROR4": ": ¡Nombre de estación requerido!",
+	 "ERROR5": ": ¡Categoría requerida!",	 
+	 "SELECT": "-- Seleccionar --",
+	 "PARENT_STATION": "Estación familiar",	 
+	 "INPUT_TYPE": "Tipo de ingreso",
+	 "ROLL": "Rollo", 
+	 "SHEET": "Hoja",
+	 "JOB": "Trabajo",
+	 "BATCH": "Lotes",
+	 "PRODUCTION_ORDERING": "Orden dentro de producción",	 
+	 "ERROR6": ": ¡El número de orden de producción es inválido!",
+	 "YES": "Sí",
+	 "NO": "No", 
+	 "DESC": "Descripción",
+	 "ERROR7": ": ¡Descripción muy larga!",
+	 "CANCEL": "Cancelar",	 
+	 "ADD": "Agregar",
+	 "UPDATE_STATION": "Actualizar estación",	 
+	 "ID2": "Identificacion",	 
+	 "ERROR8": ": ¡El nombre de la estación es muy largo!",
+	 "ERROR9": ": ¡Nombre de estación requerido!",	 	 
+	 "UPDATE": "Actualizar",
+	 "LAST_UP_ID": "Identificacion de último usuario:",	 
+	 "LAST_UP_DATE": "Última fecha de actualización:"
+	 },
+	 
+	 "pfStationOptionsModalContent" : {
+	 "PRODUCTIONTITLE" : "Opciones de producción",
+     "description": "Favor de especificar el tipo de máquina y modo de producción que debe usarse para estos trabajos. ",
+	 "MACHINE_TYPE":	"Tipo de máquina:",
+	 "MODE": "Modo:",
+	 "STANLY": "STANLY",
+	 "STANLY_ONLY": "STANLY únicamente",
+	 "PALETT_ONLY": "TARIMA únicamente",	 
+	 "CANCEL": "Cancelar",
+	 "PRODUCE": "Producir"
+	 },
+	 
+	 "js_Station":{
+	 "ID": "Identificación de estación",
+	 "NAME" : "Nombre de estación",
+	 "CATEGORY" : "Categoría de estación",
+	 "DESCRIPTION" : "Descripción de estación",
+	 "ORDERING": "Orden de producción",
+	 
+	 "DeleteStation":"Borrar estación",
+	 "delete_sure" : "¿Está seguro de querer borrar la estación?",
+	 "Station_succ_added" : "Estación exitosamente agregada",
+	 "Yes_delete"  : "¡Sí, borrar!",
+	 "Station_succ_deleted" : "¡Estación exitosamente borrada!",
+	 "DeletionError" : "Error al borrar",
+	 "Adding_Station" :"Agregando estación",
+	 "Station_Added" : "Estación agregada",
+	 "Updating_Station" : "Editando estación",
+	 "Station_Updated" : "Estación actualizada",
+	 "Station_succ_updated" : "¡Estación exitosamente actualizada!",
+	 "EDIT" :"Editar estación",
+	 "DELETE_js" : "Borrar estación",
+	 "Active" :"activo?"
+    }
+	 
+	 
+	 
+	 
+	  	 
+}

@@ -1,0 +1,26 @@
+<form name="productionModeOptionsForm" id="productionModeOptionsForm" ng-cloak>
+<div class="modal-header card-header ch-alt" ng-cloak>
+    <h3 class="modal-title">{{ 'productionModelOptionsContent.TITLE' | translate }}</h3><small>{{ 'productionModelOptionsContent.DESCRIPTION' | translate }}</small>
+</div>
+
+<div class="modal-body card-body card-padding" onmouseover="$(window).trigger('resize');" ng-cloak>
+   <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+   <uib-alert type="success" close="successMsg = false;" ng-show="successMsg">{{alertMsg}}</uib-alert>
+    	<div class="form-group">
+             <div class="controls">
+             	<div class="row db-choice"><h6 > {{ 'productionModelOptionsContent.MODE' | translate }}</h6>
+                 <div class="radio-inline m-r-20 col-md-12" >
+					<div class="md-radio"><input id="modeOption2" name="modeOption" type="radio" ng-model="selectedModeOption" value="STANLY_ONLY" >
+                    	 <label class="input-helper" for="modeOption2"> {{ 'productionModelOptionsContent.STANLY' | translate }}</label></div>
+                    <div class="md-radio"><input id="modeOption3" name="modeOption" type="radio" ng-model="selectedModeOption" value="PALETT_ONLY" >
+                    	 <label class="input-helper" for="modeOption3">{{ 'productionModelOptionsContent.PALLET' | translate }}</label></div>
+                  </div>
+                  </div>
+              </div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" id="cancelBtn" name="cancelBtn" class="btn bgm-bluegray waves-effect" ng-click="closeModal()"> {{ 'productionModelOptionsContent.CANCEL' | translate }}</button>
+         	<button type="button" id="saveBtn" name="saveBtn" ng-click="startResumeMachineTaskDo(machineId, h, selectedModeOption)" class="btn bgm-cyan waves-effect"> {{ 'productionModelOptionsContent.START' | translate }}</button>
+
+		</div>
+</form>

@@ -1,0 +1,215 @@
+{
+     "TITLEE_SHIPPING" : "Estación de Embarque",
+     "SHIPPING2" : "Estación de Embarque 2",
+     "SHIPPING3": "Estación de Embarque 3",
+     "SHIPPING4": "Estación de Embarque 4",
+	 "Detail_Pallet": "Tarima digital",
+	 "ID": "Identificación",
+	 "TYPE": "Tipo",
+	 "PCB_PALLET": "PCB Tarima",	 
+	 "TOTAL_LIVRE": "Libro total",
+	 "DEST": "Destino",
+	 "DATE_OUV": "Fecha de apertura",
+	 "CURRENT_ORDER": "Orden actual",
+	 "ISBN": "ISBN", 
+	 "PRIORITY": "Prioridad",	 
+	 "DUE_DATE": "Fecha de entrega",
+	 "ORDER_QTY": "Cantidad de orden",
+	 "ID_ORDER": "Identificacion de Orden",
+	 "HEIGHT": "Alto",
+	 "WIDTH": "Ancho",
+	 "DEPTH": "Profundo",
+	 "QTY_PCB": "Cantidad por PCB",	 
+	 "BOOKS": "Libros",
+	 "PCB_ESTIM": "PCB Estimado",
+	 "PCB_REC": "PCB grabado",
+	 "N_QTY": "N Cantidad",
+	 "PALLET_LIST": "Lista de tarimas",
+	 "LOGS": "Registros", 
+	 "POS": "Pos",	 
+	 "ORDER": "# de orden",
+	 "TITLEee": "Título",
+	 "PCB_TYPE": "Tipo PCB",
+	 "PCB_NEEDED": "PCB requerido",
+	 "SHIPPED": "Ya enviado",
+	 "QTY_PALLE": "Cantidad en tarima",	 
+	 "SHORT_FALL": "Caída corta",	 
+	 "EVENT": "Evento",
+	 "RESULT": "Resultado",
+	 "PACH_SLIP": "Lista de empaque",
+	 "QTY": "Cantidad",
+	 "START" : "Comienzo",
+	 "FINISH": "Término",
+	 "PACK_SLIP_CRE": "Lista de empaque creada",
+	 "Edit" :"Editar",
+	 
+	 "wrapPlastic" :{
+	 "TITLEE" : "Estación de empaque A",
+     "TITLE": "Título",
+	 "ISBN":	"ISBN",
+	 "ORDER": "Orden",
+	 "CUSTOMER": "Cliente",
+	 "QTY": "Cantidad",	 
+	 "MAX": "Max",
+	 "DUE_DATE": "Fecha de entrega",
+	 "PRIORITY": "Prioridad",  
+	 "TYPE": "Tipo",
+	 "HEIGHT": "Alto",	 
+	 "WIDTH": "Ancho",
+	 "DEPTH": "Profundo", 
+	 "QTY_PCB": "Cantidad por PCB",
+	 "BOOKS": "Libros",	  
+	 "PCB": "PCB ",
+	 "STARTED": "Comenzado",
+	 "DONE": "Terminado" ,
+	 "Add" :"Agregar"
+	},
+	 
+	 
+	 "palletListModal" : {
+	 "PALLETTITLE" : "Lista de tarimas pausada",
+     "COSTUMER": "Cliente",
+	 "TYPE":	"Tipo",
+	 "QTY": "Cantidad",
+	 "ORDER": "Orden",
+	 "ISBN": "ISBN",
+	 "TITLE": "Título",
+	 "QTY2": "Cantidad",
+	 "QTY_SH": "Cantidad enviada",
+	 "WEIGHT": "Peso",
+	 "CANCEL": "Cancelar",
+	 "resume" : "Seguir"
+	},
+	 
+	 "scanBookModal" :{
+	 "SHIPPING" : "Estación de Embarque",
+     "SHIPPING2": "Estación de Embarque 2",
+	 "SHIPPING3":	"Estación de Embarque 3",
+	 "SHIPPING4": "Estación de Embarque 4",
+	 "TITLE": "Título",
+	 "ORDER": "Orden",	 
+	 "TYPE": "Tipo",
+	 "CUSTOMER": "Cliente",
+	 "DESTINATION": "Destino",
+	 "TQTY": "TCantidad"	,
+	 "QTY" : "Cantidad",
+	 "MAX": "Max",
+	 "DUE_DATE": "Fecha de entrega",	 
+	 "PRIORITY": "Prioridad",
+	 "ADD": "Agregar",
+	 "HEIGHT": "Alto",
+	 "WIDTH": "Ancho",
+	 "DEPTH": "Profundo",
+	 "QTY_PCB": "Cantidad por Pcb",
+	 "BOOKS": "Libros",
+	 "PCB_ES": "Pcb Estimado",
+	 "PCB_RE": "Pcb Grabado",
+	 "STATUS": "Status",
+	 "CANCEL": "Cancelar",
+	 "play" :"seguir"
+	 },
+	 
+	 
+     "addOrderManulyModal" :{
+      "DESCRIPTION" : "Agregar nuevo libro a la estación de empáque" ,
+      "PLZ_ENTER_ISBN" : "Porfavor ingrese el ISBN:",
+      "TITLE" : "Título",
+      "CANCEL" : "Cancelar",
+      "SAVE" : "Guardar"
+     },
+     
+      "addOrderPackagingSlip" :{
+      "DESCRIPTION" : "Agregar orden a lista de empaque" ,
+      "ORDER" : "Orden",
+      "TITLE" : "Título",
+      "ORDER_QTY" : "Cantidad de orden",
+      "MIN_NEEDED" : "Minimo necesitado",
+      "MAX_ALLOWED" : "Maximo permitido ",
+      "HEIGHT" : "Altura",
+      "WIDTH": "ancho",
+      "DEPTH" : "profundo",
+      "NUMBER" : "Numero",
+      "QTY" : "Cantidad",
+      "QTY_DELIVRED" : "Cantidad entregada",
+      "SHRINK_WRAPPED" : "Emplayado",
+      "SAVE" : "Guardar",
+      "OK" : "Ok"
+       },
+       
+       
+      "addPalletModal" :{
+      "DESCRIPTION" : "Agregar tarima" ,
+      "NAME_PALLET" : "Nombre de tarima",
+      "PALLET_TYPE" : "Tipo de tarima",
+      "SINGLE" : "ÚNICO",
+      "MIXTE" : "MIXTO",
+      "CLOSE" : "Cerrar ",
+      "SAVE" : "Guardar"
+       },
+       
+       "completeBookOnPallet" :{
+      "DESCRIPTION" : "Usted está cerrando la siguiente orden: " ,
+      "ORDER" : "# de orden",
+      "TITLE" : "Título",
+      "QTY_PALLET" : "Cantidad tarima",
+      "TOTAL" : "Total",
+      "MIN" : "Min",
+      "MAX" : "Max",
+      "PLZ_SPECIFY": "Favor especifique si el orden tiene uno cantidad de Parcial de PCB:",
+      "NO" : "No",
+      "YES" : "Sí",
+      "PCB_QTY" : "Ingresar Partiel PCB Qty",
+      "CANCEL" : "Cancelar",
+      "SAVE" : "Guardar"
+       },
+       
+       "closePalletModal" :{
+      "DESCRIPTION" : "Cerrar tarima",
+      "ORDER" : "# de orden",
+      "TITLE" : "Título",
+      "POS" : "Pos",
+      "PCB_TYPE" : "Tipo de PCB",
+      "PCB_NEEDED" : "PCB requerido",
+      "ALREADY_SHIPPED" : "Ya enviado",
+      "QTY_PALLET": "Ctdad en tarima",
+      "SHORT_FALL" : "Caida Corta",				
+      "CLOSE" : "Cerrar",
+      "SAVE" : " Guardar",
+      "Edit" :"Editar"
+      },
+       
+       "packagingSlipsOverview" :{
+       "PACKAGING_TITLE" : "Titulo lista de empaque",
+     "P_SLIP": "Lista de empaque",
+	 "RE_ADRESS":	"Dirección de destinatario",
+	 "QTY_PCB_DELIVRED": "Qty PCB entregada ",
+	 "QTY_BOOK_DELIVRED": "Qty Libros entregados " ,
+	 "STATUS": "Status"
+	 },
+	 
+	 "shipping_js" :{
+	 "sure" :"¿Está seguro?",
+     "Closing_Current_Palette" :"Usted está cerrando la tarima actual!",
+     "YES" :"Sí",
+     "NO" :"No",
+     "Warning" :"Advertencia",
+     "add_palette" :"Favor de agregar una tarima primero",
+     "OK" :"OK",
+     "Error" :"Error",
+     "quantity_less_estimated_pcb" :"¡La cantidad em la tarima debe ser menor o igual a lo estimado PCB!",
+     "No_Job_Finishing" : "Ningún trabajo en la estación de terminado por ISBN:",
+     "order_address_palette" : "Esta orden no tiene la misma dirección que la tarima",
+     "close_current_order" : "Favor de cerrar orden actual",
+     "not_put_different_orders_in_pallet" : "No puede poner diferentes ordenes en una sola tarima"
+     }   
+       
+       
+       
+       
+	 
+	 
+	 
+	 
+	 
+	 		 
+}

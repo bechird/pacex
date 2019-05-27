@@ -1,0 +1,29 @@
+<div class="card">
+    <div class="card-header ch-alt m-b-20">
+        <h2>{{ 'rolls.TITLE'| translate }}<small>   {{ 'rolls.DESCRIPTION'| translate }} <i class="zmdi zmdi-plus-circle-o"></i> {{ 'rolls.LIGNE2' | translate }}  
+          <a href="#/ordersPage">  {{ 'rolls.LIEN' | translate }}</a>.</small></h2>
+
+        <button class="btn bgm-teal btn-float waves-effect waves-circle" ng-click="openAddRollModal()" uib-tooltip="{{ 'rolls.Add_Roll'| translate }}"><i class="zmdi zmdi-plus"></i>
+        </button>
+    </div>
+	<br/>
+    <div class="card-body card-padding" translate-cloak>
+        <uib-alert type="success" close="successMsg = false;" ng-show="successMsg">{{alertMsg}}</uib-alert>
+        <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{alertMsg}}</uib-alert>
+        <table datatable="" dt-options="rollsList.dtOptions" dt-columns="rollsList.dtColumns" dt-instance="rollsList.dtInstance" class="table table-bordered table-striped table-vmiddle ng-scope ng-table col-lg-12" width="100%">
+            <tfoot>
+                <tr class="table-placeholder" translate-cloak>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

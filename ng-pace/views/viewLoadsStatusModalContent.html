@@ -1,0 +1,37 @@
+<div class="modal-header card-header ch-alt" ng-cloak>
+    <h3 class="modal-title">{{part}} {{ 'viewLoadsStatusModalContent.TITLE' | translate }}</h3>
+</div>
+<div class="modal-body card-body card-pading" ng-cloak>
+		    	<uib-alert type="success" close="successMsg = false;" ng-show="successMsg">{{alertMsg}}</uib-alert>
+			 	<uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{alertMsg}}</uib-alert>
+			 	<table id="loadsStatusTable" name="loadsStatusTable" class="table table-bordered" width="100%" datatable="ng" dt-options="dtOptionsForloadsStatus">
+      			  <thead>
+        			<tr>
+          				<th> {{ 'viewLoadsStatusModalContent.LOADTAG_ID' | translate }}</th>
+          				<th> {{ 'viewLoadsStatusModalContent.FROM' | translate }}</th>
+	        			<th> {{ 'viewLoadsStatusModalContent.QUANTITY' | translate }}</th>
+	        			<th> {{ 'viewLoadsStatusModalContent.CART' | translate }}</th>
+			            <th>{{ 'viewLoadsStatusModalContent.USED' | translate }}</th>
+					</tr>
+    			  </thead>
+   			      <tbody >
+   			       <tr ng-repeat="node in loadtags" >
+    			      <td>{{node.loadTagId}}</td>
+    			      <td>{{node.machineId}}</td>
+					  <td>{{node.quantity}}</td>
+    			      <td>{{node.cartNum}}</td>
+					  <td><label class="checkbox checkbox-inline m-r-20">
+                              <input id="usedFlagCheckbox{{node.loadTagId}}" name="usedFlagCheckbox{{node.loadTagId}}" type="checkbox" 
+                              	ng-model="node.usedFlag" ng-change="updateLoadTagUsedFlag(node)" ng-true-value="true" ng-false-value="false">
+                                  <i class="input-helper"></i>
+                          </label>
+					  </td>
+					</tr>
+     			  </tbody>
+   			    </table>
+   </div>
+
+<div class="modal-footer">
+				<button type="button" class="btn bgm-bluegray waves-effect" ng-click="closeModal()"> {{ 'viewLoadsStatusModalContent.CLOSE' | translate }}</button>
+
+</div>

@@ -1,0 +1,162 @@
+2018-02-13 18:12:34 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-13 18:12:36 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:643)
+2018-02-13 18:12:36 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-13 18:12:42 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-13 18:12:43 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782754055758E1 successfully fetched from Esprint
+2018-02-13 18:12:43 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782754055758E1
+2018-02-13 18:12:43 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-13 18:12:45 DEBUG com.epac.imposition.bookblock.App::downloadText	     - downlaoding book 9782754055758E1 (28,96 Mb)
+2018-02-13 18:13:34 DEBUG com.epac.imposition.config.ConfigurationWatchDog::doOnChange     - File changed /Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties, reloading...
+2018-02-13 18:13:34 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-13 18:14:44 DEBUG com.epac.imposition.bookblock.App::downloadText	     - File downloaded /Users/oumaimakridene/Documents/EPAC/output/original/9782754055758E1/9782754055758E1.text.pdf
+2018-02-13 18:14:49 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782754055758E1/9782754055758E1.text.pdf
+2018-02-13 18:14:49 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782754055758E1
+2018-02-13 18:14:49 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-13 18:14:50 DEBUG freemarker.cache     - Couldn't find template in cache for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed); will try to load it.
+2018-02-13 18:14:50 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr_FR.tmpl"): Not found
+2018-02-13 18:14:50 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr.tmpl"): Not found
+2018-02-13 18:14:50 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate.tmpl"): Found
+2018-02-13 18:14:50 DEBUG freemarker.cache     - Loading template for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed) from "file:/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/target/classes/com/epac/imposition/rip/jdfJobTemplate.tmpl"
+2018-02-13 18:14:50 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Jdf Job created successfully at /Users/oumaimakridene/Documents/EPAC/output/imposed/9782754055758E1/8.736_PLSM9782754055758E1.text.jdf
+2018-02-13 18:14:50 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782754055758E1
+2018-02-13 18:16:28 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-13 18:16:30 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:643)
+2018-02-13 18:16:30 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-13 18:16:34 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-13 18:16:36 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782754055758E1 successfully fetched from Esprint
+2018-02-13 18:16:36 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782754055758E1
+2018-02-13 18:16:36 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-13 18:16:36 DEBUG com.epac.imposition.bookblock.App::execute	     - Text file already exists, no need to redownload: /Users/oumaimakridene/Documents/EPAC/output/original/9782754055758E1/9782754055758E1.text.pdf
+2018-02-13 18:16:41 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782754055758E1/9782754055758E1.text.pdf
+2018-02-13 18:16:42 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782754055758E1
+2018-02-13 18:16:42 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-13 18:16:42 DEBUG freemarker.cache     - Couldn't find template in cache for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed); will try to load it.
+2018-02-13 18:16:42 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr_FR.tmpl"): Not found
+2018-02-13 18:16:42 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr.tmpl"): Not found
+2018-02-13 18:16:42 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate.tmpl"): Found
+2018-02-13 18:16:42 DEBUG freemarker.cache     - Loading template for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed) from "file:/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/target/classes/com/epac/imposition/rip/jdfJobTemplate.tmpl"
+2018-02-13 18:16:43 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Jdf Job created successfully at /Users/oumaimakridene/Documents/EPAC/output/imposed/9782754055758E1/8.5_PFSM9782754055758E1.text.jdf
+2018-02-13 18:16:43 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782754055758E1
+2018-02-13 18:16:45 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782754055758E1/9782754055758E1.text.pdf
+2018-02-13 18:16:45 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782754055758E1
+2018-02-13 18:16:45 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-13 18:16:46 DEBUG freemarker.cache     - Couldn't find template in cache for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed); will try to load it.
+2018-02-13 18:16:46 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr_FR.tmpl"): Not found
+2018-02-13 18:16:46 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr.tmpl"): Not found
+2018-02-13 18:16:46 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate.tmpl"): Found
+2018-02-13 18:16:46 DEBUG freemarker.cache     - Loading template for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed) from "file:/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/target/classes/com/epac/imposition/rip/jdfJobTemplate.tmpl"
+2018-02-13 18:16:46 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Jdf Job created successfully at /Users/oumaimakridene/Documents/EPAC/output/imposed/9782754055758E1/8.736_PLSM9782754055758E1.text.jdf
+2018-02-13 18:16:46 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782754055758E1
+2018-02-13 18:16:47 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782754055758E1/9782754055758E1.text.pdf
+2018-02-13 18:16:49 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782754055758E1
+2018-02-13 18:16:49 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-13 18:16:49 DEBUG freemarker.cache     - Couldn't find template in cache for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed); will try to load it.
+2018-02-13 18:16:49 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr_FR.tmpl"): Not found
+2018-02-13 18:16:49 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr.tmpl"): Not found
+2018-02-13 18:16:49 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate.tmpl"): Found
+2018-02-13 18:16:49 DEBUG freemarker.cache     - Loading template for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed) from "file:/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/target/classes/com/epac/imposition/rip/jdfJobTemplate.tmpl"
+2018-02-13 18:16:49 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Jdf Job created successfully at /Users/oumaimakridene/Documents/EPAC/output/imposed/9782754055758E1/8.461_FFSM9782754055758E1.text.jdf
+2018-02-13 18:16:49 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782754055758E1
+2018-02-13 18:16:50 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782754055758E1/9782754055758E1.text.pdf
+2018-02-13 18:16:50 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782754055758E1
+2018-02-13 18:16:50 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-13 18:16:51 DEBUG freemarker.cache     - Couldn't find template in cache for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed); will try to load it.
+2018-02-13 18:16:51 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr_FR.tmpl"): Not found
+2018-02-13 18:16:51 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr.tmpl"): Not found
+2018-02-13 18:16:51 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate.tmpl"): Found
+2018-02-13 18:16:51 DEBUG freemarker.cache     - Loading template for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed) from "file:/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/target/classes/com/epac/imposition/rip/jdfJobTemplate.tmpl"
+2018-02-13 18:16:51 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Jdf Job created successfully at /Users/oumaimakridene/Documents/EPAC/output/imposed/9782754055758E1/8.736_PBSM9782754055758E1.text.jdf
+2018-02-13 18:16:51 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782754055758E1
+2018-02-13 18:24:29 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-13 18:24:31 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:643)
+2018-02-13 18:24:31 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-13 18:24:35 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-13 18:24:37 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782754055758E1 successfully fetched from Esprint
+2018-02-13 18:24:37 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782754055758E1
+2018-02-13 18:24:37 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-13 18:24:37 DEBUG com.epac.imposition.bookblock.App::execute	     - Text file already exists, no need to redownload: /Users/oumaimakridene/Documents/EPAC/output/original/9782754055758E1/9782754055758E1.text.pdf
+2018-02-13 18:24:42 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782754055758E1/9782754055758E1.text.pdf
+2018-02-13 18:24:43 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782754055758E1
+2018-02-13 18:24:43 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-13 18:24:43 DEBUG freemarker.cache     - Couldn't find template in cache for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed); will try to load it.
+2018-02-13 18:24:43 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr_FR.tmpl"): Not found
+2018-02-13 18:24:43 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr.tmpl"): Not found
+2018-02-13 18:24:43 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate.tmpl"): Found
+2018-02-13 18:24:43 DEBUG freemarker.cache     - Loading template for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed) from "file:/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/target/classes/com/epac/imposition/rip/jdfJobTemplate.tmpl"
+2018-02-13 18:24:44 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Jdf Job created successfully at /Users/oumaimakridene/Documents/EPAC/output/imposed/9782754055758E1/8.5_PFSM9782754055758E1.text.jdf
+2018-02-13 18:24:44 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782754055758E1
+2018-02-13 18:24:47 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782754055758E1/9782754055758E1.text.pdf
+2018-02-13 18:24:47 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782754055758E1
+2018-02-13 18:24:47 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-13 18:24:47 DEBUG freemarker.cache     - Couldn't find template in cache for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed); will try to load it.
+2018-02-13 18:24:47 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr_FR.tmpl"): Not found
+2018-02-13 18:24:47 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr.tmpl"): Not found
+2018-02-13 18:24:47 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate.tmpl"): Found
+2018-02-13 18:24:47 DEBUG freemarker.cache     - Loading template for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed) from "file:/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/target/classes/com/epac/imposition/rip/jdfJobTemplate.tmpl"
+2018-02-13 18:24:47 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Jdf Job created successfully at /Users/oumaimakridene/Documents/EPAC/output/imposed/9782754055758E1/8.736_PLSM9782754055758E1.text.jdf
+2018-02-13 18:24:47 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782754055758E1
+2018-02-13 18:24:49 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782754055758E1/9782754055758E1.text.pdf
+2018-02-13 18:24:50 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782754055758E1
+2018-02-13 18:24:50 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-13 18:24:50 DEBUG freemarker.cache     - Couldn't find template in cache for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed); will try to load it.
+2018-02-13 18:24:50 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr_FR.tmpl"): Not found
+2018-02-13 18:24:50 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr.tmpl"): Not found
+2018-02-13 18:24:50 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate.tmpl"): Found
+2018-02-13 18:24:50 DEBUG freemarker.cache     - Loading template for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed) from "file:/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/target/classes/com/epac/imposition/rip/jdfJobTemplate.tmpl"
+2018-02-13 18:24:50 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Jdf Job created successfully at /Users/oumaimakridene/Documents/EPAC/output/imposed/9782754055758E1/8.461_FFSM9782754055758E1.text.jdf
+2018-02-13 18:24:50 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782754055758E1
+2018-02-13 18:24:52 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782754055758E1/9782754055758E1.text.pdf
+2018-02-13 18:24:52 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782754055758E1
+2018-02-13 18:24:52 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-13 18:24:52 DEBUG freemarker.cache     - Couldn't find template in cache for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed); will try to load it.
+2018-02-13 18:24:52 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr_FR.tmpl"): Not found
+2018-02-13 18:24:52 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr.tmpl"): Not found
+2018-02-13 18:24:52 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate.tmpl"): Found
+2018-02-13 18:24:52 DEBUG freemarker.cache     - Loading template for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed) from "file:/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/target/classes/com/epac/imposition/rip/jdfJobTemplate.tmpl"
+2018-02-13 18:24:52 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Jdf Job created successfully at /Users/oumaimakridene/Documents/EPAC/output/imposed/9782754055758E1/8.736_PBSM9782754055758E1.text.jdf
+2018-02-13 18:24:52 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782754055758E1

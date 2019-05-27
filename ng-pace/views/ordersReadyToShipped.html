@@ -1,0 +1,53 @@
+<div class="card">
+    <div class="card-header ch-alt p-20">
+        <h2> {{ 'ordersReadyToShipped.TITLE' | translate }}</h2>
+        <button  class="btn bgm-cyan btn-float waves-effect" uib-tooltip="{{ 'print' | translate }}" ng-click ="downloadBlInterforum()"><i class="zmdi zmdi-download"></i></button>
+        <button class="btn bgm-orange-900 btn-pause btn-float waves-effect waves-circle"  ng-click ="fillOrderChecked();openBonDeLivraisonModal()" ><i class="zmdi zmdi-pause"></i>
+        </button>
+    </div>
+    <br/>
+    <div class="card-body card-padding" translate-cloak>
+        <div class="order-list-table">
+            <table  datatable="ng" dt-options="dtOptionsForBonDeLivraison" class="mdl-data-table table-bordered  mdl-shadow--2dp ng-isolate-scope no-footer dataTable" width="100%" translate-cloak>
+               	<thead translate-cloak>
+                    <tr translate-cloak>
+                        <th></th>
+                        <th> {{ 'ordersReadyToShipped.Order_Num' | translate }}</th>
+                        <th> {{ 'ordersReadyToShipped.Client' | translate }}</th>
+                      <th> {{ 'ordersReadyToShipped.Destination' | translate }}</th>
+                       <th> {{ 'ordersReadyToShipped.Qty_Needed' | translate }}</th>
+                        <th> {{ 'ordersReadyToShipped.Qty_Delivred' | translate }}</th>
+                        <th> QuantityBl</th>
+                        <th> {{ 'ordersReadyToShipped.STATUS' | translate }}</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                	<tr ng-repeat = "order in orders">
+                        <td>
+                        <div class="form-group">
+                        <div class="controls">
+                        <div class="checkbox checkbox-inline m-r-20" >
+                            <input id="{{order}}" type="checkbox" name="order" >
+                            <label class="input-helper" for="{{order}}"></label> 
+                        </div>
+                    </div>
+                </div>
+                        </td>
+                		<td>{{order.orderNum}}</td>
+                        <td>{{order.company.code}}</td>
+                        <td>{{order.orderPackages[0].destination}}</td>
+                        <td>{{order.orderPart.quantity}}</td>
+                        <td >{{qtyDelivred[$index]}}</td>
+                        <td>{{qtyInBl[$index]}}</td>
+                	    <td>{{order.status}}</td>
+                		<td class="center"><button style="padding-left: 11px;" class="btn bgm-bluegray waves-circle waves-effect" ng-disabled="order.status != 'COMPLETE'" uib-tooltip="{{ 'print' | translate }}" ng-click ="downloadBl(order)"><i class="zmdi zmdi-print"></i></button></td>
+                        <td class="center"><button style="padding-left: 11px;" class="btn bgm-bluegray waves-circle waves-effect" ng-disabled="order.status === 'COMPLETE'"  uib-tooltip="{{ 'ChangeStatus' | translate }}" ng-click ="completeOrder(order.orderNum)"><i class="zmdi zmdi-refresh-alt"></i></button></td>
+
+                	</tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

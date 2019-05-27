@@ -1,0 +1,244 @@
+<form name="logForm" id="logForm" ng-cloak>
+<div class="modal-header card-header ch-alt" ng-cloak>
+    <h3 class="modal-title"> {{ 'INTERRUPTMachineModal.TITLE' | translate }}</h3><small> {{ 'INTERRUPTMachineModal.DESCRIPTION' | translate }}</small>
+</div>
+
+<div class="modal-body card-body card-padding" onmouseover="$(window).trigger('resize');" ng-cloak>
+   <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+   <uib-alert type="success" close="successMsg = false;" ng-show="successMsg">{{alertMsg}}</uib-alert>
+    
+    	<!--  <h4 class="modal-title" id="myModalLabel">Please specify the action:</h4> -->
+    
+    	<div class="form-group">
+             <div class="controls">
+             	<div class="row db-choice">
+                 <div class=" radio-inline m-r-20 col-md-12">
+					<!-- <input id="pauseOption" type="radio" ng-model="log.event" name="loggingEvent" ng-value="PAUSE" ng-click="pauseOptionTrigger();"> -->
+					<div class="md-radio">
+					<input id="pauseOption" type="radio" ng-model="log.event" name="loggingEvent" value="PAUSE" >
+					<label class="input-helper" ng-if="station.inputType!='Batch'" for="pauseOption"> {{ 'INTERRUPTMachineModal.SUSPEND_PAUSE' | translate }}</label>
+					<label class="input-helper" ng-if="station.inputType=='Batch'" for="pauseOption"> {{ 'INTERRUPTMachineModal.SUSPEND_SECTION' | translate }}</label>
+					</div>
+					<br>
+                       	<div class="col-md-1" ng-if="log.event == 'PAUSE'"></div>
+                       <div class="form-group col-md-11 required" ng-if="log.event == 'PAUSE'">
+                            <span class="form-label"> {{ 'INTERRUPTMachineModal.CAUSE' | translate }}</span>
+                            	<span ng-show="logForm.logCause.$touched && logForm.logCause.$error.required" class="text-danger text-error"> {{ 'INTERRUPTMachineModal.ERROR1' | translate }}</span>
+                            <div class="controls">
+                                <select class="form-control col-md-5" name="logCause" id="logCause" ng-required="log.event == 'PAUSE'" ng-model="log.logCause.id" class="form-control" >
+								<option value=""> {{ 'INTERRUPTMachineModal.SELECT' | translate }}</option>
+				      			<option ng-if="option.id == 'BREAK' || option.id == 'ENDSHIFT' || option.id == 'ISSUE' || option.id == 'SERVICE'" ng-repeat="option in logCauseOptions" value="{{option.id}}">{{option.name}}</option>
+				    	       </select>
+                            </div>
+                      </div>
+				  </div>
+				</div>
+                  </div>
+                  <br ng-if="showCompleteOption"/>
+                  <div class="row db-choice" ng-if="showCompleteOption">
+                  <div class=" radio-inline m-r-20 col-md-12">
+					<!-- <input id="completeOption" type="radio" ng-model="log.event" name="loggingEvent" ng-value="COMPLETE" ng-click="completeOptionTrigger();"> -->
+					<div class="md-radio">
+						<input id="completeOption" type="radio" ng-model="log.event" name="loggingEvent" value="COMPLETE" >
+						<label class="input-helper" ng-if="station.inputType!='Batch'"  for="completeOption"> {{ 'INTERRUPTMachineModal.JOBS_COMPLETE' | translate }}</label>
+						<label class="input-helper" ng-if="station.inputType=='Batch'"  for="completeOption"> {{ 'INTERRUPTMachineModal.SECTION_COMPLETE' | translate }}</label>
+						</div>
+						<br> 
+	                    <div class="col-md-1" ng-if="log.event == 'COMPLETE'"></div>
+                        <div class="form-group col-md-5 required" ng-if="machine.stationId == 'PRESS' && log.event == 'COMPLETE'">
+                            <span class="form-label"> {{ 'INTERRUPTMachineModal.COUNTER' | translate }}
+                            	<small ng-show="logForm.counterFeetComplete.$touched && logForm.counterFeetComplete.$error.required" class="text-error"> {{ 'INTERRUPTMachineModal.ERROR2' | translate }}</small>
+                            	<small ng-show="logForm.counterFeetComplete.$touched && logForm.counterFeetComplete.$error.max" class="text-error">{{ 'INTERRUPTMachineModal.ERROR3' | translate }}</small>
+                            </span>
+                            <div class="controls">
+                            	<input type="number" id="counterFeetComplete" ng-required="log.event == 'COMPLETE'" name="counterFeetComplete" ng-model="log.counterFeet" min="0" max="999999999" class="form-control">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group col-md-6 required" ng-if="machine.stationId == 'PRESS' && log.event == 'COMPLETE'">
+                      		<span class="form-label">{{ 'INTERRUPTMachineModal.CREATE' | translate }}
+                      			<small ng-show="logForm.leftOver1.$touched && logForm.leftOver1.$error.required" class="text-error"> {{ 'INTERRUPTMachineModal.ERROR4' | translate }}</small>
+                      		</span>
+                      		<div class="controls">
+                              <div class="radio radio-inline m-r-20 left-over">
+								<div class="md-radio"> <input id="optionyes1" type="radio" name="leftOver1" ng-disabled="producedRollId != null" ng-required="!createLeftOverRollForComplete" ng-model = "createLeftOverRollForComplete" ng-value="true" ng-click="openAddRollModal()"><label class="input-helper" for="optionyes1"> {{ 'INTERRUPTMachineModal.YES' | translate }}</label></div>
+                                <div class="md-radio"><input id="optionno1" type="radio" name="leftOver1" ng-disabled="producedRollId != null" ng-required="!createLeftOverRollForComplete" ng-model = "createLeftOverRollForComplete" ng-value="false" ><label class="input-helper" for="optionno1"> {{ 'INTERRUPTMachineModal.NO' | translate }}</label></div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <br/>
+                    <div class="row db-choice" ng-if="station.inputType!='Batch'">
+                    <div class=" radio-inline m-r-20  col-md-12" ng-if="station.inputType!='Batch'">
+					<!-- <input id="stopOption" type="radio" ng-model="log.event" name="loggingEvent" ng-value="STOP" ng-click="stopOptionTrigger();"> -->
+					<div class="md-radio">
+						<input id="stopOption" type="radio" ng-model="log.event" name="loggingEvent" value="STOP" >
+						<label class="input-helper" ng-if="station.inputType!='Batch'" for="stopOption">{{ 'INTERRUPTMachineModal.STOP_END' | translate }}</label>
+						</div>
+						<br>  
+                      	<div class="col-md-1" ng-if="log.event == 'STOP'"></div>                      
+                        <div class="form-group col-md-3 required" ng-if="machine.stationId == 'PRESS' && log.event == 'STOP'">
+                            <span class="form-label"> {{ 'INTERRUPTMachineModal.COUNTER' | translate }}
+                            	<small ng-show="logForm.counterFeetStop.$touched && logForm.counterFeetStop.$error.required" class="text-error"> {{ 'INTERRUPTMachineModal.ERROR2' | translate }}</small>
+                            	<small ng-show="logForm.counterFeetStop.$touched && logForm.counterFeetStop.$error.max" class="text-error"> {{ 'INTERRUPTMachineModal.ERROR3' | translate }}</small>
+                            </span>
+                            <div class="controls">
+                                <input type="number" id="counterFeetStop" ng-required="log.event == 'STOP'" name="counterFeetStop" ng-model="log.counterFeet" min="0" max="999999999" class="form-control">
+                            </div>
+                        </div>
+                      	<div class="form-group col-md-5 required" ng-if="log.event == 'STOP' && station.inputType!='Batch' ">
+                            <span class="form-label"> {{ 'INTERRUPTMachineModal.CAUSE' | translate }}</span>
+                            <span ng-show="logForm.causeStop.$touched && logForm.causeStop.$error.required" class="text-danger text-error"> {{ 'INTERRUPTMachineModal.ERROR1' | translate }}</span>
+                            <div class="controls">
+                                <select class="form-control col-md-5" name="causeStop" id="causeStop" ng-model="log.logCause.id" ng-required="log.event == 'STOP'" class="form-control">
+								<option value="">{{ 'INTERRUPTMachineModal.SELECT' | translate }}</option>
+				      			<option ng-if="option.id == 'ISSUE' || option.id == 'SERVICE' || option.id == 'WASTE'" ng-repeat="option in logCauseOptions" value="{{option.id}}">{{option.name}}</option>
+				    	       </select>
+                            </div>
+                         </div>
+                         <div class="form-group col-md-3" ng-if="machine.stationId != 'PRESS' && station.inputType!='Batch' && machine.stationId != 'PLOWFOLDER' && log.event == 'STOP'">
+                            <span class="form-label"> {{ 'INTERRUPTMachineModal.QUANTITY_PRODUCED' | translate }}</span>
+                            <div class="controls">
+                      			<label><strong>{{currentJob.quantityProduced}}</strong></label>
+                			</div>
+                         </div>
+                         <div class="form-group col-md-2" ng-if="machine.stationId != 'PRESS' && machine.stationId != 'PLOWFOLDER' && 
+                             machine.stationId != 'COVERPRESS' && log.event == 'STOP'">
+                            <span class="form-label">{{ 'INTERRUPTMachineModal.QUANTITY_WASTED' | translate }}</span>
+                            <div class="controls">
+                      			<label><strong>{{currentJob.totalWaste}}</strong></label>
+                			</div>
+                         </div>
+                         <div class="form-group col-md-3 required" ng-if="machine.stationId == 'PRESS' && log.event == 'STOP'">
+                         	<span class="form-label"> {{ 'INTERRUPTMachineModal.CREATE' | translate }}
+                         		<small ng-show="logForm.leftOver2.$touched && logForm.leftOver2.$error.required" class="text-error">{{ 'INTERRUPTMachineModal.ERROR4' | translate }}</small>
+                         	</span>
+                         	  <div class="controls">
+                               <div class="radio radio-inline left-over">
+								<div class="md-radio"> 
+									<input id="optionyes2" type="radio" name="leftOver2" ng-disabled="producedRollId != null" ng-required="!createLeftOverRollForStop" ng-model = "createLeftOverRollForStop" ng-value="true" ng-click="openAddRollModal()">
+									<label class="input-helper" for="optionyes2"> {{ 'INTERRUPTMachineModal.YES' | translate }}</label>
+								</div>
+									<div class="md-radio">  <input id="optionno2" type="radio" name="leftOver2" ng-disabled="producedRollId != null" ng-required="!createLeftOverRollForStop" ng-model = "createLeftOverRollForStop" ng-value="false" ><label class="input-helper" for="optionno2"> {{ 'INTERRUPTMachineModal.NO' | translate }}</label></div>
+                               </div>
+                              </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-12" ng-show="(machine.stationId == 'PRESS' || machine.stationId == 'PLOWFOLDER') && log.event == 'STOP'">
+	                    <span ></span>
+	                    <div class="card-header ch-alt m-b-20">
+					        <h2> {{ 'INTERRUPTMachineModal.COMPLETED_JOBS' | translate }}<small>{{ 'INTERRUPTMachineModal.DESC' | translate }}</small></h2>
+					    </div>
+					    <div class="card-body">
+					    	<table ng-show="log.event == 'STOP'" id="completedJobsTable" name="completedJobsTable" datatable="ng" class="table table-bordered" width="100%" dt-options="dtOptionsForCompletedJobs" dt-column-defs="dtColumnDefsForCompletedJobs">
+				     			<thead>
+					       			<tr>
+					         			<th> {{ 'INTERRUPTMachineModal.FILE' | translate }}</th>
+					                    <th>ISBN</th>
+					                    <th> {{ 'INTERRUPTMachineModal.TITLEE' | translate }}</th>
+					                    <th ng-if="machine.stationId == 'PLOWFOLDER'">{{ 'INTERRUPTMachineModal.QTY_WASTED' | translate }}</th>
+					                    <th> {{ 'INTERRUPTMachineModal.QTY_PRODUCED' | translate }}</th>
+					                    <th style="text-align:center;">
+					                    	<label class="checkbox checkbox-inline m-r-20">
+								            <input id="checkboxAll" name="checkboxAll" type="checkbox"  
+								            onclick="var $scope = angular.element(event.target).scope(); $scope.toggleSelectAll(this.checked); $scope.$apply()"/><i class="input-helper"></i>
+								            </label>
+							        	</th>
+									</tr>
+				   			    </thead>
+				  			    <tbody>
+				  			       <tr ng-repeat="job in machine.rollOnProd.jobs">
+					   			      <td>{{job.jobName}}</td>
+									  <td>{{job.partIsbn}}</td>
+					   			      <td>{{job.partTitle}}</td>
+					   			      <td ng-if="machine.stationId == 'PLOWFOLDER'"><input type="number" id="wastedJobQty{{job.jobId}}" name="wastedJobQty{{job.jobId}}" ng-disabled="true" ng-value="job.totalWaste" min="1" max="999999999"/></td>
+									  <td><input type="number" ng-value="job.quantityProduced" ng-model="job.quantityProduced" id="completedJobQty{{job.jobId}}" name="completedJobQty{{job.jobId}}" ng-disabled="job.jobStatus.id != 'COMPLETE'" min="0" max="{{job.quantityNeeded}}" ng-change="validateProducedQty()"/>
+									  	<span style="color:red;" id="showrequired{{job.jobId}}" name="showrequired{{job.jobId}}">*</span>
+									    / <input type="number" id="neededJobQty{{job.jobId}}" name="neededJobQty{{job.jobId}}" ng-disabled="true" ng-value="job.quantityNeeded" min="1" max="999999999"/></td>
+									  <td style="text-align:center;">
+									  	<label class="checkbox checkbox-inline m-r-20">
+									  		<input id="completedJobCheckbox{{job.jobId}}" name="completedJobCheckbox{{job.jobId}}" type="checkbox" onclick="jobCompleteChckbToggleNumField(this.id);" ng-checked="job.jobStatus.id == 'COMPLETE'" ng-modal="job.jobStatus.id == 'COMPLETE'" ng-true-value="true" ng-false-value="false">
+									  	  <i class="input-helper"></i></label></td>
+								   </tr>
+				    			</tbody>
+				  			 </table>
+				  		 </div>
+			  		</div>    
+                    </div>
+                    <br/>
+                    <div class="row ">
+                    	<div class="form-group col-md-9" >
+                            <span class="form-label"> {{ 'INTERRUPTMachineModal.NOTES' | translate }}</span>
+                            	<span ng-show="logForm.notes.$dirty && logForm.notes.$error.maxlength" class="text-danger text-error"> {{ 'INTERRUPTMachineModal.ERROR9' | translate }}</span>
+ 			  				<div class="controls">
+                                <textarea id="notes" name="notes" class="form-control" ng-model="log.notes" rows="3" ng-maxlength="500"></textarea>
+                            </div>
+                         </div>
+                    </div>
+              </div>
+</div>
+
+<div class="modal-footer" ng-cloak>
+	<button type="button" id="cancelBtn" name="cancelBtn" ng-disabled="leftOverRollCreated" class="btn bgm-bluegray waves-effect" ng-click="closeModal()"> {{ 'INTERRUPTMachineModal.CLOSE' | translate }}</button>
+         			<button type="button" id="saveBtn" name="saveBtn" ng-click="handleInterruption()" class="btn bgm-teal waves-effect"
+         			ng-disabled="log.event == '' || (log.event == 'PAUSE' && logForm.logCause.$invalid) || (log.event == 'COMPLETE' && (logForm.counterFeetComplete.$invalid || logForm.leftOver1.$invalid)) || 
+         			(log.event == 'STOP' && (logForm.causeStop.$invalid || logForm.counterFeetStop.$invalid || logForm.leftOver2.$invalid)) || producedRollId != null || setAsDisabled"
+         			> {{ 'INTERRUPTMachineModal.SAVE' | translate }}</button>
+         			<button type="button" ng-click="openRollTag(producedRollId)" class="btn bgm-cyan waves-effect" ng-show="producedRollId != null"><i class="fa fa-tag"></i>&nbsp;{{ 'INTERRUPTMachineModal.PROD_ROLL_TAG' | translate }}</button>
+
+          
+</div>
+</form>
+<script type="text/javascript" >
+
+ 	$(document).ready(function(){
+// 		$('#logCause').prop('disabled', true); $('#completeOption').prop('checked', false); $('#stopOption').prop('checked', false); $('#pauseOption').prop('checked', false);
+// 		$('#counterComplete').prop('disabled', true);
+// 		$('#optionyes1').prop('disabled', true);
+// 		$('#optionno1').prop('disabled', true);
+// 		$('#counterStop').prop('disabled', true);
+// 		$('#causeStop').prop('disabled', true);
+// 		$('#optionyes2').prop('disabled', true);
+// 		$('#optionno2').prop('disabled', true);
+// 		$('#checkboxAll').prop('disabled', true);
+// 		$(":input[id^='completedJobCheckbox']").prop('disabled', true); 
+// 		$(":input[id^='completedJobQty']").prop('disabled', true);
+		 $("[id^='showrequired']").each(function(){
+			 $(this).hide();
+		 });
+		 
+		 /* $(':input[name^="completedJobQty"]').each(function() {
+			 $(this).change(function() {
+			    var jobId = $(this).prop('name').substring(15);
+			    var qtyNeeded = $('#neededJobQty'+jobId);
+			    if(qtyNeeded != null){
+			    	if(Number(qtyNeeded) < $(this).val()){
+			    		$('#saveBtn').prop('disabled', true);
+			    	}	
+			    }
+			 }
+		 }); */
+ 	 });
+ 	
+	function jobCompleteChckbToggleNumField(chbEl){
+		var elId = chbEl.substring('completedJobCheckbox'.length);
+// 		if($('#'+chbEl).is(':checked')) {
+// 			$('#completedJobQty' + elId).prop('disabled', false);
+// 		}else{
+// 			$('#completedJobQty' + elId).prop('disabled', true);
+// 		}
+		
+		if($('#completedJobQty' + elId).is(':disabled')) {
+			$('#completedJobQty' + elId).prop('disabled', false);
+			$('#showrequired' + elId).show();
+		}else{
+			//$('#completedJobQty' + elId).prop('value', '');
+			$('#completedJobQty' + elId).prop('disabled', true);
+			$('#showrequired' + elId).hide();
+		}
+		$('#completedJobQty' + elId).focus();
+	}
+	
+</script>

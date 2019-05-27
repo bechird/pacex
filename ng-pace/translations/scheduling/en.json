@@ -1,0 +1,71 @@
+{
+     "scheduling" : { 
+     "ROL_SCHED" : "Rolls Scheduling",
+     "UNSCHED_HOURS": "Unscheduled Hours",
+	 "SCHED_HOURS":	"Scheduled Hours",
+	 "ROLLS": "Available Rolls",
+	 "FILTER": "Filter By",
+	 "NO_ROLLS": "No Rolls are Available.",	
+	 "ROLL" : "Roll",
+	 "NEW": "NEW",
+	 "JOBS": "Available Printing Jobs",
+	 "ALL" : "All",
+	 "Filter_Rolls_By_Paper_Type" :"Filter Rolls By Paper Type" ,
+	 "Utilization" :"Utilization",
+	 "Width" :"Width",
+	 "Length" :"Length",
+	 "Hours" :"Hours",
+	 "Paper" :"Paper",
+	 "Produce_this_roll" :"Produce this roll#",
+	 "Schedule_for_1C" :"Schedule for 1C",
+	 "Show_All_Rolls_Jobs" :"Show All Rolls/Jobs"
+	
+	 },
+	 
+	 
+	 
+	 "js_Scheduling":{
+	 "Order":"Order",
+	 "Qty" :"Qty",
+	 "Paper" :"Paper",
+	 "Binding" :"Binding",
+	 "Priority":"Priority",
+	 "Bindery" :"Bindery",
+	 "View_Job_Details" :"View Job Details",
+	 "Roll" :"Roll#",
+	 "selected_Orders_selected" :"is selected; Orders selected: ",
+	 "Confirm_Job_Split" :"Confirm Job Split",
+	 "Roll_Utilization_exceeds" :"Roll Utilization exceeds 100%, so a job split should be performed; continue?",
+	 "Continue" :"Yes, Continue!",
+	 "jobs_assigned_to_roll" :"The following jobs have successfully been assigned to the roll# ",
+	 "for_production" :" for production: ",
+	 "Roll_Production" :"Roll Production",
+	 "Roll_not_produced" :"The roll could not be produced because it does not contain any job, or because it contains jobs with incompatible impositions. Please, review this roll",
+	  "close" :"close",
+	 "Confirm_TrimCust_Size" : "The following jobs have the book block trim cut size bigger than the cover size: ",
+	 
+	 "Before_this_Day" :"(Before this Day)",
+	 "Scheduled" :"Scheduled (For this Day)",
+	 "Unscheduled" :"Unscheduled (For this Day)",
+	 "Cumulative_Capacity" :"Cumulative Capacity",
+	 "Order2" :"Order#",
+	 "Bindery_Priority_updated":": Bindery Priority successfully updated for job# ",
+	 "Job_Update" :"Job Update",
+	 
+	 "FEB" :"Feb",
+	 "APR" :"Apr",
+	 "MAY" :"May",
+	 "JUN" :"Jun",
+	 "JUL": "Jul",
+	 "AUG" :"Aug",
+	 
+	 "Split_Job" :"Split Job#",
+	 "View_Roll_Details" :"View Roll Details",
+	 "NORMAL" :"Normal" ,
+	 "HIGH" :"High"
+	}
+    
+	 
+	 
+	 		 
+}

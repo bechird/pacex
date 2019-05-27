@@ -1,0 +1,24 @@
+<div class="card">
+    <div class="card-header ch-alt m-b-20">
+        <h2>{{ 'sections.TITLE'| translate }}<small>   {{ 'sections.DESCRIPTION'| translate }}</small></h2>
+
+    </div>
+	<br/>
+    <div class="card-body card-padding" translate-cloak>
+        <uib-alert type="success" close="successMsg = false;" ng-show="successMsg">{{alertMsg}}</uib-alert>
+        <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{alertMsg}}</uib-alert>
+        <table datatable="" dt-options="sectionsList.dtOptions" dt-columns="sectionsList.dtColumns" dt-instance="sectionsList.dtInstance" class="table table-bordered table-striped table-vmiddle ng-scope ng-table col-lg-12" width="100%">
+            <tfoot>
+                <tr class="table-placeholder" translate-cloak>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

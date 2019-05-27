@@ -1,0 +1,1074 @@
+2018-02-07 16:05:35 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 16:05:35 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:210)
+	at com.epac.imposition.bookblock.App.execute(App.java:318)
+	at com.epac.imposition.bookblock.App.main(App.java:586)
+2018-02-07 16:05:36 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 16:07:21 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 16:07:22 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:210)
+	at com.epac.imposition.bookblock.App.execute(App.java:318)
+	at com.epac.imposition.bookblock.App.main(App.java:586)
+2018-02-07 16:07:22 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 16:08:21 DEBUG com.epac.imposition.config.ConfigurationWatchDog::doOnChange     - File changed /Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties, reloading...
+2018-02-07 16:08:21 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 16:13:01 ERROR com.epac.imposition.bookblock.App::execute	     - Already connected
+java.lang.IllegalStateException: Already connected
+	at sun.net.www.protocol.http.HttpURLConnection.setRequestProperty(HttpURLConnection.java:3013)
+	at sun.net.www.protocol.https.HttpsURLConnectionImpl.setRequestProperty(HttpsURLConnectionImpl.java:316)
+	at org.glassfish.jersey.client.internal.HttpUrlConnector.setOutboundHeaders(HttpUrlConnector.java:421)
+	at org.glassfish.jersey.client.internal.HttpUrlConnector.access$100(HttpUrlConnector.java:96)
+	at org.glassfish.jersey.client.internal.HttpUrlConnector$4.getOutputStream(HttpUrlConnector.java:384)
+	at org.glassfish.jersey.message.internal.CommittingOutputStream.commitStream(CommittingOutputStream.java:200)
+	at org.glassfish.jersey.message.internal.CommittingOutputStream.commitStream(CommittingOutputStream.java:194)
+	at org.glassfish.jersey.message.internal.CommittingOutputStream.commit(CommittingOutputStream.java:262)
+	at org.glassfish.jersey.message.internal.OutboundMessageContext.commitStream(OutboundMessageContext.java:816)
+	at org.glassfish.jersey.client.ClientRequest.writeEntity(ClientRequest.java:545)
+	at org.glassfish.jersey.client.internal.HttpUrlConnector._apply(HttpUrlConnector.java:388)
+	at org.glassfish.jersey.client.internal.HttpUrlConnector.apply(HttpUrlConnector.java:285)
+	at org.glassfish.jersey.client.ClientRuntime.invoke(ClientRuntime.java:255)
+	at org.glassfish.jersey.client.JerseyInvocation$1.call(JerseyInvocation.java:684)
+	at org.glassfish.jersey.client.JerseyInvocation$1.call(JerseyInvocation.java:681)
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:315)
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:297)
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:228)
+	at org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:444)
+	at org.glassfish.jersey.client.JerseyInvocation.invoke(JerseyInvocation.java:681)
+	at org.glassfish.jersey.client.JerseyInvocation$Builder.method(JerseyInvocation.java:437)
+	at org.glassfish.jersey.client.JerseyInvocation$Builder.post(JerseyInvocation.java:343)
+	at com.epac.imposition.bookblock.App.authenticate(App.java:138)
+	at com.epac.imposition.bookblock.App.getBook(App.java:164)
+	at com.epac.imposition.bookblock.App.execute(App.java:333)
+	at com.epac.imposition.bookblock.App.main(App.java:586)
+2018-02-07 16:14:46 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 16:14:47 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:210)
+	at com.epac.imposition.bookblock.App.execute(App.java:318)
+	at com.epac.imposition.bookblock.App.main(App.java:586)
+2018-02-07 16:14:47 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 16:15:46 DEBUG com.epac.imposition.config.ConfigurationWatchDog::doOnChange     - File changed /Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties, reloading...
+2018-02-07 16:15:46 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 16:23:01 ERROR com.epac.imposition.bookblock.App::execute	     - Already connected
+java.lang.IllegalStateException: Already connected
+	at sun.net.www.protocol.http.HttpURLConnection.setRequestProperty(HttpURLConnection.java:3013)
+	at sun.net.www.protocol.https.HttpsURLConnectionImpl.setRequestProperty(HttpsURLConnectionImpl.java:316)
+	at org.glassfish.jersey.client.internal.HttpUrlConnector.setOutboundHeaders(HttpUrlConnector.java:421)
+	at org.glassfish.jersey.client.internal.HttpUrlConnector.access$100(HttpUrlConnector.java:96)
+	at org.glassfish.jersey.client.internal.HttpUrlConnector$4.getOutputStream(HttpUrlConnector.java:384)
+	at org.glassfish.jersey.message.internal.CommittingOutputStream.commitStream(CommittingOutputStream.java:200)
+	at org.glassfish.jersey.message.internal.CommittingOutputStream.commitStream(CommittingOutputStream.java:194)
+	at org.glassfish.jersey.message.internal.CommittingOutputStream.commit(CommittingOutputStream.java:262)
+	at org.glassfish.jersey.message.internal.OutboundMessageContext.commitStream(OutboundMessageContext.java:816)
+	at org.glassfish.jersey.client.ClientRequest.writeEntity(ClientRequest.java:545)
+	at org.glassfish.jersey.client.internal.HttpUrlConnector._apply(HttpUrlConnector.java:388)
+	at org.glassfish.jersey.client.internal.HttpUrlConnector.apply(HttpUrlConnector.java:285)
+	at org.glassfish.jersey.client.ClientRuntime.invoke(ClientRuntime.java:255)
+	at org.glassfish.jersey.client.JerseyInvocation$1.call(JerseyInvocation.java:684)
+	at org.glassfish.jersey.client.JerseyInvocation$1.call(JerseyInvocation.java:681)
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:315)
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:297)
+	at org.glassfish.jersey.internal.Errors.process(Errors.java:228)
+	at org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:444)
+	at org.glassfish.jersey.client.JerseyInvocation.invoke(JerseyInvocation.java:681)
+	at org.glassfish.jersey.client.JerseyInvocation$Builder.method(JerseyInvocation.java:437)
+	at org.glassfish.jersey.client.JerseyInvocation$Builder.post(JerseyInvocation.java:343)
+	at com.epac.imposition.bookblock.App.authenticate(App.java:138)
+	at com.epac.imposition.bookblock.App.getBook(App.java:164)
+	at com.epac.imposition.bookblock.App.execute(App.java:333)
+	at com.epac.imposition.bookblock.App.main(App.java:586)
+2018-02-07 16:31:32 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 16:31:33 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:210)
+	at com.epac.imposition.bookblock.App.execute(App.java:318)
+	at com.epac.imposition.bookblock.App.main(App.java:586)
+2018-02-07 16:31:33 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 16:31:39 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-07 16:31:43 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782258106550E1 successfully fetched from Esprint
+2018-02-07 16:31:43 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782258106550E1
+2018-02-07 16:31:43 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-07 16:31:43 DEBUG com.epac.imposition.bookblock.App::downloadText	     - downlaoding book 9782258106550E1 (22,08 Mb)
+2018-02-07 16:32:32 DEBUG com.epac.imposition.config.ConfigurationWatchDog::doOnChange     - File changed /Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties, reloading...
+2018-02-07 16:32:32 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 16:33:11 DEBUG com.epac.imposition.bookblock.App::downloadText	     - File downloaded /Users/oumaimakridene/Documents/EPAC/output/original/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 16:33:12 DEBUG com.epac.imposition.bookblock.TextComposer::checkImprintPage     - is last page empty? false
+2018-02-07 16:33:12 DEBUG com.epac.imposition.bookblock.TextComposer::checkImprintPage     - last page is not empty, adding new page for "Imprimé en France"
+2018-02-07 16:33:12 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 16:33:12 ERROR com.epac.imposition.bookblock.App::execute	     - java.lang.NullPointerException
+java.lang.NullPointerException
+	at com.epac.imposition.bookblock.PdfComposer.createSurfacesFile(PdfComposer.java:735)
+	at com.epac.imposition.bookblock.PdfComposer.createFinalFile(PdfComposer.java:68)
+	at com.epac.imposition.bookblock.App.imposeTextFile(App.java:531)
+	at com.epac.imposition.bookblock.App.execute(App.java:378)
+	at com.epac.imposition.bookblock.App.main(App.java:586)
+2018-02-07 16:46:02 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 16:46:03 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:584)
+2018-02-07 16:46:03 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 16:46:05 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-07 16:46:06 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782258106550E1 successfully fetched from Esprint
+2018-02-07 16:46:06 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782258106550E1
+2018-02-07 16:46:06 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-07 16:46:06 DEBUG com.epac.imposition.bookblock.App::execute	     - Text file already exists, no need to redownload: /Users/oumaimakridene/Documents/EPAC/output/original/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 16:46:07 DEBUG com.epac.imposition.bookblock.TextComposer::checkImprintPage     - is last page empty? false
+2018-02-07 16:46:07 DEBUG com.epac.imposition.bookblock.TextComposer::checkImprintPage     - last page is not empty, adding new page for "Imprimé en France"
+2018-02-07 16:46:08 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 16:46:08 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782258106550E1
+2018-02-07 16:46:08 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-07 16:46:08 DEBUG freemarker.cache     - Couldn't find template in cache for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed); will try to load it.
+2018-02-07 16:46:08 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr_FR.tmpl"): Not found
+2018-02-07 16:46:08 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr.tmpl"): Not found
+2018-02-07 16:46:08 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate.tmpl"): Found
+2018-02-07 16:46:08 DEBUG freemarker.cache     - Loading template for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed) from "file:/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/target/classes/com/epac/imposition/rip/jdfJobTemplate.tmpl"
+2018-02-07 16:46:08 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Jdf Job created successfully at /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/53.21_RTL_POPEM9782258106550E1.text.jdf
+2018-02-07 16:46:08 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782258106550E1
+2018-02-07 16:47:14 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 16:47:15 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:584)
+2018-02-07 16:47:15 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 16:47:17 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-07 16:47:18 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782258106550E1 successfully fetched from Esprint
+2018-02-07 16:47:18 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782258106550E1
+2018-02-07 16:47:18 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-07 16:47:18 DEBUG com.epac.imposition.bookblock.App::execute	     - Text file already exists, no need to redownload: /Users/oumaimakridene/Documents/EPAC/output/original/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 16:47:19 DEBUG com.epac.imposition.bookblock.TextComposer::checkImprintPage     - is last page empty? false
+2018-02-07 16:47:19 DEBUG com.epac.imposition.bookblock.TextComposer::checkImprintPage     - last page is not empty, adding new page for "Imprimé en France"
+2018-02-07 16:47:19 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 16:47:19 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782258106550E1
+2018-02-07 16:47:19 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-07 16:47:19 ERROR com.epac.imposition.rip.RipJobCreator::createRipJob	     - Error when opening the files needed for RIP to get Metadata
+java.io.IOException: /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/8.496_RTL_POPSM9782258106550E1.text.pdf not found as file or resource.
+	at com.itextpdf.text.io.RandomAccessSourceFactory.createByReadingToMemory(RandomAccessSourceFactory.java:262)
+	at com.itextpdf.text.io.RandomAccessSourceFactory.createBestSource(RandomAccessSourceFactory.java:172)
+	at com.itextpdf.text.pdf.PdfReader.<init>(PdfReader.java:240)
+	at com.itextpdf.text.pdf.PdfReader.<init>(PdfReader.java:224)
+	at com.itextpdf.text.pdf.PdfReader.<init>(PdfReader.java:214)
+	at com.epac.imposition.rip.RipJobCreator.createRipJob(RipJobCreator.java:47)
+	at com.epac.imposition.bookblock.App.imposeTextFile(App.java:534)
+	at com.epac.imposition.bookblock.App.execute(App.java:376)
+	at com.epac.imposition.bookblock.App.main(App.java:584)
+2018-02-07 16:47:19 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782258106550E1
+2018-02-07 16:47:41 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 16:47:42 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:584)
+2018-02-07 16:47:42 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 16:48:26 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 16:48:27 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:584)
+2018-02-07 16:48:27 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 16:48:29 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-07 16:48:30 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782258106550E1 successfully fetched from Esprint
+2018-02-07 16:48:30 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782258106550E1
+2018-02-07 16:48:30 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-07 16:48:30 DEBUG com.epac.imposition.bookblock.App::execute	     - Text file already exists, no need to redownload: /Users/oumaimakridene/Documents/EPAC/output/original/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 16:48:31 DEBUG com.epac.imposition.bookblock.TextComposer::checkImprintPage     - is last page empty? false
+2018-02-07 16:48:31 DEBUG com.epac.imposition.bookblock.TextComposer::checkImprintPage     - last page is not empty, adding new page for "Imprimé en France"
+2018-02-07 16:48:32 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 16:48:32 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782258106550E1
+2018-02-07 16:48:32 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-07 16:48:32 DEBUG freemarker.cache     - Couldn't find template in cache for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed); will try to load it.
+2018-02-07 16:48:32 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr_FR.tmpl"): Not found
+2018-02-07 16:48:32 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr.tmpl"): Not found
+2018-02-07 16:48:32 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate.tmpl"): Found
+2018-02-07 16:48:32 DEBUG freemarker.cache     - Loading template for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed) from "file:/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/target/classes/com/epac/imposition/rip/jdfJobTemplate.tmpl"
+2018-02-07 16:48:32 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Jdf Job created successfully at /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/8.496_RTL_POPSM9782258106550E1.text.jdf
+2018-02-07 16:48:32 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782258106550E1
+2018-02-07 16:49:23 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 16:49:23 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:584)
+2018-02-07 16:49:24 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 16:49:26 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-07 16:49:27 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782258106550E1 successfully fetched from Esprint
+2018-02-07 16:49:27 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782258106550E1
+2018-02-07 16:49:27 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-07 16:49:27 DEBUG com.epac.imposition.bookblock.App::execute	     - Text file already exists, no need to redownload: /Users/oumaimakridene/Documents/EPAC/output/original/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 16:49:27 DEBUG com.epac.imposition.bookblock.TextComposer::checkImprintPage     - is last page empty? false
+2018-02-07 16:49:27 DEBUG com.epac.imposition.bookblock.TextComposer::checkImprintPage     - last page is not empty, adding new page for "Imprimé en France"
+2018-02-07 16:49:28 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 16:49:28 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782258106550E1
+2018-02-07 16:49:28 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-07 16:49:28 DEBUG freemarker.cache     - Couldn't find template in cache for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed); will try to load it.
+2018-02-07 16:49:28 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr_FR.tmpl"): Not found
+2018-02-07 16:49:28 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr.tmpl"): Not found
+2018-02-07 16:49:28 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate.tmpl"): Found
+2018-02-07 16:49:28 DEBUG freemarker.cache     - Loading template for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed) from "file:/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/target/classes/com/epac/imposition/rip/jdfJobTemplate.tmpl"
+2018-02-07 16:49:28 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Jdf Job created successfully at /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/53.21_RTL_POPEM9782258106550E1.text.jdf
+2018-02-07 16:49:28 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782258106550E1
+2018-02-07 17:09:08 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 17:09:08 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:584)
+2018-02-07 17:09:08 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 17:09:11 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-07 17:09:12 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782258106550E1 successfully fetched from Esprint
+2018-02-07 17:09:12 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782258106550E1
+2018-02-07 17:09:12 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-07 17:09:12 DEBUG com.epac.imposition.bookblock.App::execute	     - Text file already exists, no need to redownload: /Users/oumaimakridene/Documents/EPAC/output/original/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 17:09:14 DEBUG com.epac.imposition.bookblock.TextComposer::checkImprintPage     - is last page empty? false
+2018-02-07 17:09:14 DEBUG com.epac.imposition.bookblock.TextComposer::checkImprintPage     - last page is not empty, adding new page for "Imprimé en France"
+2018-02-07 17:09:14 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 17:09:15 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782258106550E1
+2018-02-07 17:09:15 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-07 17:09:15 DEBUG freemarker.cache     - Couldn't find template in cache for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed); will try to load it.
+2018-02-07 17:09:15 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr_FR.tmpl"): Not found
+2018-02-07 17:09:15 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr.tmpl"): Not found
+2018-02-07 17:09:15 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate.tmpl"): Found
+2018-02-07 17:09:15 DEBUG freemarker.cache     - Loading template for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed) from "file:/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/target/classes/com/epac/imposition/rip/jdfJobTemplate.tmpl"
+2018-02-07 17:09:15 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Jdf Job created successfully at /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/53.21_RTL_POPEM9782258106550E1.text.jdf
+2018-02-07 17:09:15 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782258106550E1
+2018-02-07 17:09:47 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 17:09:48 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:584)
+2018-02-07 17:09:48 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 17:09:50 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-07 17:09:51 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782258106550E1 successfully fetched from Esprint
+2018-02-07 17:09:51 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782258106550E1
+2018-02-07 17:09:51 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-07 17:09:51 DEBUG com.epac.imposition.bookblock.App::execute	     - Text file already exists, no need to redownload: /Users/oumaimakridene/Documents/EPAC/output/original/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 17:09:52 DEBUG com.epac.imposition.bookblock.TextComposer::checkImprintPage     - is last page empty? false
+2018-02-07 17:09:52 DEBUG com.epac.imposition.bookblock.TextComposer::checkImprintPage     - last page is not empty, adding new page for "Imprimé en France"
+2018-02-07 17:09:52 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 17:09:52 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782258106550E1
+2018-02-07 17:09:52 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-07 17:09:52 DEBUG freemarker.cache     - Couldn't find template in cache for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed); will try to load it.
+2018-02-07 17:09:52 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr_FR.tmpl"): Not found
+2018-02-07 17:09:52 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr.tmpl"): Not found
+2018-02-07 17:09:52 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate.tmpl"): Found
+2018-02-07 17:09:52 DEBUG freemarker.cache     - Loading template for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed) from "file:/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/target/classes/com/epac/imposition/rip/jdfJobTemplate.tmpl"
+2018-02-07 17:09:53 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Jdf Job created successfully at /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/8.496_RTL_POPSM9782258106550E1.text.jdf
+2018-02-07 17:09:53 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782258106550E1
+2018-02-07 17:12:37 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 17:12:37 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:584)
+2018-02-07 17:12:38 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 17:12:41 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-07 17:12:42 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782258106550E1 successfully fetched from Esprint
+2018-02-07 17:12:42 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782258106550E1
+2018-02-07 17:12:42 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-07 17:12:42 DEBUG com.epac.imposition.bookblock.App::execute	     - Text file already exists, no need to redownload: /Users/oumaimakridene/Documents/EPAC/output/original/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 17:12:43 DEBUG com.epac.imposition.bookblock.TextComposer::checkImprintPage     - is last page empty? false
+2018-02-07 17:12:43 DEBUG com.epac.imposition.bookblock.TextComposer::checkImprintPage     - last page is not empty, adding new page for "Imprimé en France"
+2018-02-07 17:12:44 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 17:17:38 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 17:17:39 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:584)
+2018-02-07 17:17:39 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 17:17:41 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-07 17:17:42 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782258106550E1 successfully fetched from Esprint
+2018-02-07 17:17:42 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782258106550E1
+2018-02-07 17:17:42 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-07 17:17:42 DEBUG com.epac.imposition.bookblock.App::downloadText	     - downlaoding book 9782258106550E1 (22,08 Mb)
+2018-02-07 17:18:38 DEBUG com.epac.imposition.config.ConfigurationWatchDog::doOnChange     - File changed /Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties, reloading...
+2018-02-07 17:18:38 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 17:19:32 DEBUG com.epac.imposition.bookblock.App::downloadText	     - File downloaded /Users/oumaimakridene/Documents/EPAC/output/original/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 17:19:33 DEBUG com.epac.imposition.bookblock.TextComposer::checkImprintPage     - is last page empty? false
+2018-02-07 17:19:33 DEBUG com.epac.imposition.bookblock.TextComposer::checkImprintPage     - last page is not empty, adding new page for "Imprimé en France"
+2018-02-07 17:19:34 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 17:21:02 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782258106550E1
+2018-02-07 17:21:02 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-07 17:21:02 DEBUG freemarker.cache     - Couldn't find template in cache for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed); will try to load it.
+2018-02-07 17:21:02 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr_FR.tmpl"): Not found
+2018-02-07 17:21:02 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr.tmpl"): Not found
+2018-02-07 17:21:02 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate.tmpl"): Found
+2018-02-07 17:21:02 DEBUG freemarker.cache     - Loading template for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed) from "file:/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/target/classes/com/epac/imposition/rip/jdfJobTemplate.tmpl"
+2018-02-07 17:21:02 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Jdf Job created successfully at /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/8.496_RTL_POPSM9782258106550E1.text.jdf
+2018-02-07 17:21:02 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782258106550E1
+2018-02-07 17:22:57 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 17:22:57 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:584)
+2018-02-07 17:22:57 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 17:22:59 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-07 17:23:00 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782258106550E1 successfully fetched from Esprint
+2018-02-07 17:23:00 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782258106550E1
+2018-02-07 17:23:00 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-07 17:23:00 DEBUG com.epac.imposition.bookblock.App::execute	     - Text file already exists, no need to redownload: /Users/oumaimakridene/Documents/EPAC/output/original/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 17:23:01 DEBUG com.epac.imposition.bookblock.TextComposer::checkImprintPage     - is last page empty? false
+2018-02-07 17:23:01 DEBUG com.epac.imposition.bookblock.TextComposer::checkImprintPage     - last page is not empty, adding new page for "Imprimé en France"
+2018-02-07 17:23:01 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 17:23:02 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782258106550E1
+2018-02-07 17:23:02 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-07 17:23:02 DEBUG freemarker.cache     - Couldn't find template in cache for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed); will try to load it.
+2018-02-07 17:23:02 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr_FR.tmpl"): Not found
+2018-02-07 17:23:02 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr.tmpl"): Not found
+2018-02-07 17:23:02 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate.tmpl"): Found
+2018-02-07 17:23:02 DEBUG freemarker.cache     - Loading template for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed) from "file:/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/target/classes/com/epac/imposition/rip/jdfJobTemplate.tmpl"
+2018-02-07 17:23:02 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Jdf Job created successfully at /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/53.21_RTL_POPEM9782258106550E1.text.jdf
+2018-02-07 17:23:02 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782258106550E1
+2018-02-07 17:43:05 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 17:43:06 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:584)
+2018-02-07 17:43:06 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 17:43:09 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-07 17:43:11 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782258106550E1 successfully fetched from Esprint
+2018-02-07 17:43:11 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782258106550E1
+2018-02-07 17:43:11 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-07 17:43:11 DEBUG com.epac.imposition.bookblock.App::execute	     - Text file already exists, no need to redownload: /Users/oumaimakridene/Documents/EPAC/output/original/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 17:43:12 DEBUG com.epac.imposition.bookblock.TextComposer::checkImprintPage     - is last page empty? false
+2018-02-07 17:43:12 DEBUG com.epac.imposition.bookblock.TextComposer::checkImprintPage     - last page is not empty, adding new page for "Imprimé en France"
+2018-02-07 17:43:13 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 17:43:14 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782258106550E1
+2018-02-07 17:43:14 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-07 17:43:14 DEBUG freemarker.cache     - Couldn't find template in cache for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed); will try to load it.
+2018-02-07 17:43:14 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr_FR.tmpl"): Not found
+2018-02-07 17:43:14 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr.tmpl"): Not found
+2018-02-07 17:43:14 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate.tmpl"): Found
+2018-02-07 17:43:14 DEBUG freemarker.cache     - Loading template for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed) from "file:/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/target/classes/com/epac/imposition/rip/jdfJobTemplate.tmpl"
+2018-02-07 17:43:14 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Jdf Job created successfully at /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/8.496_RTL_POPSM9782258106550E1.text.jdf
+2018-02-07 17:43:14 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782258106550E1
+2018-02-07 17:48:08 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 17:48:09 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:584)
+2018-02-07 17:48:09 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 17:48:11 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-07 17:48:12 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782258106550E1 successfully fetched from Esprint
+2018-02-07 17:48:12 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782258106550E1
+2018-02-07 17:48:12 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-07 17:48:12 DEBUG com.epac.imposition.bookblock.App::execute	     - Text file already exists, no need to redownload: /Users/oumaimakridene/Documents/EPAC/output/original/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 17:48:13 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 17:48:13 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782258106550E1
+2018-02-07 17:48:13 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-07 17:48:13 DEBUG freemarker.cache     - Couldn't find template in cache for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed); will try to load it.
+2018-02-07 17:48:13 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr_FR.tmpl"): Not found
+2018-02-07 17:48:13 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr.tmpl"): Not found
+2018-02-07 17:48:13 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate.tmpl"): Found
+2018-02-07 17:48:13 DEBUG freemarker.cache     - Loading template for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed) from "file:/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/target/classes/com/epac/imposition/rip/jdfJobTemplate.tmpl"
+2018-02-07 17:48:13 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Jdf Job created successfully at /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/8.496_RTL_POPSM9782258106550E1.text.jdf
+2018-02-07 17:48:13 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782258106550E1
+2018-02-07 17:49:59 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 17:49:59 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:584)
+2018-02-07 17:49:59 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 17:50:01 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-07 17:50:02 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782258106550E1 successfully fetched from Esprint
+2018-02-07 17:50:02 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782258106550E1
+2018-02-07 17:50:02 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-07 17:50:03 DEBUG com.epac.imposition.bookblock.App::downloadText	     - downlaoding book 9782258106550E1 (22,08 Mb)
+2018-02-07 17:50:42 DEBUG com.epac.imposition.bookblock.App::downloadText	     - File downloaded /Users/oumaimakridene/Documents/EPAC/output/original/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 17:50:43 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 17:50:43 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782258106550E1
+2018-02-07 17:50:43 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-07 17:50:43 DEBUG freemarker.cache     - Couldn't find template in cache for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed); will try to load it.
+2018-02-07 17:50:43 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr_FR.tmpl"): Not found
+2018-02-07 17:50:43 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr.tmpl"): Not found
+2018-02-07 17:50:43 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate.tmpl"): Found
+2018-02-07 17:50:43 DEBUG freemarker.cache     - Loading template for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed) from "file:/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/target/classes/com/epac/imposition/rip/jdfJobTemplate.tmpl"
+2018-02-07 17:50:44 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Jdf Job created successfully at /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/8.496_RTL_POPSM9782258106550E1.text.jdf
+2018-02-07 17:50:44 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782258106550E1
+2018-02-07 17:50:59 DEBUG com.epac.imposition.config.ConfigurationWatchDog::doOnChange     - File changed /Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties, reloading...
+2018-02-07 17:50:59 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 17:52:17 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 17:52:17 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:584)
+2018-02-07 17:52:17 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 17:52:19 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-07 17:52:20 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782258106550E1 successfully fetched from Esprint
+2018-02-07 17:52:20 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782258106550E1
+2018-02-07 17:52:20 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-07 17:52:20 DEBUG com.epac.imposition.bookblock.App::execute	     - Text file already exists, no need to redownload: /Users/oumaimakridene/Documents/EPAC/output/original/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 17:52:21 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 17:52:21 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782258106550E1
+2018-02-07 17:52:21 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-07 17:52:21 DEBUG freemarker.cache     - Couldn't find template in cache for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed); will try to load it.
+2018-02-07 17:52:21 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr_FR.tmpl"): Not found
+2018-02-07 17:52:21 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr.tmpl"): Not found
+2018-02-07 17:52:21 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate.tmpl"): Found
+2018-02-07 17:52:21 DEBUG freemarker.cache     - Loading template for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed) from "file:/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/target/classes/com/epac/imposition/rip/jdfJobTemplate.tmpl"
+2018-02-07 17:52:22 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Jdf Job created successfully at /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/53.21_RTL_POPEM9782258106550E1.text.jdf
+2018-02-07 17:52:22 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782258106550E1
+2018-02-07 17:55:43 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 17:55:43 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:584)
+2018-02-07 17:55:43 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 17:55:46 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-07 17:55:46 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782258106550E1 successfully fetched from Esprint
+2018-02-07 17:55:46 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782258106550E1
+2018-02-07 17:55:46 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-07 17:55:46 DEBUG com.epac.imposition.bookblock.App::execute	     - Text file already exists, no need to redownload: /Users/oumaimakridene/Documents/EPAC/output/original/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 17:55:47 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 17:55:48 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782258106550E1
+2018-02-07 17:55:48 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-07 17:55:48 DEBUG freemarker.cache     - Couldn't find template in cache for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed); will try to load it.
+2018-02-07 17:55:48 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr_FR.tmpl"): Not found
+2018-02-07 17:55:48 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr.tmpl"): Not found
+2018-02-07 17:55:48 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate.tmpl"): Found
+2018-02-07 17:55:48 DEBUG freemarker.cache     - Loading template for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed) from "file:/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/target/classes/com/epac/imposition/rip/jdfJobTemplate.tmpl"
+2018-02-07 17:55:48 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Jdf Job created successfully at /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/53.21_RTL_POPEM9782258106550E1.text.jdf
+2018-02-07 17:55:48 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782258106550E1
+2018-02-07 17:57:32 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 17:57:32 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:584)
+2018-02-07 17:57:33 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 17:57:35 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-07 17:57:35 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782258106550E1 successfully fetched from Esprint
+2018-02-07 17:57:35 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782258106550E1
+2018-02-07 17:57:35 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-07 17:57:35 DEBUG com.epac.imposition.bookblock.App::execute	     - Text file already exists, no need to redownload: /Users/oumaimakridene/Documents/EPAC/output/original/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 17:57:36 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 17:57:36 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782258106550E1
+2018-02-07 17:57:36 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-07 17:57:37 DEBUG freemarker.cache     - Couldn't find template in cache for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed); will try to load it.
+2018-02-07 17:57:37 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr_FR.tmpl"): Not found
+2018-02-07 17:57:37 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr.tmpl"): Not found
+2018-02-07 17:57:37 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate.tmpl"): Found
+2018-02-07 17:57:37 DEBUG freemarker.cache     - Loading template for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed) from "file:/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/target/classes/com/epac/imposition/rip/jdfJobTemplate.tmpl"
+2018-02-07 17:57:37 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Jdf Job created successfully at /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/53.21_RTL_POPEM9782258106550E1.text.jdf
+2018-02-07 17:57:37 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782258106550E1
+2018-02-07 17:59:16 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 17:59:16 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:584)
+2018-02-07 17:59:17 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 17:59:19 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-07 17:59:19 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782258106550E1 successfully fetched from Esprint
+2018-02-07 17:59:19 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782258106550E1
+2018-02-07 17:59:19 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-07 17:59:19 DEBUG com.epac.imposition.bookblock.App::execute	     - Text file already exists, no need to redownload: /Users/oumaimakridene/Documents/EPAC/output/original/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 17:59:20 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 17:59:20 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782258106550E1
+2018-02-07 17:59:20 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-07 17:59:21 DEBUG freemarker.cache     - Couldn't find template in cache for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed); will try to load it.
+2018-02-07 17:59:21 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr_FR.tmpl"): Not found
+2018-02-07 17:59:21 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr.tmpl"): Not found
+2018-02-07 17:59:21 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate.tmpl"): Found
+2018-02-07 17:59:21 DEBUG freemarker.cache     - Loading template for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed) from "file:/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/target/classes/com/epac/imposition/rip/jdfJobTemplate.tmpl"
+2018-02-07 17:59:21 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Jdf Job created successfully at /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/53.21_RTL_POPEM9782258106550E1.text.jdf
+2018-02-07 17:59:21 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782258106550E1
+2018-02-07 18:01:02 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 18:01:03 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:584)
+2018-02-07 18:01:03 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 18:01:05 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-07 18:01:05 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782258106550E1 successfully fetched from Esprint
+2018-02-07 18:01:05 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782258106550E1
+2018-02-07 18:01:05 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-07 18:01:06 DEBUG com.epac.imposition.bookblock.App::execute	     - Text file already exists, no need to redownload: /Users/oumaimakridene/Documents/EPAC/output/original/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 18:01:07 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 18:01:07 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782258106550E1
+2018-02-07 18:01:07 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-07 18:01:07 DEBUG freemarker.cache     - Couldn't find template in cache for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed); will try to load it.
+2018-02-07 18:01:07 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr_FR.tmpl"): Not found
+2018-02-07 18:01:07 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr.tmpl"): Not found
+2018-02-07 18:01:07 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate.tmpl"): Found
+2018-02-07 18:01:07 DEBUG freemarker.cache     - Loading template for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed) from "file:/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/target/classes/com/epac/imposition/rip/jdfJobTemplate.tmpl"
+2018-02-07 18:01:07 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Jdf Job created successfully at /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/53.21_RTL_POPEM9782258106550E1.text.jdf
+2018-02-07 18:01:07 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782258106550E1
+2018-02-07 18:01:47 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 18:01:48 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:584)
+2018-02-07 18:01:48 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 18:01:50 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-07 18:01:51 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782258106550E1 successfully fetched from Esprint
+2018-02-07 18:01:51 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782258106550E1
+2018-02-07 18:01:51 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-07 18:01:51 DEBUG com.epac.imposition.bookblock.App::execute	     - Text file already exists, no need to redownload: /Users/oumaimakridene/Documents/EPAC/output/original/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 18:01:52 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 18:01:52 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782258106550E1
+2018-02-07 18:01:52 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-07 18:01:52 DEBUG freemarker.cache     - Couldn't find template in cache for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed); will try to load it.
+2018-02-07 18:01:52 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr_FR.tmpl"): Not found
+2018-02-07 18:01:52 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr.tmpl"): Not found
+2018-02-07 18:01:52 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate.tmpl"): Found
+2018-02-07 18:01:52 DEBUG freemarker.cache     - Loading template for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed) from "file:/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/target/classes/com/epac/imposition/rip/jdfJobTemplate.tmpl"
+2018-02-07 18:01:52 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Jdf Job created successfully at /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/53.21_RTL_POPEM9782258106550E1.text.jdf
+2018-02-07 18:01:52 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782258106550E1
+2018-02-07 18:02:35 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 18:02:36 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:584)
+2018-02-07 18:02:36 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 18:02:38 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-07 18:02:39 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782258106550E1 successfully fetched from Esprint
+2018-02-07 18:02:39 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782258106550E1
+2018-02-07 18:02:39 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-07 18:02:39 DEBUG com.epac.imposition.bookblock.App::execute	     - Text file already exists, no need to redownload: /Users/oumaimakridene/Documents/EPAC/output/original/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 18:02:39 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 18:02:40 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782258106550E1
+2018-02-07 18:02:40 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-07 18:02:40 DEBUG freemarker.cache     - Couldn't find template in cache for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed); will try to load it.
+2018-02-07 18:02:40 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr_FR.tmpl"): Not found
+2018-02-07 18:02:40 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr.tmpl"): Not found
+2018-02-07 18:02:40 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate.tmpl"): Found
+2018-02-07 18:02:40 DEBUG freemarker.cache     - Loading template for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed) from "file:/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/target/classes/com/epac/imposition/rip/jdfJobTemplate.tmpl"
+2018-02-07 18:02:40 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Jdf Job created successfully at /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/53.21_RTL_POPEM9782258106550E1.text.jdf
+2018-02-07 18:02:40 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782258106550E1
+2018-02-07 18:04:16 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 18:04:16 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:584)
+2018-02-07 18:04:17 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 18:04:18 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-07 18:04:19 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782258106550E1 successfully fetched from Esprint
+2018-02-07 18:04:19 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782258106550E1
+2018-02-07 18:04:19 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-07 18:04:19 DEBUG com.epac.imposition.bookblock.App::execute	     - Text file already exists, no need to redownload: /Users/oumaimakridene/Documents/EPAC/output/original/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 18:04:20 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 18:04:20 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782258106550E1
+2018-02-07 18:04:20 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-07 18:04:21 DEBUG freemarker.cache     - Couldn't find template in cache for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed); will try to load it.
+2018-02-07 18:04:21 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr_FR.tmpl"): Not found
+2018-02-07 18:04:21 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr.tmpl"): Not found
+2018-02-07 18:04:21 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate.tmpl"): Found
+2018-02-07 18:04:21 DEBUG freemarker.cache     - Loading template for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed) from "file:/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/target/classes/com/epac/imposition/rip/jdfJobTemplate.tmpl"
+2018-02-07 18:04:21 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Jdf Job created successfully at /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/8.496_RTL_POPSM9782258106550E1.text.jdf
+2018-02-07 18:04:21 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782258106550E1
+2018-02-07 18:04:53 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 18:04:54 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:584)
+2018-02-07 18:04:54 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 18:04:56 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-07 18:04:57 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782258106550E1 successfully fetched from Esprint
+2018-02-07 18:04:57 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782258106550E1
+2018-02-07 18:04:57 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-07 18:04:57 DEBUG com.epac.imposition.bookblock.App::execute	     - Text file already exists, no need to redownload: /Users/oumaimakridene/Documents/EPAC/output/original/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 18:04:58 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 18:04:58 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782258106550E1
+2018-02-07 18:04:58 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-07 18:04:59 DEBUG freemarker.cache     - Couldn't find template in cache for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed); will try to load it.
+2018-02-07 18:04:59 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr_FR.tmpl"): Not found
+2018-02-07 18:04:59 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr.tmpl"): Not found
+2018-02-07 18:04:59 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate.tmpl"): Found
+2018-02-07 18:04:59 DEBUG freemarker.cache     - Loading template for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed) from "file:/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/target/classes/com/epac/imposition/rip/jdfJobTemplate.tmpl"
+2018-02-07 18:04:59 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Jdf Job created successfully at /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/53.21_RTL_POPEM9782258106550E1.text.jdf
+2018-02-07 18:04:59 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782258106550E1
+2018-02-07 18:21:57 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 18:21:58 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:584)
+2018-02-07 18:21:58 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 18:22:02 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-07 18:22:03 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782258106550E1 successfully fetched from Esprint
+2018-02-07 18:22:03 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782258106550E1
+2018-02-07 18:22:03 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-07 18:22:03 DEBUG com.epac.imposition.bookblock.App::execute	     - Text file already exists, no need to redownload: /Users/oumaimakridene/Documents/EPAC/output/original/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 18:22:07 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 18:22:08 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782258106550E1
+2018-02-07 18:22:08 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-07 18:22:08 DEBUG freemarker.cache     - Couldn't find template in cache for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed); will try to load it.
+2018-02-07 18:22:08 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr_FR.tmpl"): Not found
+2018-02-07 18:22:08 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr.tmpl"): Not found
+2018-02-07 18:22:08 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate.tmpl"): Found
+2018-02-07 18:22:08 DEBUG freemarker.cache     - Loading template for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed) from "file:/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/target/classes/com/epac/imposition/rip/jdfJobTemplate.tmpl"
+2018-02-07 18:22:09 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Jdf Job created successfully at /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/53.21_RTL_POPEM9782258106550E1.text.jdf
+2018-02-07 18:22:09 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782258106550E1
+2018-02-07 18:28:28 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 18:28:30 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:584)
+2018-02-07 18:28:30 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 18:28:34 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-07 18:28:35 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782258106550E1 successfully fetched from Esprint
+2018-02-07 18:28:35 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782258106550E1
+2018-02-07 18:28:35 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-07 18:28:35 DEBUG com.epac.imposition.bookblock.App::execute	     - Text file already exists, no need to redownload: /Users/oumaimakridene/Documents/EPAC/output/original/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 18:29:28 DEBUG com.epac.imposition.config.ConfigurationWatchDog::doOnChange     - File changed /Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties, reloading...
+2018-02-07 18:29:28 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 18:36:07 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 18:36:08 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:584)
+2018-02-07 18:36:08 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 18:36:11 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-07 18:36:11 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782258106550E1 successfully fetched from Esprint
+2018-02-07 18:36:11 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782258106550E1
+2018-02-07 18:36:11 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-07 18:36:11 DEBUG com.epac.imposition.bookblock.App::execute	     - Text file already exists, no need to redownload: /Users/oumaimakridene/Documents/EPAC/output/original/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 18:37:12 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 18:37:12 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:584)
+2018-02-07 18:37:12 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 18:37:14 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-07 18:37:15 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782258106550E1 successfully fetched from Esprint
+2018-02-07 18:37:15 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782258106550E1
+2018-02-07 18:37:15 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-07 18:37:15 DEBUG com.epac.imposition.bookblock.App::execute	     - Text file already exists, no need to redownload: /Users/oumaimakridene/Documents/EPAC/output/original/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 18:37:16 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Writing imposed file to /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 18:37:16 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - Text imposition finished successfully for 9782258106550E1
+2018-02-07 18:37:16 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Start cretaing the Rip Jdf Job ....
+2018-02-07 18:37:16 DEBUG freemarker.cache     - Couldn't find template in cache for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed); will try to load it.
+2018-02-07 18:37:16 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr_FR.tmpl"): Not found
+2018-02-07 18:37:16 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate_fr.tmpl"): Not found
+2018-02-07 18:37:16 DEBUG freemarker.cache     - TemplateLoader.findTemplateSource("jdfJobTemplate.tmpl"): Found
+2018-02-07 18:37:16 DEBUG freemarker.cache     - Loading template for "jdfJobTemplate.tmpl"("fr_FR", UTF-8, parsed) from "file:/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/target/classes/com/epac/imposition/rip/jdfJobTemplate.tmpl"
+2018-02-07 18:37:16 DEBUG com.epac.imposition.rip.RipJobCreator::createRipJob	     - Jdf Job created successfully at /Users/oumaimakridene/Documents/EPAC/output/imposed/9782258106550E1/53.21_RTL_POPEM9782258106550E1.text.jdf
+2018-02-07 18:37:16 DEBUG com.epac.imposition.bookblock.App::imposeTextFile	     - JDF file created successfully for 9782258106550E1
+2018-02-07 21:07:08 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 21:07:08 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:596)
+2018-02-07 21:07:08 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 21:07:11 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-07 21:07:12 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782258106550E1 successfully fetched from Esprint
+2018-02-07 21:07:12 ERROR com.epac.imposition.bookblock.App::execute	     - Error while parsing values from config file... 
+java.lang.NullPointerException
+	at sun.misc.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:1838)
+	at sun.misc.FloatingDecimal.parseFloat(FloatingDecimal.java:122)
+	at java.lang.Float.parseFloat(Float.java:451)
+	at com.epac.imposition.bookblock.ImpositionJob.create(ImpositionJob.java:747)
+	at com.epac.imposition.bookblock.App.execute(App.java:357)
+	at com.epac.imposition.bookblock.App.main(App.java:596)
+2018-02-07 21:13:01 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 21:13:02 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:602)
+2018-02-07 21:13:02 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 21:13:04 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-07 21:13:05 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782258106550E1 successfully fetched from Esprint
+2018-02-07 21:13:05 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782258106550E1
+2018-02-07 21:13:05 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-07 21:13:05 DEBUG com.epac.imposition.bookblock.App::execute	     - Text file already exists, no need to redownload: /Users/oumaimakridene/Documents/EPAC/output/original/9782258106550E1/9782258106550E1.text.pdf
+2018-02-07 21:14:13 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 21:14:14 ERROR com.epac.imposition.bookblock.App::getBooks	     - books.txt is not a valid JSON file, trying considering it as bookId list
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.util.ArrayList` out of VALUE_NUMBER_FLOAT token
+ at [Source: (File); line: 1, column: 1]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:63)
+	at com.fasterxml.jackson.databind.DeserializationContext.reportInputMismatch(DeserializationContext.java:1342)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1138)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleUnexpectedToken(DeserializationContext.java:1092)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.handleNonArray(CollectionDeserializer.java:336)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:264)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:244)
+	at com.fasterxml.jackson.databind.deser.std.CollectionDeserializer.deserialize(CollectionDeserializer.java:27)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4001)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2928)
+	at com.epac.imposition.bookblock.App.getBooks(App.java:208)
+	at com.epac.imposition.bookblock.App.execute(App.java:316)
+	at com.epac.imposition.bookblock.App.main(App.java:602)
+2018-02-07 21:14:14 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication: https://sso.esprint.com.mt/oauth/token
+2018-02-07 21:14:16 DEBUG com.epac.imposition.bookblock.App::authenticate	     - Authentication successfully completed.
+2018-02-07 21:14:17 DEBUG com.epac.imposition.bookblock.App::getBook	     - Metadata of book 9782258106550E1 successfully fetched from Esprint
+2018-02-07 21:14:17 DEBUG com.epac.imposition.bookblock.App::execute	     - Imposition started for 9782258106550E1
+2018-02-07 21:14:17 DEBUG com.epac.imposition.bookblock.App::execute	     - Text Imposition
+2018-02-07 21:14:18 DEBUG com.epac.imposition.bookblock.App::downloadText	     - downlaoding book 9782258106550E1 (22,08 Mb)
+2018-02-07 21:15:13 DEBUG com.epac.imposition.config.ConfigurationWatchDog::doOnChange     - File changed /Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties, reloading...
+2018-02-07 21:15:13 DEBUG com.epac.imposition.config.Configuration::reload     - Configuration file [/Users/oumaimakridene/Documents/EPAC/svn/tools/imposer_fr_auto/trunk/imposition.properties] Loaded successfully 
+2018-02-07 21:18:52 DEBUG com.epac.imposition.bookblock.App::downloadText	     - File downloaded /Users/oumaimakridene/Documents/EPAC/output/original/9782258106550E1/9782258106550E1.text.pdf

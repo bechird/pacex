@@ -1,0 +1,29 @@
+<div class="card">
+    <div class="card-header ch-alt m-b-20">
+        <h2>{{ 'loadTagsList.TITLE'| translate }}<small>{{ 'loadTagsList.DESCRIPTION'| translate }} <i class="zmdi zmdi-plus-circle-o"></i> {{ 'loadTagsList.LIGNE2' | translate }}  
+          <a href="#/ordersPage">  {{ 'loadTagsList.LIEN' | translate }}</a>.</small></h2>
+
+        <button class="btn bgm-teal btn-float waves-effect waves-circle" ng-click="openAddLoadTagModal()" uib-tooltip="{{ 'loadTagsList.Add_LoadTag'| translate }}"><i class="zmdi zmdi-plus"></i>
+        </button>
+    </div>
+	<br/>
+    <div class="card-body card-padding" translate-cloak>
+       <uib-alert type="success" close="successMsg = false;" ng-show="successMsg">{{alertMsg}}</uib-alert>
+		<uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{alertMsg}}</uib-alert>
+       <table datatable="" dt-options="loadTagsList.dtOptions" dt-columns="loadTagsList.dtColumns" dt-instance="loadTagsList.dtInstance" class="table table-bordered table-striped table-vmiddle ng-scope ng-table col-lg-12" width="100%" translate-cloak>
+			<tfoot>
+        		<tr class="table-placeholder" translate-cloak>
+        			<th translate-cloak translate>loadTagsList.LOADTAG_ID</th>
+        			<th translate-cloak translate>loadTagsList.JOB_ID</th>
+        			<th translate-cloak translate>loadTagsList.QUANTITY</th>
+        			<th translate-cloak translate>loadTagsList.START_TIME</th>
+		            <th translate-cloak translate>loadTagsList.FINISH_TIME</th>
+		            <th translate-cloak translate>loadTagsList.WASTE</th>
+		            <th translate-cloak translate>loadTagsList.CART</th>
+		            <th translate-cloak translate>loadTagsList.USED</th>
+		            <th></th>
+        		</tr>
+        	</tfoot>
+        </table>
+    </div>
+</div>

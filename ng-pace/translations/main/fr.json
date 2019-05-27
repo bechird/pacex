@@ -1,0 +1,59 @@
+{
+     "main" :{
+     "HOMETITLE" : "Accueil.",
+	 "LIGNE1": "Bienvenue à PACEX.",
+	 "LIGNE2":	"Pour commencer, sélectionnez un lien dans le menu...",		
+	 "PRESS": "Press ",
+	 "NEXT": "SUIVANT",
+	 "PLOWFPOLDER": "PlowFolder " },
+	 
+	 "index" :{
+	 "orders" :"Commandes",
+	 "Roles" :"Rôles",
+	 "Users" :"Utilisateurs",
+	 "LogOut" :"Déconnecter",
+	 "OrdersAcceptance":"Acceptation Commandes",
+	 "OrdersOverview" :"Aperçu Commandes",
+	 "Scheduling" :"Planification",
+	 "ScheduleBoard":"Aperçu Planification",
+	 "Stations" :"Stations",
+	 "Machines" :"Machines",
+	 "Administration" :"Administration",
+	 "Shipping" :"Livraison",
+	 "Packaging" :"Emballage",
+	 "ShippingStation" :"Station de Livraison",
+	 "PackingSlips" :"Document de Livraison",
+	 "Reports" :"Rapports",
+	 "Parts" :"Livres",
+	 "Jobs" :"Jobs",
+	 "Rolls" :"Bobines",
+	 "Sections" :"Sections",
+	 "Batches" :"Batchs",
+	 "LoadTags" :"Tickets Charges",
+	 "Logs" :"Logs",
+	 "Preferences":"Préférences",
+	 "Preferences_Facility":"Préférences Générales",
+	 "Preferences_Customer":"Préférences Clients",
+	 "Lookups" :"Lookups",
+	 "sseServersSatus" : "Connexions SSE",
+	 "ClearCache" :"Vider le Cache",
+	 "HI" :"Bonjour",
+	 "Home":"Accueil",
+	 "Press" :"Press",
+	 "PlowFolder" :"PlowFolder",
+	 "Deconnect" :"Déconnecter",
+	 "bonLivraison" :"Bon de Livraison Liste",
+	 "prodReportByDate" :"Rapports de production par date",
+	 "deliveryFormBuilder" :"Génération de BL",
+	 "deliveryFormSelect" : "Edition de BL"
+	 
+	}
+	  
+	 
+	 
+	 
+	 
+	
+	 
+	
+}

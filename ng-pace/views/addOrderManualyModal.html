@@ -1,0 +1,22 @@
+<div class="modal-header card-header ch-alt" ng-cloak>
+<h3>{{ 'addOrderManulyModal.DESCRIPTION'| translate }}</h3>
+<br/>
+</div>
+<div class="card-body card-padding col-md-12 m-b-10" ng-cloak>
+		<p class="m-b-25 m-t-25 c-black f-500">{{ 'addOrderManulyModal.PLZ_ENTER_ISBN'| translate }}</p>
+        <div class="col-md-4">
+        <label class="form-label">ISBN</label>
+          <div angucomplete-alt id="ex9" pause="100" selected-object="selectedPart" local-data="isbns" local-search="localSearch" search-fields="isbn" title-field="isbn" minlength="1" input-class="form-control form-control-small" match-class="highlight" initial-value="partSelected9">
+          </div>
+			</div>
+			<div class="col-md-8">
+				    <label class="form-label"> {{ 'addOrderManulyModal.TITLE'| translate }}</label>
+				                <div class="controls">
+				                        <input name="titre" type="text" class="form-control" ng-model="part.title">
+				                </div>
+			</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn bgm-bluegray waves-effect" ng-click="closeModal()"> {{ 'addOrderManulyModal.CANCEL'| translate }}</button>
+			    <button type="button" class="btn bgm-teal waves-effect" ng-click="fetchJobPackagingByIsbn();closeModal()"> {{ 'addOrderManulyModal.SAVE'| translate }}</button> 
+			</div>

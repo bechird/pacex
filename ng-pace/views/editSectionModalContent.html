@@ -1,0 +1,200 @@
+<div class="modal-header card-header ch-alt" ng-cloak>
+    <h3 class="modal-title"> {{ 'editSectionModalContent.TITLE'| translate }}</h3>
+</div>
+
+<div class="modal-body card-body col-md-12" ng-cloak>
+        <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+        <form name="sectionForm">
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <div class="mini-charts-item bgm-btn-blue-500">
+                        <div class="clearfix">
+                            <div class="chart stats-bar-2" data-sparkline-bar="">
+                                {{ 'viewSectionModalContent.SI'| translate }}
+                            </div>
+                            <div class="count">
+                                <small>{{ 'viewSectionModalContent.SECTION_ID'| translate }}</small>
+                                <h2>{{section.coverSectionId}}</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="input-group" style="width: 100%;">
+                        <div class="fg-line">
+                            <label class="form-label">{{ 'viewSectionModalContent.SECTION_NAME'| translate }}</label>
+                            <div class="controls">
+                                <label style="color: black">{{section.coverSectionName}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-sm-4">
+                    <div class="input-group" style="width: 100%;">
+                        <div class="fg-line">
+                            <label class="form-label">{{ 'viewSectionModalContent.LAMINATION'| translate }}</label>
+                            <div class="select">
+                                    <select style="margin-top: -9px;color: black;"  name="lamination" id="lamination" ng-model="section.laminationType.id" class="form-control">
+                                        <option value="">{{ 'editSectionModalContent.SELECT'| translate }}</option>
+                                        <option ng-repeat="option in laminationOptions | filter:search:startsWith" value="{{option.id}}">{{option.name}}</option>
+                                    </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group" style="width: 100%;">
+                        <div class="fg-line">
+                            <label class="form-label"> {{ 'viewSectionModalContent.STATUS'| translate }}</label>
+                            <div class="controls">
+                                        <select disabled style="margin-top: -9px;color: black" name="status" id="status" ng-required="true" ng-model="section.status.id" class="form-control">
+                                           <option value="">{{ 'editSectionModalContent.SELECT'| translate }}</option>
+                                           <option ng-repeat="option in sectionStatusOptions" value="{{option.id}}">{{option.name}}</option>
+                                        </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="input-group" style="width: 100%;">
+                        <div class="fg-line">
+                            <label class="form-label">{{ 'viewSectionModalContent.MACHINE'| translate }}</label>
+                                <div class="select">
+                                    <select style="margin-top: -9px;color: black;"  name="machine" id="machine" ng-model="section.machineId" class="form-control">
+                                        <option value="">{{ 'editSectionModalContent.SELECT'| translate }}</option>
+                                        <option ng-repeat="option in machineOptions | filter:search:startsWith" value="{{option.machineId}}">{{option.name}}</option>
+                                    </select>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-sm-4">
+                    <div class="input-group" style="width: 100%;">
+                        <div class="fg-line">
+                            <label class="form-label">{{ 'viewSectionModalContent.BATCH_ID'| translate }}</label>
+                            <div class="controls">
+                                <label style="color: black">{{section.batchId}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-sm-4">
+                    <div class="input-group " style="width: 100%;">
+                        <div class="fg-line">
+                            <label class="form-label">{{ 'viewSectionModalContent.COPYSTATUS'| translate }}</label>
+                            <div class="select">
+                                    <select style="margin-top: -9px;color: black;"  name="copySt" id="copySt" ng-model="section.copyStatus" class="form-control">
+                                        <option value="">{{ 'editSectionModalContent.SELECT'| translate }}</option>
+                                        <option ng-repeat="option in copyStatusOptions | filter:search:startsWith" value="{{option}}">{{option}}</option>
+                                    </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="input-group" style="width: 100%;">
+                        <div class="fg-line">
+                            <label class="form-label"> {{ 'viewSectionModalContent.QUANTITY'| translate }}</label>
+                            <div class="controls">
+                                <label style="color: black">{{section.quantity}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-sm-4">
+                    <div class="input-group" style="width: 100%;">
+                        <div class="fg-line">
+                            <label class="form-label"> {{ 'viewSectionModalContent.DUE_DATE'| translate }}</label>
+                            <div class="controls">
+                                <label style="color: black">{{section.dueDate | date:'MMM dd'}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-sm-4">
+                    <div class="input-group" style="width: 100%;">
+                        <div class="fg-line">
+                            <label class="form-label"> {{ 'viewSectionModalContent.PRIORITY'| translate }}</label>
+                            <div class="controls">
+                                    <label style="color: black">{{section.priority}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <div class="row">
+                    <div class="pull-right">
+                         <button type="button" ng-click="updateSection()" class="btn bgm-teal waves-effect" 
+                                           		ng-disabled="sectionForm.lamination.$invalid || sectionForm.copySt.$invalid || sectionForm.machine.$invalid || sectionForm.priority.$invalid || sectionForm.status.$invalid"><i class="fa fa-plus-circle"></i>&nbsp; {{ 'editSectionModalContent.SAVE'| translate }}</button>
+                          <button type="button" class="btn bgm-bluegray waves-effect" ng-click="closeModal()"> {{ 'viewSectionModalContent.CLOSE'| translate }}</button>
+    </div>
+
+    </div>
+        </form>
+        <br/>
+    
+    
+        <div class="card">
+            <div class="card-header ch-alt m-b-20">
+                <h2>{{ 'viewSectionModalContent.JOBS_SECTION'| translate }}
+                    <small> {{ 'viewSectionModalContent.DESCRIPTION'| translate }}</small>
+                </h2>
+            </div>
+            <div class="card-body card-padding">
+                <uib-alert type="success" close="successMsg = false;" ng-show="successMsg">{{alertMsg}}</uib-alert>
+                <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{alertMsg}}</uib-alert>
+                <table id="jobsOnSectionTable" name="jobsOnSectionTable" class="table table-bordered" width="100%" datatable="ng" dt-options="dtOptionsForJobsOnSection">
+                    <thead>
+                        <tr>
+                            <th>{{ 'viewSectionModalContent.JOB_ID'| translate }}</th>
+                            <th> {{ 'viewSectionModalContent.ORDER'| translate }}</th>
+                            <th> {{ 'viewSectionModalContent.PRIORITY'| translate }}</th>
+                            <th>{{ 'viewSectionModalContent.DUE_DATE'| translate }}</th>
+                            <th> {{ 'viewSectionModalContent.HOURS'| translate }}</th>
+                            <th> {{ 'viewSectionModalContent.QUANTITY'| translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="cjob in section.jobs">
+                            <td>
+                                <button class="btn bgm-amber  waves-effect" uib-tooltip="{{ 'viewRollModalContent.Job_Details'| translate }}"
+                                    ng-click="openViewJobModal(cjob.job.jobId)">{{cjob.job.jobId}}
+                                </button>
+                            </td>
+                            <td>
+                                <a href="" uib-tooltip="{{ 'viewRollModalContent.Order'| translate }} {{job.orderId}} {{ 'viewRollModalContent.Details'| translate }}"
+                                    ng-click="openOverviewOrderModal(cjob.job.orderId)">{{cjob.job.orderId}}</a>
+                            </td>
+                            <td>{{cjob.job.jobPriority.name}}</td>
+                            <td>{{cjob.job.dueDate | date:'MMM dd'}}</td>
+                            <td>{{cjob.job.hours}}</td>
+                            <td>{{cjob.quantity}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+<div class="modal-footer">
+        <small style="float:left">                <em>{{ 'viewSectionModalContent.LAST_UP_ID' | translate }}
+                <strong>'{{section.lastModifiedByUserName}}'</strong> , {{ 'viewSectionModalContent.LAST_UP_DATE' | translate
+                }}
+                <strong>{{section.lastModifiedDate | date:'medium'}}</strong>
+            </em></small>
+</div>

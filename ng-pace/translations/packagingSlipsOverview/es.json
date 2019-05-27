@@ -1,0 +1,37 @@
+{
+     "PACKAGING_TITLE" : "Titulo de empaque",
+     "P_SLIP": "Lista de empaque",
+	 "RE_ADRESS": "Dirección",
+	 "QTY_PCB_DELIVRED": "PCB entregada",
+	 "QTY_BOOK_DELIVRED": "Libros entregados" ,
+	 "STATUS": "Status",
+	 "ChangeStatus" :"Cambiar Status",
+	 "print" :"Imprimir",
+	 "DeliveryDate" :"Fecha de entrega",
+	 
+	 "ordersReadyToShipped" :{
+	 "TITLE" : "Delivery form",
+     "Order_Num": "Order Num",
+	 "Client":	"Customer",
+	 "Destination": "Destination",
+	 "Qty_Needed": "Qty Needed" ,
+	 "Qty_Delivred": " Qty Delivred",
+	 "BL_Num" :"BL Num",
+	 "BL_Date" :"BL Date",
+	 "STATUS": " Status"
+	 },
+	 
+	 "slips_js" :{
+	 "sure" : "Are you sure?",
+     "delete_pallet": "Delete Pallet PL:",
+	 "please_cancel":	"No, please cancel",
+	 "Yes_delete" :"Yes, delete!",
+	 "error_pallets": "Pallets do not have the same address!",
+	 "cancel": "Cancel" 
+	 }
+	 
+	 
+	 
+	 
+	 
+}

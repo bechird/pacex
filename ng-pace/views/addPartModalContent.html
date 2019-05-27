@@ -1,0 +1,563 @@
+<form name="partForm" ng-cloak>
+<div class="card-body card-padding col-md-12" ng-cloak>
+        <div class="row">
+                <div class="col-sm-6 col-md-12">
+                    <div class="mini-charts-item bgm-blue-300">
+                        <div class="clearfix">
+                            <div class="chart stats-bar-2" data-sparkline-bar="">
+                                
+                            </div>
+                            <div class="count">
+                                <small>&nbsp;</small>
+                                <h2>{{ 'ADDPART'| translate}} </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    <div type="danger" class="alert alert-danger alert-dismissible" role="alert" ng-show="errorMsg">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+			</button>
+			 {{errors}}
+	</div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group required">
+                        <label class="form-label">{{ 'PART'| translate}}
+                      
+                            <span ng-show="partForm.partNum.$error.maxlength" class="text-danger text-error">{{ 'ISNBERROR'| translate}}</span>
+                            <span ng-show="partForm.partNum.$touched && partForm.partNum.$error.required" class="text-danger text-error">{{ 'ISNBERROR2'| translate}}</span>
+                        </label>
+                        <div class="controls">
+	                        <div class="fg-line">
+	                            <input type="text" id="partNum" name="partNum" ng-model="part.partNum" class="form-control" ng-required="true" ng-maxlength="23" ng-disabled="true">
+	                        </div>
+	                    </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group required">
+                        <label class="form-label">ISBN
+<!-- 							<span ng-show="partForm.isbn.$touched && partForm.isbn.$error.maxlength"  class="text-danger text-error">: Isbn is too long!</span>  -->
+                            <span ng-show="partForm.isbn.$touched && partForm.isbn.$invalid" class="text-danger text-error">{{ 'ADDPART'| translate}}</span>
+<!--                             <span ng-show="partForm.isbn.$touched && partForm.isbn.$error.required" class="text-danger text-error">: Isbn is Required!</span>
+ -->                        </label>
+                        <div class="controls">
+                            <div class="fg-line">
+                                <input type="text" ng-pattern="/^(ISBN[-]*(1[03])*[ ]*(: ){0,1})*(([0-9Xx][- ]*){13}|([0-9Xx][- ]*){10})$/" id="isbn" name="isbn" ng-model="part.isbn" class="form-control" ng-required="true" ng-maxlength="25">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group required">
+                        <label class="form-label">{{ 'TITLE'| translate}}
+                            <span ng-show="partForm.title.$error.maxlength" class="text-danger text-error"> {{ 'TITLEERROR'| translate}}</span>
+                            <span ng-show="partForm.title.$touched && partForm.title.$error.required" class="text-danger text-error">{{ 'TITLEERROR2'| translate}}</span>
+                        </label>
+                        <div class="controls">
+                            <div class="fg-line">
+                                <input type="text" id="title" name="title" ng-model="part.title" class="form-control" ng-required="true" ng-maxlength="255">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="col-md-3">
+                    <div class="form-group required">
+                        <label class="form-label">{{ 'COLORS'| translate}}
+                            <span ng-show="partForm.colors.$touched && partForm.colors.$error.required" class="text-danger text-error">{{ 'ERROR14'| translate}}</span>
+                        </label>
+                        <div class="controls">
+                            <select name="colors" id="colors" ng-model="part.colors" class="form-control" ng-required="true">
+                                <option value="">{{ 'SELECT'| translate}}</option>
+                                <option value="4C">4C</option>
+                                <option value="1C">1C</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="form-group required">
+                        <label class="form-label">{{ 'BOOKERROR'| translate}}
+                            <span ng-show="partForm.partWidth.$error.max || partForm.partHeight.$error.max" class="text-danger text-error">{{ 'ERROR15'| translate}}</span>
+                            <!-- <span ng-show="partForm.partWidth.$touched && partForm.partWidth.$error.required" class="text-danger text-error">: Width is Required!</span>
+                            <span ng-show="partForm.partHeight.$error.max" class="bg-danger text-error">: Height is too long!</span>
+                            <span ng-show="partForm.partHeight.$touched && partForm.partHeight.$error.required" class="text-danger text-error">: Height is Required!</span> -->
+                        </label>
+                        <div class="controls">
+                            <div class="col-sm-5">
+                                <div class="form-group">
+                                    <div class="fg-line">
+                                        <input type="number" id="partWidth" name="partWidth" ng-model="part.width" class="form-control" Placeholder="Width" min="0" max="9999" ng-required="true">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-2"><span class="xwidthheight">X<span></span></div>
+                            <div class="col-sm-5">
+                                <div class="form-group">
+                                    <div class="fg-line">
+                                        <input type="number" id="partHeight" name="partHeight" ng-model="part.length" class="form-control" Placeholder="Hight" min="0" max="9999" ng-required="true">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<div ng-class="showAdminData == true ? 'col-md-4' : 'col-md-3'">
+                    <div class="form-group">
+                        <label class="form-label">{{ 'DELETEAF'| translate}}</label>
+                        <div class="controls">
+                            <label class="radio radio-inline m-r-20">
+                                <input type="radio" id="yes" name="deleteFlag" ng-model="part.softDelete" ng-value="true">
+                                <i class="input-helper"></i>{{ 'YES'| translate}}
+                            </label>
+                            <label class="radio radio-inline m-r-20">
+                                <input type="radio" id="no" name="deleteFlag" ng-model="part.softDelete" ng-value="false">
+                                <i class="input-helper"></i>{{ 'NO'| translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="showAdminData == true" class="col-md-3">
+                    <div class="form-group">
+                        <label class="form-label">{{ 'ACTIVE'| translate}}</label>
+                        <div class="controls">
+                            <label class="radio radio-inline m-r-20">
+                                <input type="radio" id="yesActive" name="activeFlag" ng-model="part.activeFlag" ng-value="true">
+                                <i class="input-helper"></i>{{ 'YES'| translate}}
+                            </label>
+                            <label class="radio radio-inline m-r-20">
+                                <input type="radio" id="noActive" name="activeFlag" ng-model="part.activeFlag" ng-value="false">
+                                <i class="input-helper"></i>{{ 'NO'| translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div ng-class="showAdminData == true ? 'col-md-3' : 'col-md-4'">
+                    <div class="form-group required">
+                        <label class="form-label">Colors
+                            <span ng-show="partForm.colors.$touched && partForm.colors.$error.required" class="text-danger text-error">: Colors is Required!</span>
+                        </label>
+                        <div class="controls">
+                            <select name="colors" id="colors" ng-model="part.colors" class="form-control" ng-required="true">
+                                <option value="">-- Please select --</option>
+                                <option value="4C">4C</option>
+                                <option value="1C">1C</option>
+                            </select>
+                        </div>
+                    </div>
+                </div> -->
+				
+            </div>
+
+			<div class="row">
+                <div class="col-md-3">
+                    <div class="form-group required">
+                        <label class="form-label">{{ 'PAPERTYPE'| translate}}
+                            <span ng-show="partForm.paperType.$touched && partForm.paperType.$error.required" class="text-danger text-error">{{ 'ERROR16'| translate}}</span>
+                        </label>
+                        <div class="controls">
+                            <select name="paperType" id="paperType" ng-model="part.paperType.id" class="form-control" ng-required="true">
+                                <option value="">{{ 'SELECT'| translate}}</option>
+                                <option ng-repeat="option in paperTypeOptions" value="{{option.id}}">{{option.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="form-label">{{ 'LAMINATION'| translate}}</label>
+                        <div class="controls">
+                            <select name="lamination" id="lamination" ng-model="part.lamination.id" class="form-control">
+                                <option value="">{{ 'SELECT'| translate}}</option>
+                                <option ng-repeat="option in laminationOptions" value="{{option.id}}">{{option.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group required">
+                        <label class="form-label">{{ 'BINDINGTY'| translate}}
+                            <span ng-show="partForm.bindingType.$touched && partForm.bindingType.$error.required" class="text-danger text-error">{{ 'ERROR17'| translate}}</span>
+                        </label>
+                        <div class="controls">
+                            <select name="bindingType" id="bindingType" ng-model="part.bindingType.id" class="form-control" ng-required="true">
+                                <option value="">{{ 'SELECT'| translate}}</option>
+                                <option ng-show="{{option.id != 'DEFAULT'}}" ng-repeat="option in bindingTypeOptions" value="{{option.id}}">{{option.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+	                <div class="form-group">
+	                    <label class="form-label">{{ 'COVERCOLOR'| translate}}</label>
+	                    <div class="controls">
+	                        <select name="coverColor" id="coverColor" ng-model="part.coverColor" class="form-control" >
+                                <option value="">{{ 'SELECT'| translate}}</option>
+                                <option value="4C">4C</option>
+                                <option value="1C">1C</option>
+                                <option value="1/1C">1/1C</option>
+                                <option value="4/4C">4/4C</option>
+                                <option value="4/1C">4/1C</option>
+                            </select>
+	                    </div>
+	                </div>
+	            </div>
+            </div>
+            
+			<div class="row">
+				<div class="col-md-1">
+	                <div class="form-group">
+	                    <label class="form-label">{{ 'VERSION'| translate}}
+	                        <span ng-show="partForm.version.$touched && partForm.version.$invalid" class="text-danger text-error">{{ 'ERROR18'| translate}}</span>
+	                    </label>
+	                    <div class="controls">
+	                        <div class="fg-line">
+	                            <input type="number" id="version" name="version" ng-model="part.version" class="form-control" min="0" max="99">
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+				<div class="col-md-3">
+                    <div class="form-group">
+                        <label class="form-label">{{ 'AUTHOR'| translate}}
+                            <span ng-show="partForm.author.$error.maxlength" class="text-danger text-error">{{ 'ERROR19'| translate}}</span>
+                        </label>
+                        <div class="controls">
+                            <div class="fg-line">
+                                <input type="text" id="author" name="author" ng-model="part.author" class="form-control" ng-maxlength="45">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                     <div class="form-group">
+                          <label class="form-label">{{ 'PUBDATE'| translate}}<small ng-show="partForm.publishDate.$touched && partForm.publishDate.$error.date" class="text-error">{{ 'ERROR20'| translate}}</small>
+                          </label>
+                           <datepicker 
+                                   date-format="{{format}}" 
+                                   date-typer="true" 
+                                    button-prev='<i class="fa fa-arrow-circle-left"></i>'
+      								button-next='<i class="fa fa-arrow-circle-right"></i>'>
+									  <input ng-model="part.publishDate" id="publishDate" name="publishDate" type="text" class="date-control"  uib-datepicker-popup="{{format}}"  placeholder="Choose a date"  ng-required="true" />
+							</datepicker>
+                         <!--  <input ng-click="open3()" ng-model="part.publishDate" id="publishDate" name="publishDate" type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup3.opened"  close-text="Close"  /> -->
+                      </div>
+                     <!--  <a ng-click="open3()" class="input-group-addon last"><i class="zmdi zmdi-date"></i></a> -->
+                </div>
+                <div class=" col-md-4">
+                     <div class="form-group">
+                          <label class="form-label">{{ 'LASTPR'| translate}}<small ng-show="partForm.lastPrinted.$touched && partForm.lastPrinted.$error.date" class="text-error">{{ 'ERROR21'| translate}}</small>
+                          </label>
+                          <datepicker 
+                                   date-format="{{format}}" 
+                                   date-typer="true" 
+                                    button-prev='<i class="fa fa-arrow-circle-left"></i>'
+      								button-next='<i class="fa fa-arrow-circle-right"></i>'>
+									  <input ng-model="part.lastPrinted" id="lastPrinted" name="lastPrinted" type="text" class="date-control"  uib-datepicker-popup="{{format}}"  placeholder="Choose a date"  ng-required="true" />
+							</datepicker>
+                         <!--  <input ng-click="open2()" ng-model="part.lastPrinted" id="lastPrinted" name="lastPrinted" type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup2.opened"  close-text="Close"  /> -->
+                      </div>
+                      <!-- <a ng-click="open2()" class="input-group-addon last"><i class="zmdi zmdi-date"></i></a> -->
+                </div>
+			</div>
+			<div class="row">
+				<div class="col-md-12" >
+                    <div class="form-group">
+                        <label class="form-label">
+                            <a title="PNL Data" ng-click="showPNLData = !showPNLData" id="PNLData">PNL DATA
+								<i class="zmdi zmdi-open-in-new zmdi-hc-lg"></i>: {{ 'PNLDATA_COMMENT'| translate}}</a>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-show="showPNLData">
+				<div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-label">{{ 'PNLTMPLID'| translate}}
+                            <span ng-show="partForm.pnlTmplId.$error.maxlength" class="text-danger text-error">{{ 'ERROR19'| translate}}</span>
+                        </label>
+                        <div class="controls">
+                            <div class="fg-line">
+                                <input type="text" id="pnlTmplId" name="pnlTmplId" ng-model="part.pnlTemplateId" class="form-control" ng-maxlength="300">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-label">{{ 'PNLPAGENUM'| translate}}
+                            <span ng-show="partForm.pnlPageNum.$error.maxlength" class="text-danger text-error">{{ 'ERROR19'| translate}}</span>
+                        </label>
+                        <div class="controls">
+                            <div class="fg-line">
+                                <input type="text" id="pnlPageNum" name="pnlPageNum" ng-model="part.pnlPageNumber" class="form-control" ng-maxlength="300">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-label">{{ 'PNLPRINTNUM'| translate}}
+                            <span ng-show="partForm.pnlPrintNum.$error.maxlength" class="text-danger text-error">{{ 'ERROR19'| translate}}</span>
+                        </label>
+                        <div class="controls">
+                            <div class="fg-line">
+                                <input type="text" id="pnlPrintNum" name="pnlPrintNum" ng-model="part.pnlPrintingNumber" class="form-control" ng-maxlength="300">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>
+            <div class="row" ng-show="showPNLData">
+				<div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-label">{{ 'PNLLOCATION'| translate}}
+                            <span ng-show="partForm.pnlLocation.$error.maxlength" class="text-danger text-error">{{ 'ERROR19'| translate}}</span>
+                        </label>
+                        <div class="controls">
+                            <div class="fg-line">
+                                <input type="text" id="pnlLocation" name="pnlLocation" ng-model="part.pnlLocation" class="form-control" ng-maxlength="300">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-label">{{ 'PNLHMARGIN'| translate}}
+                            <span ng-show="partForm.pnlHmargin.$error.maxlength" class="text-danger text-error">{{ 'ERROR19'| translate}}</span>
+                        </label>
+                        <div class="controls">
+                            <div class="fg-line">
+                                <input type="text" id="pnlHmargin" name="pnlHmargin" ng-model="part.pnlHmargin" class="form-control" ng-maxlength="300">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-label">{{ 'PNLVMARGIN'| translate}}
+                            <span ng-show="partForm.pnlVmargin.$error.maxlength" class="text-danger text-error">{{ 'ERROR19'| translate}}</span>
+                        </label>
+                        <div class="controls">
+                            <div class="fg-line">
+                                <input type="text" id="pnlVmargin" name="pnlVmargin" ng-model="part.pnlVmargin" class="form-control" ng-maxlength="300">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>
+            <div class="row" ng-show="showPNLData">
+				<div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-label">{{ 'PNLNOTNEEDED'| translate}}
+                            <span ng-show="partForm.pnlNotNeeded.$error.maxlength" class="text-danger text-error">{{ 'ERROR19'| translate}}</span>
+                        </label>
+                        <div class="controls">
+                            <div class="fg-line">
+                                <label class="radio radio-inline m-r-20">
+	                                <input type="radio" id="pnlNotNeededYes" name="pnlNotNeededYes" ng-model="part.pnlNotNeeded" value="true">
+	                                <i class="input-helper"></i>{{ 'YES'| translate}}
+	                            </label>
+	                            <label class="radio radio-inline m-r-20">
+	                                <input type="radio" id="pnlNotNeededNo" name="pnlNotNeededNo" ng-model="part.pnlNotNeeded" value="false">
+	                                <i class="input-helper"></i>{{ 'NO'| translate}}
+	                            </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-label">{{ 'PNLFONTTYPE'| translate}}
+                            <span ng-show="partForm.pnlFontType.$error.maxlength" class="text-danger text-error">{{ 'ERROR19'| translate}}</span>
+                        </label>
+                        <div class="controls">
+                            <div class="fg-line">
+                                <select name="pnlFontType" id="pnlFontType" ng-model="part.pnlFontType" class="form-control">
+			                        <option value="">{{ 'loukup_details.SELECT' | translate }}</option>
+			                        <option  value="Helvetica">Helvetica</option>
+									<option  value="Courier">Courier</option>
+									<option  value="Calibri">Calibri</option>
+									<option  value="Cambria">Cambria</option>
+			                    </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-label">{{ 'PNLFONTSIZE'| translate}}
+                            <span ng-show="partForm.pnlFontSize.$error.maxlength" class="text-danger text-error">{{ 'ERROR19'| translate}}</span>
+                        </label>
+                        <div class="controls">
+                            <div class="fg-line">
+                                <select name="pnlFontSize" id="pnlFontSize" ng-model="part.pnlFontSize" class="form-control">
+			                        <option value="">{{ 'loukup_details.SELECT' | translate }}</option>
+			                        <option ng-repeat="option in [5,6,7,8,9,10,11,12,14,16,18,22,24,26,32,40]" value="{{option}}">{{option}}</option>
+			                    </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>
+            
+            <div class="col-md-12" ng-show = "false">
+                <hr class="style6">
+            </div>
+            <div class="col-lg-9 col-md-9" ng-show = "false">
+                <div class=" col-lg-3 col-md-3">
+                    <label class="form-label">{{ 'PDFUPLOAD'| translate}}</label>
+                    <div class="controls">
+                        <div class="media-body">
+                            <button class="btn bgm-info-btn btn-ef btn-ef-7 btn-ef-7b b-0 br-2" type="file" ngf-select="uploadFiles($file, $invalidFiles, 'Text', 'add')" ng-model="textFile" name="textFile" ngf-model-invalid="errorFile" ng-disabled="partForm.partNum.$invalid || partForm.isbn.$invalid || textFile.progress >= 0 || textFile.result" accept="application/pdf" ngf-max-height="1000"><i class="fa fa-paperclip"></i>{{ 'TEXTUPLOAD'| translate}}</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="progress-striped active m-b-10 progress" ng-show="textFile.progress >= 0 && !textFile.result" style="width:100%">
+        						<div class="progress-bar progress-bar-success" role="progressbar" style="width:{{textFile.progress}}%" ng-bind="textFile.progress + '%'"></div>
+    				</div>
+                    <div class="progress-striped active m-b-10 progress" ng-show="textFile.result" style="width:100%">
+        						<div class="progress-bar progress-bar-success" role="progressbar" style="width:100%" ng-bind="100 + '%'"></div>
+    				</div>
+                    <div class="tile-header dvd dvd-btm" ng-show="textFile.result">
+                        <span ng-show="textFile.result"><em>{{ 'UPLOADSUCC'| translate}}</em> <strong>{{uploadedFileName[0]}}</strong></span>
+                        <button ng-show="part.displayFileName != null" ng-click="textFile = null">{{ 'REMOVE'| translate}}</button>
+                    </div>
+                    <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+                </div>
+            </div>
+            <div class="col-md-3" ng-show = "false">
+                <div class="form-group">
+                    <label class="form-label">{{ 'PAGEACC'| translate}}
+                        <span ng-show="partForm.pagesCount.$touched && partForm.pagesCount.$invalid" class="text-danger text-error">{{ 'ERROR22'| translate}}</span>
+                        <span ng-show="textFile.result && partForm.pagesCount.$error.required" class="text-danger text-error">ERROR23{{ 'ADDPART'| translate}}</span>
+                    </label>
+                    <div class="controls">
+                        <div class="fg-line">
+                            <input type="number" ng-required="textFile.result" id="pagesCount" name="pagesCount" ng-model="part.pagesCount" class="form-control" min="0" max="999999">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" ng-show = "false">
+                <hr class="style6">
+            </div>
+            <div class="col-lg-9 col-md-9" ng-show = "false">
+                <div class=" col-lg-3 col-md-3">
+                    <label class="form-label">{{ 'COVERPDF'| translate}}</label>
+                    <div class="controls">
+                        <div class="media-body">
+                            <button class="btn bgm-info-btn btn-ef btn-ef-7 btn-ef-7b b-0 br-2" type="file" ngf-select="uploadFiles($file, $invalidFiles, 'Cover', 'add')" ng-model="coverFile" name="coverFile" ngf-model-invalid="errorFile" ng-disabled="partForm.partNum.$invalid || partForm.isbn.$invalid || coverFile.progress >= 0 || coverFile.result" accept="application/pdf" ngf-max-height="1000"><i class="fa fa-paperclip"></i>{{ 'COVERUPOAD'| translate}}</button>
+                        </div>
+                    </div>
+                </div>
+                <div class=" col-lg-6 col-md-6">
+                    <span class="progress-striped active m-b-10 progress" ng-show="coverFile.progress >= 0 && !coverFile.result" style="width:100%">
+        						<div class="progress-bar progress-bar-success" role="progressbar" style="width:{{coverFile.progress}}%" ng-bind="coverFile.progress + '%'"></div>
+    					    </span>
+                    <span class="progress-striped active m-b-10 progress" ng-show="coverFile.result" style="width:100%">
+        						<div class="progress-bar progress-bar-success" role="progressbar"  style="width:100%" ng-bind="100 + '%'"></div>
+    					    </span>
+                    <div class="tile-header dvd dvd-btm" ng-show="coverFile.result">
+                        <span ng-show="coverFile.result"><em> {{ 'UPLOADSUCC'| translate}}</em> <strong>{{uploadedFileName[1]}}</strong></span>
+                        <button ng-show="part.displayFileName != null" ng-click="coverFile = null">{{ 'REMOVE'| translate}}</button>
+                    </div>
+                    <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+                </div>
+            </div>
+            <div class="col-md-3" ng-show = "false">
+                <div class="form-group">
+                    <label class="form-label">{{ 'SPINE'| translate}}
+                        <span ng-show="partForm.thickness.$touched && partForm.thickness.$error.maxlength" class="text-danger text-error">{{ 'ERROR24'| translate}}</span>
+                        <span ng-show="coverFile.result && partForm.thickness.$error.required" class="text-danger text-error">{{ 'ERROR25'| translate}}</span>
+                    </label>
+                    <div class="controls">
+                        <div class="fg-line">
+                            <input type="number" id="thickness" ng-required="coverFile.result" name="thickness" ng-model="part.thickness" class="form-control" ng-maxlength="25">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-12" ng-show = "false">
+                <hr class="style6">
+            </div>
+            <div class="col-md-12">
+            	<div class="col-md-7">
+	                <div class="form-group">
+	                	<label class="form-label">{{ 'OPTIONS'| translate}}</label>
+	                    <div class="controls" ng-repeat="option in critiriaOptions" >
+	                        <div class="checkbox checkbox-inline m-r-20" ng-show="{{option.id != 'DEFAULT'}}">
+	                            <input id="{{option.id}}" type="checkbox" checklist-model="part.critirias" checklist-value="option.id">
+	                            <label class="input-helper" for="{{option.id}}">{{option.name}}</label> 
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="col-md-5" ng-show="part.bindingType.id == 'CASEBOUND'">
+	               <div class="form-group" >
+	                    <label class="form-label"> {{ 'SPINETYPE'| translate }}</label>
+	                    <div class="controls">
+	                        <select name="spineType" id="spineType" ng-model="part.spineType" ng-disabled="disableFields" class="form-control" >
+	                               <option value=""></option>
+	                               <option value="Square">Square</option>
+	                               <option value="Round">Round</option>
+	                           </select>
+	                    </div>
+	                </div>
+		           <div class="form-group" >
+	                    <label class="form-label"> {{ 'HEADTAILBANDS'| translate }}</label>
+	                    <div class="controls">
+	                        <select name="headTailBands" id="headTailBands" ng-model="part.headTailBands" ng-disabled="disableFields" class="form-control" >
+	                               <option value=""></option>
+	                               <option value="White">White</option>
+	                               <option value="White/White">White/White</option>
+	                               <option value="Black">Black</option>
+	                               <option value="Black & White">Black & White</option>
+	                           </select>
+	                    </div>
+	                </div>
+	            </div>  
+	            <div class="col-md-5" ng-show="part.bindingType.id == 'PLASTIC'">
+	               <div class="form-group" >
+	                    <label class="form-label"> {{ 'WIRECOLOR'| translate }}</label>
+	                    <div class="controls">
+	                        <select name="wireColor" id="wireColor" ng-model="part.wireColor" ng-disabled="disableFields" class="form-control" >
+	                               <option value=""></option>
+	                               <option value="White">White</option>
+	                               <option value="Black">Black</option>
+	                           </select>
+	                    </div>
+	                </div>
+	            </div>  
+            </div>
+            
+                <!-- <div class="form-group">
+                    <label class="form-label">Note
+                        <span ng-show="partForm.notes.$error.maxlength" class="text-danger text-error">: Notes length is too long!</span>
+                    </label>
+                    <div class="controls">
+                        <div class="fg-line">
+                            <textarea id="notes" name="notes" class="form-control" ng-model="part.notes" rows="5" ng-maxlength="1000"></textarea>
+                        </div>
+                    </div>
+                </div> -->
+            
+        </div>
+     </div>
+<div class="modal-footer">
+    <button type="button" class="btn bgm-bluegray waves-effect" ng-click="closeModal()">{{ 'CANCEL'| translate}}</button>
+    <button type="button" ng-click="addPart()" class="btn bgm-teal waves-effect" 
+    		ng-disabled="(coverFile.progress >= 0 && !coverFile.result) || (textFile.progress >= 0 && !textFile.result) || 
+					partForm.partNum.$invalid || partForm.colors.$invalid || partForm.partWidth.$invalid || partForm.partHeight.$invalid || partForm.isbn.$invalid ||
+						partForm.title.$invalid || partForm.paperType.$invalid || partForm.bindingType.$invalid || partForm.pagesCount.$invalid || partForm.thickness.$invalid || 
+						partForm.notes.$invalid || partForm.version.$invalid || partForm.author.$invalid || partForm.coverColor.$invalid">{{ 'SAVE'| translate}}</button>
+</div>
+</form>

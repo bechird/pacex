@@ -1,0 +1,27 @@
+{
+   "sections" :{
+     "TITLE" : "Sections List",
+     "DESCRIPTION": "Below is the list of sections available in the system"
+	},  	 
+	  	"sections_js" :{
+	 "Id" :"Section Id",
+	 "Name" :"Section Name",	 
+	 "Status" :"Status",
+	 "Lamination" :"Lamination",
+	 "Quantity" :"Quantity",
+	 "Priority" :"Priority",
+	 "DueDate" :"DueDate",
+	 "Updating_Section" :"Updating Section",
+	 "Section_Updated" :"Section Updated"
+	 
+	 },
+	 "editSectionModalContent" :{
+		"TITLE" : "Update Section",
+		"BATCH" : "Batch Id",
+		"MACHINE":"Machine",
+		"SELECT": "-- Please select --",
+		"SAVE": "Save"
+
+		
+	 }
+}

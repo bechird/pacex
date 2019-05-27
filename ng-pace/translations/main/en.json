@@ -1,0 +1,56 @@
+{
+
+"main" :{
+"HOMETITLE" : "Home.",
+     "LIGNE1": "Welcome to PACEX.",  
+	 "LIGNE2":	"To begin, please select a link from the menu...",
+	 "PRESS": "Press ",
+	 "NEXT": "Next",
+	 "PLOWFPOLDER": "PlowFolder "
+	 },
+	 "index" :{
+	 "orders" :"Orders",
+	 "Roles" :"Roles",
+	 "Users" :"Users",
+	 "LogOut" :"Log Out",
+	 "OrdersAcceptance":"Orders Acceptance",
+	 "OrdersOverview" :"Orders Overview",
+	 "Scheduling" :"Scheduling",
+	 "ScheduleBoard":"Overview Schedule Board",
+	 "Stations" :"Stations",
+	 "Machines" :"Machines",
+	 "Administration" :"Administration",
+	 "Shipping" :"Shipping",
+	 "Packaging" :"Packaging",
+	 "ShippingStation" :"Shipping Station",
+	 "PackingSlips" :"Packing Slips",
+	 "Reports" :"Reports",
+	 "Parts" :"Parts",
+	 "Jobs" :"Jobs",
+	 "Rolls" :"Rolls",
+	 "Sections" :"Sections",
+	 "Batches" :"Batches",
+	 "LoadTags" :"LoadTags",
+	 "Logs" :"Logs",
+	 "Preferences":"Preferences",
+	 "Preferences_Facility":"Facility Preferences",
+	 "Preferences_Customer":"Customer Preferences",
+	 "Lookups" :"Lookups",
+	 "sseServersSatus" : "SSE Connections",
+	 "ClearCache" :"Clear Cache",
+	 "HI" :"Hi",
+	 "Home":"Home",
+	 "Press" :"Press",
+	 "PlowFolder" :"PlowFolder",
+	 "Deconnect" :"Deconnect",
+	 "bonLivraison" :"Delivery form List",
+	 "prodReportByDate" :"Production reports by date",
+	 "deliveryFormBuilder" :"Delivery form builder",
+	 "deliveryFormSelect" : "Delivery form Selection"
+	 }
+     
+	 
+	 
+	 
+
+}

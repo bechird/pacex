@@ -1,0 +1,28 @@
+{
+    "prodReportsByDatesI18n" :{
+	 	"day" :"Jour",
+	 	"requiredErrorMsg" :"Valeur requise",
+	 	"invalidErrorMsg" :"Valeur invalide",
+	 	"search" :"Chercher",
+	 	"chooseDay" :"Choisissez un jour",
+	 	"allOption" :"Tout",
+	 	"morningOption" :"Matin",
+	 	"afternoonOption" :"Après midi",
+	 	"nightOption" :"Nuit",
+	 	"startTime" : "Date/heure de début",
+	 	"finishTime" : "Date/heure de la fin",
+	 	"stationCol" : "Station",
+	 	"rollsNumberCol" : "Cantidad de bobinas",
+	 	"totalLengthCol" : "Total longueur (en mètre)",
+	 	"hoursCol" : "Total heures",
+	 	"results" : "Résultats",
+	 	"partOfDay" : "Partie de la journée",
+	 	"jobsCol" : "Nombre des jobs",
+	 	"qtyCol" : "Quantité produite",
+	 	"pressAndHunklerStations" : "Pour les stations Press and Hunkeler",
+	 	"otherStations" : "Pour les autres stations",
+	 	"chooseDateTime" : "Choisissez une date/temps"
+    } 
+	 
+	  
+}

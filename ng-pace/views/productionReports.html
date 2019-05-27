@@ -1,0 +1,235 @@
+ <br/>
+ 
+ <div class="card">
+    <div class="card-header ch-alt m-b-20"><strong>{{ 'prodReportsByDatesI18n.search'| translate }}</strong></div>
+    
+    <div class="card-body card-padding" translate-cloak>
+        	
+      
+
+			 <form name="fixedDayForm" ng-cloak> 
+			 
+			 	<div class="row">
+				 
+				 
+					 <div class="form-group col-md-2">
+		              		<label class="form-label">{{ 'prodReportsByDatesI18n.day'| translate }} :
+								<small ng-show="fixedDayForm.dayInput.$touched && fixedDayForm.dayInput.$error.required" class="text-error">  {{ 'prodReportsByDatesI18n.requiredErrorMsg'| translate }}</small>
+								<small ng-show="fixedDayForm.dayInput.$touched && fixedDayForm.dayInput.$error.date" class="text-error">{{ 'prodReportsByDatesI18n.invalidErrorMsg'| translate }}</small>
+			                </label>
+			                
+		              		<div class="controls">
+			              		<div class="fg-line">
+									<datepicker 
+				                			date-format="{{format}}" 
+				                    		date-typer="true" 
+				                    		date-set="{{dayObject.day.toString()}}"
+				                    		button-prev='<i class="fa fa-arrow-circle-left"></i>'
+				     					button-next='<i class="fa fa-arrow-circle-right"></i>'>
+										<input  ng-model="dayObject.day"  id="dayInput" name="dayInput" type="text" class="date-control" required="required" uib-datepicker-popup="{{format}}"  placeholder="{{ 'prodReportsByDatesI18n.chooseDay' | translate }}" />
+									</datepicker>
+			              	</div>
+			          	</div>
+		            </div>
+
+
+					 <div class="form-group col-md-2">
+		              		<label class="form-label">{{ 'prodReportsByDatesI18n.partOfDay'| translate }} : </label>
+			                
+		              		<div class="controls">
+			              		<div class="fg-line">
+									<select name="dayPartSelect" id="dayPartSelect" ng-model="dayObject.dayPart" class="form-control">
+                   						<option value="all">{{ 'prodReportsByDatesI18n.allOption'| translate }}</option>
+                   						<option value="morning">{{ 'prodReportsByDatesI18n.morningOption'| translate }}</option>
+                   						<option value="afternoon">{{ 'prodReportsByDatesI18n.afternoonOption'| translate }}</option>
+                   						<option value="night">{{ 'prodReportsByDatesI18n.nightOption'| translate }}</option>
+               						</select>		
+			              	</div>
+			          	</div>
+		            </div>
+		            
+		            
+		            <div class="form-group col-md-1">
+		            			<label class="form-label"> </label>
+		            			
+		            			<div class="controls">
+			              		<div class="fg-line">
+									<button type="button" class="btn bgm-bluegray waves-effect" ng-click="generateDayReport()" ng-disabled="fixedDayForm.dayInput.$invalid"> {{ 'prodReportsByDatesI18n.search' | translate }}</button>
+				              	</div>
+							</div>
+					</div>
+		            	            
+	            </div>
+
+			     
+			</form>        
+
+ 
+ 			 
+ 			 <br>
+ 			 <hr/>
+ 			 <br>
+ 			 
+ 			 
+ 			 
+ 			 <form name="daysRangeForm" ng-cloak> 
+			                          
+		        	<div class="row">
+
+					 <div class="form-group col-md-2">
+	        					<label class="form-label">{{ 'prodReportsByDatesI18n.startTime'| translate }} :
+								<small ng-show="daysRangeForm.startTimeInput.$touched && daysRangeForm.startTimeInput.$error.required" class="text-error">  {{ 'prodReportsByDatesI18n.requiredErrorMsg'| translate }}</small>
+								<small ng-show="daysRangeForm.startTimeInput.$touched && daysRangeForm.startTimeInput.$error.date" class="text-error">{{ 'prodReportsByDatesI18n.invalidErrorMsg'| translate }}</small>
+			                </label>
+			                
+		              		<div class="controls">
+			              		<div class="fg-line">
+									<input class="date-control"
+						             	placeholder="{{ 'prodReportsByDatesI18n.chooseDateTime' | translate }}"
+						             	moment-picker="rangeObject.startDate"
+						             	format="MM-DD-YYYY, HH:mm"
+						             	ng-model="rangeObject.startDate"
+						             	id="startTimeInput"
+						             	name="startTimeInput"
+						             	readonly="readonly"
+										required="required">
+			              		</div>
+			          	</div>
+		            </div>
+		            
+		            
+		            
+
+
+
+					 <div class="form-group col-md-2">
+	        					<label class="form-label">{{ 'prodReportsByDatesI18n.finishTime'| translate }} :
+								<small ng-show="daysRangeForm.endDateInput.$touched && daysRangeForm.endDateInput.$error.required" class="text-error">  {{ 'prodReportsByDatesI18n.requiredErrorMsg'| translate }}</small>
+								<small ng-show="daysRangeForm.endDateInput.$touched && daysRangeForm.endDateInput.$error.date" class="text-error">{{ 'prodReportsByDatesI18n.invalidErrorMsg'| translate }}</small>
+			                </label>
+			                
+		              		<div class="controls">
+			              		<div class="fg-line">
+			                    		<input class="date-control"
+						             	placeholder="{{ 'prodReportsByDatesI18n.chooseDateTime' | translate }}"
+						             	moment-picker="rangeObject.endDate"
+						             	format="MM-DD-YYYY, HH:mm"
+						             	ng-model="rangeObject.endDate"
+						             	id="endDateInput"
+						             	name="endDateInput"
+						             	readonly="readonly" 
+										required="required">
+			              		</div>
+			          	</div>
+		            </div>		            
+		            
+		            
+
+		            <div class="form-group col-md-1">
+		            			<label class="form-label"> </label>
+		            			
+		            			<div class="controls">
+			              		<div class="fg-line">
+									<button type="button" class="btn bgm-bluegray waves-effect" ng-click="generateRangeReport()" ng-disabled="daysRangeForm.startTimeInput.$invalid || daysRangeForm.endDateInput.$invalid"> {{ 'prodReportsByDatesI18n.search' | translate }}</button>
+			       				</div>
+							</div>
+					</div>		            
+
+			     </div> 
+			     
+			</form> 
+			
+			 <br>
+ 			 <br>       
+        
+    </div>
+</div>
+
+
+
+
+
+ <div class="card">
+    <div class="card-header ch-alt bgm-station">
+    		<h5 style="color:#ffffff;"> 
+    			<strong class="ng-binding">{{ 'prodReportsByDatesI18n.results'| translate }}</strong> 
+    			<br>
+    			<small style="color:#ffffff;">{{ 'prodReportsByDatesI18n.pressAndHunklerStations'| translate }}</small> 
+        </h5>    
+    </div>
+
+    <div class="card-body" translate-cloak>
+    
+    		<table class="mdl-data-table table-bordered  mdl-shadow--2dp ng-isolate-scope no-footer dataTable" width="100%"  translate-cloak>
+    			<thead>
+            		<tr>
+            		    <th>{{ 'prodReportsByDatesI18n.stationCol'| translate }}</th>
+                    <th>{{ 'prodReportsByDatesI18n.rollsNumberCol'| translate }}</th>
+                    <th>{{ 'prodReportsByDatesI18n.totalLengthCol'| translate }}</th>
+            		    <th>{{ 'prodReportsByDatesI18n.hoursCol'| translate }}</th>
+                </tr>
+            	</thead>
+            	<tbody  ng-repeat="line in report" >
+
+	            		<tr ng-if="line.stationOrMachineName == 'PRESS' || line.stationOrMachineName == 'PLOWFOLDER' || line.stationOrMachineName == 'FLYFOLDER' || line.stationOrMachineName == 'POPLINE'">
+	            		    <td>{{line.stationOrMachineName}}</td>
+	                    <td>{{line.rollsNumber}}</td>
+	                    <td>{{line.usedLength | number : 0}}</td>
+						<td>{{line.hours | number}}</td>
+					</tr>
+
+			</tbody>
+		</table>
+
+    				
+    				
+    </div>
+ </div>
+
+
+
+ <div class="card">
+    <div class="card-header ch-alt bgm-station">
+    		<h5 style="color:#ffffff;"> 
+    			<strong class="ng-binding">{{ 'prodReportsByDatesI18n.results'| translate }}</strong>
+    			<br>
+    			<small style="color:#ffffff;">{{ 'prodReportsByDatesI18n.otherStations'| translate }}</small> 
+        </h5>    
+    </div>
+
+    <div class="card-body" translate-cloak>
+    
+    		<table class="mdl-data-table table-bordered  mdl-shadow--2dp ng-isolate-scope no-footer dataTable" width="100%"  translate-cloak>
+    			<thead>
+            		<tr>
+            		    <th>{{ 'prodReportsByDatesI18n.stationCol'| translate }}</th>
+                    <th>{{ 'prodReportsByDatesI18n.jobsCol'| translate }}</th>
+                    <th>{{ 'prodReportsByDatesI18n.qtyCol'| translate }}</th>
+            		    <th>{{ 'prodReportsByDatesI18n.hoursCol'| translate }}</th>
+                </tr>
+            	</thead>
+            	<tbody  ng-repeat="line in report" >
+            		<tr ng-if="line.stationOrMachineName != 'PRESS' && line.stationOrMachineName != 'PLOWFOLDER' && line.stationOrMachineName != 'FLYFOLDER' && line.stationOrMachineName != 'POPLINE'">
+            		    <td>{{line.stationOrMachineName}}</td>
+                    <td>{{line.rollsNumber}}</td>
+                    <td>{{line.usedLength | number : 0}}</td>
+					<td>{{line.hours | number}}</td>
+				</tr>
+				
+				
+			</tbody>
+			
+		</table>
+
+    				
+    				
+    </div>
+ </div>
+
+<div  ng-if="report && report.length>0" style="float: right;">
+	<button type="button" class="btn bgm-teal waves-effect" ng-click="generateCsv()">CSV Export</button>
+</div> 
+
+
+ 
+ 

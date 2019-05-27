@@ -1,0 +1,146 @@
+<form name="loadTagForm" ng-cloak>
+<div class="modal-header card-header ch-alt" ng-cloak>
+    <h3 class="modal-title"> {{ 'addLoadTagModalContent.TITLE'| translate }}</h3>
+</div>
+
+<div class="modal-body card-body card-padding col-md-12" ng-cloak>
+   				
+				<div class="row" ng-if="fromProd == true || addLoadTagfromJob == true">
+				    <div class="col-sm-12">
+				        <div class="mini-charts-item bgm-btn-blue-500">
+				            <div class="clearfix">
+				                <div class="chart stats-bar-2" data-sparkline-bar="">
+				                    JI
+				                </div>
+				                <div class="count">
+				                    <small>{{ 'addLoadTagModalContent.JOB_ID'| translate }}</small>
+				                    <h2 class="ng-binding">{{loadTag.jobId}}</h2>
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+			    </div>
+			    <div type="danger" class="alert alert-danger alert-dismissible" role="alert" ng-show="errorMsg">
+			           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+			           {{errors}}
+			    </div>
+             	<div class="row">
+             			<div class="form-group required col-md-4">
+				              <label class="form-label"> {{ 'addLoadTagModalContent.QUANTITY'| translate }}
+								<small ng-show="loadTagForm.quantity.$touched && loadTagForm.quantity.$error.max" class="text-danger text-error"> {{ 'addLoadTagModalContent.ERROR1'| translate }}</small>
+								<small ng-show="loadTagForm.quantity.$touched && loadTagForm.quantity.$error.required" class="text-danger text-error"> {{ 'addLoadTagModalContent.ERROR2'| translate }}</small>
+							  </label>
+				              <div class="controls">
+				              	<div class="fg-line">
+				              		<input type="number" id="quantity" name="quantity" ng-required="true" ng-model="loadTag.quantity" min="0" max="{{quantityMax}}" class="form-control">
+				              	</div>
+				              </div>
+			            </div>
+             	 		<div class="form-group required col-md-4">
+                            <label class="form-label"> {{ 'addLoadTagModalContent.CART_NUMBER'| translate }}
+								<span ng-show="loadTagForm.cartNum.$touched && loadTagForm.cartNum.$error.maxlength" class="text-danger text-error">{{ 'addLoadTagModalContent.ERROR3'| translate }}</span>
+								<span ng-show="loadTagForm.cartNum.$touched && loadTagForm.cartNum.$error.required" class="text-danger text-error"> {{ 'addLoadTagModalContent.ERROR4'| translate }}</span>
+							</label>
+                            <div class="controls">
+	                            <div class="fg-line">
+	                                <input type="text" id="cartNum" name="cartNum" ng-required="true" ng-model="loadTag.cartNum" class="form-control" maxlength ="2" ng-maxlength="2">
+	                            </div>
+                            </div>
+              			</div>
+		                <div class="form-group required col-md-4" ng-if="fromProd != true && addLoadTagfromJob != true">
+			              <label class="form-label">{{ 'addLoadTagModalContent.JOB_ID'| translate }}
+			              	<span ng-show="loadTagForm.loadTagJob.$touched && loadTagForm.loadTagJob.$error.required" class="text-danger text-error">{{ 'addLoadTagModalContent.ERROR5'| translate }}</span>
+			              </label>
+						  <div class="controls">
+			               <select name="loadTagJob" id="loadTagJob" ng-model="loadTag.jobId" convert-to-number chosen ng-required="true" class="form-control">
+								<option value=""> {{ 'addLoadTagModalContent.SELECT'| translate }}</option>
+				      			<option ng-repeat="option in jobOptions" value="{{option}}">{{option}}</option>
+			    	       </select>
+						  </div>
+			            </div>
+             	</div><br/>
+            	 <div class="row">
+            	 	<div class="form-group col-md-4">
+		               <label class="form-label"> {{ 'addLoadTagModalContent.WASTE'| translate }}
+						<span ng-show="loadTagForm.waste.$invalid" class="text-danger text-error">{{ 'addLoadTagModalContent.ERRRO6'| translate }}</span>
+					   </label>
+		               <div class="controls">
+			               <div class="fg-line">
+			               <input type="number" id="waste" name="waste" ng-model="loadTag.waste" min="0" max="999999" class="form-control"></div>
+			              </div>
+		            </div>
+             	    <div class="form-group required col-md-4">
+                            <label class="form-label">{{ 'addLoadTagModalContent.START_TIME'| translate }}
+								<span ng-show="loadTagForm.startTime.$touched && loadTagForm.startTime.$error.required" class="text-danger text-error">{{ 'addLoadTagModalContent.ERROR7'| translate }}</span>
+								<span ng-show="loadTagForm.startTime.$touched && loadTagForm.startTime.$error.date" class="text-danger text-error"> {{ 'addLoadTagModalContent.ERROR8'| translate }}</span>
+							</label>
+							<!-- <input ng-model="loadTag.startTime" id="startTime" name="startTime" type="datetime-local" class="form-control" ng-required="true" /> -->
+                              		
+                            <div class="controls">
+                            	<div class="fg-line"
+									     moment-picker="loadTag.startTime"
+									     start-view="hour"
+									     format="MM-DD-YYYY, HH:mm">
+									    <input class="form-control"
+									            ng-model="loadTag.startTime"
+									            placeholder="choose a Date/Time"
+							       				id="startTime" 
+							       				
+							       				name="startTime" ng-required="true">
+								</div>
+                            </div>
+              		</div>
+             		<div class="form-group required col-md-4">
+                            <label class="form-label">{{ 'addLoadTagModalContent.FINISH_TIME'| translate }}
+								<span ng-show="loadTagForm.finishTime.$touched && loadTagForm.finishTime.$error.required" class="text-danger text-error">{{ 'addLoadTagModalContent.ERROR9'| translate }}</span>
+								<span ng-show="loadTagForm.finishTime.$touched && loadTagForm.finishTime.$error.date" class="text-danger text-error">{{ 'addLoadTagModalContent.ERROR10'| translate }}</span>
+							</label>
+                            <div class="controls">
+                            	<!-- <input ng-model="loadTag.finishTime" id="finishTime" name="finishTime" type="datetime-local" class="form-control" ng-required="true" /> -->
+                              	<div class="fg-line"
+                                	moment-picker="loadTag.finishTime"
+                                	start-view="hour"
+									     format="MM-DD-YYYY, HH:mm">
+									    <input class="form-control"
+									            ng-model="loadTag.finishTime"
+									            placeholder="choose a Date/Time"
+							       				id="finishTime" 
+							       				
+							       				name="finishTime" ng-required="true">
+								</div>
+                            </div>
+              		</div>
+             	</div>	<br/>
+             <div class="row">
+	             <div class="form-group col-md-4" ng-if="!fromProd">
+	                   <label class="form-label">{{ 'addLoadTagModalContent.LODADTAG_USED'| translate }}</label>
+	                   <div class="controls">
+	                 		<div class="radio-inline m-r-20">
+								<div class="md-radio">
+								<input type="radio" id="yesUsed" name="usedFlag" ng-model="loadTag.usedFlag" ng-value="true">
+							    <label class="input-helper" for="yesUsed">{{ 'addLoadTagModalContent.YES'| translate }}</label>  
+							</div>
+							 </div>
+							
+							<div class="radio-inline m-r-20">
+							<div class="md-radio">
+							    <input type="radio" id="noUsed" name="usedFlag" ng-model="loadTag.usedFlag" ng-value="false">
+							    <label class="input-helper" for="noUsed"> {{ 'addLoadTagModalContent.NO'| translate }}</label> 
+							</div>
+							</div>
+							
+	                  </div>
+	            </div>
+             </div>
+</div>
+<br/>
+<div class="modal-footer">
+	  <div class="pull-right">
+                      <button type="button" class="btn bgm-bluegray waves-effect" ng-click="closeModal()"> {{ 'addLoadTagModalContent.CANCEL'| translate }}</button>
+             			<button type="button" ng-click="addLoadTag()" class="btn bgm-teal waves-effect" 
+							ng-disabled="loadTagForm.quantity.$invalid || loadTagForm.startTime.$invalid || loadTagForm.finishTime.$invalid  ||
+										loadTagForm.loadTagJob.$invalid || loadTagForm.waste.$invalid || loadTagForm.cartNum.$invalid"
+						> {{ 'addLoadTagModalContent.SAVE'| translate }}</button>
+      </div>
+</div>
+   </form>

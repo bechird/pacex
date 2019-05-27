@@ -1,0 +1,48 @@
+{
+  "rolesList" :{
+     "TITLE" : "Listas de roles",
+     "DESCRIPTION": "Debajo se encuentra la lista de roles disponibles en el sistema. Para agregar un nuevo rol dar click el",
+	 "LIGNE2":	"icon ",
+	 "LIEN": " ",
+	 "ROLE_ID":	"Identificacion de rol",
+	 "ROLE_NAME": "Nombre de rol",
+	 "ROLE_DESC": "Descripción de rol",
+	 "ADD_ROLE" : "Agregar rol",
+	 "ID" : "Identificacion",
+	 "ERROR" : ": ¡La Identificación es muy largo! ",
+	 "ERROR4" :": ¡Requerido! ",
+	 "UPDATE_ROLL": "Actualizar rol",	 
+	 "NAME": "Nombre",
+	 "ERROR1": ": ¡El nombre es muy largo!",
+	 "ERROR2": ": ¡El nombre es requerido!",
+	 "DESCRIPTIONN" : "Descripción" ,
+	 "ERROR3": ": ¡La descripción es muy larga!",	 
+	 "CANCEL": "Cancelar",
+	 "AJOUTER" :"Agregar",
+	 "UPDATE": "Actualizar",	 
+	 "LAST_UP_ID": "Identificacion del último usuario:",
+	 "LAST_UP_DATE": "Última fecha de actualización:",
+	 "CLOSE" : "Cerrar",
+	 "Add_role" :"Agregar rol"	 
+	 },
+	 
+	 "role_js" :{
+	 "ROLE_ID":	"Identificacion de rol",
+	 "ROLE_NAME": "Nombre de rol",
+	 "ROLE_DESC": "Descripción de rol",
+	 
+	 "DeleteRole":"Borrar rol",
+	 "delete_sure" : "¿Está seguro de querer borrar este rol?",
+	 "Role_succ_added" :"Rol exitosamente agregado",
+	 "Yes_delete"  :"¡Sí, borrar!",
+	 "Role_succ_deleted" :"¡Rol exitosamente borrado!",
+	 "DeletionError" :"Error al borrar", 
+	 "Adding_Role" :"Agregando rol",
+	 "Role_Added" :"Rol agregado",
+	 "Updating_Role" :"Actualizando rol",
+	 "Role_Updated" :"Rol actualizado",
+	 "Role_succ_updated" :"¡Rol exitosamente actualizado!",
+	 "EDIT" :"Editar Rol",
+	 "DELETE_js" :"Borrar rol"
+	 }	 
+}

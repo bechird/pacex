@@ -1,0 +1,195 @@
+
+<form name="lookupForm" novalidate method="post" enctype="application/x-www-form-urlencoded" ng-cloak>
+    <div class="modal-header card-header ch-alt" ng-cloak>
+        <h3 class="modal-title"> {{ 'loukup_details.ADD' | translate }}  {{typeId}}</h3>
+    </div>
+    <div class="modal-body card-body card-padding" ng-cloak>
+        <div type="danger" class="alert alert-danger alert-dismissible" role="alert" ng-show="errorMsg">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+			{{errors}}
+	 	</div>
+        <div class="row">
+            <div class="form-group required col-md-6" ng-if="typeId != 'Preference'">
+                <label class="form-label">  {{ 'loukup_details.ID' | translate }}
+                    <small ng-show="lookupForm.id.$error.maxlength" class="text-danger text-error">{{ 'loukup_details.ERROR1' | translate }}</small>
+                    <small ng-show="lookupForm.id.$touched && lookupForm.id.$error.required" class="text-danger text-error"> {{ 'loukup_details.ERROR2' | translate }}</small>
+                </label>
+                <div class="controls">
+                    <div class="fg-line">
+                        <input type="text" name="id" ng-if="prefSubject != 'PNL'" ng-model="item.id" class="form-control" ng-required="true" ng-maxlength="35" autofocus>
+                    </div>
+                </div>
+            </div>
+			<div class="form-group required col-md-6" ng-if="typeId == 'PaperTypeMedia'">
+                <label class="form-label">{{ 'loukup_details.PAPER_TYPE_ID' | translate }}
+                    <small ng-show="lookupForm.paperTypeId.$error.maxlength" class="text-danger text-error">{{ 'loukup_details.ERROR3' | translate }}</small>
+                    <small ng-show="lookupForm.paperTypeId.$touched && lookupForm.paperTypeId.$error.required" class="text-danger text-error"> {{ 'loukup_details.ERROR4' | translate }}</small>
+                </label>
+                <div class="controls">
+                    <div class="fg-line">
+                        <input type="text" name="id" ng-model="item.paperTypeId" class="form-control" ng-required="true" ng-maxlength="45">
+                    </div>
+                </div>
+            </div>
+			<div class="form-group required col-md-6" ng-if="typeId == 'Preference'">
+                <label class="form-label"> {{ 'loukup_details.ID' | translate }}
+                    <small ng-show="lookupForm.id.$error.maxlength" class="text-danger text-error"> {{ 'loukup_details.ERROR1' | translate }}</small>
+                    <small ng-show="lookupForm.id.$dirty && lookupForm.id.$error.required" class="text-danger text-error"> {{ 'loukup_details.ERROR2' | translate }}</small>
+                </label>&nbsp;&nbsp;&nbsp; 
+                <a title="{{ 'loukup_details.PREF_NAMING_CONVENTIONS'| translate }}" ng-if="prefSubject == 'PNL' || item.prefSubject == 'PNL'" ng-click="openPrefNamingConventionsModal()" id="prefNamingConventions" name="prefNamingConventions">
+						<i class="zmdi zmdi-search-for zmdi-hc-lg"></i></a>
+                <div class="controls">
+                    <div class="fg-line">
+                        <input type="text" id="id" name="id" ng-model="item.id" class="form-control" ng-required="true" ng-maxlength="255" autofocus>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group required col-md-6" ng-if="typeId != 'Preference'">
+                <label class="form-label"> {{ 'loukup_details.NAME' | translate }}</label>
+                <small ng-show="lookupForm.name.$error.maxlength" class="text-danger text-error">{{ 'loukup_details.ERROR5' | translate }}</small>
+                <small ng-show="lookupForm.name.$touched && lookupForm.name.$error.required" class="text-danger text-error">{{ 'loukup_details.ERROR6' | translate }}</small>
+                <div class="controls">
+                    <div class="fg-line">
+                        <input type="text" ng-model="item.name" name="name" class="form-control" ng-required="true" ng-maxlength="55">
+                    </div>
+                </div>
+            </div>
+			<div class="form-group required col-md-6" ng-if="typeId == 'Preference'">
+                <label class="form-label"> {{ 'loukup_details.VALUE' | translate }} </label>
+                <small ng-show="lookupForm.name.$error.maxlength" class="text-danger text-error">{{ 'loukup_details.ERROR7' | translate }}</small>
+                <small ng-show="lookupForm.name.$touched && lookupForm.name.$error.required" class="text-danger text-error">{{ 'loukup_details.ERROR8' | translate }}</small>
+                <div class="controls">
+                    <div class="fg-line">
+                        <input type="text" ng-model="item.name" name="name" class="form-control" ng-required="true" ng-maxlength="1000">
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="row" ng-if="typeId == 'PaperType'">
+			<div class="form-group col-md-6">
+                <label class="form-label"> {{ 'loukup_details.DROPFOLDER' | translate }}
+                    <small ng-show="lookupForm.id.$error.maxlength" class="text-danger text-error"> {{ 'loukup_details.ERROR1' | translate }}</small>
+                </label>
+                <div class="controls">
+                    <div class="fg-line">
+                        <input type="text" name="id" ng-model="item.dropFolder" class="form-control" ng-maxlength="255">
+                    </div>
+                </div>
+            </div>
+			<div class="form-group col-md-6">
+                <label class="form-label"> {{ 'loukup_details.SHORTNAME' | translate }}
+                    <small ng-show="lookupForm.shortName.$error.maxlength" class="text-danger text-error"> {{ 'loukup_details.ERROR1' | translate }}</small>
+                </label>
+                <div class="controls">
+                    <div class="fg-line">
+                        <input type="text" name="shortName" ng-model="item.shortName" class="form-control" ng-maxlength="30">
+                    </div>
+                </div>
+            </div>
+		</div>
+        <div class="row" ng-if="typeId == 'PaperType'">
+        	<div class="form-group col-md-6">
+              <label class="form-label"> {{ 'loukup_details.THICKNESS' | translate }}
+				<small ng-show="lookupForm.thickness.$touched && lookupForm.thickness.$invalid" class="text-danger text-error">{{ 'loukup_details.ERROR9' | translate }}</small>
+			  </label>
+              <div class="controls">
+              	<div class="fg-line">
+              	<input type="number" id="thickness" name="thickness" ng-model="item.thickness" min="0" max="999999" class="form-control">
+              	</div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+	              <label class="form-label"> {{ 'loukup_details.WEIGHT' | translate }}
+					  <small ng-show="lookupForm.weight.$touched && lookupForm.weight.$invalid" class="text-danger text-error">{{ 'loukup_details.ERROR10' | translate }}</small>
+				  </label>
+	              <div class="controls">
+	              	<div class="fg-line">
+	              		<input type="number" id="weight" name="weight" ng-model="item.weight" min="0" max="999999" class="form-control">
+	              	</div>
+	              </div>
+             </div>
+        </div> 
+
+		<div class="row" ng-if="typeId == 'PaperTypeMedia'">
+        	<div class="form-group col-md-6">
+              <label class="form-label"> {{ 'loukup_details.WIDTH' | translate }}
+				<small ng-show="lookupForm.width.$touched && lookupForm.width.$invalid" class="text-danger text-error">{{ 'loukup_details.ERROR9' | translate }}</small>
+			  </label>
+              <div class="controls">
+              	<div class="fg-line">
+              	<input type="number" id="width" name="width" ng-model="item.rollWidth" min="0" max="999999" class="form-control">
+              	</div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+	              <label class="form-label"> {{ 'loukup_details.LENGTH' | translate }}
+					  <small ng-show="lookupForm.length.$touched && lookupForm.length.$invalid" class="text-danger text-error">{{ 'loukup_details.ERROR10' | translate }}</small>
+				  </label>
+	              <div class="controls">
+	              	<div class="fg-line">
+	              		<input type="number" id="length" name="length" ng-model="item.rollLength" min="1" max="999999" class="form-control">
+	              	</div>
+	              </div>
+             </div>
+        </div> 
+
+		<div class="row" ng-if="typeId == 'Preference'">
+		    <div class="form-group col-md-6">
+             <div class="fg-line">
+                   <label class="form-label"> {{ 'loukup_details.SUBJECT' | translate }}</label>
+                   <!-- <input type="text" id="subj" ng-if="" name="subj" ng-model="item.prefSubject" class="form-control" ng-maxlength="45"> -->
+             	   <select name="subj" id="subj" ng-model="item.prefSubject" class="form-control">
+                        <option value="">{{ 'addOrderModalContent.SELECT'| translate }}</option>
+                        <option ng-repeat="option in allPrefSubjects" value="{{option}}">{{option}}</option>
+                   </select>
+             </div>
+          </div>
+          <div class="form-group col-md-6" ng-if="item.clientId != null && item.clientId != '' && item.clientId != 'undefined'">
+             <div class="fg-line">
+                   <label class="form-label"> {{ 'addOrderModalContent.CLIENT' | translate }}</label>
+                   <div class="select">
+                         <select name="client" id="client" ng-model="item.clientId" class="form-control" ng-disabled="true">
+                              <option value="">{{ 'addOrderModalContent.SELECT'| translate }}</option>
+                              <option ng-repeat="option in clientOptions" value="{{option.id}}">{{option.name}}</option>
+                         </select>
+                   </div>
+             </div>
+          </div>
+		  <!-- <div class="form-group col-md-6">
+             <div class="fg-line">
+                   <label class="form-label"> {{ 'loukup_details.GROUPING' | translate }}</label>
+                   <input type="number" ng-model="item.groupingValue" class="form-control" min="1" max="99">
+             </div>
+          </div> -->
+		</div>
+		
+		<div class="row" ng-if="typeId == 'Preference' && prefSubject == 'PNL'">
+		    
+		  <div class="form-group col-md-6">
+             <div class="fg-line">
+                   <label class="form-label"> {{ 'editPartModalContent.PART' | translate }}</label>
+                   <input type="text" id="partNum" name="partNum" ng-model="item.partNum" class="form-control" ng-maxlength="25">
+             </div>
+          </div>
+		</div>
+		
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label class="form-label"> {{ 'loukup_details.DESC' | translate }}
+                    <small ng-show="lookupForm.description.$error.maxlength" class="text-danger text-error"> {{ 'loukup_details.ERROR11' | translate }}</small>
+                </label>
+                <div class="controls">
+                    <div class="fg-line">
+                        <textarea ng-model="item.description" name="description" class="form-control" ng-maxlength="255" rows="2" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal-footer">
+        <button class="btn bgm-bluegray waves-effect" type="button" ng-click="closeModal()"> {{ 'loukup_details.CANCEL' | translate }}</button>
+        <button class="btn bgm-cyan waves-effect" ng-click="addItem()" type="button" ng-disabled="lookupForm.id.$invalid || lookupForm.name.$invalid || lookupForm.shortName.$invalid || lookupForm.description.$invalid
+        	|| lookupForm.subj.$invalid || lookupForm.clientId.$invalid || lookupForm.partNum.$invalid"> {{ 'loukup_details.ADD' | translate }} </button>
+    </div>
+</form>

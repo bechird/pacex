@@ -1,0 +1,89 @@
+<div ng-if="screenType == 1">
+     <div class="hr-text" data-content="Welcome to CAP Mobile"></div>
+    <div class="block">
+        <div>
+            <input type="radio" name="item" id="item-one" checked hidden />
+            <label for="item-one" > {{ 'main.PRESS'| translate }}</label>
+            <div>
+                <table class="table-back" width=100%>
+                    <thead>
+                        <tr>
+                            <th>Machine</th>
+                            <th>Role N</th>
+                            <th> {{ 'main.NEXT'| translate }}</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>4C1</td>
+                            <td>481</td>
+                            <td>482</td>
+
+                        </tr>
+                        <tr>
+                            <td>4C2</td>
+                            <td>800</td>
+                            <td>801</td>
+                        </tr>
+                        <tr>
+                            <td>4C3</td>
+                            <td>200</td>
+                            <td>201</td>
+
+                        </tr>
+                        <tr>
+                            <td>1C1</td>
+                            <td>500</td>
+                            <td>501</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div>
+            <input type="radio" name="item" id="item-two" hidden />
+            <label for="item-two">PlowFolder</label>
+            <div>
+                <table class="table-back" width=100%>
+                    <thead>
+                        <tr>
+                            <th>Machine</th>
+                            <th>Role N</th>
+                            <th> {{ 'main.NEXT'| translate }}</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> {{ 'main.PLOWFPOLDER'| translate }} 1</td>
+                            <td>491</td>
+                            <td>492</td>
+
+                        </tr>
+                        <tr>
+                            <td> {{ 'main.PLOWFPOLDER'| translate }} 2</td>
+                            <td>1000</td>
+                            <td> </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+     </div>
+    <div class="col-md-12 grid simple" ng-if="screenType != 1">
+        <div class="grid-body">
+            <br/>
+            <br/>
+           <h4><span class="semi-bold" translate-cloak >{{ 'main.HOMETITLE'| translate }}</span></h4>
+            <p translate-cloak>{{ 'main.LIGNE1' | translate }} 
+                <br/> {{ 'main.LIGNE2' | translate }} </p>
+        
+      
+                <br/>
+            <br/>
+        </div>
+    </div>
+   

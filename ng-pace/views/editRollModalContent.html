@@ -1,0 +1,218 @@
+<div class="modal-header card-header ch-alt" ng-cloak>
+    <h3 class="modal-title"> {{ 'editRollModalContent.TITLE'| translate }}</h3>
+</div>
+
+<div class="modal-body card-body col-md-12" ng-cloak>
+   <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+    <form name="rollForm">
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class="mini-charts-item bgm-btn-blue-500">
+                <div class="clearfix">
+                    <div class="chart stats-bar-2" data-sparkline-bar="">
+                        RI
+                    </div>
+                    <div class="count">
+                        <h2 style="margin:11px"><b>{{ 'editRollModalContent.ROLL_ID'| translate }}</b>: {{roll.rollId}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="input-group required" style="width: 100%;">
+                <div class="fg-line">
+                    <label class="form-label">  {{ 'editRollModalContent.ROLL_TYPE'| translate }}
+                    	<span ng-show="rollForm.rollType.$dirty && rollForm.rollType.$error.required" class="text-danger text-error"> {{ 'addRollModal.ERROR18'| translate }}</span>
+                    </label>
+                    <div class="select">
+                        <select name="rollType" id="rollType" ng-required="true" ng-model="roll.rollType.id" class="form-control">
+                            <option value="">{{ 'editRollModalContent.SELECT'| translate }}</option>
+                            <option ng-repeat="option in rollTypeOptions" value="{{option.id}}">{{option.name}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+         </div>
+
+            <div class="col-sm-4">
+                <div class="input-group required" style="width: 100%;">
+                    <div class="fg-line">
+                        <label class="form-label">  {{ 'editRollModalContent.LENGTH'| translate }}
+                            <small ng-show="rollForm.length.$invalid" class="text-danger text-error">{{ 'editRollModalContent.ERROR1'| translate }}</small>
+                            <small ng-show="rollForm.length.$dirty && rollForm.length.$error.required" class="text-danger text-error"> {{ 'editRollModalContent.ERROR2'| translate }}</small>
+				  		</label>
+                        <input type="number" id="length" name="length" ng-model="roll.length" min="{{rollMinLength}}" max="999999999" ng-required="true" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="input-group" style="width: 100%;">
+                      <div class="fg-line">
+                           <label class="form-label">{{ 'editRollModalContent.UTILIZATION'| translate }}
+                                <small ng-show="rollForm.utilization.$dirty && rollForm.utilization.$error.max" class="bg-danger text-error"> {{ 'editRollModalContent.ERROR3'| translate }}</small>
+                           </label>
+                           <input type="number" name="utilization" id="utilization" ng-model="roll.utilization" min="0" max="999" class="form-control">
+                       </div>
+                </div>
+            </div>
+        </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="input-group" style="width: 100%;">
+                        <div class="fg-line">
+                            <label class="form-label">  {{ 'editRollModalContent.MACHINE'| translate }}
+                            </label>
+                            <div class="select">
+                                <select name="rollMachine" id="rollMachine" ng-model="roll.machineId" class="form-control">
+                                    <option value="">{{ 'editRollModalContent.SELECT'| translate }}</option>
+                                    <option ng-repeat="option in machineOptions" value="{{option.machineId}}">{{option.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                     </div>
+                    
+                    <div class="col-sm-4">
+                        <div class="input-group" style="width: 100%;">
+                            <div class="fg-line">
+                                <label class="form-label">  {{ 'editRollModalContent.PARENT_ROLL'| translate }}
+                                </label>
+                                <div class="select">
+                                    <select name="parentRoll" id="parentRoll" ng-model="roll.parentRollId" convert-to-number class="form-control">
+                                        <option value="">{{ 'editRollModalContent.SELECT'| translate }}</option>
+                                        <option ng-repeat="option in rollOptions" value="{{option}}">{{option}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        
+                        <div class="col-sm-4">
+                            <div class="input-group required" style="width: 100%;">
+                                <div class="fg-line">
+                                    <label class="form-label">{{ 'editRollModalContent.PAPER_TYPE'| translate }}
+				                        <small ng-show="rollForm.paperType.$dirty && rollForm.paperType.$error.required" class="text-danger text-error"> {{ 'editRollModalContent.ERROR4'| translate }}</small>
+				                    </label>
+                                    <div class="select">
+                                        <select name="paperType" id="paperType" ng-required="true" ng-model="roll.paperType.id" class="form-control">
+                                            <option value=""> {{ 'editRollModalContent.SELECT'| translate }}</option>
+                                            <option ng-repeat="option in paperTypeOptions" value="{{option.id}}">{{option.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="input-group" style="width: 100%;">
+                                    <div class="fg-line">
+                                        <label class="form-label">  {{ 'editRollModalContent.WIDTH'| translate }}
+                                            <small ng-show="rollForm.width.$dirty && rollForm.width.$error.max" class="bg-danger text-error"> {{ 'editRollModalContent.ERROR5'| translate }}</small>
+                                        </label>
+                                        <input type="number" id="width" name="width" ng-model="roll.width" min="0" max="999999" class="form-control">
+                                    </div>
+                                </div>
+                                </div>
+                                
+                                <div class="col-sm-4">
+                                    <div class="input-group" style="width: 100%;">
+                                        <div class="fg-line">
+                                            <label class="form-label">  {{ 'editRollModalContent.WEIGHT'| translate }}
+                                                <small ng-show="rollForm.weight.$dirty && rollForm.weight.$error.max" class="bg-danger text-error">{{ 'editRollModalContent.ERROR6'| translate }}</small>
+                                            </label>
+                                            <input type="number" id="weight" name="weight" ng-model="roll.weight" min="0" max="999999" class="form-control">
+                                        </div>
+                                    </div>
+                                     </div>
+                                    
+                                    <div class="col-sm-4">
+                                        <div class="input-group" style="width: 100%;">
+                                            <div class="fg-line">
+                                                <label class="form-label">  {{ 'editRollModalContent.HOURS'| translate }}
+                                                    <small ng-show="rollForm.hours.$dirty && rollForm.hours.$error.max" class="bg-danger text-error">{{ 'editRollModalContent.ERROR7'| translate }}</small>
+                                                </label>
+                                                <input type="number" id="hours" name="hours" ng-model="roll.hours" min="0" max="999999" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                 </div>
+                                    <div class="row">
+	                                    <div class="form-group required col-md-4">
+						                     <label class="form-label"> {{ 'editRollModalContent.STATUS'| translate }}
+						                     	<span ng-show="rollForm.status.$dirty && rollForm.status.$error.required" class="text-danger text-error">{{ 'editRollModalContent.ERROR8'| translate }}</span>
+						                     </label>
+						                     <div class="controls">
+						                         <select name="status" id="status" ng-required="true" ng-model="roll.status.id" class="form-control">
+													<option value="">{{ 'editRollModalContent.SELECT'| translate }}</option>
+													<option ng-repeat="option in rollStatusOptions" value="{{option.id}}">{{option.name}}</option>
+						     					</select>
+						                     </div>
+						                </div>
+						                <div class="form-group col-md-4">
+						                     <label class="form-label"> Copy Status</label>
+						                     <div class="controls">
+						                          <input type="text" id="copystatus" name="copystatus" ng-model="roll.copyStatus" class="form-control">
+						                     </div>
+						                </div>
+						                <div class="form-group col-md-4">
+						                     <label class="form-label">Waste</label>
+						                     <div class="controls">
+						                          <input type="number" id="waste" name="waste" ng-model="roll.calculatedWaste" class="form-control">
+						                     </div>
+						                </div>
+             						</div>
+             
+                                    <br>
+                                    <div class="row">
+                                            <div class="pull-right">
+                                                <button type="button" class="btn bgm-bluegray waves-effect" ng-click="closeModal()"> {{ 'editRollModalContent.CANCEL'| translate }}</button>
+                                                <button type="button" ng-click="openRollTag(roll.rollId)" class="btn bgm-teal waves-effect" ng-disabled="rollForm.rollTag.$invalid || rollForm.length.$invalid || rollForm.width.$invalid || rollForm.paperType.$invalid || rollForm.weight.$invalid || rollForm.status.$invalid || rollForm.hours.$invalid || rollForm.utilization.$invalid"><i class="fa fa-tag"></i>&nbsp;Tag</button>
+                                           		<button type="button" ng-click="updateRoll()" class="btn bgm-teal waves-effect" 
+                                           		ng-disabled="rollForm.length.$invalid || rollForm.width.$invalid || rollForm.paperType.$invalid || rollForm.weight.$invalid || rollForm.status.$invalid || rollForm.rollType.$invalid || rollForm.hours.$invalid || rollForm.utilization.$invalid"><i class="fa fa-plus-circle"></i>&nbsp; {{ 'editRollModalContent.SAVE'| translate }}</button>
+                                            </div>
+                                    </div>
+
+</form>
+	<br/>
+	<div class="card">
+		    <div class="card-header ch-alt m-b-20">
+		        <h2> {{ 'editRollModalContent.JOBS_ROLL'| translate }}<small> {{ 'editRollModalContent.DSECRIPTION'| translate }}</small></h2>
+		    </div>
+		    <div class="card-body card-padding">
+		    	<uib-alert type="success" close="successMsg = false;" ng-show="successMsg">{{alertMsg}}</uib-alert>
+			 	<uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{alertMsg}}</uib-alert>
+			 	<table id="jobsOnRollTable" name="jobsOnRollTable" class="table table-bordered" width="100%" datatable="ng" dt-options="dtOptionsForJobsOnRoll">
+	      			<thead>
+	        			<tr>
+	          				<th>{{ 'editRollModalContent.JOB_ID'| translate }}</th>
+		        			<th> {{ 'editRollModalContent.ORDER'| translate }}</th>
+		        			<th> {{ 'editRollModalContent.PRIORITY'| translate }}</th>
+				            <th>{{ 'editRollModalContent.DUE_DATE'| translate }}</th>
+				            <th> {{ 'editRollModalContent.HOURS'| translate }}</th>
+				            <th> {{ 'editLoadTagModalContent.QUANTITY'| translate }}</th>
+				            <th></th>
+						</tr>
+	    			</thead>
+	   			    <tbody >
+	   			       <tr ng-repeat="job in roll.jobs" >
+	    			      <td>{{job.jobId}}</td>
+						  <td>{{job.orderId}}</td>
+						  <td>{{job.jobPriority.name}}</td>
+	    			      <td>{{job.dueDate | date:'MMM dd'}}</td>
+	    			      <td>{{job.hours}}</td>
+						  <td>{{job.quantityNeeded}}</td>
+						  <td><button class="btn bgm-amber btn-icon waves-effect waves-circle" uib-tooltip="{{ 'editRollModalContent.View_Job_Details'| translate }}" ng-click="openViewJobModal(job.jobId)"><i class="zmdi zmdi-view-web"></i>
+                              </button></td>
+						</tr>
+	     			 </tbody>
+   			  </table>
+		    </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+	<small style="float:left"><em>{{ 'editRollModalContent.LAST_UP_ID' | translate }} '{{roll.lastModifiedByUserName}}' , {{ 'editRollModalContent.LAST_UP_DATE' | translate }} {{roll.lastModifiedDate | date:'medium'}}</em></small>	
+</div>

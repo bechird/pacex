@@ -1,0 +1,48 @@
+{
+"rolesList" :{
+     "TITLE" : "List des rôles",
+     "DESCRIPTION": "Voici la liste des rôles disponibles dans le système. Pour ajouter un nouveau rôle, cliquez sur",
+	 "LIGNE2":	"icon ",
+	 "LIEN": " ",
+	 "ROLE_ID":	"Id du rôle",
+	 "ROLE_NAME": "Nom du rôle",
+	 "ROLE_DESC": "Description",
+	 "ADD_ROLE" : "Ajouter un rôle",
+	 "ID" : "Id",
+	 "ERROR" : ": L'id est trop long! ",
+	 "ERROR4" :": Obligatoire! ", 
+	 "UPDATE_ROLL": "Mise à jour du rôle",	 
+	 "NAME": "Nom",
+	 "ERROR1": ": Le nom est trop longue!",
+	 "ERROR2": ": Le nom est obligatoire!",
+	 "DESCRIPTIONN" : "Description" ,
+	 "ERROR3": ": La description est trop longue!",	 
+	 "CANCEL": "Annuler",
+	 "AJOUTER" :"Ajouter",
+	 "UPDATE": "Mettre à jour",	 
+	 "LAST_UP_ID": "Dernier Utilisateur: ",
+	 "LAST_UP_DATE": "Dernière mise à jour: ",
+	 "CLOSE" : "Fermer",
+	 "Add_role" :"Ajouter rôle"	
+	 },
+	 
+	 "role_js" :{
+	 "ROLE_ID":	"Id du rôle",
+	 "ROLE_NAME": "Nom du rôle",
+	 "ROLE_DESC": "Description du rôle",
+	 
+	 "DeleteRole":"Supprimer Rôle",
+	 "delete_sure" : "Êtes-vous sûr de vouloir supprimer le Rôle?",
+	 "Role_succ_added" :"Rôle ajouté avec succès",
+	 "Yes_delete"  :"Oui, supprimez-le!",
+	 "Role_succ_deleted" :"Rôle supprimé avec succès!",
+	 "DeletionError" :"Erreur de suppression",
+	 "Adding_Role" :"Ajout de Rôle",
+	 "Role_Added" :"Rôle ajouté",
+	 "Updating_Role" :"Mettre à jour le Rôle",
+	 "Role_Updated" :"Rôle mis à jour",
+	 "Role_succ_updated" :"Rôle mis à jour avec succès!",
+	 "EDIT" :"Modifier Rôle",
+	 "DELETE_js" :"Supprimer Rôle" 
+	 }
+}

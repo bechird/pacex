@@ -1,0 +1,28 @@
+{
+    "prodReportsByDatesI18n" :{
+	 	"day" :"day",
+	 	"requiredErrorMsg" :"Required value",
+	 	"invalidErrorMsg" :"Invalid value",
+	 	"search" :"Search",
+	 	"chooseDay" :"Choose a day",
+	 	"allOption" :"All",
+	 	"morningOption" :"Morning",
+	 	"afternoonOption" :"Afternoon",
+	 	"nightOption" :"Night",
+	 	"startTime" : "Start Date/Time",
+	 	"finishTime" : "Finish Date/Time",
+	 	"stationCol" : "Station",
+	 	"rollsNumberCol" : "Number of rolls",
+	 	"totalLengthCol" : "Total paper length (in meters)",
+	 	"hoursCol" : "Total hours",
+	 	"results" : "Results",
+	 	"partOfDay" : "Part of the day",
+	 	"jobsCol" : "Number of jobs",
+	 	"qtyCol" : "Quantity produced",
+	 	"pressAndHunklerStations" : "For Press and Hunkeler stations",
+	 	"otherStations" : "For the other stations",
+	 	"chooseDateTime" : "Choose a date/time"	 	
+    } 
+	 
+	  
+}

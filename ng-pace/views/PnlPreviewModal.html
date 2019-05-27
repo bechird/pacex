@@ -1,0 +1,120 @@
+
+
+	<div class="card-body card-padding col-md-12" ng-cloak>
+	
+		<!-- title ******************************************************************-->
+       	<div class="row">
+              <div class="col-sm-6 col-md-12">
+                  <div class="mini-charts-item bgm-blue-300">
+                      <div class="clearfix">
+                          <div class="chart stats-bar-2" data-sparkline-bar="">
+                              
+                          </div>
+                          <div class="count">
+                              <small>&nbsp;</small>
+                              <h2>PNL Preview</h2>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+        </div>
+		<!-- end title *************************************************************-->
+		
+		
+		<form name="pnlPreviewForm" ng-cloak>
+			
+			<!-- form title ******************************************************************-->
+			<div class="row">
+	        	<div class="col-md-12">
+					<h2>Please choose a standard page size or enter a custom dimension :</h2>
+				</div>
+			</div>
+			<!-- end form title **************************************************************-->
+			
+
+			
+			<!-- page dimensions block *******************************************************-->
+			
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">Page size</h3>
+			  </div>
+			  <div class="panel-body">
+				
+				
+				
+				<div class="row">
+		        	<div class="col-md-4">
+	                 	<div class="controls">                        	                       
+	                        <input type="radio" ng-model="dimensionsChoice" ng-value="false">
+	                        <label class="form-label">Standard paper sizes</label> 
+	                    </div>
+	                </div>
+	                
+	               	<div class="col-md-4">                  
+	                     <div class="controls">
+	                         <input type="radio" ng-model="dimensionsChoice" ng-value="true">
+	                         <label class="form-label">Custom dimensions</label>
+	                     </div>
+	                </div>             
+				</div>
+
+				<div class="row">
+		        	<div class="col-md-12">
+	                 	<br/>
+	                </div>
+				</div>
+						
+				<div class="row" ng-if="!dimensionsChoice">
+		        	<div class="col-md-12">
+	                 	<div class="controls"> 
+	                 		<label class="form-label">Pick from the list : </label>                        	                       
+	                        <select ng-options="o as o for o in pageSizes" ng-model="$parent.selectedFormat"></select>                       
+	                    </div>
+	                </div>           
+				</div>			
+	
+				<div class="row" ng-if="dimensionsChoice">  
+	                <div class="col-md-4">
+	                    <div class="form-group">
+	                        
+	                        <label class="form-label">Height :</label>
+							<input type="number" ng-model="$parent.pageHeight" min="0">&nbsp;{{measureUnit}}
+	                        
+	                    </div>  
+	                </div>
+	                
+	                <div class="col-md-4">      
+	                    <div class="form-group">
+	                        
+	                        <label class="form-label">Width :</label>
+							<input type="number"  ng-model="$parent.pageWidth" min="0">&nbsp;{{measureUnit}}
+	                        
+	                    </div>                                        
+	               </div>  
+	                        
+				</div>
+			   </div>
+			   
+			   
+			   
+			   
+			</div>
+			<!-- end page dimensions block ****************************************************-->
+
+			
+
+		</form>
+					
+	</div>
+	
+	
+	
+	<div class="modal-footer">
+		<button type="button" class="btn bgm-teal waves-effect" ng-click="createAndDisplayPdf()">Create And Display Pdf</button>
+		<button type="button" class="btn bgm-bluegray waves-effect" ng-click="closeModal()">Close</button>        
+	</div>
+
+
+
+

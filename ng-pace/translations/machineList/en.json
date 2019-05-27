@@ -1,0 +1,65 @@
+{
+
+ "MACHINE_LIST" :{
+     "TITLE_machine" : "Machines List",
+     "DESCRIPTION_machine": "Below is the list of machines available in the system. To add a new machine click the ",
+	 "LIGNE2":	"icon ",
+	 "LIEN": " ",
+	 "MACHINE_ID":	"Machine Id",
+	 "MACHINE_NAME": "Machine Name",
+	 "STATUS": "Status",
+	 "IP_ADDRESS": "IP Address",
+	 "OCPATH" :"OC Path",
+	 "ADD_MACHINE": "Add Machine",	 
+	 "ID": "Id",
+	 "CURRJOB" : "Current Job",
+	 "ERROR1": ": The Machine Id length is too long!",
+	 "ERROR2": ": The Machine Id is required!",  	 
+	 "STATION": "Station",	 
+	 "ERROR3": ": The Station is required!", 
+	 "SELECT": "-- Please select --",
+	 "NAME": "Name",	  
+	 "ERROR4": ": The Machine Name length is too long!",
+	 "ERROR5": ": The Machine Name is required!",
+	 "MACHINE_STATUS": "Machine Status" ,	 	 
+	 "SPEED-LENGTH": "Speed",	 
+	 "ERROR6": ": The Machine Speed field is too long!",
+	 "MACHINE_TYPE": "Machine Type", 
+	 "ERROR7": ": IP address length is too long!",
+	 "DESC": "Description",	  
+	 "ERROR8": ": The Machine description length is too long!",
+	 "CANCEL": "Cancel",
+	 "UPDATE" : "Update",
+	 "ADD" : "Add",
+	 "UPDATE_MACHINE": "Update Machine",
+	 "ID2": "ID", 
+	 "ERROR9": ": IP address length is too long!", 
+	 "PORT": "Port",	   
+	 "LAST_UP_ID": "Last Updater Id: ",
+	 "LAST_UP_DATE": "Last Update Date:"
+	 },
+	 
+	 "MACHINE_JS" :{
+	 "ID" :"Machine Id",
+	 "NAME" :"Machine Name",
+	 "STATUS" :"Machine Status", 
+	 "ADDRESS" :"Address",
+	 "OCPATH" :"OC Path",
+	 "DELETE_MACHINE" :"Delete Machine",
+	 "SURE_DELETE_MACHINE" :"Are you sure you want to delete the Machine?",
+	 "DELETE" :"Yes, delete it!", 
+	 "LOOKUP_SUCC_DELETED" :"Machine successfully deleted!",
+	 "DELETION_ERROR" :"Deletion Error",
+	 "MACHINE_ADDED" :"Machine Added",	 
+	 "ADDING_MACHINE" :"Adding Machine",
+	 "MACHINE_SUCC_ADDED" :"Machine Successfully Added",
+	 "UPDATED_MACHINE" :"Machine Updated",
+	 "UPDATING" :"Updating Machine" ,
+	 "UPDATED" :"Updated" ,
+	 "EDIT" :"Edit Machine",
+	 "DELETE_js" :"Delete Machine"		 
+	}
+	 
+	 
+	  
+}

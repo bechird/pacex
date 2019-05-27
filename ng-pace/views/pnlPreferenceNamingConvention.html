@@ -1,0 +1,41 @@
+<form name="partSearchForm" ng-cloak>
+	<div class="modal-header card-header ch-alt" ng-cloak>
+	    <h3 class="modal-title">{{ 'loukup_details.PREF_NAMING_CONVENTIONS'| translate }}</h3>
+	    <small>{{ 'loukup_details.PREF_NAMING_CONVENTIONS'| translate }}</small>
+	</div>
+	<div class="card-body card-pading col-md-12" ng-cloak>
+   		<uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+   		<div class="row" >
+      	  <div class="grid simple">
+			<div class="card">
+			    
+			    <div class="card-body card-padding">
+			    	<uib-alert type="success" close="successMsg = false;" ng-show="successMsg">{{alertMsg}}</uib-alert>
+				 	<uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{alertMsg}}</uib-alert>
+				 	<table id="prefNCResultTable" name="prefNCResultTable" class="table table-bordered" width="100%" datatable="ng" dt-options="dtOptionsForPrefNC">
+	      			  <thead>
+	        			<tr>
+	          				<th>ID</th>
+		        			<th>DESC</th>
+				            <th></th>
+						</tr>
+	    			  </thead>
+	   			      <tbody >
+	   			       <tr ng-repeat="node in prefNamingConventions" >
+	    			      <td>{{node.name}}</td>
+						  <td>{{node.description}}</td>
+						  <td><button id="insertVar" name="insertVar" type="button" title="insert {{node.name}}" ng-click="closePrefNCModal(node.name)" 
+						  		class="btn bgm-orange-900 waves-effect"><i class='zmdi zmdi-long-arrow-return'></i></button></td>
+						</tr>
+	     			  </tbody>
+	   			    </table>
+			    </div>
+    		  </div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn bgm-bluegray waves-effect" ng-click="closePrefNCModal()">{{ 'searchPart.CANCEL'| translate }}</button>
+	</div>
+</form>
+

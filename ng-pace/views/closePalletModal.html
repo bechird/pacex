@@ -1,0 +1,50 @@
+
+<div class="modal-header card-header ch-alt" ng-cloak>
+    <h3 class="modal-title">{{ 'closePalletModal.DESCRIPTION' | translate }}</h3>
+</div>
+
+<div class="modal-body card-body card-padding col-md-12" ng-cloak>  
+         
+      
+          <div class="row">
+          <table class="mdl-data-table table-bordered  mdl-shadow--2dp ng-isolate-scope no-footer dataTable" width="100%">
+		                            <thead>
+		                                <tr>
+		                                    <th> {{ 'closePalletModal.POS' | translate }}</th>
+		                                    <th>{{ 'closePalletModal.ORDER' | translate }}</th>
+		                                    <th>ISBN</th>
+		                                    <th> {{ 'closePalletModal.TITLE' | translate }}</th>
+		                                    <th>{{ 'closePalletModal.PCB_TYPE' | translate }}</th>
+		                                    <th>{{ 'closePalletModal.PCB_NEEDED' | translate }}</th>
+		                                    <th>{{ 'closePalletModal.ALREADY_SHIPPED' | translate }}</th>
+		                                    <th>{{ 'closePalletModal.QTY_PALLET' | translate }}</th>
+		                                     <th>{{ 'closePalletModal.SHORT_FALL' | translate }}</th>
+		                                     <th></th>
+		                                </tr>
+		                            </thead>
+		                            <tbody>
+		                                <tr ng-repeat="palletteBook in pallette.books"  >
+		                                    <td>1</td>
+		                                    <td>{{palletteInfo.orders[$index].orderNum}}</td>
+		                                    <td>{{palletteBook.packageBook.barcode}}</td>
+		                                    <td>{{palletteInfo.orders[$index].orderPart.part.title}}</td>
+		                                    <td>{{palletteBook.packageBook.heightQty}}*{{palletteBook.packageBook.widthQty}}*{{palletteBook.packageBook.depthQty}}</td>
+		                                    <td>{{palletteBook.packageBook.quantity}}</td>
+		                                    <td>{{palletteBook.packageBook.delivered}}</td>
+		                                    <td>{{palletteBook.quantity}}</td>
+		                                     <td>{{palletteBook.packageBook.quantity - palletteBook.quantity - palletteBook.packageBook.delivered }}</td>
+		                                    <td><button class="btn bgm-orange waves-effect" uib-tooltip="{{ 'closePalletModal.Edit' | translate }}" ng-click="openSaveOrderPachingModal(palletteInfo.orders[$index],palletteBook);"><i class="zmdi zmdi-edit"></i></button></td>
+		                                </tr >
+		                            </tbody>
+		                        </table>
+          
+       
+</div>
+</div>
+
+<div class="modal-footer">
+<button type="button" class="btn bgm-bluegray waves-effect" ng-click="closeModal()"> {{ 'closePalletModal.CLOSE' | translate }}</button>
+             			<button type="button" class="btn bgm-cyan waves-effect"  ng-click=""> {{ 'closePalletModal.SAVE' | translate }}</button>
+
+                                           		
+</div>

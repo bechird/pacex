@@ -1,0 +1,634 @@
+<div class="card">
+    <div class="card-header ch-alt m-b-20">
+        <h2>{{type}} <small>{{ 'loukup_details.DESCRIPTION' | translate }} {{type == undefined ? prefSubject : type}}  {{ 'loukup_details.REST_DESCRIPTION' | translate }}<i class="zmdi zmdi-plus-circle-o"></i> {{ 'loukup_details.LIGNE2' | translate }}  
+          <a href="#/ordersPage">  {{ 'loukup_details.LIEN' | translate }}</a>.</small></h2>
+		<div style="width: 20%;" ng-if="type == 'Preference'">
+             <select name="client" id="client" ng-model="clientId" ng-change="prefsByClient(clientId)" ng-if="clientId != null && clientId != 'undefined'">
+                         <!-- <option value="undefined">--{{ 'lookups.CLIENTS'| translate }}--</option> -->
+                         <option ng-repeat="option in clientOptions" value="{{option.id}}">{{option.name}}</option>
+             </select>
+         </div>
+        <button class="btn bgm-cyan btn-float waves-effect waves-circle" ng-click="openAddLookupModal(type)" uib-tooltip="{{ 'loukup_details.Add_Lookup' | translate }}"><i class="zmdi zmdi-plus"></i>
+        </button><br/>
+        <div ng-show="prefSubject != undefined"><a href="#!/lookups/prefSubjects/list/{{prefGroup != null && prefGroup != '' ? prefGroup : 'undefined'}}/{{clientId != null ? clientId : 'undefined'}}">{{ 'loukup_details.REST_PREF' | translate }}</a></div>
+        <div ng-show="prefSubject == undefined && type != 'Preference'"><a href="#!/lookups">{{ 'loukup_details.REST' | translate }}</a></div>
+    </div>
+	<div class="card-body card-padding" translate-cloak>
+        <uib-alert type="success" close="successMsg = false;" ng-show="successMsg">{{alertMsg}}</uib-alert>
+        <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{alertMsg}}</uib-alert>
+        <h5 ng-if="type == 'Preference'">{{prefSubject == undefined ? type : prefSubject}}</h5>
+        <table ng-if="type != 'Preference' || prefSubject != 'PNL'" datatable="" dt-options="lookups.dtOptions" dt-columns="lookups.dtColumns" dt-instance="lookups.dtInstance" class="table table-bordered table-striped table-vmiddle ng-scope ng-table col-lg-12" width="100%" translate-cloak>
+            <tfoot>
+                <tr class="table-placeholder" translate-cloak>
+                    <th width="7%" translate-cloak translate> loukup_details.ID</th>
+                    <th width="13%" translate-cloak translate> loukup_details.NAME</th>
+                    <th width="50%" translate-cloak translate> loukup_details.DESC</th>
+                    <th width="15%"> </th>
+                </tr>
+            </tfoot>
+        </table>
+        <table ng-if="type == 'Preference' && prefSubject == 'PNL'" datatable="" dt-options="lookups.dtOptionsPNL" dt-columns="lookups.dtColumnsPNL" dt-instance="lookups.dtInstancePNL" class="table table-bordered table-striped table-vmiddle ng-scope ng-table col-lg-12" width="100%" translate-cloak>
+            <tfoot>
+                <tr class="table-placeholder" translate-cloak>
+                    <th width="7%" translate-cloak translate> loukup_details.ID</th>
+                    <th width="13%" translate-cloak translate> loukup_details.NAME</th>
+                    <th width="30%" translate-cloak translate> loukup_details.DESC</th>
+                    <th width="15%" translate-cloak translate> loukup_details.CLIENT</th>
+                    <th width="10%" translate-cloak translate> loukup_details.PART</th>
+                    <th width="10%"> </th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<script type="text/ng-template" id="editLookupModalContent.html">
+    <div class="modal-header card-header ch-alt" ng-cloack>
+        <h3 class="modal-title"> {{ 'loukup_details.UPDATE' | translate }} {{typeId}}</h3>
+    </div>
+    <form name="lookupForm" ng-submit="update()" novalidate method="post" enctype="application/x-www-form-urlencoded" ng-cloack>
+    <div class="modal-body card-body card-padding" ng-cloak>
+        <div type="danger" class="alert alert-danger alert-dismissible" role="alert" ng-show="errorMsg">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+			{{errors}}
+	 	</div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mini-charts-item bgm-cyan">
+                    <div class="clearfix">
+                        <div class="chart stats-bar-2" data-sparkline-bar="">
+                             {{ 'loukup_details.ID2' | translate }}
+                        </div>
+                        <div class="count">
+                            <h2 class="ng-binding">{{item.id}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<div class="col-md-6" ng-if="typeId == 'PaperTypeMedia'">
+                <div class="mini-charts-item bgm-cyan">
+                    <div class="clearfix">
+                        <div class="chart stats-bar-2" data-sparkline-bar="">
+                             {{ 'loukup_details.PAPER_TYPE' | translate }}
+                        </div>
+                        <div class="count">
+                            <h2 class="ng-binding">{{item.paperTypeId}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group required col-md-6" ng-if="typeId != 'Preference'">
+                <label class="form-label"> {{ 'loukup_details.NAME' | translate }}</label>
+                <small ng-show="lookupForm.name.$dirty && lookupForm.name.$error.maxlength" class="text-danger text-error"> {{ 'loukup_details.ERROR5' | translate }}</small>
+                <small ng-show="lookupForm.name.$dirty && lookupForm.name.$error.required" class="text-danger text-error">{{ 'loukup_details.ERROR6' | translate }}</small>
+                <div class="controls">
+                    <div class="fg-line">
+                        <input type="text" ng-model="item.name" name="name" class="form-control" ng-required="true" ng-maxlength="55">
+                    </div>
+                </div>
+            </div>
+			<div class="form-group required col-md-6" ng-if="typeId == 'Preference'">
+                <label class="form-label"> {{ 'loukup_details.VALUE' | translate }} </label>
+                <small ng-show="lookupForm.name.$dirty && lookupForm.name.$error.maxlength" class="text-danger text-error"> {{ 'loukup_details.ERROR7' | translate }}</small>
+                <small ng-show="lookupForm.name.$dirty && lookupForm.name.$error.required" class="text-danger text-error"> {{ 'loukup_details.ERROR8' | translate }}</small>
+                <div class="controls">
+                    <div class="fg-line">
+                        <input type="text" ng-model="item.name" name="name" class="form-control" ng-required="true" ng-maxlength="1000">
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="row" ng-if="typeId == 'PaperType'">
+			<div class="form-group col-md-6">
+                <label class="form-label"> {{ 'loukup_details.DROPFOLDER' | translate }}
+                    <small ng-show="lookupForm.id.$error.maxlength" class="text-danger text-error"> {{ 'loukup_details.ERROR20' | translate }}</small>
+                </label>
+                <div class="controls">
+                    <div class="fg-line">
+                        <input type="text" name="id" ng-model="item.dropFolder" class="form-control" ng-maxlength="255">
+                    </div>
+                </div>
+            </div>
+			<div class="form-group col-md-6">
+                <label class="form-label"> {{ 'loukup_details.SHORTNAME' | translate }}
+                    <small ng-show="lookupForm.shortName.$error.maxlength" class="text-danger text-error"> {{ 'loukup_details.ERROR20' | translate }}</small>
+                </label>
+                <div class="controls">
+                    <div class="fg-line">
+                        <input type="text" name="shortName" ng-model="item.shortName" class="form-control" ng-maxlength="30">
+                    </div>
+                </div>
+            </div>
+		</div>
+        <div class="row" ng-if="typeId == 'PaperType'">
+        	<div class="form-group col-md-6">
+              <label class="form-label"> {{ 'loukup_details.THICKNESS' | translate }}
+				<small ng-show="lookupForm.thickness.$dirty && lookupForm.thickness.$invalid" class="text-danger text-error">{{ 'loukup_details.ERROR9' | translate }}</small>
+			  </label>
+              <div class="controls">
+              	<div class="fg-line">
+              	<input type="number" id="thickness" name="thickness" ng-model="item.thickness" min="0" max="999999" class="form-control">
+              	</div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+	              <label class="form-label"> {{ 'loukup_details.WEIGHT' | translate }}
+					  <small ng-show="lookupForm.weight.$dirty && lookupForm.weight.$invalid" class="text-danger text-error">{{ 'loukup_details.ERROR10' | translate }}</small>
+				  </label>
+	              <div class="controls">
+	              	<div class="fg-line">
+	              		<input type="number" id="weight" name="weight" ng-model="item.weight" min="0" max="999999" class="form-control">
+	              	</div>
+	              </div>
+             </div>
+        </div> 
+        <div class="row" ng-if="typeId == 'PaperTypeMedia'">
+        	<div class="form-group col-md-6">
+              <label class="form-label"> {{ 'loukup_details.WIDTH' | translate }}
+				<small ng-show="lookupForm.width.$dirty && lookupForm.width.$invalid" class="text-danger text-error">{{ 'loukup_details.ERROR9' | translate }}</small>
+			  </label>
+              <div class="controls">
+              	<div class="fg-line">
+              	<input type="number" id="width" name="width" ng-model="item.rollWidth" min="0" max="999999" class="form-control">
+              	</div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+	              <label class="form-label"> {{ 'loukup_details.LENGTH' | translate }}
+					  <small ng-show="lookupForm.length.$dirty && lookupForm.length.$invalid" class="text-danger text-error">{{ 'loukup_details.ERROR10' | translate }}</small>
+				  </label>
+	              <div class="controls">
+	              	<div class="fg-line">
+	              		<input type="number" id="length" name="length" ng-model="item.rollLength" min="1" max="999999" class="form-control">
+	              	</div>
+	              </div>
+             </div>
+        </div>
+		<div class="row" ng-if="typeId == 'Preference'">
+			<div class="form-group col-md-6" >
+             <div class="fg-line">
+                   <label class="form-label"> {{ 'loukup_details.SUBJECT' | translate }}</label>
+                   <input type="text" ng-model="item.prefSubject" class="form-control" ng-maxlength="45">
+             </div>
+          </div>
+		  <div class="form-group col-md-6">
+             <div class="fg-line" ng-if="item.clientId != null && item.clientId != '' && item.clientId != 'undefined'">
+                   <label class="form-label"> {{ 'addOrderModalContent.CLIENT' | translate }}</label>
+                   <input type="text" id="clientId" name="clientId" ng-model="item.clientId" class="form-control" disabled>
+             </div>
+           </div>
+		    <!--<div class="form-group col-md-6" >
+             <div class="fg-line">
+                   <label class="form-label"> {{ 'loukup_details.GROUPING' | translate }} </label>
+                   <input type="number"  ng-model="item.groupingValue" class="form-control" min="1" max="99">
+             </div>
+          </div>-->
+		</div>
+
+	    <div class="row" ng-if="typeId == 'Preference' && item.prefSubject == 'PNL'">
+		  <div class="form-group col-md-6">
+             <div class="fg-line">
+                   <label class="form-label"> {{ 'editPartModalContent.PART' | translate }}</label>
+                   <input type="text" id="partNum" name="partNum" ng-model="item.partNum" class="form-control" ng-maxlength="25">
+             </div>
+          </div>
+		</div>
+
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label class="form-label"> {{ 'loukup_details.DESC' | translate }}
+                    <small ng-show="lookupForm.name.$dirty && lookupForm.description.$error.maxlength" class="text-danger text-error">{{ 'loukup_details.ERROR11' | translate }}</small>
+                </label>
+                <div class="controls">
+                    <div class="fg-line">
+                        <textarea ng-model="item.description" name="description" class="form-control" ng-maxlength="255" rows="2" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <small><em>{{ 'loukup_details.LAST_UP_ID' | translate }} '{{item.lastModifiedByUserName}}' , {{ 'loukup_details.LAST_UP_DATE' | translate }} {{item.lastModifiedDate | date:'medium'}}</em></small>
+	</div>
+   
+    <div class="modal-footer">
+    	<button class="btn bgm-bluegray waves-effect" type="button" ng-click="closeModal()"> {{ 'loukup_details.CANCEL' | translate }}</button>
+		<button class="btn bgm-green waves-effect" type="button" ng-click="openPreviewModal(item.id)" ng-if="typeId == 'PNLTemplate'">PREVIEW</button>
+        <button class="btn bgm-orange-900 waves-effect" type="submit" id="updateItemBtn" name="" ng-disabled="lookupForm.id.$invalid || lookupForm.name.$invalid || lookupForm.shortName.$invalid || lookupForm.description.$invalid
+			|| lookupForm.subj.$invalid || lookupForm.clientId.$invalid || lookupForm.partNum.$invalid"> {{ 'loukup_details.UPDATE' | translate }} </button>
+     </div>
+	</form>
+    <div ng-show="typeId == 'PartCategory'">
+       <div class="card">
+    	<div class="card-header ch-alt m-b-20">
+       	 	<h2> {{ 'loukup_details.DEFAULT_PROD_STATIONS' | translate }}<small>{{ 'loukup_details.TO_ADD' | translate }}
+        	<button ng-click="openAddDefaultStationModal(item.id)" class="btn bgm-teal btn-float waves-effect" uib-tooltip="{{ 'loukup_details.ADD' | translate }}">
+           		 <i class="zmdi zmdi-plus"></i>
+        	</button>
+    	</div>
+    	<br/>
+    	<div class="card-body card-padding">
+        	<uib-alert type="success" close="successMsg = false;" ng-show="successMsg">{{alertMsg}}</uib-alert>
+        	<uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{alertMsg}}</uib-alert>
+      	 	<table class="table table-bordered table-striped" datatable="ng" dt-options="dtOptionsForLookupDetails">
+            	<thead>
+                	<tr>
+                    	<th> {{ 'loukup_details.CRITERIA' | translate }}</th>
+                    	<th> {{ 'loukup_details.BINDING_TYPE' | translate }}</th>
+                   	 	<th> {{ 'loukup_details.STATION' | translate }}</th>
+                    	<th>{{ 'loukup_details.PROD_ORDERING' | translate }}</th>
+                    	<th></th>
+                	</tr>
+            	</thead>
+            	<tbody>
+                	<tr ng-repeat="node in item.defaultStations">
+                    	<td>{{node.id.critiriaId}}</td>
+                    	<td>{{node.id.bindingTypeId}}</td>
+                    	<td>{{node.id.stationCategoryId}}</td>
+                    	<td>{{node.productionOrdering}}</td>
+                    	<td>
+                        	<button class="btn bgm-orange-900 waves-effect" type="button" ng-click="openEditDefaultStationModal(node.id)"><i class="zmdi zmdi-edit"></i></button>
+                        	<button class="btn bgm-red waves-effect" type="button" ng-click="deleteDefaultStation(node.id)"><i class="zmdi zmdi-delete"></i></button>
+                    	</td>
+                	</tr>
+            	</tbody>
+        	</table>
+    	</div>
+		</div>
+	</div>
+
+	<div ng-show="typeId == 'PNLTemplate'">
+       <div class="card">
+    	<div class="card-header ch-alt m-b-20">
+       	 	<h2> {{ 'loukup_details.TEMPLATELINES' | translate }}<small>{{ 'loukup_details.TEMPLATELINES_DESC' | translate }}
+        	<button ng-click="openAddTemplateLineModal(item.id)" class="btn bgm-teal btn-float waves-effect" title="{{ 'loukup_details.Add_TEMPLATELINES' | translate }}">
+           		 <i class="zmdi zmdi-plus"></i>
+        	</button>
+    	</div>
+    	<br/>
+    	<div class="card-body card-padding">
+        	<uib-alert type="success" close="successMsg = false;" ng-show="successMsg">{{alertMsg}}</uib-alert>
+        	<uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{alertMsg}}</uib-alert>
+      	 	<table class="table table-bordered table-striped" datatable="ng" dt-options="dtOptionsForTmpLineDetails">
+            	<thead>
+                	<tr>
+                    	<th> {{ 'loukup_details.TMPL_LINE_TEXT' | translate }}</th>
+                    	<th> {{ 'loukup_details.TMPL_FONT_SIZE' | translate }}</th>
+                    	<th></th>
+                	</tr>
+            	</thead>
+            	<tbody>
+                	<tr ng-repeat="node in item.templateLines">
+                    	<td>{{node.lineText}}</td>
+                    	<td>{{node.fontSize}}</td>
+                    	<td>
+                        	<button class="btn bgm-orange-900 waves-effect" type="button" ng-click="openEditTemplateLineModal(node.id)"><i class="zmdi zmdi-edit"></i></button>
+                        	<button class="btn bgm-red waves-effect" type="button" ng-click="deleteTemplateLine(node.id)"><i class="zmdi zmdi-delete"></i></button>
+                    	</td>
+                	</tr>
+            	</tbody>
+        	</table>
+    	</div>
+		</div>
+	</div>
+</script>
+
+<script type="text/ng-template" id="addDefaultStationModalContent.html">
+<form name="addDefaulStationForm">
+    <div class="modal-header card-header" ng-cloak>
+        <h3 class="modal-title">{{ 'loukup_details.ADD_PROD' | translate }}</h3>
+    </div>
+    <div class="modal-body" ng-cloak>
+         <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mini-charts-item bgm-cyan">
+                    <div class="clearfix">
+                        <div class="chart stats-bar-2" data-sparkline-bar="">
+                             {{ 'loukup_details.PC' | translate }}
+                        </div>
+                        <div class="count">
+                            <small>{{ 'loukup_details.PART_CATEGORY' | translate }}</small>
+                            <h2 class="ng-binding">{{defaultStation.id.categoryId}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group required col-md-6">
+                <label class="form-label">{{ 'loukup_details.PART_CRITERIA' | translate }}
+                    <span ng-show="addDefaulStationForm.partCriteria.$touched && addDefaulStationForm.partCriteria.$error.required" class="text-danger text-error">: Criteria required! {{ 'loukup_details.DESCRIPTION' | translate }}</span>
+                </label>
+                <div class="controls">
+                    <select name="partCriteria" id="partCriteria" ng-model="defaultStation.id.critiriaId" ng-required="true" class="form-control">
+                        <option value="">{{ 'loukup_details.SELECT' | translate }}</option>
+                        <option ng-repeat="option in critiriaOptions" value="{{option.id}}">{{option.name}}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group required col-md-6">
+                <label class="form-label">{{ 'loukup_details.BINDING_TYPE' | translate }}
+                    <span ng-show="addDefaulStationForm.bindingType.$touched && addDefaulStationForm.bindingType.$error.required" class="text-danger text-error">: Binding Type required! {{ 'loukup_details.DESCRIPTION' | translate }}</span>
+                </label>
+                <div class="controls">
+                    <select name="bindingType" id="bindingType" ng-model="defaultStation.id.bindingTypeId" ng-required="true" class="form-control">
+                        <option value="">{{ 'loukup_details.SELECT' | translate }}</option>
+                        <option ng-repeat="option in bindingTypeOptions" value="{{option.id}}">{{option.name}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group required col-md-6">
+                <label class="form-label">{{ 'loukup_details.STATION_CATEGORY' | translate }}
+                    <span ng-show="addDefaulStationForm.stationCategory.$touched && addDefaulStationForm.stationCategory.$error.required" class="text-danger text-error">: Station Category required! {{ 'loukup_details.DESCRIPTION' | translate }}</span>
+                </label>
+                <div class="controls">
+                    <select name="stationCategory" id="stationCategory" ng-model="defaultStation.id.stationCategoryId" ng-required="true" class="form-control">
+                        <option value="">{{ 'loukup_details.SELECT' | translate }}</option>
+                        <option ng-repeat="option in stationCategoryOptions" value="{{option.id}}">{{option.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group required col-md-6">
+                <label class="form-label">{{ 'loukup_details.PROD_ORDERING' | translate }}
+                    <span ng-show="addDefaulStationForm.productionOrdering.$error.max" class="text-danger text-error">{{ 'loukup_details.ERROR22' | translate }}</span>
+                    <span ng-show="addDefaulStationForm.productionOrdering.$touched && addDefaulStationForm.productionOrdering.$required" class="text-danger text-error">{{ 'loukup_details.ERROR23' | translate }}</span>
+                </label>
+                <div class="controls">
+                    <div class="fg-line">
+                        <input type="number" id="productionOrdering" name="productionOrdering" ng-model="defaultStation.productionOrdering" class="form-control" ng-required="true" min="0" max="999999">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+    	<button class="btn bgm-bluegray waves-effect" type="button" ng-click="closeModal()"> {{ 'loukup_details.CANCEL' | translate }}</button>
+    	<button class="btn bgm-cyan waves-effect" type="button" ng-click="addDefaultStation()" ng-disabled="addDefaulStationForm.bindingType.$invalid || addDefaulStationForm.partCriteria.$invalid || addDefaulStationForm.stationCategory.$invalid || addDefaulStationForm.productionOrdering.$invalid"> {{ 'loukup_details.ADD' | translate }}</button>
+    </div>
+</form>
+</script>
+
+<script type="text/ng-template" id="editDefaultStationModalContent.html">
+ <form name="updateDefaultStationForm" ng-cloak>
+    <div class="modal-header card-header ch-alt" ng-cloak>
+        <h3 class="modal-title">{{ 'loukup_details.UPDATE_PROD_STATION' | translate }}</h3>
+    </div>
+    <div class="modal-body card-body" ng-cloak>
+        <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+        <div class="row">
+            <div class="col-sm-6 col-md-6">
+                <div class="mini-charts-item bgm-cyan">
+                    <div class="clearfix">
+                        <div class="chart stats-bar-2" data-sparkline-bar="">
+                             {{ 'loukup_details.PC' | translate }}
+                        </div>
+                        <div class="count">
+                            <small>{{ 'loukup_details.PART_CATEGORY' | translate }}</small>
+                            <h2 class="ng-binding">{{defaultStation.id.categoryId}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-sm-6 col-md-6">
+                <div class="mini-charts-item bgm-cyan">
+                    <div class="clearfix">
+                        <div class="chart stats-bar-2" data-sparkline-bar="">
+                             {{ 'loukup_details.PC' | translate }}
+                        </div>
+                        <div class="count">
+                            <small>{{ 'loukup_details.PART_CRITERIA' | translate }}</small>
+                            <h2 class="ng-binding">{{defaultStation.id.critiriaId}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-sm-6 col-md-6">
+                <div class="mini-charts-item bgm-cyan">
+                    <div class="clearfix">
+                        <div class="chart stats-line" data-sparkline-line="">
+                             {{ 'loukup_details.BT' | translate }}
+                        </div>
+                        <div class="count">
+                            <small>{{ 'loukup_details.BINDING_TYPE' | translate }}</small>
+                            <h2 class="ng-binding">{{defaultStation.id.bindingTypeId}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <div class="mini-charts-item bgm-cyan">
+                    <div class="clearfix">
+                        <div class="chart stats-line" data-sparkline-line="">
+                             {{ 'loukup_details.SC' | translate }}
+                        </div>
+                        <div class="count">
+                            <small>{{ 'loukup_details.STATION_CATEGORY' | translate }}</small>
+                            <h2 class="ng-binding">{{defaultStation.id.stationCategoryId}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label class="form-label">{{ 'loukup_details.PROD_ORDERING' | translate }}
+                    <span ng-show="editDefaulStationForm.productionOrdering.$dirty && editDefaulStationForm.productionOrdering.$error.max" class="text-danger text-error">{{ 'loukup_details.ERROR22' | translate }}</span>
+                    <span ng-show="editDefaulStationForm.productionOrdering.$dirty && editDefaulStationForm.productionOrdering.$required" class="text-danger text-error">{{ 'loukup_details.ERROR23' | translate }}</span>
+                </label>
+                <div class="controls">
+                    <div class="fg-line">
+                        <input type="number" id="productionOrdering" name="productionOrdering" ng-model="defaultStation.productionOrdering" class="form-control" ng-required="true" min="0" max="999999">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn bgm-bluegray waves-effect" type="button" ng-click="closeModal()"> {{ 'loukup_details.CANCEL' | translate }}</button>
+        <button class="btn bgm-cyan waves-effect" type="button" ng-click="updateDefaultStation()" ng-disabled="editDefaulStationForm.productionOrdering.$invalid"> {{ 'loukup_details.UPDATE' | translate }}</button>
+    </div>
+</form>
+</script>
+
+<script type="text/ng-template" id="addTemplateLineModalContent.html">
+<form name="addTmpLineForm">
+    <div class="modal-header card-header" ng-cloak>
+        <h3 class="modal-title">{{ 'LOOKUPS_JS.ADDING_TMPL_LINE' | translate }}</h3>
+    </div>
+    <div class="modal-body" ng-cloak>
+         <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mini-charts-item bgm-cyan">
+                    <div class="clearfix">
+                        <div class="chart stats-bar-2" data-sparkline-bar="">
+                             {{ 'loukup_details.TMPL_ID' | translate }}
+                        </div>
+                        <div class="count">
+                            <small>{{ 'loukup_details.TMPL_ID' | translate }}</small>
+                            <h2 class="ng-binding">{{tmpLine.templateId}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group required col-md-12">
+                <label class="form-label"> {{ 'loukup_details.TMPL_LINE_TEXT' | translate }}
+                    <small ng-show="addTmpLineForm.lineText.$dirty && addTmpLineForm.lineText.$error.maxlength" class="text-danger text-error">{{ 'loukup_details.ERROR11' | translate }}</small>
+                </label>&nbsp;&nbsp;&nbsp;
+                <a title="{{ 'loukup_details.TMPL_NAMING_CONVENTIONS'| translate }}" ng-click="openTemplateNamingConventionsModal()" id="templateNamingConventions">
+						<i class="zmdi zmdi-search-for zmdi-hc-lg"></i></a>
+                <div class="controls">
+                    <div class="fg-line">
+                        <textarea ng-model="tmpLine.lineText" id="lineText" name="lineText" class="form-control" ng-required="true" ng-maxlength="255" rows="1" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group required col-md-4">
+                <label class="form-label">{{ 'loukup_details.TMPL_FONT_TYPE' | translate }}
+                    <span ng-show="addTmpLineForm.fontType.$touched && addTmpLineForm.fontType.$error.required" class="text-danger text-error">: Font Type required! {{ 'loukup_details.DESCRIPTION' | translate }}</span>
+                </label>
+                <div class="controls">
+                    <select name="fontType" id="fontType" ng-model="tmpLine.fontType" ng-required="true" class="form-control">
+                        <option value="">{{ 'loukup_details.SELECT' | translate }}</option>
+                        <option  value="Helvetica">Helvetica</option>
+						<option  value="Courier">Courier</option>
+						<option  value="Calibri">Calibri</option>
+						<option  value="Cambria">Cambria</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group required col-md-4">
+                <label class="form-label">{{ 'loukup_details.TMPL_FONT_SIZE' | translate }}
+                    <span ng-show="addTmpLineForm.fontSize.$touched && addTmpLineForm.fontSize.$error.required" class="text-danger text-error">: Font Size required! {{ 'loukup_details.DESCRIPTION' | translate }}</span>
+                </label>
+                <div class="controls">
+                    <select name="fontSize" id="fontSize" convert-to-number ng-model="tmpLine.fontSize" ng-required="true" class="form-control">
+                        <option value="">{{ 'loukup_details.SELECT' | translate }}</option>
+                        <option ng-repeat="option in [5,6,7,8,9,10,11,12,14,16,18,22,24,26,32,40]" value="{{option}}">{{option}}</option>
+                    </select>
+                </div>
+            </div>
+			<div class="form-group col-md-2">
+                <div class="controls">
+                    <div class="checkbox checkbox-inline m-r-20">
+	                      <input id="boldType" name="boldType" type="checkbox" ng-model="tmpLine.fontBold" >
+	                      <label class="input-helper" for="boldType">Bold</label> 
+	                 </div>
+                </div>
+            </div>
+			<div class="form-group col-md-2">
+                <div class="controls">
+                    <div class="checkbox checkbox-inline m-r-20">
+	                      <input id="italicType" name="italicType" type="checkbox" ng-model="tmpLine.fontItalic" >
+	                      <label class="input-helper" for="italicType">Italic</label> 
+	                 </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+    	<button class="btn bgm-bluegray waves-effect" type="button" ng-click="closeModal()"> {{ 'loukup_details.CANCEL' | translate }}</button>
+    	<button class="btn bgm-cyan waves-effect" type="button" ng-click="addTemplateLine()" ng-disabled="addTmpLineForm.fontType.$invalid || addTmpLineForm.fontSize.$invalid || addTmpLineForm.lineText.$invalid "> {{ 'loukup_details.ADD' | translate }}</button>
+    </div>
+</form>
+</script>
+
+<script type="text/ng-template" id="editTemplateLineModalContent.html">
+ <form name="editTmpLineForm">
+    <div class="modal-header card-header" ng-cloak>
+        <h3 class="modal-title">{{ 'LOOKUPS_JS.UPDATING_TMPL_LINE' | translate }}</h3>
+    </div>
+    <div class="modal-body" ng-cloak>
+         <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mini-charts-item bgm-cyan">
+                    <div class="clearfix">
+                        <div class="chart stats-bar-2" data-sparkline-bar="">
+                             {{ 'loukup_details.TMPL_ID' | translate }}
+                        </div>
+                        <div class="count">
+                            <small>{{ 'loukup_details.TMPL_ID' | translate }}</small>
+                            <h2 class="ng-binding">{{tmpLine.templateId}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group required col-md-12">
+                <label class="form-label"> {{ 'loukup_details.TMPL_LINE_TEXT' | translate }}
+                    <small ng-show="editTmpLineForm.lineText.$dirty && editTmpLineForm.lineText.$error.maxlength" class="text-danger text-error">{{ 'loukup_details.ERROR11' | translate }}</small>
+                </label>&nbsp;&nbsp;&nbsp;
+                <a title="{{ 'loukup_details.TMPL_NAMING_CONVENTIONS'| translate }}" ng-click="openTemplateNamingConventionsModal()" id="templateNamingConventions">
+						<i class="zmdi zmdi-search-for zmdi-hc-lg"></i></a>
+                <div class="controls">
+                    <div class="fg-line">
+                        <textarea ng-model="tmpLine.lineText" id="lineText" name="lineText" class="form-control" ng-required="true" ng-maxlength="255" rows="1" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group required col-md-4">
+                <label class="form-label">{{ 'loukup_details.TMPL_FONT_TYPE' | translate }}
+                    <span ng-show="editTmpLineForm.fontType.$dirty && editTmpLineForm.fontType.$error.required" class="text-danger text-error">: Font Type required! {{ 'loukup_details.DESCRIPTION' | translate }}</span>
+                </label>
+                <div class="controls">
+                    <select name="fontType" id="fontType" ng-model="tmpLine.fontType" ng-required="true" class="form-control">
+                        <option value="">{{ 'loukup_details.SELECT' | translate }}</option>
+                        <option  value="Helvetica">Helvetica</option>
+						<option  value="Courier">Courier</option>
+						<option  value="Calibri">Calibri</option>
+						<option  value="Cambria">Cambria</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group required col-md-4">
+                <label class="form-label">{{ 'loukup_details.TMPL_FONT_SIZE' | translate }}
+                    <span ng-show="editTmpLineForm.fontSize.$dirty && editTmpLineForm.fontSize.$error.required" class="text-danger text-error">: Font Size required! {{ 'loukup_details.DESCRIPTION' | translate }}</span>
+                </label>
+                <div class="controls">
+                    <select name="fontSize" id="fontSize" convert-to-number ng-model="tmpLine.fontSize" ng-required="true" class="form-control">
+                        <option value="">{{ 'loukup_details.SELECT' | translate }}</option>
+                        <option ng-repeat="option in [5,6,7,8,9,10,11,12,14,16,18,22,24,26,32,40]" value="{{option}}">{{option}}</option>
+                    </select>
+                </div>
+            </div>
+			<div class="form-group col-md-2">
+                <div class="controls">
+                    <div class="checkbox checkbox-inline m-r-20">
+	                      <input id="boldType" name="boldType" type="checkbox" ng-model="tmpLine.fontBold" >
+	                      <label class="input-helper" for="boldType">Bold</label> 
+	                 </div>
+                </div>
+            </div>
+			<div class="form-group col-md-2">
+                <div class="controls">
+                    <div class="checkbox checkbox-inline m-r-20">
+	                      <input id="italicType" name="italicType" type="checkbox" ng-model="tmpLine.fontItalic" >
+	                      <label class="input-helper" for="italicType">Italic</label> 
+	                 </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+    	<button class="btn bgm-bluegray waves-effect" type="button" ng-click="closeModal()"> {{ 'loukup_details.CANCEL' | translate }}</button>
+    	<button class="btn bgm-cyan waves-effect" type="button" ng-click="updateTemplateLine()" ng-disabled="editTmpLineForm.fontType.$invalid || editTmpLineForm.fontSize.$invalid || editTmpLineForm.lineText.$invalid "> {{ 'loukup_details.UPDATE' | translate }}</button>
+    </div>
+</form>
+</script>
+

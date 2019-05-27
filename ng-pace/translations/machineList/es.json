@@ -1,0 +1,65 @@
+{
+
+ "MACHINE_LIST" :{
+     "TITLE_machine" : "Lista de máquinas",
+     "DESCRIPTION_machine": "Debajo se encuentra la lista de máquinas disponibles en el sistema. Para agregar una nueva máquina haga click el ",
+	 "LIGNE2":	"icon ",
+	 "LIEN": " ",
+	 "MACHINE_ID":	"Identificacion de máquina",
+	 "MACHINE_NAME": "Nombre de máquina",
+	 "STATUS": "Status",
+	 "IP_ADDRESS": "Dirección IP",
+	 "OCPATH" :"Camino OC",
+	 "ADD_MACHINE": "Agregar máquina",	 
+	 "ID": "Identificacion",
+	 "CURRJOB" : "Trabajo Actual",
+	 "ERROR1": ": ¡Identificacion de máquina muy largo!",
+	 "ERROR2": ": ¡Identificacion de máquina requerido!",  	 
+	 "STATION": "Estación",	 
+	 "ERROR3": ": ¡La estación es requerida!", 
+	 "SELECT": "-- Seleccionar --",
+	 "NAME": "Nombre",	  
+	 "ERROR4": ": ¡El nombre de la máquina es muy largo!",
+	 "ERROR5": ": ¡El nombre de la máquina es requerido!",
+	 "MACHINE_STATUS": "Status de máquina" ,	 	 
+	 "SPEED-LENGTH": "Velocidad",	 
+	 "ERROR6": ": ¡El campo de velocidad de la máquina es may largo!",
+	 "MACHINE_TYPE": "Tipo de máquina",
+	 "ERROR7": ": ¡Dirección IP muy larga!",
+	 "DESC": "Descripción",	  
+	 "ERROR8": ": ¡La descripción de la máquina es may larga!",
+	 "CANCEL": "Cancelar",
+	 "UPDATE" : "Actualizar",
+	 "ADD" : "Agregar",
+	 "UPDATE_MACHINE": "Actualizar máquina",
+	 "ID2": "ID", 
+	 "ERROR9": ": ¡Direción IP de la máquina muy larga!", 
+	 "PORT": "Puerto",	   
+	 "LAST_UP_ID": "Ultimo Identificacion de quien actualizó: ",
+	 "LAST_UP_DATE": "Ultima fecha de actualización:"
+	 },
+	 
+	 "MACHINE_JS" :{
+	 "ID" :"Identificacion de máquina",
+	 "NAME" :"Nombre de máquina",
+	 "STATUS" :"Status de máquina", 
+	 "ADDRESS" :"Dirección",
+	 "OCPATH" :"Camino OC",
+	 "DELETE_MACHINE" :"Borrar máquina",
+	 "SURE_DELETE_MACHINE" :"¿Está seguro de querer borrar la máquina?",
+	 "DELETE" :"¡Sí, borrar!", 
+	 "LOOKUP_SUCC_DELETED" :"¡Máquina borrada exitosamente!",
+	 "DELETION_ERROR" :"Error al borrar",
+	 "MACHINE_ADDED" :"Máquina agregada",	 
+	 "ADDING_MACHINE" :"Agregando máquina",
+	 "MACHINE_SUCC_ADDED" :"Máquina agregada exitosamente",
+	 "UPDATED_MACHINE" :"Máquina actualizada",
+	 "UPDATING" :"Actualizando máquina" ,
+	 "UPDATED" :"Actualizado(a)" ,
+	 "EDIT" :"Editar máquina",
+	 "DELETE_js" :"Borrar máquina"		 
+	}
+	 
+	 
+	  
+}

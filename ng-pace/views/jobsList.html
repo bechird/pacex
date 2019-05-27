@@ -1,0 +1,31 @@
+<div class="card">
+    <div class="card-header ch-alt m-b-20">
+        <h2> {{ 'jobsList.TITLE' | translate }}<small> {{ 'jobsList.DESCRIPTION' | translate }} <i class="zmdi zmdi-plus-circle-o"></i> {{ 'jobsList.LIGNE2' | translate }}  
+          <a href="#/ordersPage">  {{ 'jobsList.LIEN' | translate }}</a>.</small></h2>
+
+        <button class="btn bgm-teal btn-float waves-effect waves-circle" ng-click="openAddJobModal()" uib-tooltip="{{ 'jobsList.Add_Part' | translate }}"><i class="zmdi zmdi-plus"></i>
+        </button>
+    </div>
+	<br/>
+    <div class="card-body card-padding" translate-cloak>
+        <uib-alert type="success" close="successMsg = false;" ng-show="successMsg">{{alertMsg}}</uib-alert>
+		<uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{alertMsg}}</uib-alert>
+        <table datatable="" dt-options="jobsList.dtOptions" dt-columns="jobsList.dtColumns" dt-instance="jobsList.dtInstance" class="table table-bordered table-striped table-vmiddle ng-scope ng-table col-lg-12" width="100%" translate-cloak>
+			<tfoot translate-cloak>
+        		<tr class="table-placeholder" translate-cloak>
+        			<th></th>
+        			<th></th>
+		            <th></th>
+		            <th></th>
+		            <th></th>
+		            <th></th>
+		            <th></th>
+		            <th></th>
+		            <th></th>
+		            <th></th>
+		            <th></th>
+        		</tr>
+        	</tfoot>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+{
+     "login" :{
+     "TITLE" : "Veuillez entrer vos informations d'identification",
+     "USERNAME": "Nom d'utilisateur",
+	 "PASSWORD":	"Mot de passe",
+	 "VALIDATE": "Valider",
+	 "NOTFOUND": "Nom d'utilisateur ou mot de passe invalide. Veuillez réessayer."
+
+     } 
+
+}

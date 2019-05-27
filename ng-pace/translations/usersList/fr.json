@@ -1,0 +1,93 @@
+{    "users" :{
+     "TITLE" : "Liste des utilisateurs",
+     "DESCRIPTION": "Voici la liste des utilisateurs disponibles dans le système. Pour ajouter un nouvel utilisateur, cliquez sur",
+	 "LIGNE2":	"icon ",
+	 "LIEN": " ",
+	 "FIRST_NAME":	"Prénom",
+	 "LAST_NAME": "Nom",
+	 "EMAIL": "Email",
+	 "PHONE": "Téléphone",	 
+	 "LANGUAGE" :"Langue",
+	 "ACTIVE": "Active",
+	 "USER_ROLES": "Rôles de l''utilisateur",
+	 "ADD_USER": "Ajouter un utilisateur", 
+	 "ERROR1": ": Le prénom est trop long!",
+	 "ERROR2": ": Le prénom est obligatoire!",	 
+	 "ERROR3": ": Le nom est trop long!",
+	 "ERROR4": ": Le nom est obligatoire", 
+	 "ERROR5": ": L'email est trop long!",
+	 "ERROR6": ": L'email est obligatoire!",	 
+	 "ERROR7": ": L'email est invalide!",
+	 "ERROR8": ": le numéro de téléphone est trop long!", 
+	 "ERROR9": ": le numéro de téléphone est invalide!",
+	 "LOGIN_NAME": "Identifiant",
+	 "ERROR10": ": l'Identifiant est trop long!",	 
+	 "LOGIN_PASSWORD": "Mot de passe",
+	 "ERROR11": ": Le Mot de passe est trop long!",
+	 "ROLES": "Roles", 
+	 "SELECT": "-- Sélectionnez --",
+	 "ACTIVE?": "Active?",
+	 "YES": "Oui",	 
+	 "NO": "Non",
+	 "CANCEL": "Annuler",	 
+	 "ADD": "Ajouter",	 
+	 "UPDATE_USER": "Update User", 	 
+	 "ERROR12": ": Le prénom est trop long!",
+	 "ERROR13": ": Le prénom est obligatoire!",	  
+	 "ERROR14": ": Le nom est trop long!",
+	 "ERROR15": ": Le nom est obligatoire!",	 	
+	 "ERROR16": ": L'email est trop long!",	 
+	 "ERROR17": ": L'email est obligatoire!",	 
+	 "ERROR18": ": Le numéro de téléphone est trop long!",
+	 "ERROR19": ": Le numéro de téléphone est invalide!",	 	 
+	 "ERROR20": ": The Login Name length is too long!",
+	 "ERROR21": ": The Login Password length is too long!",
+	 "LAST_UP_ID": "Dernier Utilisateur: ", 
+	 "LAST_UP_DATE": "Dernière date de mise à jour:",
+	  "UPDATE" : "Mettre à jour"
+	  
+	 
+	 },
+	 
+	 
+	 "js" :{
+	  "FirstName" :"Prénom",
+	 "LastName" :"Nom",
+	 "Phone" :"Numéro de télephone",
+	 "Language" :"Langue",
+	 "Active" :"Flag Active",
+	 "UserRoles" :"Roles de l'utilisateur",
+	 
+	  "TITLE_DELETE" :"Supprimer Utilisateur",
+	 "TEXT_DELETE" :"Êtes-vous sûr de vouloir supprimer l'Utilisateur?",
+	 "CONFIRM_DELETE" :"Oui, supprimez-le!",
+	 
+	 "DeleteRole" :"Supprimer le rôle",
+	 "ROLE_DELETED" :"Rôle supprimé avec succès!",
+	 "DeletionError" :"Erreur de suppression",
+	 
+	 "USER_UPDATED" :"Utilisateur mis à jour !!",
+	 "ADING_USER" :"Ajouter un utilisateur",
+	 "USER_ADDED" :"Utilisateur ajouté",
+	 "EDDINT_USER" :"Modification de l'utilisateur",
+	 "USER_UPDATED2" :"Utilisateur mis à jour",
+	 "EDIT" :"Modifier Utilisateur",
+	 "DELETE_js" :"Supprimer Utilisateur" 
+	 
+    },
+	 
+	 "plowFolderMachineForPhone" : {
+	 "ROLL_NUM" : "Num Bobine",
+     "PAPER_TYPE": "Type de papier",
+	 "Utopia":	"45lb Utopia Filmcoat Text Blue White : 45lb Utopia Filmcoat Texte Bleu Blanc",
+	 "NEXT": "Prochain",
+	 "ROLL": "Bobine",
+	 "TOBS_LIST": "Liste des Jobs",	 
+	 "FILE_NAME": "Nom de fichier",
+	 "QTY": "Qté"
+	 }
+	 
+	  
+	  
+	 
+}

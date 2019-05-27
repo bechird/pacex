@@ -1,0 +1,65 @@
+{
+     "scheduling" : { 
+     "ROL_SCHED" : "Planification des Bobines",
+     "UNSCHED_HOURS": "Heures non planifiées",
+	 "SCHED_HOURS":	"Heures planifiées",
+	 "ROLLS": "Bobines disponibles",
+	 "FILTER": "Filtrer Par: ",
+	 "NO_ROLLS": "Aucune Bobine n'est disponible.",	 
+	 "NEW": "NOUVEAU",
+	 "ROLL": "Bobine",
+	 "JOBS": "Jobs d'impression disponibles",
+	 "ALL" : "All" ,
+	 "Filter_Rolls_By_Paper_Type" :"Filter Rolls By Paper Type" ,
+	 "Utilization" :"Utilization",
+	 "Width" :"Width",
+	 "Length" :"Length",
+	 "Hours" :"Hours",
+	 "Paper" :"Paper",
+	 "Produce_this_roll" :"Produce this roll#",
+	 "Schedule_for_1C" :"Schedule for 1C",
+	 "Show_All_Rolls_Jobs" :"Show All Rolls/Jobs"
+	 },
+	 
+	  "js_Scheduling":{
+	 "Order":"Cmd",
+	 "Qty" :"Qté",
+	 "Paper" :"Papier",
+	 "Binding" :"Reliure",
+	 "Priority":"Priorité",
+	 "Bindery" :"Bindery",
+	 
+	 "Roll" :"Bobine sélectionné: #",
+	 "selected_Orders_selected" :"; Commandes sélectionnées: ",
+	 "Confirm_Job_Split" :"Confirmer la division d'emploi",
+	 "Roll_Utilization_exceeds" :"L'utilisation de la Bobine dépasse 100%, de sorte qu'une division de travail doit être effectuée; continuer?",
+	 "Continue" :"Oui, continuer!",
+	 "jobs_assigned_to_roll" :"Les travaux suivants ont été attribués avec succès à la bobine #",
+	 "Roll_Production" :"Production de la Bobine",
+	 "for_production" :" Pour production: ",
+	 "Roll_not_produced" :"Bobine n'a pas été produite car elle ne pouvait pas contenir de Job ou que certains des Jobs ont un schéma d'imposition différent!",
+	 "close" :"Fermer",
+	 "Confirm_TrimCust_Size" : "Les jobs suivants ont le book block trim cut size plus grand que la taille de couverture: ",
+	 
+	 "Before_this_Day" :"(Avant ce jour)",
+	 "Scheduled" :"Planifié (Pour ce jour)",
+	 "Unscheduled" :"Non Planifié (Pour ce jour)",
+	 "Cumulative_Capacity" :"Capacité cumulative",
+	 "Order2" :"Com#",
+	 "Bindery_Priority_updated":": Priorité Bindery mis à jour pour le Job# ",
+	 "Job_Update" :"Mise à jour du Job",
+	 
+	  
+	 "FEB" :"Fév",
+	 "APR" :"Avr",
+	 "MAY" :"Mai",
+	 "JUN" :"Juin",
+	 "JUL": "Juil",
+	 "AUG" :"Aou",
+	 "View_Job_Details" :"Voir Détails du Job",
+	 "Split_Job" :"Diviser Job#",
+	 "View_Roll_Details" :"Voir Détails Bobine",
+	 "NORMAL" :"Normal" ,
+	 "HIGH" :"Haut"
+	}
+}

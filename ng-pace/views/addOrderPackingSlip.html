@@ -1,0 +1,101 @@
+<div class="modal-header card-header ch-alt" ng-cloak>
+<h3>{{ 'addOrderPackagingSlip.DESCRIPTION'| translate }}</h3>
+<br/>
+</div>
+<div class="card-body" ng-cloak>
+        <div class="row">
+        	  <div class="col-md-12">
+                    	   <div class="form-group col-md-6">
+				                <label class="form-label"> {{ 'addOrderPackagingSlip.ORDER'| translate }}</label>
+				                <div class="controls">
+				                    <div class="fg-line">
+				                        <input name="order" type="text" ng-model = "orderPalletteToEdit.orderNum" class="form-control" >
+				                    </div>
+				                </div>
+				            </div>
+				            <div class="form-group col-md-6">
+				                <label class="form-label">ISBN</label>
+				                <div class="controls">
+				                    <div class="fg-line">
+				                        <input name="isbn" type="text" ng-model = "orderPalletteToEdit.orderPart.part.isbn" class="form-control" >
+				                    </div>
+				                </div>
+				            </div>
+			              </div>
+			              <div class="col-md-12">
+                    	   <div class="form-group col-md-12">
+				                <label class="form-label">{{ 'addOrderPackagingSlip.TITLE'| translate }}</label>
+				                <div class="controls">
+				                    <div class="fg-line">
+				                        <input name="titre" type="text" ng-model = "orderPalletteToEdit.orderPart.part.title" class="form-control" >
+				                    </div>
+				                </div>
+				            </div>
+			              </div>
+			                 <div class="col-md-12">
+			              		<div class="form-group col-md-4">
+				                <label class="form-label">{{ 'addOrderPackagingSlip.ORDER_QTY'| translate }}</label>
+				                <div class="controls">
+				                    <div class="fg-line">
+				                        <input name="titre" type="text" ng-model = "orderPalletteToEdit.orderPart.quantity"class="form-control" >
+				                    </div>
+				                </div>
+				            </div>
+				            <div class="form-group col-md-4">
+				                <label class="form-label">{{ 'addOrderPackagingSlip.MIN_NEEDED'| translate }}</label>
+				                <div class="controls">
+				                    <div class="fg-line">
+				                        <input name="titre" type="text" ng-model = "orderPalletteToEdit.orderPart.quantityMin"class="form-control" >
+				                    </div>
+				                </div>
+				            </div>
+				            <div class="form-group col-md-4">
+				                <label class="form-label">{{ 'addOrderPackagingSlip.MAX_ALLOWED'| translate }}</label>
+				                <div class="controls">
+				                    <div class="fg-line">
+				                        <input name="titre" type="text" ng-model = "orderPalletteToEdit.orderPart.quantityMax" class="form-control" >
+				                    </div>
+				                </div>
+				            </div>
+			              </div>
+			              <div class="col-md-12">
+			              <div class="col-md-12">
+			              		<table class="mdl-data-table table-bordered  mdl-shadow--2dp ng-isolate-scope no-footer dataTable" width="100%">
+		                            <thead>
+		                                <tr>
+		                                    <th>Type</th>
+		                                    <th>{{ 'addOrderPackagingSlip.HEIGHT'| translate }}</th>
+		                                    <th>{{ 'addOrderPackagingSlip.WIDTH'| translate }}</th>
+		                                    <th>{{ 'addOrderPackagingSlip.DEPTH'| translate }}</th>
+		                                    <th>{{ 'addOrderPackagingSlip.NUMBER'| translate }}</th>
+											<th>{{ 'addOrderPackagingSlip.QTY_DELIVRED'| translate }}</th>
+		                                    <th width="10%">{{ 'addOrderPackagingSlip.QTY'| translate }}</th>
+		                                </tr>
+		                            </thead>
+		                            <tbody>
+		                                <tr>
+		                                    <td> {{ 'addOrderPackagingSlip.SHRINK_WRAPPED'| translate }}</td>
+		                                    <td>{{palletteBookToEdit.packageBook.heightQty}}</td>
+		                                    <td>{{palletteBookToEdit.packageBook.widthQty}}</td>
+		                                    <td>{{palletteBookToEdit.packageBook.depthQty}}</td>
+		                                    <td>{{palletteBookToEdit.packageBook.count}}</td>
+											<td>{{palletteBookToEdit.quantity}}</td>
+		                                    <td ng-init ="pcbRecordedByPallette(palletteBookToEdit.packageBook)">
+		    
+							                   <input name="max" type="number" ng-model="palletteBookToEdit.packageBook.newQty" class="form-control" >
+							                 
+				            				</td>
+		                                    
+		                                   
+		                                </tr>
+		                            </tbody>
+		                        </table>
+		                        </div>
+			              </div>
+        </div>
+            </div>
+			<div class="modal-footer">
+			    <button type="button" class="btn bgm-bluegray waves-effect" ng-click="editQtyPcbInPallette(palletteBookToEdit.packageBook);closeModal()">{{ 'addOrderPackagingSlip.OK'| translate }}</button>
+			     <button type="button" class="btn bgm-bluegray waves-effect" ng-click="closeModal()">{{ 'addOrderPackagingSlip.Cancel'| translate }}</button>
+
+	</div>

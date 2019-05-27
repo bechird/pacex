@@ -1,0 +1,632 @@
+<style>
+.text-status-printer{
+  font-size: 13px;
+  color: white;
+  background-color: #E65100;
+}
+.blink-me {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  0% {
+    opacity: 0.0;
+  }
+  50% {
+    opacity: 0.0;
+  }
+  51% {
+    opacity: 100.0;
+  }
+  100% {
+    opacity: 100.0;
+  }
+}
+	.scrollme {
+        max-height: 200px;
+    }
+    td.details-control {
+        background: url('images/details_open.png') no-repeat center center;
+        cursor: pointer;
+    }
+	.select-machine {    
+		color: #678897;
+	    float: right;
+	    margin-right: 84px;
+	    border-radius: none;
+	    border: -1px solid rgb(255,255,255);
+	    background-color: rgb(255,255,255);
+	    border: none;
+	    padding: 2px 2px;
+	    }
+	.select-machine select {
+		    border: none;
+	    	padding: 7px 7px;
+	    	background-color: #ffffff;
+	    	}
+	.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    color: #555;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+	}
+	.nav-tabs>li>a {
+	    margin-right: 2px;
+	    line-height: 1.42857143;
+	    border: 1px solid transparent;
+	    border-radius: 4px 4px 0 0;
+	}
+	.nav>li>a {
+	    position: relative;
+	    display: block;
+	    padding: 10px 15px;
+	}
+	.nav-tabs {
+	    border-bottom: 1px solid #ddd;
+	}
+</style>
+<!-- Using window resize trigger to force data-tables to redraw and adjust header column widths so they align with the data columns -->
+<div onmouseenter="$(window).trigger('resize');" class="card station-min-height header-station">
+    <div class="card-header" ng-class="MODE =='pacex'?'bgm-station-pacex':'bgm-station-pacea'">
+        <h3 style="color:#ffffff;"> <strong>{{station.machines[i].name}}</strong> <span class="badge badge-mode-epac" ng-if="stationId == 'PRESS' && station.machines[i].isEpacModePrintingActive">{{ 'productionDashboardMachine.EPAC_MODE' | translate }}</span> <span class="badge badge-mode-normal" ng-if="stationId == 'PRESS' && !station.machines[i].isEpacModePrintingActive">{{ 'productionDashboardMachine.NORMAL_MODE' | translate }}</span>
+          <span class="blink-me text-status-printer badge" ng-if="station.machines[i].isEpacModePrinterStatusChanged">{{ 'productionDashboardMachine.PRINTER' | translate }}<strong> {{station.machines[i].epacModePrinterStatus}}</strong></span>
+        </h3>
+        <button uib-tooltip="{{station.machines[i].logs[0].event == 'PAUSE' ? 'Resume' : 'Start'}}" 
+        type="button" ng-if="station.machines[i].status.id == 'ON'" 
+        ng-disabled="(station.machines[i].rollOnProd == null || station.machines[i].rollOnProd.jobs.length == 0 || (station.stationId == 'PRESS' && station.machines[i].rollOnProd.copyStatus != 'FINISHED')) && station.machines[i].jobOnProd == null && station.machines[i].coverSectionOnProd == null" 
+        class="btn bgm-teal btn-float waves-effect" id="" name="" 
+        ng-click="startResumeMachine(station.machines[i].machineId, i)">
+        <i class="zmdi zmdi-play"></i>
+        </button>
+        <button type="button" ng-if="station.machines[i].status.id == 'RUNNING'" 
+        class="btn bgm-orange-900 btn-float waves-effect" id="" name="" 
+        ng-disabled="station.machines[i].rollOnProd == null && station.machines[i].jobOnProd == null && station.machines[i].coverSectionOnProd == null" 
+        ng-click="openInterruptMachineModal(station.stationId, station.machines[i].machineId, station.machines[i].rollOnProd != null ? station.machines[i].rollOnProd.rollId : 0, station.machines[i].jobOnProd != null ? station.machines[i].jobOnProd.jobId : 0, i)" 
+        uib-tooltip="{{ 'productionDashboardMachine.Stop_pause' | translate }}" >
+        <i class="zmdi zmdi-pause"></i>
+        </button>
+        <!--  
+        <button type="button" class="btn bgm-red btn-float waves-effect" id="" 
+        ng-if="station.machines[i].isEpacModePrintingActive || true" name="" 
+        ng-disabled="station.machines[i].status.id == 'RUNNING' " 
+        ng-click="openInterruptMachineModal('stop',station.stationId, station.machines[i].machineId, station.machines[i].rollOnProd != null ? station.machines[i].rollOnProd.rollId : 0, station.machines[i].jobOnProd != null ? station.machines[i].jobOnProd.jobId : 0, i)" 
+        uib-tooltip="{{ 'productionDashboardMachine.Stop_pause' | translate }}" >
+        <i class="zmdi zmdi-stop"></i>
+        </button>
+        -->
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <form class="">
+                <div class="t-view-noborder data-div">
+                    <div class="tv-body">
+                        <div class="clearfix"></div>
+                        <div class="col-lg-5 col-md-5">
+                            <ul class="tvb-stats card-body">
+                            	<li class="tvbs-likes bgm-data-station" style="width: 100%;margin-bottom: 10px;"><i class="zmdi zmdi-account"></i>&nbsp; {{ 'productionDashboardMachine.OPERATOR' | translate }}&nbsp;
+	                                 <span style="color:#455A64;font-weight:bold">{{station.machines[i].logs[0].creatorId != null ? station.machines[i].logs[0].creatorId : loggedInUserId}}</span>
+	                            </li>
+                                <li class="tvbs-likes" style="width: 100%;">
+                                    <label ng-if="station.machines[i].status.id == null || station.machines[i].status.id == ''" class="form-label"> {{ 'productionDashboardMachine.MA_STATUS' | translate }}</label>
+                                    <label ng-if="station.machines[i].status.id == 'ON'" class="form-label text-info"> {{ 'productionDashboardMachine.MA_STATUS' | translate }} &nbsp;<i class="zmdi zmdi-refresh-alt"></i>
+                                    </label>
+                                    <label ng-if="station.machines[i].status.id == 'OFF'" class="form-label text-grey">{{ 'productionDashboardMachine.MA_STATUS' | translate }} &nbsp;<i class="zmdi zmdi-close-circle-o"></i>
+                                    </label>
+                                    <label ng-if="station.machines[i].status.id == 'RUNNING'" class="form-label text-success">{{ 'productionDashboardMachine.MA_STATUS' | translate }} &nbsp;<i class="zmdi zmdi-run"></i>
+                                    </label>
+                                    <label ng-if="station.machines[i].status.id == 'SERVICE'" class="form-label text-error">{{ 'productionDashboardMachine.MA_STATUS' | translate }} &nbsp;<i class="zmdi zmdi-wrench"></i>
+                                    </label>
+                                    <label ng-if="station.machines[i].status.id == 'OUTSERVICE'" class="form-label text-error">{{ 'productionDashboardMachine.MA_STATUS' | translate }} &nbsp;<i class="zmdi zmdi-minus-circle-outline"></i>
+                                    </label>&nbsp;
+                                    <span style="color:#455A64;font-weight:bold">
+                                    	<div class="select">
+								                <select ng-model="station.machines[i].status.id" name="status{{station.machines[i].machineId}}" id="status{{station.machines[i].machineId}}" 
+								                       	class="form-control" ng-change="updateMachineStatus(station.machines[i], i)" ng-disabled="station.machines[i].status.id == 'RUNNING'">
+								                    <option ng-repeat="option in statusOptions" value="{{option.id}}">{{option.name}}</option>
+								                </select>
+										</div>
+									</span>
+                                </li>
+                                </ul>
+                                <ul class="tvb-stats">
+	                                <li style="width: 100%;" ng-if="stationId == 'PRESS' || stationId == 'PLOWFOLDER'" class="tvbs-likes bgm-data-station">
+	                                	  {{ 'productionDashboardMachine.HOURS' | translate }}  &nbsp;
+	                                		<span style="color:#455A64;font-weight:bold">{{station.machines[i].rollHours | number:2 }}</span>&nbsp;&nbsp;&nbsp;
+	                                 {{ 'productionDashboardMachine.NEXT' | translate }} &nbsp;
+                               	 			<span style="color:#455A64;font-weight:bold"> {{station.machines[i].assignedRolls.length > 0 ? 'Roll# ' + station.machines[i].assignedRolls[0].rollId : ''}}</span>
+                               	 	</li>
+                               	 	<li style="width: 100%;" ng-if="stationId != 'PRESS' && stationId != 'PLOWFOLDER'" class="tvbs-likes bgm-data-station">
+                               	 		&nbsp; {{ 'productionDashboardMachine.HOURS' | translate }} &nbsp;
+                               	 			<span style="color:#455A64;font-weight:bold">{{station.machines[i].jobHours | number:2 }}</span>&nbsp;&nbsp;&nbsp;
+                               	 		&nbsp; {{ 'productionDashboardMachine.NEXT' | translate }} &nbsp;
+	                                		<span style="color:#455A64;font-weight:bold"> {{station.machines[i].assignedJobs.length > 0 ? 'Order# ' + station.machines[i].assignedJobs[0].orderId : ''}}</span>
+                               	 	</li>
+	                            </ul>
+                         
+                        </div>
+                        <div ng-if="stationId == 'PRESS' || stationId == 'PLOWFOLDER'" class="col-md-7 station-details">
+                        <br/>
+							<ul class="tvb-stats card-body">
+                                   <li class="tvbs-likes">&nbsp; {{ 'productionDashboardMachine.ROLL' | translate }} &nbsp;<span style="color:#455A64;font-weight:bold">
+                                   			<a href="" uib-tooltip="{{ 'productionDashboardMachine.Roll' | translate }} {{station.machines[i].rollOnProd.rollId}} {{ 'productionDashboardMachine.Details' | translate }}" ng-click="openViewRollModal(station.machines[i].rollOnProd.rollId)"><b>{{station.machines[i].rollOnProd.rollId}}</b></a>
+										</span>
+                                   </li>
+                                   <li class="tvbs-likes">  {{ 'productionDashboardMachine.PRIORITY' | translate }}
+                                       <span style="color:#455A64;font-weight:bold">: <b>{{station.machines[i].rollOnProd.priority}}</b></span>
+                                   </li>
+                                   <li class="tvbs-likes" ng-if="stationId == 'PLOWFOLDER' && includeStanly == 'true'"> {{ 'productionDashboardMachine.MODE' | translate }}
+                                       <span style="color:#455A64;font-weight:bold">: <b>{{station.machines[i].rollOnProd.jobs[0].productionMode}}</b></span>
+                                   </li>
+                               </ul>
+                            <ul class="tvb-stats">
+                                <li class="tvbs-likes"><span style="color:#455A64;font-weight:bold" uib-tooltip="{{ 'productionDashboardMachine.Paper_Type' | translate }}"><b>{{station.machines[i].rollOnProd.paperType.name}}</b></span>
+                                </li>
+                            </ul>
+                            <ul class="tvb-stats">
+                                <li class="tvbs-likes"><span uib-tooltip="{{ 'productionDashboardMachine.Length' | translate }}"> L:</span> &nbsp;
+                                	<span style="color:#455A64;font-weight:bold" ng-if="stationId == 'PRESS' && station.machines[i].rollOnProd != null"><b>{{station.machines[i].rollOnProd.length * station.machines[i].rollOnProd.utilization / 100}}/{{station.machines[i].rollOnProd.length}}</b></span>
+                                	<span style="color:#455A64;font-weight:bold" ng-if="stationId == 'PLOWFOLDER'"><b>{{station.machines[i].rollOnProd.length}}</b></span>
+                                </li>
+                                <li class="tvbs-likes"><span uib-tooltip="{{ 'productionDashboardMachine.Roll_Hours' | translate }}">R H:</span>&nbsp;<span style="color:#455A64;font-weight:bold"> <b>{{station.machines[i].rollOnProd.hours | number:2 }}</b></span>
+                                </li>
+                                <li class="tvbs-likes"> {{ 'productionDashboardMachine.DUE' | translate }} &nbsp;
+                                    <span style="color:#455A64;font-weight:bold"><b>{{station.machines[i].rollOnProd.dueDate | date:'MMM dd'}}</b></span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div ng-if="stationId != 'PRESS' && stationId != 'PLOWFOLDER' && station.inputType != 'Batch'">
+                        	<br/>
+                        	<ul class="tvb-stats card-body">
+                                    <li class="tvbs-likes "> {{ 'productionDashboardMachine.ORDRER' | translate }} &nbsp;<span style="color:#455A64;font-weight:bold">
+                                    	<a href="" uib-tooltip=" {{ 'productionDashboardMachine.Order' | translate }} {{station.machines[i].jobOnProd.orderId}} {{ 'productionDashboardMachine.Details' | translate }}" ng-click="openOverviewOrderModal(station.machines[i].jobOnProd.orderId)">{{station.machines[i].jobOnProd.orderId}}</a>
+                                    	</span>
+                                    </li>
+                                    <li class="tvbs-likes "> {{ 'productionDashboardMachine.JOB' | translate }} &nbsp;<span style="color:#455A64;font-weight:bold">
+                                    	<a href="" uib-tooltip=" {{ 'productionDashboardMachine.Job' | translate }} {{station.machines[i].jobOnProd.jobId}} {{ 'productionDashboardMachine.Details' | translate }}" ng-click="openViewJobModal(station.machines[i].jobOnProd.jobId)">{{station.machines[i].jobOnProd.jobId}}</a>
+	                                   	</span>
+                                    </li>
+                                    <li class="tvbs-likes "> {{ 'productionDashboardMachine.PRIORITY' | translate }}
+                                        <span style="color:#455A64;font-weight:bold">: {{station.machines[i].jobOnProd.jobPriority.id}}</span>
+                                    </li>
+                            </ul>
+                            <ul class="tvb-stats">
+                                <li class="tvbs-likes"> ISBN: &nbsp;<span style="color:#455A64;font-weight:bold">
+                                		<a href="" uib-tooltip="{{ 'productionDashboardMachine.Book' | translate }} {{station.machines[i].jobOnProd.partIsbn}} {{ 'productionDashboardMachine.Details' | translate }}" ng-click="openEditPartModal(station.machines[i].jobOnProd.partNum.endsWith('T') || station.machines[i].jobOnProd.partNum.endsWith('C') || station.machines[i].jobOnProd.partNum.endsWith('J') || station.machines[i].jobOnProd.partNum.endsWith('E') ? station.machines[i].jobOnProd.partNum.substring(0, station.machines[i].jobOnProd.partNum.length - 1): station.machines[i].jobOnProd.partNum)">{{station.machines[i].jobOnProd.partIsbn}}</a>
+                                	</span>
+                                </li>
+                                <li class="tvbs-likes"><span uib-tooltip="{{ 'productionDashboardMachine.Quantity' | translate }}"> {{ 'productionDashboardMachine.QTY' | translate }}</span> &nbsp;<span style="color:#455A64;font-weight:bold" >{{station.machines[i].jobOnProd.quantityNeeded}}</span>
+                                </li>
+                                <li class="tvbs-likes" ng-if="(stationId == 'COVERPRESS' || stationId == 'LAMINATION') && !(station.machines[i].jobOnProd.partNum.endsWith('J') || station.machines[i].jobOnProd.partNum.endsWith('E'))"> {{ 'productionDashboard_js.Lamination' | translate }}
+										<span style="color:#455A64;font-weight:bold">: {{station.machines[i].jobOnProd.partLamination.id}}</span>
+								</li>
+                                <li class="tvbs-likes" ng-if="stationId != 'COVERPRESS' && station.machines[i].jobOnProd != null && !prevJobData[i].bindingStage">
+                                 	{{ 'productionDashboardMachine.INPUT' | translate }} &nbsp;&nbsp;&nbsp; 
+                           				<a href="" ng-show="station.machines[i].jobOnProd != null" uib-tooltip="{{ 'productionDashboardMachine.View_Input_Loads_Status' | translate }}" 
+                           				  ng-click="(prevJobData[i].coverLoadtags.length > 0) ? openLoadsStatusModal(prevJobData[i].coverLoadtags, 'Cover'): ((prevJobData[i].textLoadtags.length > 0) ? openLoadsStatusModal(prevJobData[i].textLoadtags, 'Text'): openLoadsStatusModal(prevJobData[i].bookLoadtags, 'Book'))"
+                           				  id="loadStatus"><i class="zmdi zmdi-open-in-new"></i></a>
+                                </li>
+                            </ul>
+                            <ul class="tvb-stats">
+	                            <li class="tvbs-likes"> {{ 'productionDashboardMachine.TITLE' | translate }} &nbsp;<span style="color:#455A64;font-weight:bold">{{station.machines[i].jobOnProd.partTitle}}</span>
+	                            </li>
+	                            <li class="tvbs-likes"> {{ 'productionDashboardMachine.DUE' | translate }}&nbsp;
+	                                  <span style="color:#455A64;font-weight:bold">{{station.machines[i].jobOnProd.dueDate | date:'MMM dd'}}</span>
+	                            </li>
+	                        </ul>
+	                        <div ng-if="stationId == 'CASEBOUND'">
+	                        	<ul class="tvb-stats">
+		                            <li class="tvbs-likes"> {{ 'productionDashboardMachine.SPINETYPE' | translate }} &nbsp;
+		                            	<span style="color:#455A64;font-weight:bold">{{station.machines[i].jobOnProd.spineType}}</span>
+		                            </li>
+		                            <li class="tvbs-likes"> {{ 'productionDashboardMachine.HEADTAILBANDS' | translate }}&nbsp;
+		                                <span style="color:#455A64;font-weight:bold">{{station.machines[i].jobOnProd.headTailBands}}</span>
+		                            </li>
+		                        </ul>
+	                        </div>
+	                        <div ng-if="stationId == 'PLASTICOIL'">
+	                        	<ul class="tvb-stats">
+		                            <li class="tvbs-likes"> {{ 'productionDashboardMachine.WIRECOLOR' | translate }} &nbsp;
+		                            	<span style="color:#455A64;font-weight:bold">{{station.machines[i].jobOnProd.wireColor}}</span>
+		                            </li>
+		                        </ul>
+	                        </div>
+                        </div>
+                        <div ng-if="stationId == 'COVERPRESS' && station.inputType == 'Batch'">
+                        	<br/>
+                        	<ul class="tvb-stats card-body">
+                                    <li class="tvbs-likes "> {{ 'productionDashboardMachine.BATCH' | translate }} &nbsp;<span style="color:#455A64;font-weight:bold">
+                                    	<a href="" uib-tooltip=" {{ 'productionDashboardMachine.BATCH' | translate }} {{station.machines[i].coverSectionOnProd.batchId}} {{ 'productionDashboardMachine.Details' | translate }}" ng-click="openViewBatchModal(station.machines[i].coverSectionOnProd.batchId)">{{station.machines[i].coverSectionOnProd.batchId}}</a>
+                                    	</span>
+                                    </li>
+                                    <li class="tvbs-likes "> {{ 'productionDashboardMachine.SECTION' | translate }} &nbsp;<span style="color:#455A64;font-weight:bold">
+                                    	<a href="" uib-tooltip=" {{ 'productionDashboardMachine.SECTION' | translate }} {{station.machines[i].coverSectionOnProd.coverSectionId}} {{ 'productionDashboardMachine.Details' | translate }}" ng-click="openViewSectionModal(station.machines[i].coverSectionOnProd.coverSectionId)">{{station.machines[i].coverSectionOnProd.coverSectionId}}</a>
+	                                   	</span>
+                                    </li>
+                            </ul>
+                            <ul class="tvb-stats">
+									<li class="tvbs-likes "> {{ 'productionDashboard_js.Lamination' | translate }}
+										<span style="color:#455A64;font-weight:bold">: {{station.machines[i].coverSectionOnProd.laminationType.name}}</span>
+									</li>
+									<li class="tvbs-likes "> {{ 'productionDashboardMachine.PRIORITY' | translate }}
+											<span style="color:#455A64;font-weight:bold">: {{station.machines[i].coverSectionOnProd.priority}}</span>
+									</li>
+                            </ul>
+                            <ul class="tvb-stats">
+	                            <li class="tvbs-likes"> {{ 'productionDashboardMachine.QUANTITY' | translate }} &nbsp;<span style="color:#455A64;font-weight:bold">{{station.machines[i].coverSectionOnProd.quantity}}</span>
+	                            </li>
+	                            <li class="tvbs-likes"> {{ 'productionDashboardMachine.DUE' | translate }}&nbsp;
+	                                  <span style="color:#455A64;font-weight:bold">{{station.machines[i].coverSectionOnProd.dueDate | date:'MMM dd'}}</span>
+	                            </li>
+	                        </ul>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="t-view-noborder">
+            	<div class="col-md-12 tv-body">
+            		<ul class="tvb-stats " ng-if="station.machines[i].jobOnProd != null && prevJobData[i].bindingStage"><strong class="font-size-strong">{{stationId == 'ENDSHEET' ? 'EndSheet': 'Cover'}}:</strong>
+                           <li class="tvbs-likes min-width">{{ 'productionDashboardMachine.PREV' | translate }} <span style="color:#455A64;font-weight:bold">{{prevJobData[i].coverPrevStation}}</span></li>
+                           <li class="tvbs-likes min-width">{{ 'productionDashboardMachine.STATUS' | translate }} <span style="color:#455A64;font-weight:bold">{{prevJobData[i].coverStatus}}</span></li>
+<!--                            <span style="color:#455A64;font-weight:bold">{{prevJobData[i].coverLocation[0]}}, <b>...</b></span> -->
+                           <li class="tvbs-likes min-width">{{ 'productionDashboardMachine.LOCATION' | translate }} &nbsp;&nbsp;&nbsp; 
+                           		<a href="" ng-show="station.machines[i].jobOnProd != null" uib-tooltip="{{ 'productionDashboardMachine.View_Cover_Loads_Status' | translate }}" ng-click="openLoadsStatusModal(prevJobData[i].coverLoadtags, 'Cover')" id="coverLoadStatus">
+                                    		<i class="zmdi zmdi-open-in-new"></i></a>
+                           </li>
+                           <li class="tvbs-likes min-width">{{ 'productionDashboardMachine.QTY_RE' | translate }} <span style="color:#455A64;font-weight:bold">{{prevJobData[i].coverQuantityReceived}}</span></li>
+                     </ul>
+                     <ul class="tvb-stats" ng-if="station.machines[i].jobOnProd != null && prevJobData[i].bindingStage"><strong class="font-size-strong"> {{ 'productionDashboardMachine.TEXT' | translate }}&nbsp; &nbsp; </strong>
+                           <li class="tvbs-likes min-width">{{ 'productionDashboardMachine.PREV' | translate }} <span style="color:#455A64;font-weight:bold">{{prevJobData[i].textPrevStation}}</span></li>
+                           <li class="tvbs-likes min-width">{{ 'productionDashboardMachine.STATUS' | translate }} <span style="color:#455A64;font-weight:bold">{{prevJobData[i].textStatus}}</span></li>
+                           <!--  <span style="color:#455A64;font-weight:bold">{{prevJobData[i].textLocation[0]}}, <b>...</b></span></li>-->
+                           <li class="tvbs-likes min-width">{{ 'productionDashboardMachine.LOCATION' | translate }} &nbsp;&nbsp;&nbsp; 
+                           		<a href="" ng-show="station.machines[i].jobOnProd != null" uib-tooltip="{{ 'productionDashboardMachine.View_Text_Loads_Status' | translate }}" ng-click="openLoadsStatusModal(prevJobData[i].textLoadtags, 'Text')" id="textLoadStatus">
+                                    		<i class="zmdi zmdi-open-in-new"></i></a>
+                           </li>
+                           <li class="tvbs-likes min-width">{{ 'productionDashboardMachine.QTY_RE' | translate }} <span style="color:#455A64;font-weight:bold">{{prevJobData[i].textQuantityReceived}}</span></li>
+                      </ul>
+            	</div>
+            </div>
+            <div class="col-md-12 ">
+            	<uib-alert type="success" close="successMsgArray[i] = false;" ng-show="successMsgArray[i]">{{alertMsg}}</uib-alert>
+<!-- 				<uib-alert type="danger" close="errorMsgArray[i] = false;" ng-show="errorMsgArray[i]">{{alertMsg}}</uib-alert> -->
+				<div type="danger" class="alert alert-danger alert-dismissible" role="alert" ng-show="errorMsgArray[i]">
+			                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+			                </button>
+			                {{alertMsg}}
+			            </div>
+         		<span class="blink-me col-md-12 text-status-printer badge" ng-if="stationId == 'PRESS' && station.machines[i].rollOnProd != null && station.machines[i].rollOnProd.copyStatus != null && station.machines[i].rollOnProd.copyStatus != 'FINISHED' ">{{ 'productionDashboardMachine.RASTERCOPY' | translate }} ... <strong> {{station.machines[i].rollOnProd.copyStatus}}%</strong></span>
+         		<span class="blink-me col-md-12 text-status-printer badge" ng-if="stationId == 'COVERPRESS' && station.machines[i].coverSectionOnProd != null && station.machines[i].coverSectionOnProd.copyStatus != null && station.machines[i].coverSectionOnProd.copyStatus != 'FINISHED' ">{{ 'productionDashboardMachine.SECTIONCOPY' | translate }} ... <strong> {{station.machines[i].coverSectionOnProd.copyStatus}}%</strong></span>
+
+		    <ul class="nav nav-tabs">
+		        <li class="active"><a ng-if="station.inputType != 'Batch'" data-toggle="tab" data-target="#jobs{{i}}">{{ 'productionDashboardMachine.JOBS_LOADS' | translate }}</a>
+					<a ng-if="station.inputType == 'Batch'" data-toggle="tab" data-target="#jobs{{i}}">{{ 'productionDashboardMachine.JOBS_SECTIONS' | translate }}</a>
+				</li>
+		        <li><a data-toggle="tab" data-target="#logs{{i}}">{{ 'productionDashboardMachine.LOGS' | translate }}</a>
+		        </li>
+		    </ul>
+			    
+		    <div class="tab-content">
+		        <div id="jobs{{i}}" class="tab-pane fade in active">
+		           	<div ng-if="stationId == 'PRESS'">
+		                <div class="m-b-20 Jobs-height">
+		                    <div class="card-body card-padding">
+		                    	<table class="mdl-data-table table-bordered mdl-shadow--2dp" width="100%" datatable="ng" dt-options="productionDashboard.dtOptionsForMachineJobs" dt-column-defs="productionDashboard.dtColumnDefsForMachineJobs">
+		                            <thead>
+		                                <tr>
+		                                    <th>{{ 'productionDashboardMachine.FILE' | translate }}</th>
+		                                    <th>{{ 'productionDashboardMachine.JOB' | translate }}</th>
+		                                    <th>ISBN</th>
+		                                    <th style="width:100px"> {{ 'productionDashboardMachine.TITLE' | translate }}</th>
+		                                    <th> {{ 'productionDashboardMachine.QTY' | translate }}</th>
+		                                    <th>{{station.machines[i].isEpacModePrintingActive ? 'Qty To Print' : 'Sent?'}}</th>
+		                                </tr>
+		                            </thead>
+		                            <tbody>
+		                                <tr ng-repeat="job in station.machines[i].rollOnProd.jobs track by job.jobId">
+		                                    <td>{{job.jobName}}</td>
+		                                    <td><a href="" uib-tooltip="{{ 'productionDashboardMachine.Job' | translate }} {{job.jobId}} {{ 'productionDashboardMachine.Details' | translate }}" tooltip-placement="right" ng-click="openViewJobModal(job.jobId)">{{job.jobId}}</a></td>
+		                                    <td><a href="" uib-tooltip="{{ 'productionDashboardMachine.Book' | translate }} {{job.partIsbn}} {{ 'productionDashboardMachine.Details' | translate }}" tooltip-placement="right" ng-click="openEditPartModal(job.partNum.endsWith('T') || job.partNum.endsWith('C') || job.partNum.endsWith('J') || job.partNum.endsWith('E') ? job.partNum.substring(0, job.partNum.length - 1): job.partNum)">{{job.partIsbn}}</a></td>
+		                                    <td style="width:100px"><p class="ellipses" uib-tooltip="{{job.partTitle}}" tooltip-placement="left">{{job.partTitle}}</p></td>
+		                                    <td>{{job.quantityNeeded}}</td>
+		                                    <td>
+		                                     	<label ng-if="station.machines[i].isEpacModePrintingActive">{{job.quantityNeeded - job.quantityProduced}} <span ng-if="runningJobId == job.jobId"> {{ 'productionDashboardMachine.ON' | translate }}</span></label>
+		                                        <label ng-if="!station.machines[i].isEpacModePrintingActive" class="checkbox checkbox-inline m-r-20">
+		                                            <input id="sentFlagCheckbox{{station.machines[i].machineId}}{{job.jobId}}" name="sentFlagCheckbox{{station.machines[i].machineId}}{{job.jobId}}" type="checkbox" ng-model="job.fileSentFlag" ng-disabled="station.machines[i].status.id != 'RUNNING'" ng-change="updateJobSentFlag(job, station.machines[i])" ng-true-value="true" ng-false-value="false">
+		                                            <i class="input-helper"></i>
+		                                        </label>
+		                                    </td>
+		                                </tr>
+		                            </tbody>
+		                        </table>
+		                    </div>
+		                </div>
+		            </div>
+ 					<div ng-if="stationId != 'PRESS' && stationId != 'PLOWFOLDER' && stationId != 'COVERPRESS'">
+		                <div class="m-b-20 Jobs-height">
+		                    <div class="card-body card-padding">
+		                        <table id="jobsLoadsTable" name="jobsLoadsTable" class="mdl-data-table table-bordered mdl-shadow--2dp ng-isolate-scope dataTable no-footer" width="100%" datatable="ng" dt-options="productionDashboard.dtOptionsForMachineJobs" dt-column-defs="productionDashboard.dtColumnDefsForMachineLoads">
+		                            <thead>
+		                                <tr>
+		                                    <th> {{ 'productionDashboardMachine.QUANTITY' | translate }}</th>
+		                                    <th> {{ 'productionDashboardMachine.WASTE' | translate }}</th>
+		                                    <th> {{ 'productionDashboardMachine.OPERATOR' | translate }}</th>
+		                                    <th> {{ 'productionDashboardMachine.LOCATION' | translate }}</th>
+		                                    <th> {{ 'productionDashboardMachine.TAG' | translate }}</th>
+		                                    <th> {{ 'productionDashboardMachine.TIMING' | translate }}</th>
+		                                    <th><button type="button" title="Add Load tag for job {{station.machines[i].currentJob.jobId}}" 
+		                       					ng-disabled="station.machines[i].currentJob == null || station.machines[i].status.id != 'RUNNING' || (station.machines[i].currentJob.quantityProduced + station.machines[i].currentJob.totalWaste >= station.machines[i].currentJob.quantityNeeded)" 
+		                       					ng-click="openAddLoadTagModal(station.machines[i].currentJob, station.machines[i])" 
+		                       					class="btn bgm-cyan waves-effect"><i class="zmdi zmdi-plus-circle"></i></button></th>
+		                                </tr>
+		                            </thead>
+		                            <tbody>
+		                                <tr ng-repeat="loadTag in station.machines[i].currentJob.loadTags">
+		                                    <td>{{loadTag.quantity | number:2 }}</td>
+		                                    <td>{{loadTag.waste | number:2 }}</td>
+		                                    <td>{{loadTag.creatorId}}</td>
+		                                    <td>{{loadTag.cartNum}}</td>
+		                                    <td>{{loadTag.loadTagId}}</td>
+		                                    <td>{{loadTag.startTime | date:'HH:mm'}} - {{loadTag.finishTime | date:'HH:mm'}}</td>
+		                                    <td>
+		                                        <button type="button" title="Edit Load tag {{loadTag.loadTagId}}" ng-click="openEditLoadTagModal(loadTag.loadTagId, station.machines[i].currentJob)" class="btn bgm-orange-900 waves-effect"><i class="zmdi zmdi-edit"></i>
+		                                        </button>
+		                                    </td>
+		                                </tr>
+		                            </tbody>
+		                        </table>
+		                    </div>
+		                </div>
+		            </div>
+		            <div ng-if="stationId == 'COVERPRESS' && station.inputType != 'Batch'">
+		                <div class="m-b-20 Jobs-height">
+		                   <div class="card-body card-padding">
+		                        <table id="jobsLoadsTable" name="jobsLoadsTable" class="mdl-data-table table-bordered mdl-shadow--2dp dtOptionsForCollapsable ng-isolate-scope dataTable no-footer" width="100%" datatable="ng" dt-options="productionDashboard.dtOptionsForCollapsable" dt-column-defs="productionDashboard.dtColumnDefsForCollapsable">
+		                            <thead>
+		                                <tr>
+		                                    <th>{{ 'productionDashboardMachine.ORDRER' | translate }}</th>
+		                                    <th>{{ 'productionDashboardMachine.JOB' | translate }}</th>
+		                                    <th> {{ 'productionDashboardMachine.PAGES' | translate }}</th>
+		                                    <th> {{ 'productionDashboardMachine.QTY' | translate }}</th>
+		                                    <th> {{ 'productionDashboardMachine.WASTE' | translate }}</th>
+		                                    <th> {{ 'productionDashboardMachine.OPERATOR' | translate }}</th>
+		                                    <th> {{ 'productionDashboardMachine.LOCATION' | translate }}</th>
+		                                    <th> {{ 'productionDashboardMachine.TAG' | translate }}</th>
+		                                    <th> {{ 'productionDashboardMachine.TIMING' | translate }}</th>
+		                                    <th></th>
+		                                </tr>
+		                            </thead>
+		                            <tbody ng-repeat="job in station.machines[i].runningAndAssignedJobs">
+		                                <tr  ng-class="{running: job.jobId == station.machines[i].currentJob.jobId}" id="expendCollapseTr{{job.jobId}}" name="expendCollapseTr{{job.jobId}}" 
+		                                	class="clickableRow" >
+		                                    <td>
+		                                    	<a href="" tooltip-placement="right" uib-tooltip="{{ 'productionDashboardMachine.Order' | translate }} {{job.orderId}} {{ 'productionDashboardMachine.Details' | translate }}" ng-click="openOverviewOrderModal(job.orderId)">{{job.orderId}}</a>
+						                    </td>
+		                                    <td><a href="" uib-tooltip="{{ 'productionDashboardMachine.Job' | translate }} {{job.jobId}} {{ 'productionDashboardMachine.Details' | translate }}" tooltip-placement="right" ng-click="openViewJobModal(job.jobId)">{{job.jobId}}</a></td>
+		                                    <td>{{job.partPagesCount}}</td>
+		                                    <td>{{job.quantityNeeded}}{{job.partNum.endsWith('J') ? ' D.J.' : ''}}{{job.partNum.endsWith('E') ? ' E.S.' : ''}}</td>
+		                                    <td colspan="5" ng-click="collapseRows = !collapseRows" title="Click to toggle collapse/expand load tags for this {{station.machines[i].name}} (job# {{job.jobId}}).">&nbsp;<i class="zmdi zmdi-unfold-more"></i>&nbsp;&nbsp;&nbsp;</td>
+		                                    <td ng-show="false"></td>
+		                                    <td ng-show="false"></td>
+		                                    <td ng-show="false"></td>
+		                                    <td ng-show="false"></td>
+		                                    <td>
+		                                        <button type="button" title="Add Load tag" ng-disabled="job.jobId != station.machines[i].currentJob.jobId || station.machines[i].status.id != 'RUNNING' || job.quantityProduced >= job.quantityNeeded"
+		                                        	ng-click="openAddLoadTagModal(job, station.machines[i])" class="btn btn-info waves-effect"><i class="zmdi zmdi-plus-circle"></i>
+		                                        </button>
+		                                    </td>
+		                                </tr>
+		                                <tr ng-show="!collapseRows" ng-repeat="loadTag in job.loadTags">
+		                                    <td colspan="3">&nbsp;</td>
+		                                    <td ng-show="false"></td>
+		                                    <td ng-show="false"></td>
+		                                    <td>{{loadTag.quantity | number:2 }}</td>
+		                                    <td>{{loadTag.waste | number:2 }}</td>
+		                                    <td>{{loadTag.creatorId}}</td>
+		                                    <td>{{loadTag.cartNum}}</td>
+		                                    <td>{{loadTag.loadTagId}}</td>
+		                                    <td>{{loadTag.startTime | date:'HH:mm'}} - {{loadTag.finishTime | date:'HH:mm'}}</td>
+		                                    <td>
+		                                        <button ng-if="job.jobId == station.machines[i].currentJob.jobId" type="button" title="Edit Load tag {{loadTag.loadTagId}}" uib-tooltip="{{ 'productionDashboardMachine.Update_LoadTag' | translate }} {{loadTag.loadTagId}}" ng-click="openEditLoadTagModal(loadTag.loadTagId, job)" class="btn bgm-orange-900 waves-effect"><i class="zmdi zmdi-edit"></i></button>
+		                                    	<button ng-if="job.jobId != station.machines[i].currentJob.jobId" type="button" title="View/Print Load tag {{loadTag.loadTagId}}" uib-tooltip="{{ 'productionDashboardMachine.View_Print_LoadTag' | translate }} {{loadTag.loadTagId}}" ng-click="openViewLoadTagModal(loadTag.loadTagId)" class="btn btn-lightgrey waves-effect"><i class="zmdi zmdi-view-headline"></i></button>
+		                                    </td>
+		                                </tr>
+		                            </tbody>
+		                        </table>
+		                    </div>
+		                </div>
+            		</div>
+						            <div ng-if="stationId == 'COVERPRESS' && station.inputType == 'Batch'">
+							<div class="m-b-20 Jobs-height">
+									<div class="card-body card-padding">
+										<table class="mdl-data-table table-bordered mdl-shadow--2dp" width="100%" datatable="ng" dt-options="productionDashboard.dtOptionsForMachineSection" dt-column-defs="productionDashboard.dtColumnDefsForMachineSection">
+											<thead>
+												<tr>
+													<th>{{ 'productionDashboardMachine.ORDRER' | translate }}</th>
+													<th>{{ 'productionDashboardMachine.JOB' | translate }}</th>
+													<th> {{ 'productionDashboardMachine.QTY' | translate }}</th>
+													<th> {{ 'productionDashboardMachine.ISBN' | translate }}</th>
+													<th> {{ 'productionDashboardMachine.TITLE' | translate }}</th>										
+												</tr>
+											</thead>
+											<tbody>
+												<tr ng-repeat="current in station.machines[i].coverSectionOnProd.jobs">
+													<td>{{current.job.orderId}}</td>
+													<td>{{current.job.jobId}}</td>
+													<td>{{current.quantity}}</td>
+													<td>{{current.job.partIsbn}}</td>
+													<td>{{current.job.partTitle}}</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+							</div>						
+            		</div>
+            		<div ng-if="stationId == 'PLOWFOLDER'">
+		                <div class="m-b-20 Jobs-height">
+		                    <div class="card-body card-padding clearfix">
+		                        <table id="pfJobsTable" name="pfJobsTable" class="mdl-data-table table-bordered mdl-shadow--2dp dtOptionsForCollapsable" width="100%" datatable="ng" dt-options="productionDashboard.dtOptionsForCollapsable" dt-column-defs="productionDashboard.dtColumnDefsForCollapsable">
+		                            <thead>
+		                                <tr>
+		                                    <th>{{ 'productionDashboardMachine.ORDRER' | translate }}</th>
+		                                    <th>{{ 'productionDashboardMachine.JOB' | translate }}</th>
+		                                    <th> {{ 'productionDashboardMachine.PAGES' | translate }}</th>
+		                                    <th> {{ 'productionDashboardMachine.QTY' | translate }}</th>
+		                                    <th> {{ 'productionDashboardMachine.WASTE' | translate }}</th>
+		                                    <th> {{ 'productionDashboardMachine.OPERATOR' | translate }}</th>
+		                                    <th> {{ 'productionDashboardMachine.LOCATION' | translate }}</th>
+		                                    <th> {{ 'productionDashboardMachine.TAG' | translate }}</th>
+		                                    <th> {{ 'productionDashboardMachine.TIMING' | translate }}</th>
+		                                    <th></th>
+		                                </tr>
+		                            </thead>
+		                            <tbody ng-repeat="job in station.machines[i].rollOnProd.jobs track by job.jobId">
+		                                <tr  ng-class="{running: job.jobId == station.machines[i].currentJob.jobId}" id="expendCollapseTr{{job.jobId}}" name="expendCollapseTr{{job.jobId}}" 
+		                                	 class="clickableRow">
+										    <td>
+										    	<a href="" tooltip-placement="right" uib-tooltip="{{ 'productionDashboardMachine.Order' | translate }} {{job.orderId}} {{ 'productionDashboardMachine.Details' | translate }}" ng-click="openOverviewOrderModal(job.orderId)">{{job.orderId}}</a>
+						                    </td>
+		                                    <td><a href="" uib-tooltip="{{ 'productionDashboardMachine.Job' | translate }} {{job.jobId}} {{ 'productionDashboardMachine.Details' | translate }}" tooltip-placement="right" ng-click="openViewJobModal(job.jobId)">{{job.jobId}}</a></td>
+		                                    <td>{{job.partPagesCount}}</td>
+		                                    <td>{{job.quantityNeeded}}</td>
+		                                    <td colspan="5" ng-click="collapseRows = !collapseRows" title="Click to toggle collapse/expand load tags for this {{station.machines[i].name}} (job# {{job.jobId}}).">&nbsp;<i class="zmdi zmdi-unfold-more"></i>&nbsp;&nbsp;&nbsp;</td>
+		                                    <td ng-show="false"></td>
+		                                    <td ng-show="false"></td>
+		                                    <td ng-show="false"></td>
+		                                    <td ng-show="false"></td>
+		                                    <td>
+		                                        <button type="button" title="Add Load tag" ng-disabled="job.jobId != station.machines[i].currentJob.jobId || station.machines[i].status.id != 'RUNNING' || (job.quantityProduced + job.totalWaste >= job.quantityNeeded)"
+		                                        	 uib-tooltip="{{ 'productionDashboardMachine.Add_LoadTag' | translate }}" ng-click="openAddLoadTagModal(job, station.machines[i])" class="btn btn-info waves-effect"><i class="zmdi zmdi-plus-circle"></i>
+		                                        </button>
+		                                    </td>
+		                                </tr>
+		                                <tr ng-show="!collapseRows" ng-repeat="loadTag in job.loadTags track by loadTag.loadTagId" >
+		                                    <td colspan="3"></td>
+		                                    <td ng-show="false"></td>
+		                                    <td ng-show="false"></td>
+		                                    <td>{{loadTag.quantity | number:2 }}</td>
+		                                    <td>{{loadTag.waste}}</td>
+		                                    <td>{{loadTag.creatorId}}</td>
+		                                    <td>{{loadTag.cartNum}}</td>
+		                                    <td>{{loadTag.loadTagId}}</td>
+		                                    <td>{{loadTag.startTime | date:'HH:mm'}} - {{loadTag.finishTime | date:'HH:mm'}}</td>
+		                                    <td>
+		                                        <button ng-if="job.jobId == station.machines[i].currentJob.jobId" type="button" title="Edit Load tag {{loadTag.loadTagId}}" uib-tooltip="{{ 'productionDashboardMachine.Update_LoadTag' | translate }} {{loadTag.loadTagId}}" ng-click="openEditLoadTagModal(loadTag.loadTagId, job)" class="btn bgm-orange-900 waves-effect"><i class="zmdi zmdi-edit"></i></button>
+		                                    	<button ng-if="job.jobId != station.machines[i].currentJob.jobId" type="button" title="View/Print Load tag {{loadTag.loadTagId}}" uib-tooltip="{{ 'productionDashboardMachine.View_Print_LoadTag' | translate }} {{loadTag.loadTagId}}" ng-click="openViewLoadTagModal(loadTag.loadTagId)" class="btn btn-lightgrey waves-effect"><i class="zmdi zmdi-view-headline"></i></button>
+		                                    </td>
+		                                </tr>
+		                            </tbody>
+		                        </table>
+		                    </div>
+		                </div>
+           			 </div>
+		        </div>
+		        <div id="logs{{i}}" class="tab-pane fade">
+					<div class="m-b-20 Jobs-height">
+	                    <div class="card-body card-padding">
+							<!--  dt-column-defs="productionDashboard.dtColumnDefsForLog" -->
+	                        <table class="mdl-data-table table-bordered  mdl-shadow--2dp dtOptionsForMachineLogs" width="100%" datatable="ng" dt-options="productionDashboard.dtOptionsForMachineLogs">
+	                            <thead>
+	                                <tr>
+	                                    <th style="width: 3%;">{{ 'productionDashboardMachine.LOG' | translate }}</th>
+	                                    <th style="width: 3%;"> {{ 'productionDashboardMachine.EVENT' | translate }}</th>
+	                                    <th style="width: 3%;"> {{ 'productionDashboardMachine.CAUSE' | translate }}</th>
+	                                    <th style="width: 3%;"> {{ 'productionDashboardMachine.RESULT' | translate }}</th>
+	                                    <th style="width: 3%;"><span ng-if="stationId == 'PRESS' || stationId == 'PLOWFOLDER'">{{ 'productionDashboardMachine.ROLL#' | translate }}</span>
+          									<span ng-if="stationId == 'COVERPRESS' && station.inputType == 'Batch'"> {{ 'productionDashboardMachine.SECTION' | translate }}</span>
+	                                    	<span ng-if="station.inputType != 'Batch' && stationId != 'PRESS' && stationId != 'PLOWFOLDER'"> {{ 'productionDashboardMachine.JOB' | translate }}</span></th>
+	                                    <th style="width: 3%;"> {{ 'productionDashboardMachine.OPERATOR' | translate }}</th>
+	                                    <th style="width: 3%;"> {{ 'productionDashboardMachine.START' | translate }}</th>
+	                                    <th style="width: 3%;">{{ 'productionDashboardMachine.FINISH' | translate }}</th>
+	                                </tr>
+	                            </thead>
+	                            <tbody>
+	                                <tr ng-repeat="log in station.machines[i].logs">
+	                                    <td>
+											<button class="btn bgm-blue waves-effect" uib-tooltip="{{ 'productionDashboardMachine.Log' | translate }} {{log.logId}} {{ 'productionDashboardMachine.Details' | translate }}" ng-click="openViewLogModal(log.logId)">
+													{{log.logId}}
+											</button>
+										</td>
+	                                    <td>{{log.event}}</td>
+	                                    <td>{{log.logCause.name}}</td>
+	                                    <td>{{log.logResult.name}}</td>
+	                                    <td><span ng-if="stationId == 'PRESS' || stationId == 'PLOWFOLDER'">{{log.rollId}}</span>
+											<span ng-if="stationId == 'COVERPRESS' && station.inputType == 'Batch'">{{log.sectionId}}</span>
+	                                    	<span ng-if="station.inputType != 'Batch' && stationId != 'PRESS' && stationId != 'PLOWFOLDER'">{{log.currentJobId}}</span></td>
+	                                    <td>{{log.creatorId}}</td>
+	                                    <td>{{log.startTime | date:'MMM dd, HH:mm'}}</td>
+	                                    <td>{{log.finishTime | date:'MMM dd, HH:mm'}}</td>
+	                                </tr>
+	                            </tbody>
+	                        </table>
+	                    </div>
+	                </div>
+		        </div>
+		    </div>
+			</div>
+            		
+            
+            <!-- <div class="col-md-12" ng-if="stationId == 'PLOWFOLDER'">
+                <div class="m-b-20">
+                    <div class="card-header ch-alt border-bottom-white">
+                        <h2>Jobs/LoadTags</h2>
+                    </div>
+                    <div class="card-body card-padding clearfix">
+                        <table id="pfJobsTable" name="pfJobsTable" class="table table-bordered" width="100%" datatable="ng" dt-options="productionDashboard.dtOptionsForCollapsable" dt-column-defs="productionDashboard.dtColumnDefsForCollapsable">
+                            <thead>
+                                <tr>
+                                    <th>Order#</th>
+                                    <th>Job#</th>
+                                    <th>Pages</th>
+                                    <th>Qty</th>
+                                    <th>Waste</th>
+                                    <th>Operator</th>
+                                    <th>Location</th>
+                                    <th>Tag</th>
+                                    <th>Timing</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat-start="job in station.machines[i].rollOnProd.jobs" ng-class="{running: job.jobId == station.machines[i].currentJob.jobId}" id="expendCollapseTr{{job.jobId}}" name="expendCollapseTr{{job.jobId}}" 
+                                	ng-click="selectTableRow(i, $index, job.jobId)" class="clickableRow" title="Click to toggle collapse/expand load tags for this {{station.machines[i].name}} (job# {{job.jobId}}).">
+								    <td><i class="zmdi zmdi-unfold-more"></i>&nbsp;&nbsp;&nbsp;{{job.order.orderId}}</td>
+                                    <td>{{job.jobId}}</td>
+                                    <td>{{job.order.orderPart.part.pagesCount}}</td>
+                                    <td>{{job.quantityNeeded}}</td>
+                                    <td colspan="5">&nbsp;</td>
+                                    <td ng-show="false"></td>
+                                    <td ng-show="false" ></td>
+                                    <td ng-show="false"></td>
+                                    <td ng-show="false"></td>
+                                    <td>
+                                        <button type="button" title="Add Load tag" ng-disabled="job.jobId != station.machines[i].currentJob.jobId || station.machines[i].status.id != 'RUNNING' || job.quantityProduced >= job.quantityNeeded"
+                                        	 uib-tooltip="Add LoadTag" ng-click="openAddLoadTagModal(job.jobId)" class="btn btn-info waves-effect"><i class="zmdi zmdi-plus-circle"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr ng-show="!tagDataCollapse[i][$parent.$index]" ng-repeat-end ng-repeat="loadTag in job.loadTags">
+                                    <td colspan="3"></td>
+                                    <td ng-show="false"></td>
+                                    <td ng-show="false"></td>
+                                    <td>{{loadTag.quantity | number:2 }}</td>
+                                    <td>{{loadTag.waste}}</td>
+                                    <td>{{loadTag.creatorId}}</td>
+                                    <td>{{loadTag.cartNum}}</td>
+                                    <td>{{loadTag.loadTagId}}</td>
+                                    <td>{{loadTag.startTime | date:'hh:mm'}} - {{loadTag.finishTime | date:'hh:mm'}}</td>
+                                    <td>
+                                        <button type="button" title="Edit Load tag {{loadTag.loadTagId}}" uib-tooltip="Update LoadTag" ng-click="openEditLoadTagModal(loadTag.loadTagId)" class="btn btn-success waves-effect"><i class="zmdi zmdi-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div> -->
+            
+        </div>
+    </div>
+</div>

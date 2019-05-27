@@ -1,0 +1,139 @@
+<div class="card">
+    <div class="card-header ch-alt m-b-20">
+        <h2>{{ 'rolesList.TITLE'| translate }}<small> {{ 'rolesList.DESCRIPTION'| translate }}   <i class="zmdi zmdi-plus-circle-o"></i> {{ 'LIGNE2' | translate }}  
+          <a href="#/ordersPage">  {{ 'rolesList.LIEN' | translate }}</a>.</small></h2>
+
+        <button class="btn bgm-teal btn-float waves-effect waves-circle" ng-click="openAddRoleModal()"  uib-tooltip="{{ 'rolesList.Add_role'| translate }}"><i class="zmdi zmdi-plus"></i>
+        </button>
+    </div>
+<br/>
+    <div class="card-body card-padding" translate-cloak>
+        <uib-alert type="success" close="successMsg = false;" ng-show="successMsg">{{alertMsg}}</uib-alert>
+		<uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{alertMsg}}</uib-alert>
+      <table datatable="" dt-options="rolesList.dtOptions" dt-columns="rolesList.dtColumns" dt-instance="rolesList.dtInstance" class="table table-bordered table-striped table-vmiddle ng-scope ng-table col-lg-12" width="100%" translate-cloak>
+			<tfoot>
+        		<tr class="table-placeholder" translate-cloak>
+        			<th  width="7%" translate-cloak translate>rolesList.ROLE_ID</th>
+        			<th  width="13%" translate-cloak translate>rolesList.ROLE_NAME</th>
+        			<th  width="50%" translate-cloak translate>rolesList.ROLE_DESC</th>
+        			<th  width="15%" ></th>
+        		</tr>
+        	</tfoot>
+        </table>
+    </div>
+</div>
+
+<script type="text/ng-template" id="addRoleModalContent.html">
+<form name="addRoleForm" ng-cloak>
+        <div class="modal-header card-header ch-alt" ng-cloak>
+            <h3 class="modal-title">{{ 'rolesList.ADD_ROLE'| translate }}</h3>
+        </div>
+        <div class="modal-body col-md-12 card-body card-padding" ng-cloak>
+			<uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+		<div class="row">
+			<div class="form-group required col-md-6">
+              <label class="form-label"> {{ 'rolesList.ID'| translate }}
+				<small ng-show="addRoleForm.id.$error.maxlength" class="text-danger text-error">{{ 'rolesList.ERROR'| translate }}</small>
+			  	<small ng-show="addRoleForm.id.$touched && addRoleForm.id.$error.required" class="text-danger text-error">{{ 'rolesList.ERROR4'| translate }}</small>
+			  </label>
+              <div class="controls">
+				<div class="fg-line">
+				<input type="text" ng-model="role.roleId" name="id" class="form-control" ng-required="true" ng-maxlength="50" autofocus>
+				</div>
+			  </div>
+            </div>
+			  <div class="form-group required col-md-6">
+              <label class="form-label">{{ 'rolesList.NAME'| translate }}
+				<small ng-show="addRoleForm.name.$error.maxlength" class="text-danger text-error"> {{ 'rolesList.ERROR1'| translate }}</small>
+			  	<small ng-show="addRoleForm.name.$touched && addRoleForm.name.$error.required" class="text-danger text-error"> {{ 'rolesList.ERROR2'| translate }}</small>
+			  </label>
+              <div class="controls">
+					<div class="fg-line">
+					<input type="text" ng-model="role.roleName" name="name" class="form-control" ng-required="true" ng-maxlength="100">
+					</div>
+				</div>
+            </div>
+			</div>
+			<div class="row">
+			 <div class="form-group col-md-12">
+              <label class="form-label"> {{ 'rolesList.DESCRIPTIONN'| translate }}
+				<small ng-show="addRoleForm.description.$error.maxlength" class="text-danger text-error">{{ 'rolesList.ERROR3'| translate }}</small>
+			  </label>
+			<div class="controls">
+					<div class="fg-line">
+              		<textarea ng-model="role.roleDescription" name="description" class="form-control" ng-maxlength="255" rows="4" />  
+					 </div>  
+ 					</div>  	          	
+            </div>  
+		</div>
+</div>
+
+        <div class="modal-footer">
+			<button class="btn bgm-bluegray waves-effect" type="button" ng-click="closeModal()"> {{ 'rolesList.CANCEL'| translate }}</button>
+            <button class="btn bgm-teal waves-effect" type="button" ng-click="addRole()" 
+				ng-disabled="addRoleForm.id.$invalid || addRoleForm.name.$invalid || addRoleForm.description.$invalid"
+			> {{ 'rolesList.ADD_ROLE'| translate }} </button>
+			<!--<button class="btn btn-default" type="button" data-dismiss="modal">{{ 'CLOSE'| translate }} </button>-->
+			
+        </div>
+</form>
+</script>
+
+<script type="text/ng-template" id="editRoleModalContent.html">
+<form name="updateRoleForm" ng-cloak>
+    <div class="modal-header card-header ch-alt" ng-cloak>
+        <h3 class="modal-title">{{ 'rolesList.UPDATE_ROLL'| translate }}</h3>
+    </div>
+    <div class="modal-body card-body card-padding col-md-12" ng-cloak>
+        <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+        <div class="row">
+            <div class="mini-charts-item bgm-btn-blue-500">
+                <div class="clearfix">
+                    <div class="chart stats-bar-2" data-sparkline-bar="">
+                         {{ 'rolesList.ID'| translate }}
+                    </div>
+                    <div class="count">
+                        
+                        <h2 class="ng-binding">{{role.roleId}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group required col-md-6">
+                <label class="form-label"> {{ 'rolesList.NAME'| translate }}
+                    <small ng-show="updateRoleForm.name.$dirty && updateRoleForm.name.$error.maxlength" class="text-danger text-error">{{ 'rolesList.ERROR1'| translate }} </small>
+                    <small ng-show="updateRoleForm.name.$dirty && updateRoleForm.name.$error.required" class="text-danger text-error"> {{ 'rolesList.ERROR2'| translate }} </small>
+                </label>
+                <div class="controls">
+                    <div class="fg-line">
+                        <input type="text" ng-model="role.roleName" name="name" class="form-control" ng-required="true" ng-maxlength="100">
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group col-md-6">
+                <label class="form-label">{{ 'rolesList.DESCRIPTIONN'| translate }}
+                    <small ng-show="updateRoleForm.description.$dirty && updateRoleForm.description.$error.maxlength" class="text-danger text-error"> {{ 'rolesList.ERROR3'| translate }}</small>
+                </label>
+                <div class="controls">
+                    <div class="fg-line">
+                        <textarea ng-model="role.roleDescription" name="description" class="form-control" ng-maxlength="255" rows="4" />
+                    </div>
+
+                </div>
+            </div>
+
+ 		</div>
+        </div>
+        <div class="modal-footer">
+ 			<button class="btn bgm-bluegray waves-effect" type="button" ng-click="closeModal()">{{ 'rolesList.CANCEL'| translate }} </button>
+            <button class="btn bgm-orange-900 waves-effect" type="button" ng-click="updateRole()" 
+			ng-disabled="updateRoleForm.name.$invalid || updateRoleForm.description.$invalid">{{ 'rolesList.UPDATE'| translate }} </button>
+           
+            <br/>
+            <br/>
+            <small><em>{{ 'rolesList.LAST_UP_ID' | translate }} '{{role.lastModifiedByUserName}}' , {{ 'rolesList.LAST_UP_DATE' | translate }} {{role.lastModifiedDate | date:'medium'}}</em></small>
+</div>
+</form>
+</script>

@@ -1,0 +1,260 @@
+<div class="card">
+    <div class="card-header ch-alt m-b-20">
+        <h2> {{ 'users.TITLE'| translate }}<small> {{ 'users.DESCRIPTION'| translate }} <i class="zmdi zmdi-plus-circle-o"></i> {{ 'users.LIGNE2' | translate }}  
+          <a href="#/ordersPage">  {{ 'users.LIEN' | translate }}</a>.</small></h2>
+
+        <button class="btn bgm-cyan btn-float waves-effect waves-circle" ng-click="openAddUserModal()"  uib-tooltip="{{ 'users.ADD_USER'| translate }}"><i class="zmdi zmdi-plus"></i>
+        </button>
+    </div>
+<br/>
+    <div class="card-body card-padding" translate-cloak>
+     <uib-alert type="success" close="successMsg = false;" ng-show="successMsg">{{alertMsg}}</uib-alert>
+		<uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{alertMsg}}</uib-alert>
+       <table datatable="" dt-options="usersList.dtOptions" dt-columns="usersList.dtColumns" dt-instance="usersList.dtInstance" class="table table-bordered table-striped table-vmiddle ng-scope ng-table col-lg-12" width="100%" translate-cloak>
+			<tfoot>
+        		<tr class="table-placeholder" translate-cloak>
+        			<th translate translate-cloak >users.FIRST_NAME</th>
+        			<th translate translate-cloak >users.LAST_NAME</th>
+        			<th translate translate-cloak translate-cloak >users.EMAIL</th>
+        			<th translate translate-cloak >users.PHONE</th>
+        			<th translate translate-cloak >users.LANGUAGE</th>
+        			<th translate translate-cloak >users.ACTIVE</th>
+        			<th translate translate-cloak >users.USER_ROLES</th>
+        			<th  ></th>
+        		</tr>
+        	</tfoot>
+        </table>
+    </div>
+</div>
+
+<script type="text/ng-template" id="addUserModalContent.html">
+<form name="addUserForm" ng-cloak>
+    <div class="modal-header card-header ch-alt" ng-cloak>
+        <h3 class="modal-title">{{ 'users.ADD_USER'| translate }}</h3>
+    </div>
+    <div class="modal-body card-body card-padding" ng-cloak>
+        <div type="danger" class="alert alert-danger alert-dismissible" role="alert" ng-show="errorMsg">
+			 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+			     {{errors}}
+		</div>
+		<div class="row">
+		<div class="form-group required col-md-6">
+            <label class="form-label"> {{ 'users.FIRST_NAME'| translate }}
+                <small ng-show="addUserForm.firstName.$error.maxlength" class="text-danger text-error"> {{ 'users.ERROR1'| translate }}</small>
+                <small ng-show="addUserForm.firstName.$touched && addUserForm.firstName.$error.required" class="text-danger text-error">{{ 'users.ERROR2'| translate }}</small>
+            </label>
+            <div class="controls">
+				<div class="fg-line">
+                <input type="text" ng-model="user.firstName" name="firstName" class="form-control" ng-required="true" ng-maxlength="50" autofocus>
+				</div>
+            </div>
+        </div>
+
+        <div class="form-group col-md-6 required">
+            <label class="form-label">{{ 'users.LAST_NAME'| translate }}
+                <small ng-show="addUserForm.lastName.$error.maxlength" class="text-danger text-error"> {{ 'users.ERROR3'| translate }} </small>
+                <small ng-show="addUserForm.lastName.$touched && addUserForm.lastName.$error.required" class="text-danger text-error">{{ 'users.ERROR4'| translate }} </small>
+            </label>
+            <div class="controls">
+				<div class="fg-line">
+                <input type="text" ng-model="user.lastName" name="lastName" class="form-control" ng-required="true" ng-maxlength="50">
+            	</div>
+			</div>
+        </div>
+		</div>
+  		<div class="row">
+			<div class="form-group col-md-6 required">
+            <label class="form-label">{{ 'users.EMAIL'| translate }}
+                <small ng-show="addUserForm.email.$error.maxlength" class="text-danger text-error"> {{ 'users.ERROR5'| translate }}</small>
+                <small ng-show="addUserForm.email.$touched && addUserForm.email.$error.required" class="text-danger text-error"> {{ 'users.ERROR6'| translate }}</small>
+                <small ng-show="addUserForm.email.$touched && addUserForm.email.$error.email" class="text-danger text-error">{{ 'users.ERROR7'| translate }}</small>
+            </label>
+            <div class="controls">
+                <div class="fg-line">
+				<input type="email" ng-model="user.email" name="email" class="form-control" onchange="addUserForm.loginName.value = addUserForm.email.value;" ng-required="true" ng-maxlength="70">
+            	</div>
+			</div>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label class="form-label"> {{ 'users.PHONE'| translate }}
+                <small ng-show="addUserForm.phoneNum.$error.maxlength" class="text-danger text-error"> {{ 'users.ERROR8'| translate }}</small>
+                <small ng-show="addUserForm.phoneNum.$touched && addUserForm.phoneNum.$error.pattern" class="text-danger text-error">{{ 'users.ERROR9'| translate }}</small>
+            </label>
+            <div class="controls">
+                <div class="fg-line">
+					<input type="text" ng-model="user.phoneNum" name="phoneNum" class="form-control" ng-pattern="/^[(]{0,1}[0-9]{3}[)\.\- ]{0,1}[0-9]{3}[\.\- ]{0,1}[0-9]{4}$/" ng-maxlength="15">
+            	</div>
+				</div>
+        </div>
+
+		</div>
+		<div class="row">
+			    <div class="form-group col-md-6">
+            <label class="form-label">{{ 'users.LOGIN_NAME'| translate }}
+                <small ng-show="addUserForm.loginName.$error.maxlength" class="text-danger text-error"> {{ 'users.ERROR10'| translate }} </small>
+            </label>
+            <div class="controls">
+                <div class="fg-line">
+				<input type="text" ng-model="user.loginName" name="loginName" class="form-control" ng-maxlength="50">
+            	</div>
+			</div>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label class="form-label">{{ 'users.LOGIN_PASSWORD'| translate }}
+                <small ng-show="addUserForm.loginPassword.$error.maxlength" class="text-danger text-error"> {{ 'users.ERROR11'| translate }} </small>
+            </label>
+            <div class="controls">
+               	<div class="fg-line">
+				 <input type="text" ng-model="user.loginPassword" name="loginPassword" class="form-control" ng-maxlength="50">
+            	</div>
+				</div>
+        </div>
+		</div>
+		<div class="row">
+				<div class="form-group col-md-6">
+            <label class="form-label"> {{ 'users.ROLES'| translate }} </label>
+            <div class="controls">
+                <select ng-model="user.roles" name="userRoles" id="userRoles" class="col-md-12" multiple size="5" class="form-control">
+                    <option value="">{{ 'users.SELECT'| translate }} </option>
+                    <option ng-repeat="option in roleOptions" value="{{option.roleId}}">{{option.roleName}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label class="form-label">{{ 'users.ACTIVE?'| translate }} </label>
+            <div class="controls">
+                <div class="radio radio-inline m-r-20">
+                    <input type="radio" id="yes" name="activeFlag" ng-model="user.activeFlag" ng-value="true">
+                    <label for="yes" class="input-helper"> {{ 'users.YES'| translate }} </label>
+                    <input type="radio" id="no" name="activeFlag" ng-model="user.activeFlag" ng-value="false">
+                    <label for="no" class="input-helper"> {{ 'users.NO'| translate }} </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+				<div class="form-group col-md-6">
+            <label class="form-label"> {{ 'users.LANGUAGE'| translate }} </label>
+            <div class="controls">
+                <select ng-model="user.language" name="userLanguage" id="userLanguage"   class="form-control">
+                    <option value="">{{ 'users.SELECT'| translate }} </option>
+                    <option ng-repeat="option in LanguageOptions" value="{{option}}">{{option}}</option>
+                </select>
+            </div>
+        </div>	
+		</div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn bgm-bluegray waves-effect" type="button" ng-click="closeModal()"> {{ 'users.CANCEL'| translate }} </button>
+        <button class="btn bgm-cyan waves-effect" type="button" ng-click="addUser()" 
+		ng-disabled="addUserForm.firstName.$invalid || addUserForm.lastName.$invalid || addUserForm.email.$invalid || addUserForm.phoneNum.$invalid"> {{ 'users.ADD'| translate }} </button>
+    </div>
+</form>
+</script>
+
+<script type="text/ng-template" id="editUserModalContent.html">
+        <form name="editUserForm" ng-cloak>
+		<div class="modal-header card-header ch-alt" ng-cloak>
+            <h3 class="modal-title">{{ 'users.UPDATE_USER'| translate }} </h3>
+        </div>
+        <div class="modal-body card-padding card-body" ng-cloak>
+		  <div type="danger" class="alert alert-danger alert-dismissible" role="alert" ng-show="errorMsg">
+			 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+			     {{errors}}
+		  </div>
+		  	<div class="row">
+				  <div class="form-group col-md-6 required">
+              <label class="form-label">{{ 'users.FIRST_NAME'| translate }}
+				<small ng-show="editUserForm.firstName.$dirty && editUserForm.firstName.$error.maxlength" class="text-danger text-error">{{ 'users.ERROR1'| translate }} </small>
+				<small ng-show="editUserForm.firstName.$dirty && editUserForm.firstName.$error.required" class="text-danger text-error">{{ 'users.ERROR2'| translate }} </small>
+              </label>
+              <div class="controls"><div class="fg-line"><input type="text" ng-model="user.firstName" name="firstName" class="form-control" ng-required="true" ng-maxlength="50" autofocus></div></div>
+            </div>
+			 
+			<div class="form-group col-md-6 required">
+              <label class="form-label">{{ 'users.FIRST_NAME'| translate }}
+				<small ng-show="editUserForm.lastName.$dirty && editUserForm.lastName.$error.maxlength" class="text-danger text-error">{{ 'users.ERROR3'| translate }} </small>
+				<small ng-show="editUserForm.lastName.$dirty && editUserForm.lastName.$error.required" class="text-danger text-error">{{ 'users.ERROR4'| translate }}</small>
+			  </label>
+              <div class="controls"><div class="fg-line"><input type="text" ng-model="user.lastName" name="lastName" class="form-control" ng-required="true" ng-maxlength="50"></div></div>
+            </div>
+			</div>
+          <div class="row">
+				<div class="form-group col-md-6 required">
+              <label class="form-label"> {{ 'users.EMAIL'| translate }}
+				<small ng-show="editUserForm.email.$dirty && editUserForm.email.$error.maxlength" class="text-danger text-error"> {{ 'users.ERROR5'| translate }} </small>
+				<small ng-show="editUserForm.email.$dirty && editUserForm.email.$error.required" class="text-danger text-error">{{ 'users.ERROR6'| translate }} </small>
+				<small ng-show="editUserForm.email.$dirty && editUserForm.email.$error.email" class="text-danger text-error">{{ 'users.ERROR7'| translate }} </small>
+             </label>
+              <div class="controls"><div class="fg-line"><input type="email" ng-model="user.email" name="email" class="form-control" ng-required="true" ng-maxlength="70"></div></div>
+            </div>
+			
+			<div class="form-group col-md-6">
+              <label class="form-label">{{ 'users.PHONE'| translate }}
+				<small ng-show="editUserForm.phoneNum.$dirty && editUserForm.phoneNum.$error.maxlength" class="text-danger text-error"> {{ 'users.ERROR8'| translate }}</small>
+				<small ng-show="editUserForm.phoneNum.$dirty && editUserForm.phoneNum.$error.pattern" class="text-danger text-error">{{ 'users.ERROR9'| translate }} </small>
+              </label>
+              <div class="controls"><div class="fg-line"><input type="text" ng-model="user.phoneNum" name="phoneNum" class="form-control" ng-pattern="/^[(]{0,1}[0-9]{3}[)\.\- ]{0,1}[0-9]{3}[\.\- ]{0,1}[0-9]{4}$/" ng-maxlength="15"></div></div>
+            </div>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-6" >
+              <label class="form-label">{{ 'users.LOGIN_NAME'| translate }}
+				<small ng-show="editUserForm.loginName.$dirty && editUserForm.loginName.$error.maxlength" class="text-danger text-error">{{ 'users.ERROR10'| translate }} </small>
+              </label>
+              <div class="controls"><div class="fg-line"><input type="text" ng-model="user.loginName" name ="loginName" class="form-control" ng-maxlength="50"></div></div>
+            </div>
+			
+			<div class="form-group col-md-6">
+              <label class="form-label"> {{ 'users.LOGIN_PASSWORD'| translate }}
+				<small ng-show="editUserForm.loginPassword.$dirty && editUserForm.loginPassword.$error.maxlength" class="text-danger text-error">{{ 'users.ERROR11'| translate }}</small>
+              </label>
+              <div class="controls"><div class="fg-line"><input type="text" ng-model="user.loginPassword" name ="loginPassword" class="form-control" ng-maxlength="50"></div></div>
+            </div>	
+			</div>
+			<div class="row">
+				<div class="form-group col-md-6">
+              <label class="form-label"> {{ 'users.ROLES'| translate }} </label>
+			<div class="controls">
+              <select ng-model="user.roles" name="userRoles" id="userRoles" class="col-md-12"  multiple size="5" class="form-control">
+				<option value="">{{ 'users.SELECT'| translate }} </option>
+      			<option ng-repeat="option in roleOptions" value="{{option.roleId}}">{{option.roleName}}</option>
+    	      </select>
+			</div>
+            </div>
+
+			<div class="form-group col-md-6">
+				<label class="form-label">{{ 'users.ACTIVE?'| translate }} </label>
+				<div class="controls">
+                  <div class="radio radio-inline m-r-20">
+					<input type="radio" id="yes" name="activeFlag" ng-model="user.activeFlag" ng-value="true"><label class="input-helper" for="yes"> {{ 'users.YES'| translate }} </label>
+  					<input type="radio" id="no" name="activeFlag" ng-model="user.activeFlag" ng-value="false"><label class="input-helper" for="no"> {{ 'users.NO'| translate }} </label>
+				</div>
+		      </div>
+            </div>
+              <div class="row">
+				<div class="form-group col-md-6">
+            <label class="form-label"> {{ 'users.LANGUAGE'| translate }} </label>
+            <div class="controls">
+                <select ng-model="user.language" name="userLanguage" id="userLanguage"   class="form-control">
+                    <option value="">{{ 'users.SELECT'| translate }} </option>
+                    <option ng-repeat="option in LanguageOptions" value="{{option}}">{{option}}</option>
+                </select>
+            </div>
+        </div>	
+		</div>
+			</div>
+
+        </div>
+        <div class="modal-footer">
+			<button class="btn bgm-bluegray waves-effect" type="button" ng-click="closeModal()"> {{ 'users.CANCEL'| translate }}</button>
+			 <button class="btn bgm-orange-900 waves-effect" type="button" ng-click="updateUser()" 
+				ng-disabled="editUserForm.firstName.$invalid || editUserForm.lastName.$invalid || editUserForm.email.$invalid || editUserForm.phoneNum.$invalid"
+			> {{ 'users.UPDATE'| translate }}</button>
+			<br/><br/>
+ 			<small><em>{{ 'users.LAST_UP_ID' | translate }} '{{user.lastModifiedByUserName}}' , {{ 'users.LAST_UP_DATE' | translate }} {{user.lastModifiedDate | date:'medium'}}</em></small>
+		</div>
+</form>
+</script>

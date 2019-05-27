@@ -1,0 +1,243 @@
+<div class="card">
+    <div class="card-header ch-alt m-b-20">
+        <h2>{{ 'MACHINE_LIST.TITLE_machine' | translate }} <small>{{ 'MACHINE_LIST.DESCRIPTION_machine' | translate }} <i class="zmdi zmdi-plus-circle-o"></i> {{ 'MACHINE_LIST.LIGNE2' | translate }}  
+          <a href="#/ordersPage">  {{ 'MACHINE_LIST.LIEN' | translate }}</a>.</small></h2>
+
+        <button class="btn bgm-teal btn-float waves-effect waves-circle" ng-click="openAddMachineModal()" uib-tooltip="{{ 'MACHINE_LIST.ADD_MACHINE' | translate }}"><i class="zmdi zmdi-plus"></i>
+        </button>
+    </div>
+	<br/>
+    <div class="card-body card-padding" translate-cloak>
+        <uib-alert type="success" close="successMsg = false;" ng-show="successMsg">{{alertMsg}}</uib-alert>
+        <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{alertMsg}}</uib-alert>
+        <table datatable="" dt-options="machinesList.dtOptions" dt-columns="machinesList.dtColumns" dt-instance="machinesList.dtInstance" class="table table-bordered table-striped table-vmiddle ng-scope ng-table col-lg-12" width="100%" translate-cloak>
+            <tfoot>
+                <tr class="table-placeholder" translate-cloak>
+                    <th width="15%" translate-cloak translate> MACHINE_LIST.MACHINE_ID </th>
+                    <th width="20%" translate-cloak translate>MACHINE_LIST.MACHINE_NAME </th>
+                    <th width="10%" translate-cloak translate>MACHINE_LIST.STATUS</th>
+                    <th width="20%" translate-cloak translate>MACHINE_LIST.IP_ADDRESS </th>
+                    <th width="30%" translate-cloak translate>MACHINE_LIST.OCPATH </th>
+                    <th width="5%" ></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<script type="text/ng-template" id="addMachineModalContent.html">
+<form name="machineForm" ng-cloak>
+    <div class="modal-header card-header ch-alt" ng-cloak>
+        <h3 class="modal-title">{{ 'MACHINE_LIST.ADD_MACHINE' | translate }}  </h3>
+    </div>
+	<div class="modal-body card-body card-padding" ng-cloak>
+		<uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+		<div class="row">
+			<div class="required col-md-4">
+              <label class="form-label"> {{ 'MACHINE_LIST.ID' | translate }} 
+				<small ng-show="machineForm.id.$error.maxlength" class="text-danger text-error">{{ 'MACHINE_LIST.ERROR1' | translate }}  </small>
+				<small ng-show="machineForm.id.$touched && machineForm.id.$error.required" class="text-danger text-error">{{ 'MACHINE_LIST.ERROR2' | translate }}  </small>
+			  </label>
+              <div class="controls"><div class="fg-line"><input type="text" name="id" ng-model="machine.machineId" class="form-control" ng-required="true" ng-maxlength="25" autofocus></div></div>
+            </div>	
+			<div class="required col-md-4">
+              <label class="form-label"> {{ 'MACHINE_LIST.STATION' | translate }} 
+				<small ng-show="machineForm.station.$touched && machineForm.station.$error.required" class="text-danger text-error">{{ 'MACHINE_LIST.ERROR3' | translate }}  </small>
+			  </label>
+              <div class="controls">
+				<select name="station" id="station" ng-model="machine.stationId" ng-required="true" ng-change="filterMachineTypes()" class="form-control">
+				  <option value="">{{ 'MACHINE_LIST.SELECT' | translate }}  </option>
+      			  <option ng-repeat="option in stationOptions" value="{{option.stationId}}">{{option.name}}</option>
+    	        </select>
+			   </div>
+            </div>
+			<div class="required col-md-4">
+              <label class="form-label"> {{ 'MACHINE_LIST.NAME' | translate }} 
+				<small ng-show="machineForm.name.$error.maxlength" class="text-danger text-error">{{ 'MACHINE_LIST.ERROR4' | translate }} </small>
+				<small ng-show="machineForm.name.$touched && machineForm.name.$error.required" class="text-danger text-error">{{ 'MACHINE_LIST.ERROR5' | translate }} </small>
+			  </label>
+              <div class="controls"><div class="fg-line"><input type="text" name="name" ng-model="machine.name" ng-required="true" ng-maxlength="100" class="form-control"></div></div>
+            </div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+              <label class="form-label">{{ 'MACHINE_LIST.MACHINE_STATUS' | translate }} </label>
+				<div class="controls">
+              	  <select ng-model="machine.status.id" name="status" id="status"  class="form-control">
+					<option ng-repeat="option in statusOptions" value="{{option.id}}">{{option.name}}</option>
+    	      	  </select>
+				</div>
+            </div>
+			<div class="col-md-4">
+              <label class="form-label">{{ 'MACHINE_LIST.SPEED-LENGTH' | translate }} 
+				<small ng-show="machineForm.speed.$error.maxlength" class="text-danger text-error">{{ 'MACHINE_LIST.ERROR6' | translate }} </small>
+			  </label>
+              <div class="controls"><div class="fg-line"><input name="speed" type="text" ng-model="machine.speed" class="form-control" ng-maxlength="15"></div></div>
+            </div>
+			<div class="col-md-4">
+              <label class="form-label">{{ 'MACHINE_LIST.MACHINE_TYPE' | translate }} </label>
+				<div class="controls">
+              	  <select name="type" id="type" ng-model="machine.machineType.id" class="form-control" >
+                         <option value="">{{ 'MACHINE_LIST.SELECT' | translate }} </option>
+                         <option ng-repeat="option in machineTypeOptions" value="{{option.id}}">{{option.name}}</option>
+                  </select>
+				</div>
+            </div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+              <label class="form-label">{{ 'MACHINE_LIST.IP_ADDRESS' | translate }} 
+				<small ng-show="machineForm.ipAddress.$error.maxlength" class="text-danger text-error">{{ 'MACHINE_LIST.ERROR7' | translate }} </small>
+			   </label>
+              <div class="controls"><div class="fg-line"><input type="text" name="ipAddress" ng-model="machine.ipAddress" ng-maxlength="45" class="form-control"></div></div>
+            </div>
+			<div class="col-md-4">
+              <label class="form-label"> {{ 'MACHINE_LIST.PORT' | translate }} 
+				</label>
+              <div class="controls"><div class="fg-line"><input type="number" name="netPort" ng-model="machine.netPort" class="form-control"></div></div>
+            </div>
+			<div class="col-md-4">
+              <label class="form-label"> {{ 'MACHINE_LIST.OCPATH' | translate }} 
+				</label>
+              <div class="controls"><div class="fg-line"><input type="text" name="ocPath" ng-model="machine.ocInputPath" class="form-control"></div></div>
+            </div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+              <label class="form-label">{{ 'MACHINE_LIST.DESC' | translate }} 
+				<small ng-show="machineForm.description.$error.maxlength" class="text-danger text-error"> {{ 'MACHINE_LIST.ERROR8' | translate }}  </small>
+			  </label>
+				<div class="controls"><div class="fg-line">
+              <textarea ng-model="machine.description" name="description" class="form-control" ng-maxlength="2000" rows="4" /></div></div>
+            </div>
+		</div>
+	</div>
+ 	<div class="modal-footer">
+			<button class="btn bgm-bluegray waves-effect" type="button" ng-click="closeModal()"> {{ 'MACHINE_LIST.CANCEL' | translate }}  </button>
+            <button class="btn bgm-teal waves-effect" type="button" ng-click="addMachine()" 
+				ng-disabled="machineForm.id.$invalid || machineForm.station.$invalid || machineForm.name.$invalid || machineForm.description.$invalid || machineForm.speed.$invalid"
+			> {{ 'MACHINE_LIST.ADD' | translate }} </button>
+    </div>
+</form>
+</script>
+
+<script type="text/ng-template" id="editMachineModalContent.html">
+		<form name="editMachineForm" ng-cloak>
+        <div class="modal-header card-header ch-alt" ng-cloak>
+            <h3 class="modal-title">{{ 'MACHINE_LIST.UPDATE_MACHINE' | translate }}  </h3>
+        </div>
+<div class="modal-body card-body card-padding" ng-cloak>
+    <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="mini-charts-item bgm-btn-blue-500">
+                <div class="clearfix">
+                    <div class="chart stats-bar-2" data-sparkline-bar="">
+                         {{ 'MACHINE_LIST.ID' | translate }} 
+                    </div>
+                    <div class="count">
+                        <h2 class="ng-binding">{{machine.machineId}}</h2>
+                    </div>
+                </div>
+            </div>
+</div>
+            <div class="form-group required col-md-4">
+                <label class="form-label"> {{ 'MACHINE_LIST.STATION' | translate }} 
+                    <small ng-show="editMachineForm.station.$dirty && editMachineForm.station.$error.required" class="text-danger text-error">{{ 'MACHINE_LIST.LIGNE1' | translate }} </small>
+                </label>
+                <div class="controls">
+                    <select name="station" id="station" ng-model="machine.stationId" ng-required="true" ng-change="filterMachineTypes()" class="form-control">
+                        <option value="">{{ 'MACHINE_LIST.SELECT' | translate }} </option>
+                        <option ng-repeat="option in stationOptions" value="{{option.stationId}}">{{option.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group required col-md-4">
+                <label class="form-label"> {{ 'MACHINE_LIST.NAME' | translate }} 
+                    <small ng-show="editMachineForm.name.$dirty && editMachineForm.name.$error.maxlength" class="text-danger text-error"> {{ 'MACHINE_LIST.ERROR4' | translate }} </small>
+                    <small ng-show="editMachineForm.name.$dirty && editMachineForm.name.$error.required" class="text-danger text-error">{{ 'MACHINE_LIST.ERROR5' | translate }} </small>
+                </label>
+                <div class="controls">
+                    <input type="text" name="name" ng-model="machine.name" ng-required="true" ng-maxlength="100" class="form-control">
+                </div>
+            </div>
+ 		<div class="form-group col-md-4">
+                <label class="form-label">{{ 'MACHINE_LIST.MACHINE_STATUS' | translate }}  </label>
+                <div class="controls">
+                    <select ng-model="machine.status.id" name="status" id="status" class="form-control">
+                        <option ng-repeat="option in statusOptions" value="{{option.id}}">{{option.name}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+           
+            <div class="form-group col-md-4">
+                <label class="form-label"> {{ 'MACHINE_LIST.SPEED-LENGTH' | translate }} 
+                    <small ng-show="editMachineForm.name.$dirty && editMachineForm.speed.$error.maxlength" class="text-danger text-error"> {{ 'MACHINE_LIST.ERROR6' | translate }} </small>
+                </label>
+                <div class="controls">
+                    <div class="fg-line">
+                        <input name="speed" type="text" ng-model="machine.speed" class="form-control" ng-maxlength="15">
+                    </div>
+                </div>
+            </div>
+			<div class="form-group col-md-4">
+              <label class="form-label">{{ 'MACHINE_LIST.MACHINE_TYPE' | translate }} </label>
+				<div class="controls">
+              	  <select name="type" id="type" ng-model="machine.machineType.id" class="form-control" >
+                         <option value="">{{ 'MACHINE_LIST.SELECT' | translate }} </option>
+                         <option ng-repeat="option in machineTypeOptions" value="{{option.id}}">{{option.name}}</option>
+                  </select>
+				</div>
+            </div>
+ 			<div class="form-group col-md-4">
+                <label class="form-label"> {{ 'MACHINE_LIST.DESC' | translate }} 
+                    <small ng-show="editMachineForm.name.$dirty && editMachineForm.description.$error.maxlength" class="text-danger text-error"> {{ 'MACHINE_LIST.ERROR8' | translate }} </small>
+                </label>
+				<div class="controls">
+                    <div class="fg-line">
+                		<textarea ng-model="machine.description" name="description" class="form-control" ng-maxlength="2000" rows="4" />
+            		 </div>
+        		</div>
+			</div>
+        </div>
+       <div class="row">
+			<div class="form-group col-md-4">
+              <label class="form-label">{{ 'MACHINE_LIST.IP_ADDRESS' | translate }} 
+				<small ng-show="machineForm.ipAddress.$error.maxlength" class="text-danger text-error"> {{ 'MACHINE_LIST.ERROR9' | translate }} </small>
+			   </label>
+              <div class="controls"><div class="fg-line"><input type="text" name="ipAddress" ng-model="machine.ipAddress" ng-maxlength="45" class="form-control"></div></div>
+            </div>
+			<div class="form-group col-md-4">
+              <label class="form-label">  {{ 'MACHINE_LIST.PORT' | translate }}
+				</label>
+              <div class="controls"><div class="fg-line"><input type="number" name="netPort" ng-model="machine.netPort" class="form-control"></div></div>
+            </div>
+			<div class="col-md-4">
+              <label class="form-label"> {{ 'MACHINE_LIST.OCPATH' | translate }} 
+				</label>
+              <div class="controls"><div class="fg-line"><input type="text" name="ocPath" ng-model="machine.ocInputPath" class="form-control"></div></div>
+            </div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+              <label class="form-label"> {{ 'MACHINE_LIST.CURRJOB' | translate }} 
+				</label>
+              <div class="controls"><div class="fg-line"><input type="text" name="currJob" ng-model="machine.currentJob.jobId" class="form-control"></div></div>
+            </div>
+		</div>
+    </div>
+
+		 <div class="modal-footer">
+			<button class="btn bgm-bluegray waves-effect" type="button" ng-click="closeModal()"> {{ 'MACHINE_LIST.CANCEL' | translate }} </button>
+            <button class="btn bgm-orange-900 waves-effect" type="button" ng-click="updateMachine()" 
+				ng-disabled="editMachineForm.station.$invalid || editMachineForm.name.$invalid || editMachineForm.description.$invalid || editMachineForm.speed.$invalid"
+			> {{ 'MACHINE_LIST.UPDATE' | translate }} </button>
+			
+			<div class="left">
+ 				<small style="float:left"><em>{{ 'MACHINE_LIST.LAST_UP_ID' | translate }} '{{machine.lastModifiedByUserName}}' , {{ 'MACHINE_LIST.LAST_UP_DATE' | translate }} {{machine.lastModifiedDate | date:'medium'}}</em></small>
+			</div>
+ 		</div>
+</form>
+</script>

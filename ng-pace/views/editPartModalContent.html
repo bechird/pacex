@@ -1,0 +1,712 @@
+<form name="partForm" ng-cloak>
+		<div class="modal-header card-header ch-alt" ng-cloak>
+            <h3 class="modal-title"> {{ 'editPartModalContent.TITLE'| translate }}</h3>
+        </div>
+		<div class="modal-body card-body card-padding col-md-12" ng-cloak>
+		  <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+		  <div class="row">
+		    <div class="col-sm-6 col-md-12">
+		        <div class="mini-charts-item bgm-blue-300">
+		            <div class="clearfix">
+		                <div class="chart stats-bar-2" data-sparkline-bar="">
+		                    PN
+		                </div>
+		                <div class="count">
+		                   
+		                    <h2 style="margin: 11px;"><b>Part # </b> : {{part.partNum}}</h2>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		  </div>
+		  <div type="danger" class="alert alert-danger alert-dismissible" role="alert" ng-show="errorMsg">
+			                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+			                </button>
+			                {{errors}}
+			            </div>
+		  <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group required">
+                            <label class="form-label">ISBN
+								<span ng-show="partForm.isbn.$dirty && partForm.isbn.$error.maxlength" class="text-danger text-error">{{ 'editPartModalContent.ERROR1'| translate }}</span>
+								<span ng-show="partForm.isbn.$dirty && partForm.isbn.$invalid" class="text-danger text-error"> {{ 'editPartModalContent.ERROR2'| translate }}</span>
+								<span ng-show="partForm.isbn.$dirty && partForm.isbn.$error.required" class="text-danger text-error"> {{ 'editPartModalContent.ERROR3'| translate }}</span>
+							</label>
+                            <div class="controls">
+                            <div class="fg-line">
+                                <input type="text" id="isbn" ng-disabled="disableFields" name="isbn" ng-model="part.isbn" ng-pattern="/^(ISBN[-]*(1[03])*[ ]*(: ){0,1})*(([0-9Xx][- ]*){13}|([0-9Xx][- ]*){10})$/" class="form-control" ng-required="true" ng-maxlength="25">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group required">
+                            <label class="form-label"> {{ 'editPartModalContent.TITLEE'| translate }}
+								<span ng-show="partForm.title.$dirty && partForm.title.$error.maxlength" class="text-danger text-error"> {{ 'editPartModalContent.ERROR4'| translate }}</span>
+								<span ng-show="partForm.title.$dirty && partForm.title.$error.required" class="text-danger text-error">{{ 'editPartModalContent.ERROR5'| translate }}</span>
+							</label>
+                            <div class="controls">
+                            <div class="fg-line">
+                                <input type="text" ng-disabled="disableFields" id="title" name="title" ng-model="part.title" class="form-control" ng-required="true" ng-maxlength="255">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    	<div class="col-md-4">
+                        <div class="form-group required">
+                            <label class="form-label"> {{ 'editPartModalContent.FINISHED_BOOK_SIZE'| translate }}
+								<span ng-show="partForm.partWidth.$dirty && partForm.partWidth.$error.maxlength" class="text-danger text-error"> {{ 'editPartModalContent.ERROR7'| translate }}</span>
+								<span ng-show="partForm.partWidth.$dirty && partForm.partWidth.$error.required" class="text-danger text-error"> {{ 'editPartModalContent.ERROR8'| translate }}</span>
+								<span ng-show="partForm.partHeight.$dirty && partForm.partHeight.$error.maxlength" class="text-danger text-error"> {{ 'editPartModalContent.ERROR9'| translate }}</span>
+								<span ng-show="partForm.partHeight.$dirty && partForm.partHeight.$error.required" class="text-danger text-error"> {{ 'editPartModalContent.ERROR10'| translate }}</span>
+							</label>
+                            <div class="controls" >
+                            	<div class="col-sm-6">
+				                <div class="form-group">
+				                    <div class="fg-line">
+                                <input type="number" ng-disabled="disableFields" id="partWidth" name="partWidth" ng-model="part.width" class="form-control" Placeholder="Width" min="0" max="9999" ng-required="true">
+                                      </div>
+					                </div>
+					            </div>
+					             <div class="col-sm-6">
+				                <div class="form-group">
+				                    <div class="fg-line">
+									<input type="number" ng-disabled="disableFields" id="partHeight" name="partHeight" ng-model="part.length" class="form-control" Placeholder="Hight" min="0" max="9999" ng-required="true">
+							   </div>
+				                </div>
+				            </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+		    <div class="row">
+		    	
+                     <div ng-class="showAdminData == true ? 'col-md-3' : 'col-md-4'">
+                        <div class="form-group">
+                            <label class="form-label"> {{ 'editPartModalContent.DELETE_AFTER'| translate }}</label>
+                             <div class="controls">
+                             <label class="radio radio-inline m-r-20">
+				                <input ng-disabled="disableFields" type="radio" id="yes" name="deleteFlag" ng-model="part.softDelete" ng-value="true">
+				                <i class="input-helper"></i>
+				                 {{ 'editPartModalContent.YES'| translate }}
+				            </label>
+				            <label class="radio radio-inline m-r-20">
+				                <input ng-disabled="disableFields" type="radio" id="no" name="deleteFlag" ng-model="part.softDelete" ng-value="false">
+				                <i class="input-helper"></i>
+				                 {{ 'editPartModalContent.NO'| translate }}
+				            </label>
+                            </div>
+                        </div>
+                    </div>
+                       <div ng-show="showAdminData == true" class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-label"> {{ 'editPartModalContent.ACTIVE'| translate }}</label>
+                             <div class="controls">
+                           		<label class="radio radio-inline m-r-20">
+					                <input ng-disabled="disableFields" type="radio" id="yesActive" name="activeFlag" ng-model="part.activeFlag" ng-value="true">
+					                <i class="input-helper"></i>
+					                 {{ 'editPartModalContent.YES'| translate }}
+					            </label>
+					            <label class="radio radio-inline m-r-20">
+					                <input ng-disabled="disableFields" type="radio" id="noActive" name="activeFlag" ng-model="part.activeFlag" ng-value="false">
+					                <i class="input-helper"></i>
+					                 {{ 'editPartModalContent.NO'| translate }}
+					            </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-class="showAdminData == true ? 'col-md-3' : 'col-md-4'">
+                        <div class="form-group required">
+                            <label class="form-label"> {{ 'editPartModalContent.COLORS'| translate }}
+								<span ng-show="partForm.colors.$dirty && partForm.colors.$error.required" class="text-danger text-error"> {{ 'editPartModalContent.ERROR11'| translate }}</span>
+							</label>
+                            <div class="controls">
+                               <select ng-disabled="disableFields" name="colors" id="colors" ng-model="part.colors" class="form-control" ng-required="true">
+									<option value=""> {{ 'editPartModalContent.SELECT'| translate }}</option>
+	      							<option value="4C">4C</option>
+	      							<option value="1C">1C</option>
+	    	       				</select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-class="showAdminData == true ? 'col-md-3' : 'col-md-4'">
+		                <div class="form-group">
+		                    <label class="form-label"> {{ 'editPartModalContent.COVER_COLOR'| translate }}</label>
+		                    <div class="controls">
+		                        <select name="coverColor" id="coverColor" ng-model="part.coverColor" ng-disabled="disableFields" class="form-control" >
+	                                <option value=""> {{ 'editPartModalContent.SELECT'| translate }}</option>
+	                                <option value="4C">4C</option>
+	                                <option value="1C">1C</option>
+	                                <option value="1/1C">1/1C</option>
+	                                <option value="4/4C">4/4C</option>
+                                	<option value="4/1C">4/1C</option>
+	                            </select>
+		                    </div>
+		                </div>
+		            </div>
+			</div>
+            
+            <div class="row">
+				<div class="col-md-1">
+	                <div class="form-group">
+	                    <label class="form-label"> {{ 'editPartModalContent.VERSION'| translate }}
+	                        <span ng-show="partForm.version.$dirty && partForm.version.$invalid" class="text-danger text-error"> {{ 'editPartModalContent.ERROR12'| translate }}</span>
+	                    </label>
+	                    <div class="controls">
+	                        <div class="fg-line">
+	                            <input ng-disabled="disableFields" type="number" id="version" name="version" ng-model="part.version" class="form-control" min="0" max="99">
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+				<div class="col-md-3">
+                    <div class="form-group">
+                        <label class="form-label"> {{ 'editPartModalContent.AUTHOR'| translate }}
+                            <span ng-show="partForm.author.$dirty && partForm.author.$error.maxlength" class="text-danger text-error"> {{ 'editPartModalContent.ERROR13'| translate }}</span>
+                        </label>
+                        <div class="controls">
+                            <div class="fg-line">
+                                <input ng-disabled="disableFields" type="text" id="author" name="author" ng-model="part.author" class="form-control" ng-maxlength="45">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                     <div class="form-group">
+                          <label class="form-label"> {{ 'editPartModalContent.PUBLISH_DATE'| translate }}<small ng-show="partForm.publishDate.$dirty && partForm.publishDate.$error.date" class="text-error"> {{ 'editPartModalContent.ERROR14'| translate }}</small>
+                          </label>
+                           <datepicker 
+                                   date-format="{{format}}" 
+                                   date-typer="true" 
+                                    date-set="{{publishDate.toString()}}"
+                                    button-prev='<i class="fa fa-arrow-circle-left"></i>'
+      								button-next='<i class="fa fa-arrow-circle-right"></i>'>
+									  <input ng-model="publishDate" id="publishDate1" name="publishDate1" type="text" class="date-control"  uib-datepicker-popup="{{format}}"  ng-required="true" ng-disabled="disableFields"/>
+							</datepicker>
+<!--                           <input ng-disabled="disableFields" ng-click="open3()" ng-model="publishDate" id="publishDate1" name="publishDate1" type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup3.opened"  close-text="Close"  />
+ -->                      </div>
+                     <!--  <a ng-click="open3()" class="input-group-addon last"><i class="zmdi zmdi-date"></i></a> -->
+                </div>
+                <div class=" col-md-4">
+                     <div class="form-group">
+                          <label class="form-label"> {{ 'editPartModalContent.LAST_PRINTED'| translate }}<small ng-show="partForm.lastPrinted.$dirty && partForm.lastPrinted.$error.date" class="text-error">{{ 'editPartModalContent.ERROR15'| translate }}</small>
+                          </label>
+                           <datepicker 
+                                   date-format="{{format}}" 
+                                   date-typer="true" 
+                                    date-set="{{lastPrinted.toString()}}"
+                                    button-prev='<i class="fa fa-arrow-circle-left"></i>'
+      								button-next='<i class="fa fa-arrow-circle-right"></i>'>
+									  <input ng-model="lastPrinted" id="lastPrinted" name="lastPrinted"  type="text" class="date-control"  uib-datepicker-popup="{{format}}"  ng-required="true" ng-disabled="disableFields"/>
+							</datepicker>
+<!--                           <input ng-disabled="disableFields" ng-click="open2()" ng-model="lastPrinted" id="lastPrinted" name="lastPrinted" type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup2.opened"  close-text="Close"  />
+ -->                      </div>
+                      <!-- <a ng-click="open2()" class="input-group-addon last"><i class="zmdi zmdi-date"></i></a> -->
+                </div>
+			</div>
+            <div class="row">
+             		   <div class="col-md-4">
+                        <div class="form-group required">
+                            <label class="form-label"> {{ 'editPartModalContent.PAPER_TYPE'| translate }}
+                            	<span ng-show="partForm.paperType.$dirty && partForm.paperType.$error.required" class="text-danger text-error"> {{ 'editPartModalContent.ERROR16'| translate }}</span>
+                            </label>
+                            <div class="controls">
+                                <select name="paperType" id="paperType" ng-model="part.paperType.id" class="form-control" ng-required="true" ng-disabled="disableFields">
+									<option value=""> {{ 'editPartModalContent.SELECT'| translate }}</option>
+      								<option ng-repeat="option in paperTypeOptions" value="{{option.id}}">{{option.name}}</option>
+    	       					</select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="form-label"> {{ 'editPartModalContent.LAMINATION'| translate }}</label>
+                            <div class="controls">
+                                <select name="lamination" id="lamination" ng-model="part.lamination.id" ng-disabled="disableFields" class="form-control">
+									<option value="">{{ 'editPartModalContent.SELECT'| translate }}</option>
+      								<option ng-repeat="option in laminationOptions" value="{{option.id}}">{{option.name}}</option>
+    	       					</select>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="col-md-4">
+                        <div class="form-group required">
+                            <label class="form-label"> {{ 'editPartModalContent.BINDING_TYPE'| translate }}
+								<span ng-show="partForm.bindingType.$dirty && partForm.bindingType.$error.required" class="text-danger text-error"> {{ 'editPartModalContent.ERROR17'| translate }}</span>
+							</label>
+                            <div class="controls">
+                             	<select name="bindingType" id="bindingType" ng-model="part.bindingType.id" class="form-control" ng-disabled="disableFields" ng-required="true">
+									<option value=""> {{ 'editPartModalContent.SELECT'| translate }}</option>
+      								<option ng-repeat="option in bindingTypeOptions" value="{{option.id}}">{{option.name}}</option>
+    	       					</select>
+                            </div>
+                        </div>
+                    </div>
+             </div>
+            <div class="row">
+				<div class="col-md-12" >
+                    <div class="form-group">
+                        <label class="form-label">
+                            <a title="PNL Data" ng-click="showPNLData = !showPNLData" id="PNLData">PNL DATA
+								<i class="zmdi zmdi-open-in-new zmdi-hc-lg"></i>: {{ 'PNLDATA_COMMENT'| translate}}</a>
+                        </label>
+                    </div>
+                </div>
+            </div>
+             <div class="row" ng-show="showPNLData">
+				<div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-label">{{ 'PNLTMPLID'| translate}}
+                            <span ng-show="partForm.pnlTmplId.$error.maxlength" class="text-danger text-error">{{ 'ERROR19'| translate}}</span>
+                        </label>
+                        <div class="controls">
+                            <div class="fg-line">
+                                <input type="text" id="pnlTmplId" name="pnlTmplId" ng-model="part.pnlTemplateId" ng-disabled="disableFields" class="form-control" ng-maxlength="300">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-label">{{ 'PNLPAGENUM'| translate}}
+                            <span ng-show="partForm.pnlPageNum.$error.maxlength" class="text-danger text-error">{{ 'ERROR19'| translate}}</span>
+                        </label>
+                        <div class="controls">
+                            <div class="fg-line">
+                                <input type="text" id="pnlPageNum" name="pnlPageNum" ng-model="part.pnlPageNumber" ng-disabled="disableFields" class="form-control" ng-maxlength="300">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-label">{{ 'PNLPRINTNUM'| translate}}
+                            <span ng-show="partForm.pnlPrintNum.$error.maxlength" class="text-danger text-error">{{ 'ERROR19'| translate}}</span>
+                        </label>
+                        <div class="controls">
+                            <div class="fg-line">
+                                <input type="text" id="pnlPrintNum" name="pnlPrintNum" ng-model="part.pnlPrintingNumber" ng-disabled="disableFields" class="form-control" ng-maxlength="300">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>
+			<div class="row" ng-show="showPNLData">
+				<div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-label">{{ 'PNLLOCATION'| translate}}
+                            <span ng-show="partForm.pnlLocation.$error.maxlength" class="text-danger text-error">{{ 'ERROR19'| translate}}</span>
+                        </label>
+                        <div class="controls">
+                            <div class="fg-line">
+                                <input type="text" id="pnlLocation" name="pnlLocation" ng-model="part.pnlLocation" ng-disabled="disableFields" class="form-control" ng-maxlength="300">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-label">{{ 'PNLHMARGIN'| translate}}
+                            <span ng-show="partForm.pnlHmargin.$error.maxlength" class="text-danger text-error">{{ 'ERROR19'| translate}}</span>
+                        </label>
+                        <div class="controls">
+                            <div class="fg-line">
+                                <input type="text" id="pnlHmargin" name="pnlHmargin" ng-model="part.pnlHmargin" ng-disabled="disableFields" class="form-control" ng-maxlength="300">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-label">{{ 'PNLVMARGIN'| translate}}
+                            <span ng-show="partForm.pnlVmargin.$error.maxlength" class="text-danger text-error">{{ 'ERROR19'| translate}}</span>
+                        </label>
+                        <div class="controls">
+                            <div class="fg-line">
+                                <input type="text" id="pnlVmargin" name="pnlVmargin" ng-model="part.pnlVmargin" ng-disabled="disableFields" class="form-control" ng-maxlength="300">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>
+            <div class="row" ng-show="showPNLData">
+				<div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-label">{{ 'PNLNOTNEEDED'| translate}}
+                            <span ng-show="partForm.pnlNotNeeded.$error.maxlength" class="text-danger text-error">{{ 'ERROR19'| translate}}</span>
+                        </label>
+                        <div class="controls">
+                            <div class="fg-line">
+                                <label class="radio radio-inline m-r-20">
+	                                <input type="radio" id="pnlNotNeededYes" name="pnlNotNeededYes" ng-model="part.pnlNotNeeded" ng-disabled="disableFields" value="true">
+	                                <i class="input-helper"></i>{{ 'YES'| translate}}
+	                            </label>
+	                            <label class="radio radio-inline m-r-20">
+	                                <input type="radio" id="pnlNotNeededNo" name="pnlNotNeededNo" ng-model="part.pnlNotNeeded" ng-disabled="disableFields" value="false">
+	                                <i class="input-helper"></i>{{ 'NO'| translate}}
+	                            </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-label">{{ 'PNLFONTTYPE'| translate}}
+                            <span ng-show="partForm.pnlFontType.$error.maxlength" class="text-danger text-error">{{ 'ERROR19'| translate}}</span>
+                        </label>
+                        <div class="controls">
+                            <div class="fg-line">
+                                <select name="pnlFontType" id="pnlFontType" ng-model="part.pnlFontType" ng-disabled="disableFields" class="form-control">
+			                        <option value="">{{ 'loukup_details.SELECT' | translate }}</option>
+			                        <option  value="Helvetica">Helvetica</option>
+									<option  value="Courier">Courier</option>
+									<option  value="Calibri">Calibri</option>
+									<option  value="Cambria">Cambria</option>
+			                    </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-md-4">
+                    <div class="form-group">
+                        <label class="form-label">{{ 'PNLFONTSIZE'| translate}}
+                            <span ng-show="partForm.pnlFontSize.$error.maxlength" class="text-danger text-error">{{ 'ERROR19'| translate}}</span>
+                        </label>
+                        <div class="controls">
+                            <div class="fg-line">
+                                <select name="pnlFontSize" id="pnlFontSize" ng-model="part.pnlFontSize" ng-disabled="disableFields" class="form-control">
+			                        <option value="">{{ 'loukup_details.SELECT' | translate }}</option>
+			                        <option ng-repeat="option in [5,6,7,8,9,10,11,12,14,16,18,22,24,26,32,40]" value="{{option}}">{{option}}</option>
+			                    </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>
+                   
+                    <div class="col-md-12">
+                    	<hr class="style6">
+                     </div>
+                    <div class="col-lg-9">
+					  <div ng-show="textPart.displayFileName == null">
+                        <div class=" col-lg-3">
+                           <label class="form-label"> {{ 'editPartModalContent.TEXT_PDF_UPLOAD'| translate }}</label>
+                            <div class="controls">
+                               <div class="media-body">
+									<button class="btn btn-info btn-ef btn-ef-7 btn-ef-7b b-0 br-2" type="file" ngf-select="uploadFiles($file, $invalidFiles, 'Text', 'edit')"
+										ng-model="textFile" name="textFile" ngf-model-invalid="errorFile" 
+										ng-disabled="partForm.partNum.$invalid || partForm.isbn.$invalid || textFile.progress >= 0 || textFile.result || disableFields"
+           							 	accept="application/pdf" ngf-max-height="1000"><i class="fa fa-paperclip"></i>  {{ 'editPartModalContent.UPLOAD_TEXT'| translate }}</button>
+							   </div>
+                           </div>
+                        </div>
+						<div class=" col-lg-5">
+							<span class="progress-striped active m-b-10 progress" ng-show="textFile.progress >= 0 && !textFile.result" style="width:100%">
+        						<div class="progress-bar progress-bar-success" role="progressbar" style="width:{{textFile.progress}}%" ng-bind="textFile.progress + '%'"></div>
+    					    </span>
+							<span class="progress-striped active m-b-10 progress" ng-show="textFile.result" style="width:100%">
+        						<div class="progress-bar progress-bar-success" role="progressbar" style="width:100%" ng-bind="100 + '%'"></div>
+    					    </span>
+							<div class="tile-header dvd dvd-btm" ng-show="textFile.result">
+								<span ng-show="textFile.result"><em> {{ 'editPartModalContent.UPLOAD_SUCC'| translate }}</em> <strong>{{uploadedFileName[0]}}</strong></span>
+     						</div>
+							<span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+					    </div>
+					  </div>
+					  <div ng-show="textPart.displayFileName != null && textPart.displayFileName != ''">
+						<label class="form-label"> {{ 'editPartModalContent.TEXT_PDF_UPLOAD'| translate }}</label>
+						<!-- <a ng-href="parts/doc/Text/{{textPart.partNum}}">{{textPart.fileName}}</a> -->
+						<!--<a href="" ng-click="readUploadedFile('Text', textPart.partNum)" title="Text PDF File">{{textPart.fileName}}</a>-->
+						<!--<a ng-href="{{ textFileUrl }}" ng-click="readUploadedFile('Text', textPart.partNum)" download="{{textPart.fileName}}">{{textPart.fileName}}</a>-->
+						<a ng-href="{{API_BASE}}/parts/document/{{textPart.dataSupportId}}?access_token={{token}}" title="Text PDF File">&nbsp;&nbsp;{{textPart.displayFileName}}</a>&nbsp;&nbsp;
+						<button type="button" uib-tooltip="{{ 'editPartModalContent.Remove_this_text_file'| translate }}" ng-click="removeFile('Text', textPart.partNum)" ng-disabled="disableFields" class="btn bgm-deeporange waves-effect"><i class='zmdi zmdi-delete'></i></button>
+					 </div>
+                    </div>
+                  <div class="col-md-3">
+                        <div class="form-group required">
+                            <label class="form-label">{{ 'editPartModalContent.PAGE_COUNT'| translate }}
+								<span ng-show="partForm.pagesCount.$error.maxlength" class="text-danger text-error">{{ 'editPartModalContent.ERROR18'| translate}}</span>
+                        		<span ng-show="partForm.pagesCount.$touched && partForm.pagesCount.$error.required" class="text-danger text-error">{{ 'editPartModalContent.PAGE_COUNT'| translate}}</span>
+                   				
+							</label>
+                            <div class="controls">
+                            <div class="fg-line">
+                             <input type="number" ng-required="true" id="pagesCount" name="pagesCount" ng-model="part.pagesCount" ng-disabled="disableFields" class="form-control" min="0" max="999999">
+                             </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                    <hr class="style6">
+                     </div>
+                    <div class="col-lg-9">
+					  <div ng-show="coverPart.displayFileName == null">
+                        <div class=" col-lg-3">
+                           <label class="form-label"> {{ 'editPartModalContent.COVER_PDF_UPLOAD'| translate }}</label>
+                            <div class="controls">
+                             <div class="media-body">
+									<button class="btn btn-info btn-ef btn-ef-7 btn-ef-7b b-0 br-2" type="file" ngf-select="uploadFiles($file, $invalidFiles, 'Cover', 'edit')"
+										ng-model="coverFile" name="coverFile" id="coverFile" ngf-model-invalid="errorFile" 
+										ng-disabled="partForm.partNum.$invalid || partForm.isbn.$invalid || coverFile.progress >= 0 || coverFile.result || disableFields || part.selfcover"
+           							 accept="application/pdf" ngf-max-height="1000"><i class="fa fa-paperclip"></i>  {{ 'editPartModalContent.UPLOAD_COVER'| translate }}</button>
+							  </div>
+                            </div>
+                        </div>
+						<div class="col-lg-5">
+								<span class="progress-striped active m-b-10 progress" ng-show="coverFile.progress >= 0 && !coverFile.result" style="width:100%">
+        							<div class="progress-bar progress-bar-success" role="progressbar" style="width:{{coverFile.progress}}%" ng-bind="coverFile.progress + '%'"></div>
+    					    	</span>
+								<span class="progress-striped active m-b-10 progress" ng-show="coverFile.result" style="width:100%">
+        							<div class="progress-bar progress-bar-success" role="progressbar" style="width:100%" ng-bind="100 + '%'"></div>
+    					    	</span>
+							<div class="tile-header dvd dvd-btm" ng-show="coverFile.result">
+								<span ng-show="coverFile.result"><em> {{ 'editPartModalContent.UPLOAD_SUCC'| translate }}</em> <strong>{{uploadedFileName[1]}}</strong></span>
+     						</div>
+							<span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+					    </div>
+						</div>
+					  <div ng-show="coverPart.displayFileName != null && coverPart.displayFileName != ''">
+						<label class="form-label"> {{ 'editPartModalContent.COVER_PDF_UPLOAD'| translate }}</label>
+						<a ng-href="{{API_BASE}}/parts/document/{{coverPart.dataSupportId}}?access_token={{token}}" title="Cover PDF File">&nbsp;&nbsp;{{coverPart.displayFileName}}</a>&nbsp;&nbsp;
+						<button type="button" uib-tooltip="{{ 'editPartModalContent.Remove_this_cover_file'| translate }}" ng-click="removeFile('Cover', coverPart.partNum)" ng-disabled="disableFields" class="btn bgm-deeporange waves-effect"><i class='zmdi zmdi-delete'></i></button>
+					  </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group required">
+                            <label class="form-label"> {{ 'editPartModalContent.SPINE_THICKNESS'| translate }}
+								<span ng-show="partForm.thickness.$error.maxlength" class="text-danger text-error">{{ 'editPartModalContent.ERROR19'| translate}}</span>
+                        		<span ng-show="partForm.thickness.$touched && partForm.thickness.$error.required" class="text-danger text-error">{{ 'editPartModalContent.ERROR25'| translate}}</span>
+                   			</label>
+                            <div class="controls">
+                            <div class="fg-line">
+                             <input type="number" id="thickness" name="thickness" ng-disabled="disableFields" ng-model="part.thickness" class="form-control" ng-required="true" min="0" max="999999">
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                    	<hr class="style6">
+                    </div>
+                    <div class="col-md-12">
+	            		<div class="col-md-7">
+			                <div class="form-group">
+			                	<label class="form-label">{{ 'editPartModalContent.OPTIONS'| translate }}</label>
+			                    <div class="controls" ng-repeat="option in critiriaOptions" >
+			                        <div class="checkbox checkbox-inline m-r-20" ng-show="{{option.id != 'DEFAULT'}}">
+			                            <input ng-disabled="disableFields" id="{{option.id}}" type="checkbox" checklist-model="part.critirias" checklist-value="option.id" onclick="toggleCoverUpload(this.id);">
+			                            <label class="input-helper" for="{{option.id}}">{{option.name}}</label> 
+			                        </div>
+			                    </div>
+			                </div>
+			            </div>
+                    	<div class="col-md-5" ng-show="part.bindingType.id == 'CASEBOUND'">
+			               <div class="form-group" >
+			                    <label class="form-label"> {{ 'SPINETYPE'| translate }}</label>
+			                    <div class="controls">
+			                        <select name="spineType" id="spineType" ng-model="part.spineType" ng-disabled="disableFields" class="form-control" >
+			                               <option value=""></option>
+			                               <option value="Square">Square</option>
+			                               <option value="Round">Round</option>
+			                           </select>
+			                    </div>
+			                </div>
+				           <div class="form-group" >
+			                    <label class="form-label"> {{ 'HEADTAILBANDS'| translate }}</label>
+			                    <div class="controls">
+			                        <select name="headTailBands" id="headTailBands" ng-model="part.headTailBands" ng-disabled="disableFields" class="form-control" >
+			                               <option value=""></option>
+			                               <option value="White">White</option>
+			                               <option value="White/White">White/White</option>
+			                               <option value="Black">Black</option>
+			                               <option value="Black & White">Black & White</option>
+			                           </select>
+			                    </div>
+			                </div>
+			            </div>
+			            <div class="col-md-5" ng-show="part.bindingType.id == 'PLASTIC'">
+			               <div class="form-group" >
+			                    <label class="form-label"> {{ 'WIRECOLOR'| translate }}</label>
+			                    <div class="controls">
+			                        <select name="wireColor" id="wireColor" ng-model="part.wireColor" ng-disabled="disableFields" class="form-control" >
+			                               <option value=""></option>
+			                               <option value="White">White</option>
+			                               <option value="Black">Black</option>
+			                           </select>
+			                    </div>
+			                </div>
+			            </div>  
+		            </div>
+		      
+		      <div class="col-md-12" ng-if="part.dustJacket">
+                  	<hr class="style6">
+              </div>
+              <div class="col-lg-9" ng-if="part.dustJacket">
+			      <div ng-show="djPart.displayFileName == null">
+                      <div class=" col-lg-3">
+                         <label class="form-label"> {{ 'editPartModalContent.DJ_PDF_UPLOAD'| translate }}</label>
+                          <div class="controls">
+                             <div class="media-body">
+							<button class="btn btn-info btn-ef btn-ef-7 btn-ef-7b b-0 br-2" type="file" ngf-select="uploadFiles($file, $invalidFiles, 'DustJacket', 'edit')"
+								ng-model="djFile" name="djFile" ngf-model-invalid="errorFile" 
+								ng-disabled="partForm.partNum.$invalid || partForm.isbn.$invalid || djFile.progress >= 0 || djFile.result || disableFields"
+         							 	accept="application/pdf" ngf-max-height="1000"><i class="fa fa-paperclip"></i>  {{ 'editPartModalContent.UPLOAD_TEXT'| translate }}</button>
+					   </div>
+                         </div>
+                      </div>
+					<div class=" col-lg-5">
+						<span class="progress-striped active m-b-10 progress" ng-show="djFile.progress >= 0 && !djFile.result" style="width:100%">
+	      						<div class="progress-bar progress-bar-success" role="progressbar" style="width:{{djFile.progress}}%" ng-bind="djFile.progress + '%'"></div>
+	  					    </span>
+						<span class="progress-striped active m-b-10 progress" ng-show="djFile.result" style="width:100%">
+	      						<div class="progress-bar progress-bar-success" role="progressbar" style="width:100%" ng-bind="100 + '%'"></div>
+	  					    </span>
+						<div class="tile-header dvd dvd-btm" ng-show="djFile.result">
+							<span ng-show="djFile.result"><em> {{ 'editPartModalContent.UPLOAD_SUCC'| translate }}</em> <strong>{{uploadedFileName[2]}}</strong></span>
+	   						</div>
+						<span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+				    </div>
+				  </div>
+				  <div ng-show="djPart.displayFileName != null && djPart.displayFileName != ''">
+					<label class="form-label"> {{ 'editPartModalContent.DJ_PDF_UPLOAD'| translate }}</label>
+					<a ng-href="{{API_BASE}}/parts/document/{{djPart.dataSupportId}}?access_token={{token}}" title="Dust Jacket PDF File">&nbsp;&nbsp;{{djPart.displayFileName}}</a>&nbsp;&nbsp;
+					<button type="button" uib-tooltip="{{ 'editPartModalContent.Remove_this_text_file'| translate }}" ng-click="removeFile('DustJacket', djPart.partNum)" ng-disabled="disableFields" class="btn bgm-deeporange waves-effect"><i class='zmdi zmdi-delete'></i></button>
+				  </div>
+                </div>
+                <div class="col-md-3" ng-if="part.dustJacket">
+                      <div class="form-group">
+                          <label class="form-label"> {{ 'editPartModalContent.COLORS'| translate }}</label>
+		                    <div class="controls">
+		                        <select name="djColor" id="djColor" ng-model="part.djColor" ng-disabled="disableFields" class="form-control" >
+	                                <option value=""> {{ 'editPartModalContent.SELECT'| translate }}</option>
+	                                <option value="4C">4C</option>
+	                                <option value="1C">1C</option>
+	                                <option value="1/1C">1/1C</option>
+	                                <option value="4/4C">4/4C</option>
+                                	<option value="4/1C">4/1C</option>
+	                            </select>
+		                    </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">{{ 'editPartModalContent.PAPER_TYPE'| translate }}
+                            <span ng-show="partForm.djPaperType.$error.maxlength" class="text-danger text-error">{{ 'ERROR19'| translate}}</span>
+                        </label>
+                        <div class="controls">
+                            <div class="fg-line">
+                                <input type="text" id="djPaperType" name="djPaperType" ng-model="part.djPaper" ng-disabled="disableFields" class="form-control" ng-maxlength="55">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+              <div class="col-md-12" ng-if="part.printedEndSheet">
+                  	<hr class="style6">
+              </div>
+              <div class="col-lg-9" ng-if="part.printedEndSheet">
+			      <div ng-show="esPart.displayFileName == null">
+                      <div class=" col-lg-3">
+                         <label class="form-label"> {{ 'editPartModalContent.ES_PDF_UPLOAD'| translate }}</label>
+                          <div class="controls">
+                             <div class="media-body">
+								<button class="btn btn-info btn-ef btn-ef-7 btn-ef-7b b-0 br-2" type="file" ngf-select="uploadFiles($file, $invalidFiles, 'EndSheet', 'edit')"
+									ng-model="esFile" name="esFile" ngf-model-invalid="errorFile" 
+									ng-disabled="partForm.partNum.$invalid || partForm.isbn.$invalid || esFile.progress >= 0 || esFile.result || disableFields"
+	         							 	accept="application/pdf" ngf-max-height="1000"><i class="fa fa-paperclip"></i>  {{ 'editPartModalContent.UPLOAD_TEXT'| translate }}</button>
+						    </div>
+                         </div>
+                      </div>
+					<div class=" col-lg-5">
+						<span class="progress-striped active m-b-10 progress" ng-show="esFile.progress >= 0 && !esFile.result" style="width:100%">
+	      						<div class="progress-bar progress-bar-success" role="progressbar" style="width:{{esFile.progress}}%" ng-bind="esFile.progress + '%'"></div>
+	  					    </span>
+						<span class="progress-striped active m-b-10 progress" ng-show="esFile.result" style="width:100%">
+	      						<div class="progress-bar progress-bar-success" role="progressbar" style="width:100%" ng-bind="100 + '%'"></div>
+	  					    </span>
+						<div class="tile-header dvd dvd-btm" ng-show="esFile.result">
+							<span ng-show="esFile.result"><em> {{ 'editPartModalContent.UPLOAD_SUCC'| translate }}</em> <strong>{{uploadedFileName[3]}}</strong></span>
+	   						</div>
+						<span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+				    </div>
+				  </div>
+				  <div ng-show="esPart.displayFileName != null && esPart.displayFileName != ''">
+					<label class="form-label"> {{ 'editPartModalContent.ES_PDF_UPLOAD'| translate }}</label>
+					<a ng-href="{{API_BASE}}/parts/document/{{esPart.dataSupportId}}?access_token={{token}}" title="End Sheet PDF File">&nbsp;&nbsp;{{esPart.displayFileName}}</a>&nbsp;&nbsp;
+					<button type="button" uib-tooltip="{{ 'editPartModalContent.Remove_this_text_file'| translate }}" ng-click="removeFile('EndSheet', esPart.partNum)" ng-disabled="disableFields" class="btn bgm-deeporange waves-effect"><i class='zmdi zmdi-delete'></i></button>
+				  </div>
+                </div>
+                <div class="col-md-3" ng-if="part.printedEndSheet">
+                      <div class="form-group">
+                          <label class="form-label"> {{ 'editPartModalContent.COLORS'| translate }}</label>
+		                    <div class="controls">
+		                        <select name="esColor" id="esColor" ng-model="part.esColor" ng-disabled="disableFields" class="form-control" >
+	                                <option value=""> {{ 'editPartModalContent.SELECT'| translate }}</option>
+	                                <option value="4C">4C</option>
+	                                <option value="1C">1C</option>
+	                                <option value="1/1C">1/1C</option>
+	                                <option value="4/4C">4/4C</option>
+                                	<option value="4/1C">4/1C</option>
+	                            </select>
+		                    </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">{{ 'editPartModalContent.PAPER_TYPE'| translate }}
+                            <span ng-show="partForm.esPaperType.$error.maxlength" class="text-danger text-error">{{ 'ERROR19'| translate}}</span>
+                        </label>
+                        <div class="controls">
+                            <div class="fg-line">
+                                <input type="text" id="esPaperType" name="esPaperType" ng-model="part.esPaper" ng-disabled="disableFields" class="form-control" ng-maxlength="55">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  
+                <!--  <div class="form-group">
+                        <label class="form-label">Note
+				<span ng-show="partForm.notes.$dirty && partForm.notes.$error.maxlength" class="text-danger text-error">: Notes length is too long!</span>
+  				</label>
+                        <div class="controls">
+                       	 <div class="fg-line">
+                         	<textarea id="notes" name="notes" class="form-control" ng-model="part.notes" ng-disabled="disableFields" rows="5" ng-maxlength="1000"></textarea>
+                         	</div>
+                        </div>
+                 </div> -->
+           
+        </div>
+ 		<div class="modal-footer">
+ 			<img style="float:left" ng-click="unlockOrderData()" uib-tooltip = "{{'editPartModalContent.UNLOCK'| translate }}" ng-if="disableFields && (loggedInUser.roles.indexOf('ROLE_ADMIN') > -1 || loggedInUser.roles.indexOf('ROLE_PM') > -1)" src="images/lock.png" alt="Unlock" class="img-responsive" height="42" width="42"/>
+		   	<div class="right">
+ 				<button type="button" class="btn bgm-bluegray waves-effect"  ng-click="closeModal()"> {{ 'editPartModalContent.CANCEL'| translate }}</button>
+            	<button type="button" ng-click="updatePart()" class="btn bgm-teal waves-effect" ng-show="!disableFields" 
+					ng-disabled="(coverFile.progress >= 0 && !coverFile.result && !uploadCoverFileError) || (textFile.progress >= 0 && !textFile.result && ! uploadTextFileError) || 
+						(djFile.progress >= 0 && !djFile.result && ! uploadDJFileError) || (esFile.progress >= 0 && !esFile.result && ! uploadESFileError) || 
+						partForm.colors.$invalid || partForm.partWidth.$invalid || partForm.partHeight.$invalid || partForm.isbn.$invalid ||
+						partForm.title.$invalid || partForm.paperType.$invalid || partForm.bindingType.$invalid || partForm.pagesCount.$invalid || 
+						partForm.thickness.$invalid || partForm.notes.$invalid || partForm.version.$invalid || partForm.author.$invalid || partForm.coverColor.$invalid"
+				> {{ 'editPartModalContent.SAVE'| translate }}</button>
+			</div>
+			<div>
+ 				<small style="float:left"><em>{{ 'editPartModalContent.LAST_UP_ID' | translate }} '{{part.lastModifiedByUserName}}' , {{ 'editPartModalContent.LAST_UP_DATE' | translate }} {{part.lastModifiedDate | date:'medium'}}</em></small>
+			</div>
+ 		</div>
+ </form>
+ 
+ <script type="text/javascript" >
+	 $(document).ready(function(){
+		// 	    if($('#SELFCOVER').is(':checked')) {
+		// 			$('#coverFile').prop('disabled', true);
+		// 		}else{
+		// 			$('#coverFile').prop('disabled', false);
+		// 		}
+		toggleCoverUpload('SELFCOVER');
+	 });
+	function toggleCoverUpload(elId){
+		if(elId == 'SELFCOVER'){
+			if($('#SELFCOVER').is(':checked')) {
+				$('#coverFile').prop('disabled', true);
+			}else{
+				$('#coverFile').prop('disabled', false);
+			}
+		}
+	}
+	
+</script>
+ 

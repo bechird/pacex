@@ -1,0 +1,150 @@
+<div class="modal-header card-header ch-alt" ng-cloak>
+    <h3 class="modal-title">{{ 'viewBatchModalContent.TITLE'| translate }}</h3>
+</div>
+
+<div class="modal-body card-body col-md-12" ng-cloak>
+    <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{errors.errors}}</uib-alert>
+    <form name="rollForm">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <div class="mini-charts-item bgm-btn-blue-500">
+                    <div class="clearfix">
+                        <div class="chart stats-bar-2" data-sparkline-bar="">
+                            {{ 'viewBatchModalContent.BI'| translate }}
+                        </div>
+                        <div class="count">
+                            <small>{{ 'viewBatchModalContent.BATCH_ID'| translate }}</small>
+                            <h2>{{batch.coverBatchId}}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="input-group" style="width: 100%;">
+                    <div class="fg-line">
+                        <label class="form-label">{{ 'viewBatchModalContent.BATCH_NAME'| translate }}</label>
+                        <div class="controls">
+                            <label>{{batch.coverBatchName}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="input-group" style="width: 100%;">
+                    <div class="fg-line">
+                        <label class="form-label">{{ 'viewBatchModalContent.PRIORITY'| translate }}</label>
+                        <div class="controls">
+                            <label>{{batch.priority}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="input-group" style="width: 100%;">
+                    <div class="fg-line">
+                        <label class="form-label"> {{ 'viewBatchModalContent.PARENT_ROLL'| translate }}</label>
+                        <div class="controls">
+                            <label>{{batch.roll.rollId}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="input-group" style="width: 100%;">
+                    <div class="fg-line">
+                        <label class="form-label">{{ 'viewBatchModalContent.QUANTITY'| translate }}</label>
+                        <div class="controls">
+                            <label>{{batch.quantity}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="input-group" style="width: 100%;">
+                    <div class="fg-line">
+                        <label class="form-label">{{ 'viewBatchModalContent.STATUS'| translate }}</label>
+                        <div class="controls">
+                            <label>{{batch.status.name}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="input-group " style="width: 100%;">
+                    <div class="fg-line">
+                        <label class="form-label">{{ 'viewBatchModalContent.DUE_DATE'| translate }}</label>
+                        <div class="controls">
+                            <label>{{batch.dueDate | date:'MMM dd'}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br/>
+        <div class="row">
+            <div class="pull-right">
+                <button type="button" ng-click="reCreateBatch(batch.coverBatchId)" class="btn bgm-cyan waves-effect">&nbsp;{{ 'viewBatchModalContent.RECREATE_BATCH'| translate }}</button>
+                <button type="button" class="btn bgm-bluegray waves-effect" ng-click="closeModal()"> {{ 'viewRollModalContent.CLOSE'| translate }}</button>
+
+            </div>
+            <small>
+                <em>{{ 'viewBatchModalContent.LAST_UP_ID' | translate }}
+                    <strong>'{{batch.lastModifiedByUserName}}'</strong> , {{ 'viewRollModalContent.LAST_UP_DATE' | translate }}
+                    <strong>{{batch.lastModifiedDate | date:'medium'}}</strong>
+                </em>
+            </small>
+        </div>
+    </form>
+    <br/>
+
+
+    <div class="card">
+        <div class="card-header ch-alt m-b-20">
+            <h2>{{ 'viewBatchModalContent.SECTIONS_BATCH'| translate }}
+                <small> {{ 'viewBatchModalContent.DESCRIPTION'| translate }}</small>
+            </h2>
+        </div>
+        <div class="card-body card-padding">
+            <uib-alert type="success" close="successMsg = false;" ng-show="successMsg">{{alertMsg}}</uib-alert>
+            <uib-alert type="danger" close="errorMsg = false;" ng-show="errorMsg">{{alertMsg}}</uib-alert>
+            <table id="SectionsOnBatchTable" name="SectionsOnBatchTable" class="table table-bordered" width="100%" datatable="ng" dt-options="dtOptionsForSectionsOnBatch">
+                <thead>
+                    <tr>
+                        <th>{{ 'viewBatchModalContent.SECTION_ID'| translate }}</th>
+                        <th> {{ 'viewBatchModalContent.SECTION_NAME'| translate }}</th>
+                        <th> {{ 'viewBatchModalContent.PRIORITY'| translate }}</th>
+                        <th>{{ 'viewBatchModalContent.DUE_DATE'| translate }}</th>
+                        <th> {{ 'viewBatchModalContent.LAMINATION'| translate }}</th>
+                        <th> {{ 'viewBatchModalContent.QUANTITY'| translate }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="section in batch.sections">
+                        <td>
+                            <button class="btn bgm-amber  waves-effect" uib-tooltip="{{ 'viewBatchModalContent.Details'| translate }}"
+                                ng-click="openViewSectionModal(section.coverSectionId)">{{section.coverSectionId}}
+                            </button>
+                        </td>
+                        <td>{{section.coverSectionName}}</td>
+                        <td>{{section.priority}}</td>
+                        <td>{{section.dueDate | date:'MMM dd'}}</td>
+                        <td>{{section.laminationType.name}}</td>
+                        <td>{{section.quantity}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+</div>

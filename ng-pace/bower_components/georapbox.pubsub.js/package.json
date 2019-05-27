@@ -1,0 +1,53 @@
+{
+  "name": "PubSub",
+  "version": "3.4.0",
+  "description": "Javascript implementation of the Publish/Subscribe pattern.",
+  "main": "src/pubsub.js",
+  "scripts": {
+    "build": "grunt build",
+    "test": "karma start",
+    "lint": "eslint src/**",
+    "jsdoc2md": "jsdoc2md 'src/pubsub.js' > 'temp/api_readme.md'",
+    "ci": "npm run lint; npm test;",
+    "prepublish": "npm run test && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/georapbox/PubSub.git"
+  },
+  "keywords": [
+    "subscribe",
+    "publish",
+    "publish/subscribe",
+    "pubsub",
+    "pub/sub",
+    "event",
+    "emitter",
+    "eventemitter"
+  ],
+  "author": "George Raptis <georapbox@gmail.com> (georapbox.github.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/georapbox/PubSub/issues"
+  },
+  "homepage": "https://github.com/georapbox/PubSub#readme",
+  "devDependencies": {
+    "eslint": "~4.9.0",
+    "grunt": "~1.0.1",
+    "grunt-cli": "~1.2.0",
+    "grunt-contrib-uglify": "~3.1.0",
+    "grunt-remove-logging": "~0.2.0",
+    "jasmine-core": "~2.8.0",
+    "jsdoc-to-markdown": "~3.0.0",
+    "karma": "~1.7.0",
+    "karma-chrome-launcher": "~2.2.0",
+    "karma-cli": "~1.0.0",
+    "karma-coverage": "~1.1.1",
+    "karma-firefox-launcher": "~1.0.0",
+    "karma-htmlfile-reporter": "~0.3.4",
+    "karma-ie-launcher": "~1.0.0",
+    "karma-jasmine": "~1.1.0",
+    "karma-phantomjs-launcher": "~1.0.2",
+    "phantomjs-prebuilt": "~2.1.14"
+  }
+}

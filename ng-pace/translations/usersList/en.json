@@ -1,0 +1,98 @@
+{    "users" :{
+     "TITLE" : "Users List",
+     "DESCRIPTION": "Below is the list of users available in the system. To add a new user click the",
+	 "LIGNE2":	"icon ",
+	 "LIEN": " ",
+	 "FIRST_NAME":	"First Name",
+	 "LAST_NAME": "Last Name",
+	 "EMAIL": "Email",
+	 "PHONE": "Phone",	 
+	 "LANGUAGE" :"Language",
+	 "ACTIVE": "Active",
+	 "USER_ROLES": "User Roles",
+	 "ADD_USER": "Add User", 
+	 "ERROR1": ": The First Name length is too long!",
+	 "ERROR2": ": The First Name is required!",	 
+	 "ERROR3": ": The Last Name length is too long!",
+	 "ERROR4": ": The Last Name is required!", 
+	 "ERROR5": ": The Email length is too long!",
+	 "ERROR6": ": The Email is required!",	 
+	 "ERROR7": ": The Email is invalid!",
+	 "ERROR8": ": The Phone Number length is too long!", 
+	 "ERROR9": ": The Phone Number is invalid!",
+	 "LOGIN_NAME": "Login Name",
+	 "ERROR10": ": The Login Name length is too long!",	 
+	 "LOGIN_PASSWORD": "Login Password",
+	 "ERROR11": ": The Login Password length is too long!",
+	 "ROLES": "Roles", 
+	 "SELECT": "-- Please select --",
+	 "ACTIVE?": "Active?",
+	 "YES": "Yes",	 
+	 "NO": "No",
+	 "CANCEL": "Cancel",	 
+	 "ADD": "Add",	 
+	 "UPDATE_USER": "Update User", 	 
+	 "ERROR12": ": The First Name length is too long!",
+	 "ERROR13": ": The First Name is required!",	  
+	 "ERROR14": ": The Last Name length is too long!",
+	 "ERROR15": ": The Last Name is required!",	 	
+	 "ERROR16": ": The Email length is too long!",	 
+	 "ERROR17": ": The Email is required!",	 
+	 "ERROR18": ": The Phone Number length is too long!",
+	 "ERROR19": ": The Phone Number is invalid!",	 	 
+	 "ERROR20": ": The Login Name length is too long!",
+	 "ERROR21": ": The Login Password length is too long!",
+	 "LAST_UP_ID": "Last Updater Id: ", 
+	 "LAST_UP_DATE": "Last Update Date:",
+	 "UPDATE" : "Update"
+	 
+	},
+	 
+	 
+	 "js" :{
+	 "FirstName" :"First Name",
+	 "LastName" :"Last Name",
+	 "Phone" :"Phone Number",
+	 "Language" :"Language",
+	 "Active" :"Active Flag",
+	 "UserRoles" :"User Roles",
+	 
+	 "TITLE_DELETE" :"Delete User",
+	 "TEXT_DELETE" :"Are you sure you want to delete the User?",
+	 "CONFIRM_DELETE" :"Yes, delete it!",
+	 
+	 "DeleteRole" :"Delete Role",
+	 "ROLE_DELETED" :"Role successfully deleted!",
+	 "DeletionError" :"Deletion Error",
+	 
+	 "USER_UPDATED" :"User Updated !!",
+	 "ADING_USER" :"Adding User",
+	 "USER_ADDED" :"User Added",
+	 "EDDINT_USER" :"Editing User",
+	 "USER_UPDATED2" :"User Updated",
+	 "EDIT" :"Edit User",
+	 "DELETE_js" :"Delete User"
+	 
+	},
+	 
+	 "plowFolderMachineForPhone" : {
+	 "ROLL_NUM" : "Roll Number",
+     "PAPER_TYPE": "Paper Type",
+	 "Utopia":	"45lb Utopia Filmcoat Text Blue White",
+	 "NEXT": "Next",
+	 "ROLL": "Roll 482",
+	 "TOBS_LIST": "Jobs List",	 
+	 "FILE_NAME": "File Name",
+	 "QTY": "Qty"
+	 
+	 }
+	  
+	 
+
+	 
+	 
+	 
+	 
+	  
+	  	 
+}

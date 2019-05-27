@@ -1,0 +1,319 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/morris.js/morris.css" />
+    <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" />
+    <link rel="stylesheet" href="bower_components/chartist/dist/chartist.min.css" />
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+    <link rel="stylesheet" href="bower_components/datatables/media/css/jquery.dataTables.css" />
+    <link rel="stylesheet" href="bower_components/angular-datatables/dist/plugins/bootstrap/datatables.bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/ng-multiselect/dist/ng-multiselect.css" />
+    <link rel="stylesheet" href="bower_components/angular-ui-tree/dist/angular-ui-tree.min.css" />
+    <link rel="stylesheet" href="bower_components/slick-carousel/slick/slick.css" />
+    <link rel="stylesheet" href="bower_components/slick-carousel/slick/slick-theme.css" />
+    <link rel="stylesheet" href="bower_components/select2/dist/css/select2.css" />
+    <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+    <link rel="stylesheet" href="bower_components/ng-scrollbar/dist/ng-scrollbar.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap-vertical-tabs/bootstrap.vertical-tabs.css" />
+    <link rel="stylesheet" href="bower_components/angular-bootstrap-pwgen/angular-bootstrap-pwgen.css" />
+    <link rel="stylesheet" href="bower_components/angular-wizard/dist/angular-wizard.min.css" />
+    <link rel="stylesheet" href="bower_components/owl.carousel/dist/assets/owl.carousel.css" />
+    <link rel="stylesheet" href="bower_components/angularjs-datepicker/dist/angular-datepicker.min.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/rollsbox.css">
+   
+    <!-- endbuild -->
+     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" />
+     
+  </head>
+  <body ng-app="capApp">
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+<div class="header navbar navbar-inverse ">
+
+    <div class="navbar-inner">
+        <div class="header-seperation">
+            <ul class="nav pull-left notifcation-center visible-xs visible-sm">
+                <li class="dropdown">
+                    <a href="" data-webarch="toggle-left-side">
+                        <div class="iconset top-menu-toggle-white"></div>
+                    </a>
+                </li>
+            </ul>
+
+            <a href="">
+                <img ng-src="{{MODE =='pacex'?'images/logo-pacex-small.png':'images/logo-pacea-small.png'}}"  class="logo" alt="" data-src="images/logo.png" data-src-retina="images/logo.png">
+            </a>
+
+           
+        </div>
+
+        <div class="header-quick-nav">
+
+            <div class="pull-left">
+                <ul class="nav quick-section">
+                    <li class="quicklinks dropdown">
+                        <a href="" class="" id="layout-condensed-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           Orders
+                           <span class="caret"></span>
+                        </a>
+                         <ul class="dropdown-menu pull-right" aria-labelledby="dLabel">
+                          <li><a href="#/orders_acceptance">Orders Acceptence</a></li>
+                           <li class="divider"></li>
+                          <li><a href="#/orders">Orders</a></li>
+                           <li class="divider"></li>
+                          <li><a href="#/orders_overview">Orders Overview</a></li>
+                         </ul>
+                    </li>
+                     <li class="quicklinks"> <span class="h-seperate"></span>
+                    </li>
+                    <li class="quicklinks">
+                        <a href="" class="" id="layout-condensed-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           Scheduling 
+                             <span class="caret"></span>
+                        </a>
+                         <ul class="dropdown-menu pull-right" aria-labelledby="dLabel">
+                          <li><a href="#/scheduling">Scheduling</a></li>
+                           <li class="divider"></li>
+                          <li><a href="">Overview Schedule Board</a></li>
+                          
+                         </ul>
+                    </li>
+                     <li class="quicklinks"> <span class="h-seperate"></span>
+                    </li>
+                    <li class="quicklinks">
+                        <a href="" class="" id="layout-condensed-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           Stations
+                           <span class="caret"></span>
+                        </a>
+                         <ul class="dropdown-menu pull-right" aria-labelledby="dLabel">
+                          <li><a href="">Press Station</a></li>
+                          <li class="divider"></li>
+                          <li><a href="">Plow Folder Station</a> </li>
+                           <li class="divider"></li>
+                          <li><a href="">Cover Press Station</a></li>
+                           <li class="divider"></li>
+                          <li><a href="">Binder Station</a></li>
+                           <li class="divider"></li>
+                          <li><a href="">3Hole Drill Station</a></li>
+                           <li class="divider"></li>
+                          <li><a href="">Cutter Station</a></li>
+                           <li class="divider"></li>
+                          <li><a href="">Plastic Coil</a></li>
+                         </ul>
+                    </li>
+                    
+                </ul>
+             
+            </div>
+
+
+            <div class="pull-right">
+                <div class="chat-toggler">
+                    <a href="" class="dropdown-toggle" id="my-task-list" data-placement="bottom" data-content="" data-toggle="dropdown" data-original-title="Notifications">
+                        <div class="user-details">
+                            <div class="username">
+                               Hi Oussema <span class="bold">Salhi</span>
+                            </div>
+                        </div>
+                      
+                    </a>
+                 
+                </div>
+
+                <ul class="nav quick-section">
+                  <li class="quicklinks"> <span class="h-seperate"></span>
+                    </li>
+                    <li class="quicklinks">
+                        <a data-toggle="dropdown" class="dropdown-toggle  pull-right " href="" id="user-options">
+                            <i class="fa fa-bell-o" aria-hidden="true"></i>
+                            <span class="badge badge-important animated bounceIn">2</span>
+                        </a>
+                        <ul class="dropdown-menu pull-right popover fade bottom in" role="menu" aria-labelledby="user-options">
+                          <h3 class="popover-title">Notifications</h3>
+                          <div class="popover-content">
+                            <li>
+                               <div class="notification-messages info">
+                                <div class="iconholder">
+                                    <i class="icon-warning-sign"></i>
+                                </div>
+                                <div class="message-wrapper">
+                                    <div class="heading">
+                                        Server load limited
+                                    </div>
+                                    <div class="description">
+                                        Database server has reached its daily capicity
+                                    </div>
+                                    <div class="date pull-left">
+                                        2 mins ago
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            </li>
+                            <li>
+            <div class="notification-messages danger">
+                <div class="iconholder">
+                    <i class="icon-warning-sign"></i>
+                </div>
+                <div class="message-wrapper">
+                    <div class="heading">
+                        Server load limited
+                    </div>
+                    <div class="description">
+                        Database server has reached its daily capicity
+                    </div>
+                    <div class="date pull-left">
+                        2 mins ago
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+                            </li>
+                            <li>
+            <div class="notification-messages success">
+              
+                <div class="message-wrapper">
+                    <div class="heading">
+                        You haveve got 150 messages
+                    </div>
+                    <div class="description">
+                        150 newly unread messages in your inbox
+                    </div>
+                    <div class="date pull-left">
+                        An hour ago
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+                            </li>
+                           </div>
+                        </ul>
+                    </li>
+                    <li class="quicklinks"> <span class="h-seperate"></span>
+                    </li>
+                    <li class="quicklinks">
+                        <a data-toggle="dropdown" class="dropdown-toggle pull-right " href="" id="user-options">
+                          <i class="fa fa-cog" aria-hidden="true"></i>
+                        </a>
+                        <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="user-options">
+                            <li>
+                                <a href=""> My Account</a>
+                            </li>
+                           
+                            <li class="divider"></li>
+                            <li>
+                                <a href=""><i class="fa fa-power-off"></i>&nbsp;&nbsp;Log Out</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+    <!-- Add your site or application content here -->
+
+    <div class="container">
+      
+    <div ng-view="" class="content"></div>
+    </div>
+
+  
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/eve/eve.js"></script>
+    <script src="bower_components/raphael/raphael.min.js"></script>
+    <script src="bower_components/mocha/mocha.js"></script>
+    <script src="bower_components/morris.js/morris.js"></script>
+    <script src="bower_components/Chart.js/Chart.js"></script>
+    <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
+    <script src="bower_components/chartist/dist/chartist.min.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/PACE/pace.js"></script>
+    <script src="bower_components/datatables/media/js/jquery.dataTables.js"></script>
+    <script src="bower_components/angular-datatables/dist/angular-datatables.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/colreorder/angular-datatables.colreorder.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/columnfilter/angular-datatables.columnfilter.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/light-columnfilter/angular-datatables.light-columnfilter.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/colvis/angular-datatables.colvis.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/fixedcolumns/angular-datatables.fixedcolumns.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/fixedheader/angular-datatables.fixedheader.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/scroller/angular-datatables.scroller.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/tabletools/angular-datatables.tabletools.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/buttons/angular-datatables.buttons.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/select/angular-datatables.select.js"></script>
+    <script src="bower_components/datatables-buttons/js/dataTables.buttons.js"></script>
+    <script src="bower_components/datatables-buttons/js/buttons.colVis.js"></script>
+    <script src="bower_components/datatables-buttons/js/buttons.flash.js"></script>
+    <script src="bower_components/datatables-buttons/js/buttons.html5.js"></script>
+    <script src="bower_components/datatables-buttons/js/buttons.print.js"></script>
+    <script src="bower_components/datatables-light-columnfilter/dist/dataTables.lightColumnFilter.min.js"></script>
+    <script src="bower_components/ng-multiselect/dist/ng-multiselect.js"></script>
+    <script src="bower_components/angular-ui-tree/dist/angular-ui-tree.js"></script>
+    <script src="bower_components/slick-carousel/slick/slick.min.js"></script>
+    <script src="bower_components/angular-slick/dist/slick.js"></script>
+    <script src="bower_components/select2/dist/js/select2.js"></script>
+    <script src="bower_components/jquery-datatables-columnfilter/jquery.dataTables.columnFilter.js"></script>
+    <script src="bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="bower_components/angular-daterangepicker-plus/src/angular-daterangepicker-plus.js"></script>
+    <script src="bower_components/ng-scrollbar/dist/ng-scrollbar.js"></script>
+    <script src="bower_components/angular-slimscroll/angular-slimscroll.js"></script>
+    <script src="bower_components/ngECharts/dist/ngecharts.js"></script>
+    <script src="bower_components/echarts/build/dist/echarts.js"></script>
+    <script src="bower_components/angular-bootstrap-pwgen/angular-bootstrap-pwgen.js"></script>
+    <script src="bower_components/angular-multi-step-form/dist/browser/angular-multi-step-form.js"></script>
+    <script src="bower_components/angular-wizard/dist/angular-wizard.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+    <script src="bower_components/owl.carousel/dist/owl.carousel.js"></script>
+    <script src="bower_components/angularjs-datepicker/dist/angular-datepicker.min.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/sidebar.js"></script>
+        <script src="scripts/controllers/order_acceptance.js"></script>
+        <script src="scripts/controllers/orders.js"></script>
+        <script src="scripts/controllers/orders_overview.js"></script>
+        <script src="scripts/controllers/scheduling.js"></script>
+        <!-- endbuild -->
+</body>
+</html>

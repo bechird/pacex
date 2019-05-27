@@ -1,0 +1,11 @@
+{
+     "login" :{
+     "TITLE" : "Please enter your credentials",
+     "USERNAME": "Username",
+	 "PASSWORD":	"Password",
+	 "VALIDATE": "Validate",
+	 "NOTFOUND": "Invalid username or password. Please try again."
+
+     } 
+
+}

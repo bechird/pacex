@@ -1,0 +1,31 @@
+{
+"rolls" :{
+    "TITLE" : "List des Bobines",
+     "DESCRIPTION": "Voici la liste des Bobines disponibles dans le système. Pour ajouter une nouvelle Bobine, cliquez sur"
+	 },
+	 
+	 "rolls_js" :{
+	 "Id" :"Id dBobine",
+	 "Status" :"Statut",
+	 "Length" :"Longueur",
+	 "PaperType" :"Type de Papier",
+	 "Hours" :"Heures",
+	 "Utilization" :"Utilisation",
+	 "DeleteRoll":"Supprimer Bobine",
+	  "delete_sure" : "Êtes-vous sûr de vouloir supprimer la Bobine?",
+	 "warning" :"Attention",
+	 "Yes_delete"  :"Oui, supprimez-le!",
+	 "Part_succ_deleted!" :"Livre a été supprimé avec succès!",
+	 "DeletionError" :"Erreur de suppression",
+	 "NEW" :"Nouveau",
+	 "Adding_Roll" :"Ajout Bobine",
+	 "Roll_Added" :"Bobine ajoutée",
+	 "Updating_Roll" :"Mettre à jour la Bobine",
+	 "Roll_Updated" :"Bobine mise à jour"
+	 
+	  
+	 }
+	 
+	 
+     
+}

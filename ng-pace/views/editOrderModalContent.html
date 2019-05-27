@@ -1,0 +1,251 @@
+ <form name="orderForm" ng-cloak>
+<div class="modal-header card-header ch-alt" ng-cloak>
+    <h3 class="modal-title">{{ 'editOrderModalContent.EDITORDER'| translate }} {{order.orderId}})</h3>
+</div>
+
+<div class="modal-body card-body card-padding" ng-cloak>
+        <div class="">
+            <div class="">
+
+                <div class="">
+                    <br>
+					<div class="row">
+    <div class="col-sm-6 col-md-4" ng-cloak>
+        <div class="mini-charts-item bgm-blue-300">
+            <div class="clearfix">
+               <div class="chart stats-bar-2" data-sparkline-bar="">
+                   {{ 'editOrderModalContent.PH'| translate }}
+                </div>
+                <div class="count">
+                    <small>{{ 'editOrderModalContent.PROD_HOURS'| translate }}</small>
+                    <h2 ng-show="!orderForm.quantity.$dirty">{{order.orderPart.printingHours | number:2 }}</h2>
+                    <h2 ng-show="orderForm.quantity.$dirty">{{(order.orderPart.quantity * order.orderPart.part.pagesCount)/85000 | number:2 }}</h2>
+                </div>
+                  </div>
+            </div>
+        </div>
+  
+
+    <div class="col-sm-6 col-md-4" ng-cloak>
+        <div class="mini-charts-item bgm-blue-300">
+            <div class="clearfix">
+                <div class="chart stats-bar-2" data-sparkline-bar="">
+                  {{ 'editOrderModalContent.UH'| translate }}
+                </div>
+                <div class="count">
+                    <small>{{ 'editOrderModalContent.UNSCH_HOURS'| translate }}</small>
+                    <h2>{{unscheduled4CHours + unscheduled1CHours | number:2 }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-md-4" ng-cloak>
+        <div class="mini-charts-item bgm-blue-300">
+            <div class="clearfix">
+                <div class="chart stats-line" data-sparkline-line="">
+									 {{ 'editOrderModalContent.SH'| translate }}
+	                </div>
+                <div class="count">
+                    <small>{{ 'editOrderModalContent.SCHED_HOURS'| translate }}</small>
+                    <h2>{{scheduled4CHours + scheduled1CHours | number:2 }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+                    <div class="row" ng-cloak>
+                        <!--  col 1 -->
+                        <div type="danger" class="alert alert-danger alert-dismissible" role="alert" ng-show="errorMsg">
+			                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+			                </button>
+			                {{errors}}
+			            </div>
+                        <div class="col-sm-3">
+                            <div class="input-group required" style="width: 100%;">
+                                <div class="fg-line">
+                                    <label class="form-label">
+                                    	 {{ 'editOrderModalContent.REQNAME'| translate }}<small ng-show="orderForm.reqName.$dirty && orderForm.reqName.$error.required" class="text-danger text-error"> {{ 'editOrderModalContent.ERROR1'| translate }}</small>
+                                    </label>
+                                     &nbsp; &nbsp; &nbsp;<a uib-tooltip="{{ 'editOrderModalContent.order_add_request'| translate }}" ng-click="openAddCustomerModal()" ng-show="!disableOrderFields" id="addCustomer"><i class="zmdi zmdi-plus-circle-o zmdi-hc-lg"></i></a> 
+                                    &nbsp;
+                                    <div class="select">
+                                        <!-- <select id="reqName" name="reqName" ng-model="order.customer.email" chosen style="width: 99%" ng-required="true">
+                                            <option value=""> -- Please select -- </option>
+                                            <option ng-repeat="option in customerOptions track by option.email" value="{{option.email}}">{{option.fullName}}</option>
+                                        </select> -->
+                                        <select name="reqName" id="reqName" chosen style="width: 99%" ng-required="true" ng-disabled="disableOrderFields"
+      										ng-options="option.fullName for option in customerOptions track by option.email"
+      										ng-model="order.customer">
+      									</select>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="input-group required" style="width: 100%;">
+                                <div class="fg-line">
+                                    <label class="form-label"> {{ 'editOrderModalContent.PONumber'| translate }}<small ng-show="orderForm.orderNum.$dirty && orderForm.orderNum.$error.maxlength" class="text-error"> {{ 'editOrderModalContent.ERROR2'| translate }}</small><small ng-show="orderForm.orderNum.$dirty && orderForm.orderNum.$error.required" class="text-error"> {{ 'editOrderModalContent.ERROR3'| translate }}</small>
+                                    </label>
+                                    <input id="orderNum" name="orderNum" type="text" ng-model="order.orderNum" ng-disabled="disableOrderFields" class="form-control" ng-required="true" ng-maxlength="25">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="input-group " style="width: 100%;">
+								<div class="fg-line" style="width: 100%;">
+	                                <label class="form-label"> {{ 'editOrderModalContent.QUANTITY' | translate }}</label>
+	                                <input type="number" id="quantity" name="quantity" ng-model="order.quantity"
+	                                    class="form-control" min="0" max="999999999" disabled>
+	                            </div>
+                            </div>
+                        </div>
+
+                        <!--  end col 1 -->
+
+
+                        <!--  col 2 -->
+                        <div class="col-sm-3">
+                            <div class="input-group" style="width: 100%;">
+                                <div class="fg-line">
+                                    <label class="form-label">{{ 'editOrderModalContent.EMAIL'| translate }}</label>
+                                    <input type="text" ng-required="true" ng-disabled="true" id="email" name="email" ng-model="order.customer.email" class="form-control">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="input-group required" style="width: 100%;">
+                                <div class="fg-line">
+                                    <label class="form-label">{{ 'editOrderModalContent.DUEDATE'| translate }}<small ng-show="orderForm.dueDate.$dirty && orderForm.dueDate.$error.required" class="text-error"> {{ 'editOrderModalContent.ERROR5'| translate }}</small> <small ng-show="orderForm.dueDate.$dirty && orderForm.dueDate.$error.date" class="text-error">{{ 'editOrderModalContent.ERROR6'| translate }}</small>
+                                    </label>
+                                   <!--  <input ng-click="open1()" ng-model="dueDate" id="dueDate" name="dueDate" type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup1.opened" datepicker-options="dateOptions" close-text="Close" enable-time="true" close-on-date-selection="false" alt-input-formats="altInputFormats" ng-required="true" /> -->
+                                   <datepicker 
+                                   date-format="{{format}}" 
+                                   date-typer="true" 
+                                   date-set="{{dueDate.toString()}}"
+                                    button-prev='<i class="fa fa-arrow-circle-left"></i>'
+      								button-next='<i class="fa fa-arrow-circle-right"></i>'>
+									  <input ng-model="dueDate"  id="dueDate" name="dueDate" type="text" ng-disabled="disableOrderFields" class="date-control"  uib-datepicker-popup="{{format}}"  placeholder="Choose a date"  ng-required="true" />
+									</datepicker>
+								 </div>
+                               <!--  <a ng-click="open1()" class="input-group-addon last"><i class="zmdi zmdi-date"></i></a> -->
+                            </div>
+                            <br>
+                            <div class="input-group" style="width: 100%;">
+                                    <div class="fg-line">
+                                                <label class="form-label"> {{ 'partsList.PRODUCEDQUANTITY' | translate }}</label>
+                                                <input type="text" ng-model="orderQuantityProduced" ng-disabled="true" id="quantityProduced"
+                                                 name="quantityProduced" class="form-control" style="width: 99%" disabled>
+                                    </div>
+                            </div>
+                            
+                        </div>
+                        <!--  end col 2 -->
+
+						<!-- col 3 -->
+						<div class="col-sm-3">
+							<div class="input-group required" style="width: 100%;">
+                                <div class="fg-line">
+                                    <label class="form-label">{{ 'addOrderModalContent.CLIENT'| translate }}</label><small ng-show="orderForm.client.$dirty && orderForm.client.$error.required" class="text-error">{{ 'lookups.CLIENT_REQ'| translate }}</small>
+                                    <div class="select">
+                                        <select name="client" id="client" ng-model="order.clientId" ng-required="true" ng-disabled="disableOrderFields" class="form-control">
+                                            <option value="">{{ 'addOrderModalContent.SELECT'| translate }}</option>
+                                            <option ng-repeat="option in clientOptions" value="{{option.id}}">{{option.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+							 <div class="input-group" style="width: 100%;">
+                                <div class="fg-line">
+                                    <label class="form-label">{{ 'editOrderModalContent.PLEVEL'| translate }}</label>
+                                    <div class="select">
+                                        <select name="priority" id="priority" ng-model="order.priority" class="form-control" ng-disabled="disableOrderFields">
+                                            <option ng-repeat="option in priorityOptions" value="{{option.id}}">{{option.name}}</option>
+                                        </select>
+                                    </div>	
+                                </div>
+                            </div>
+                            <br>
+                            <div class="input-group" style="width: 100%;">
+                                <div class="fg-line">
+                                    <label class="form-label">{{ 'editOrderModalContent.STATUS'| translate }}</label>
+                                    <div class="select">
+                                        <select name="status" id="status" ng-model="order.status" ng-disabled="disableOrderFields" class="form-control">
+                                            <option value="">{{ 'editOrderModalContent.SELECT'| translate }}</option>
+                                            <option ng-repeat="option in orderStatusOptions" value="{{option.id}}">{{option.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+						<!--  end col 3 -->
+						
+                        <!--  col 4 -->
+                        <div class="col-sm-3">
+                            <div class="input-group" style="width: 100%;">
+                                <div class="fg-line">
+                                    <label class="form-label">{{ 'editOrderModalContent.NOTES'| translate }}
+										<span ng-show="orderForm.notes.$dirty && orderForm.notes.$error.maxlength" class="text-error">{{ 'editOrderModalContent.ERROR13'| translate }}</span>
+		 			  				</label>
+		                            <div class="controls">
+		                             	<textarea id="notes" name="notes" class="form-control" ng-model="order.notes" rows="6" ng-disabled="disableOrderFields" ng-maxlength="2000"></textarea>
+		                            </div>
+                                </div>
+                             </div>
+                        </div>
+                        <!--  end col 4 -->
+                    </div>
+                </div>
+            </div>
+    </div>
+    
+    <div class="modal-footer">
+   		   <img style="float:left" ng-click="unlockOrderData()" uib-tooltip = "{{'editOrderModalContent.UNLOCK'| translate }}" ng-if="disableOrderFields && (loggedInUser.roles.indexOf('ROLE_ADMIN') > -1 || loggedInUser.roles.indexOf('ROLE_PM') > -1)" src="images/lock.png" alt="Unlock" class="img-responsive" height="42" width="42"/>
+              <div class="row">
+                    <div class="pull-right" ng-cloack>
+                         <button type="button"  ng-if="!disableOrderFields" ng-click="openAddOrderLineModal(order.orderId)" class="btn bgm-teal waves-effect" 
+                                                   ><i class="fa fa-plus-circle"></i>&nbsp; {{ 'addOrderModalContent.ADDORDERLINE'| translate }} </button>
+        </div>
+        </div>
+		   <div>
+		      <small style="float:left"><em>{{ 'editOrderModalContent.LAST_UP_ID' | translate }} '{{order.lastModifiedByUserName}}' , {{ 'editOrderModalContent.LAST_UP_DATE' | translate }} {{order.lastModifiedDate | date:'medium'}}</em></small>
+		  </div>
+   </div>
+   <div class="row">
+   		<label> {{ 'ORDERS_JS.ORDERPARTS' | translate }}:</label><br>
+		<table 
+			class="mdl-data-table table-bordered  mdl-shadow--2dp"
+			width="100%" datatable="ng"
+			dt-column-defs="dtColumnDefsForDataSupports" dt-options="dtOptionsForDataSupports">
+			<thead>
+				<tr>
+					<th style="color:black"> {{ 'partsList.PARTNUM' | translate }}</th>
+					<th style="color:black"> {{ 'partsList.ISBN' | translate }}</th>
+                    <th style="color:black"> {{ 'partsList.TITLE' | translate }}</th>
+                    <th style="color:black"> {{ 'partsList.QUANTITY' | translate }}</th>
+					<th style="color:black"> </th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="op in order.orderParts">
+					<td style="font-weight: bold;">{{op.part.partNum}}</td>
+					<td style="font-weight: bold;">{{op.part.isbn}}</td>
+                    <td style="font-weight: bold;">{{op.part.title}}</td>
+                    <td style="font-weight: bold;">{{op.quantity}}</td>
+					<td>
+                            <button type='button' uib-tooltip='Edit' title="{{ 'editPartModalContent.TITLE'| translate }}"  ng-click="openEditPartDsModal(op.orderId, op, op.source)" class='btn bgm-orange-900 waves-circle waves-effect'><i class='zmdi zmdi-edit'></i></button>
+                            <button type='button' ng-cloack ng-show="!disableOrderFields" uib-tooltip='Delete' title="{{ 'REMOVE'| translate }}"   ng-click="removeOrderPart($index,op.quantity)" class='btn bgm-deeporange waves-circle waves-effect'><i class='zmdi zmdi-delete'></i></button>                  
+                    </td>
+				</tr>			
+			</tbody>
+		</table>
+    </div>
+    <div class="modal-footer">
+            <div class="right">
+                    <button type="button" class="btn bgm-bluegray waves-effect" ng-click="closeModal()">{{ 'editOrderModalContent.CANCEL'| translate }}</button>
+                 <button type="button" ng-click="updateOrder()" ng-cloack class="btn bgm-teal waves-effect" ng-show="!disableOrderFields"
+                     ng-disabled="orderForm.email.$invalid || orderForm.reqName.$invalid || orderForm.client.$invalid || orderForm.dueDate.$invalid || orderForm.quantity.$invalid || orderForm.quantityMin.$invalid || orderForm.quantityMax.$invalid || orderForm.isbn.$invalid || orderForm.orderNum.$invalid || orderForm.notes.$invalid"><i class="fa fa-plus-circle"></i>&nbsp;{{ 'editOrderModalContent.SAVE'| translate }}</button>
+            </div>
+    </div>
+</form>
