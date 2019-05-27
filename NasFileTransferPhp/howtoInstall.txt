@@ -1,0 +1,6 @@
+1- monter le dossier de repository avec exactement le même chemin que le repository (d'àprés Walid c'est dèjà fait)
+2- Mettre le fichier 'chunk.php' depuis le dossier 'NasFileTransferPhp' de projet 'pacex' dans le serveur php de NAS
+3- Mettre l'addresse http de script php dans la value de 'com.epac.cap.php.rasterFiles.transfer.address' dans ‘cap.properties’ , exemple :
+		com.epac.cap.php.rasterFiles.transfer.address = http://192.168.1.212/phpmyadmin/chunk.php
+4- mettre les droits de repository de la repository de Nas  à 777 : chmod -R 777 /opt/pacex/repository
+
